@@ -1,0 +1,11 @@
+{
+  "name": "Game.Editor.Preparation",
+  "rootNamespace": "MechaBattle.EditorTools",
+  "references": [
+    "Game.Contracts",
+    "Game.Battlefield"
+  ],
+  "includePlatforms": [
+    "Editor"
+  ]
+}

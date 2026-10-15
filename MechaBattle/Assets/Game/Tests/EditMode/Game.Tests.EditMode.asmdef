@@ -1,0 +1,17 @@
+{
+  "name": "Game.Tests.EditMode",
+  "rootNamespace": "MechaBattle.Tests",
+  "references": [
+    "Game.Contracts",
+    "Game.Battlefield",
+    "Game.Simulation",
+    "Game.Observation.Contracts",
+    "Game.AI.Bots"
+  ],
+  "includePlatforms": [
+    "Editor"
+  ],
+  "optionalUnityReferences": [
+    "TestAssemblies"
+  ]
+}

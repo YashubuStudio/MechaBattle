@@ -1,0 +1,17 @@
+{
+  "name": "Game.Tests.Generators",
+  "rootNamespace": "MechaBattle.Tests.Generators",
+  "references": [
+    "Game.Contracts",
+    "Game.Battlefield",
+    "Game.Simulation",
+    "Game.UnityAdapters",
+    "Game.Editor.Generators"
+  ],
+  "includePlatforms": [
+    "Editor"
+  ],
+  "optionalUnityReferences": [
+    "TestAssemblies"
+  ]
+}

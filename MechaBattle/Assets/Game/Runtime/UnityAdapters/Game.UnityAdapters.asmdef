@@ -1,0 +1,11 @@
+{
+  "name": "Game.UnityAdapters",
+  "rootNamespace": "MechaBattle.UnityAdapters",
+  "references": [
+    "Game.Contracts",
+    "Game.Battlefield",
+    "Game.Simulation",
+    "Game.Observation.Contracts",
+    "Game.AI.Bots"
+  ]
+}

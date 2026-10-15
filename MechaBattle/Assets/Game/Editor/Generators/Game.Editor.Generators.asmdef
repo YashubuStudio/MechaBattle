@@ -1,0 +1,13 @@
+{
+  "name": "Game.Editor.Generators",
+  "rootNamespace": "MechaBattle.EditorTools.Generators",
+  "references": [
+    "Game.Contracts",
+    "Game.Battlefield",
+    "Game.UnityAdapters",
+    "Game.Simulation"
+  ],
+  "includePlatforms": [
+    "Editor"
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "name": "Game.AI.Bots",
+  "rootNamespace": "MechaBattle.AI.Bots",
+  "references": [
+    "Game.Contracts",
+    "Game.Observation.Contracts",
+    "Game.Battlefield"
+  ],
+  "noEngineReferences": true
+}

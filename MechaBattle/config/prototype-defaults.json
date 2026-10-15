@@ -1,0 +1,130 @@
+{
+  "documentStatus": "PROTOTYPE_VALUES_ONLY_DO_NOT_TREAT_AS_FINAL",
+  "teams": 2,
+  "controllerSlotsPerTeam": 50,
+  "commanderSlotsPerTeam": 1,
+  "squadSize": 4,
+  "normalSquadsPerTeam": 2,
+  "starterDeckSlots": 4,
+  "simulationTickHz": 50,
+  "botDecisionHz": 5,
+  "squadDecisionHz": 2,
+  "commanderDecisionHz": 1,
+  "botToHumanRedLockRangeMultiplier": 0.8,
+  "capture": {
+    "radiusMeters": "TBD",
+    "maxPresenceAdvantage": 8,
+    "captureTimeSeconds": "TBD",
+    "tiedProgress": "hold"
+  },
+  "gauge": {
+    "initialValue": "TBD",
+    "unitLossCurve": "TBD",
+    "baseDamageFactor": "TBD"
+  },
+  "nuclear": {
+    "friendlyFire": true,
+    "friendlyDamageMultiplier": 1,
+    "radiusMeters": "TBD"
+  },
+  "goldMerit": {
+    "awardRule": "TBD",
+    "cooldownReductionSeconds": "TBD",
+    "applicationPolicy": "TBD"
+  },
+  "performance": {
+    "baselineCPU": "Intel Core i5-9400F",
+    "baselineGPU": "NVIDIA GTX 1660 6GB",
+    "ramGB": 16,
+    "resolution": "1920x1080",
+    "targetAverageFps": 60
+  },
+  "note": "Prototype assumptions; no implementation or measured result is implied.",
+  "mainBases": {
+    "minimumPerTeam": 2,
+    "standardPrototypePerTeam": 3,
+    "separateFromCapturePoints": true,
+    "mustProvideDistinctAttackOptions": true,
+    "prototypeBaseIds": {
+      "teamBlue": [
+        "Blue-A",
+        "Blue-B",
+        "Blue-C"
+      ],
+      "teamOrange": [
+        "Orange-A",
+        "Orange-B",
+        "Orange-C"
+      ]
+    },
+    "note": "Per-team minimum is a confirmed requirement; three per team is the adjustable standard test-map proposal."
+  },
+  "preparation": {
+    "source": "MechaBattle_MasterPlan/config/prototype-defaults.json v0.2",
+    "standardMap": "config/standard-map.json",
+    "mapAssumptions": {
+      "boundsHalfWidthMeters": 240,
+      "boundsHalfDepthMeters": 140,
+      "baseX": 200,
+      "laneZ": [
+        -80,
+        0,
+        80
+      ],
+      "spawnRadiusMeters": 12,
+      "attackRadiusMeters": 8,
+      "captureRadiusMeters": 18
+    },
+    "reason": "マップ定義検証用の仮座標・半径。地形・到達性・バランスは未検証。",
+    "status": "P0_DOMAIN_IMPLEMENTED_UNITY_VALIDATION_PENDING"
+  },
+  "p0Simulation": {
+    "tickHz": 50,
+    "maxDurationSeconds": 600,
+    "initialGauge": 10000,
+    "maxHealth": 100,
+    "maxShield": 50,
+    "maxAmmo": 30,
+    "moveSpeed": 12,
+    "unitRadius": 1.5,
+    "fireDamage": 20,
+    "fireRange": 65,
+    "fireIntervalSeconds": 0.4,
+    "redLockRange": 50,
+    "botToHumanRedLockMultiplier": 0.8,
+    "deckCosts": [
+      120,
+      160,
+      200,
+      240
+    ],
+    "deckCooldownSeconds": [
+      45,
+      60,
+      80,
+      100
+    ],
+    "respawnDelaySeconds": 3,
+    "unitGaugeLossPerCost": 0.1,
+    "baseGaugeDamageFactor": 2,
+    "captureSecondsPerAdvantage": 8,
+    "capturePresenceCap": 8,
+    "homeSupplyRadius": 20,
+    "homeHealthPerSecond": 30,
+    "homeShieldPerSecond": 40,
+    "homeAmmoPerSecond": 15,
+    "spawnScatterFraction": 0.6
+  },
+  "p0SimulationNotes": {
+    "status": "PROTOTYPE_ONLY",
+    "reason": "P0の移動・射撃・有限弾薬・CT・占領・試合終結を回帰試験するための仮値。正式な武器/機体バランスではない。",
+    "rules": "平面hitscan、通常射撃は敵のみ。本拠点は繰返し損害を受ける標的。時間切れ同値は引分。味方中継を再出撃候補とし、敵が占領半径にいる間は出撃を停止。補給は本拠点半径内で時間ごとに回復し、CTを短縮しない。帰投チャネル/支援機/核は未実装。",
+    "timing": "全機移動→全機の射撃意図→損害一括解決→占領→補給→勝敗。入力のtickはStep前のCurrentTick。"
+  },
+  "p0BotPrototypeNotes": {
+    "attackStopRangeFraction": 0.9,
+    "returnStopSupplyRadiusFraction": 0.5,
+    "implementation": "Current P0 BOT uses these as documented constants. This section records assumptions; changing these values alone does not yet reconfigure BOT code.",
+    "reason": "本拠点の射程縁で振動せず、帰還時には補給範囲内へ確実に入るための仮係数。AI.Bots独自の設定型でデータ読込する作業を後続に残す。"
+  }
+}

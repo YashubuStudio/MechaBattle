@@ -1,0 +1,9 @@
+{
+  "name": "Game.Simulation",
+  "rootNamespace": "MechaBattle.Simulation",
+  "references": [
+    "Game.Contracts",
+    "Game.Battlefield"
+  ],
+  "noEngineReferences": true
+}
