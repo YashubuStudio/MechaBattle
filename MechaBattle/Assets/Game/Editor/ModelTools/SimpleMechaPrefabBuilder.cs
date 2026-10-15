@@ -62,7 +62,8 @@ namespace MechaBattle.EditorTools.Models
             foreach (var build in catalog.presets)
                 foreach (var paint in new[] { "Neutral", "Blue", "Orange" }) GenerateBuildInternal(kit, catalog, build, paint);
             AssetDatabase.SaveAssets();
-            Debug.Log("Modular mecha: 7 compatible modules and 2 builds x 3 palettes generated. P0 scene unchanged.");
+            Debug.Log("Modular mecha: " + kit.modules.Length + " compatible modules and " + catalog.presets.Length
+                + " builds x 3 palettes generated. P0 scene unchanged.");
         }
 
         // The same saved build accepted by the domain evaluator drives the visual assembly.

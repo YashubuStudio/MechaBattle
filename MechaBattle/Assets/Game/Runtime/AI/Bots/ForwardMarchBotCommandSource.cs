@@ -109,9 +109,14 @@ namespace MechaBattle.AI.Bots
                 moveY = dz / distance;
             }
 
-            // Default aim/fire: toward the objective, only once close enough to hit it.
+            // Default aim/fire: toward the objective, only once close enough to actually
+            // hit it. When the objective is a base with a building radius, that must be
+            // the same threshold Game.Simulation itself gates on (BuildingRadius), not
+            // fireRange - otherwise the BOT "thinks" it's in range and wastes ammo firing
+            // from outside the building, long before BuildingRadius lets the shot land.
+            float objectiveFireRange = (!retreating[slotId] && targetBuildingRadius > 0) ? targetBuildingRadius : fireRange;
             float aimDx = dx, aimDz = dz;
-            bool fire = !retreating[slotId] && distance <= fireRange;
+            bool fire = !retreating[slotId] && distance <= objectiveFireRange;
 
             // Engage anything that crosses weapon range along the way, instead of
             // walking through it. Still advances toward the objective either way.

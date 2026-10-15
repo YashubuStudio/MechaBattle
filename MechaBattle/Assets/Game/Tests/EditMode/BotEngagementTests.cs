@@ -115,6 +115,58 @@ namespace MechaBattle.Tests
             }
         }
 
+        private sealed class FixedSelfView : ISelfObservationSource
+        {
+            internal SelfObservation Value;
+            public bool TryGetSelf(int slotId, out SelfObservation self) { self = Value; return true; }
+        }
+
+        private sealed class NoNearbyEnemies : INearbyThreatSensor
+        {
+            public NearbyEnemy FindNearestEnemy(int slotId, float rangeMeters) => NearbyEnemy.None;
+        }
+
+        // Regression for GPT's review finding on CORE-01: once the BOT started walking
+        // inside a declared building radius, its fire decision still used fireRange
+        // (65m) instead of that same buildingRadius (20m) - so it would set
+        // FirePrimary=true, and burn ammo, for ~45m of approach during which
+        // Game.Simulation's own building gate would reject the base as a target and the
+        // shot would hit nothing. The BOT's "am I close enough to fire" threshold must
+        // match Simulation's "is this shot even valid" threshold exactly.
+        [Test]
+        public void DoesNotFireAtBaseFromOutsideItsOwnBuildingRadius()
+        {
+            var map = BigMap();
+            map.mainBases[3].buildingRadius = 20f; // Orange-A: lane-matched target for team0 slot 0
+            var view = new FixedSelfView
+            {
+                // 45m from Orange-A (200,-80): inside fireRange(65) but outside buildingRadius(20).
+                Value = new SelfObservation(0, 1, 0, ControllerType.Bot, true, 155f, -80f, 30)
+            };
+            var bot = new ForwardMarchBotCommandSource(map, view, new NoNearbyEnemies(), fireRange: 65f, maxAmmo: 30, homeSupplyRadius: 20f);
+
+            Assert.That(bot.TryGetCommand(0, 0, out var command), Is.True);
+            Assert.That(command.FirePrimary, Is.False,
+                "35m outside the building radius: Simulation would reject this base as a target, so the BOT must not fire either.");
+        }
+
+        [Test]
+        public void FiresAtBaseOnceInsideItsOwnBuildingRadius()
+        {
+            var map = BigMap();
+            map.mainBases[3].buildingRadius = 20f;
+            var view = new FixedSelfView
+            {
+                // 10m from Orange-A (200,-80): inside buildingRadius(20).
+                Value = new SelfObservation(0, 1, 0, ControllerType.Bot, true, 190f, -80f, 30)
+            };
+            var bot = new ForwardMarchBotCommandSource(map, view, new NoNearbyEnemies(), fireRange: 65f, maxAmmo: 30, homeSupplyRadius: 20f);
+
+            Assert.That(bot.TryGetCommand(0, 0, out var command), Is.True);
+            Assert.That(command.FirePrimary, Is.True,
+                "Inside the building radius, the shot is valid in Simulation too, so the BOT should fire.");
+        }
+
         private static void RunTicks(BattleSimulation world, ForwardMarchBotCommandSource bot, int ticks)
         {
             for (int tick = 0; tick < ticks && world.Phase == MatchPhase.Running; tick++)
