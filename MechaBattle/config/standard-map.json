@@ -11,6 +11,7 @@
       "z": -80,
       "spawnRadius": 12,
       "attackRadius": 8,
+      "buildingRadius": 20,
       "approachRoute": "north"
     },
     {
@@ -20,6 +21,7 @@
       "z": 0,
       "spawnRadius": 12,
       "attackRadius": 8,
+      "buildingRadius": 20,
       "approachRoute": "center"
     },
     {
@@ -29,6 +31,7 @@
       "z": 80,
       "spawnRadius": 12,
       "attackRadius": 8,
+      "buildingRadius": 20,
       "approachRoute": "south"
     },
     {
@@ -38,6 +41,7 @@
       "z": -80,
       "spawnRadius": 12,
       "attackRadius": 8,
+      "buildingRadius": 20,
       "approachRoute": "north"
     },
     {
@@ -47,6 +51,7 @@
       "z": 0,
       "spawnRadius": 12,
       "attackRadius": 8,
+      "buildingRadius": 20,
       "approachRoute": "center"
     },
     {
@@ -56,6 +61,7 @@
       "z": 80,
       "spawnRadius": 12,
       "attackRadius": 8,
+      "buildingRadius": 20,
       "approachRoute": "south"
     }
   ],

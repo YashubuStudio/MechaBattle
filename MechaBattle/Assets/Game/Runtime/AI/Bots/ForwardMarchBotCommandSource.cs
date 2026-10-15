@@ -23,6 +23,7 @@ namespace MechaBattle.AI.Bots
         private readonly int maxAmmo;
         private readonly (float X, float Z)[] homeBySlot = new (float X, float Z)[MatchLimits.TotalControllerSlots];
         private readonly (float X, float Z)[] targetBySlot = new (float X, float Z)[MatchLimits.TotalControllerSlots];
+        private readonly float[] targetBuildingRadiusBySlot = new float[MatchLimits.TotalControllerSlots];
         private readonly float homeSupplyRadius;
         private readonly bool[] retreating = new bool[MatchLimits.TotalControllerSlots];
         private readonly uint[] nextSequence = new uint[MatchLimits.TotalControllerSlots];
@@ -76,6 +77,7 @@ namespace MechaBattle.AI.Bots
                     if (dz < bestDz) { bestDz = dz; best = candidate; }
                 }
                 targetBySlot[slot] = (best.x, best.z);
+                targetBuildingRadiusBySlot[slot] = best.buildingRadius;
             }
         }
 
@@ -92,7 +94,13 @@ namespace MechaBattle.AI.Bots
             var (destX, destZ) = retreating[slotId] ? homeBySlot[slotId] : targetBySlot[slotId];
             float dx = destX - self.X, dz = destZ - self.Z;
             float distance = (float)Math.Sqrt((double)dx * dx + (double)dz * dz);
-            float stopDistance = retreating[slotId] ? homeSupplyRadius * 0.5f : fireRange * 0.9f;
+            // When a building radius is declared for the target base, walk inside it
+            // (the core can only be hit from there) instead of parking at long range.
+            // 0 (unset) preserves the old long-range stand-off behaviour.
+            float targetBuildingRadius = targetBuildingRadiusBySlot[slotId];
+            float stopDistance = retreating[slotId]
+                ? homeSupplyRadius * 0.5f
+                : (targetBuildingRadius > 0 ? targetBuildingRadius * 0.7f : fireRange * 0.9f);
 
             float moveX = 0f, moveY = 0f;
             if (distance > stopDistance)

@@ -164,8 +164,30 @@ namespace MechaBattle.EditorTools.Generators
 
         private static void BuildMainBases(MapDefinition map, Transform parent, Material[] teamMaterials)
         {
+            var buildingMaterials = BuildBuildingMaterials();
             foreach (var b in map.mainBases)
             {
+                // Outer building footprint: the core can only be hit from inside this
+                // radius once Game.Simulation enforces it (user request 2026-10-15: core
+                // and building are separate, the core is only exposed inside the
+                // building). Flat and wider than the core so the two read as distinct
+                // layers; skipped entirely when buildingRadius is unset (0), so older
+                // maps/scenes without this field look exactly as before.
+                if (b.buildingRadius > 0)
+                {
+                    var building = GameObject.CreatePrimitive(PrimitiveType.Cylinder);
+                    building.name = "MainBaseBuilding_" + b.id;
+                    building.transform.SetParent(parent);
+                    building.transform.position = new Vector3(b.x, 0.2f, b.z);
+                    building.transform.localScale = new Vector3(b.buildingRadius * 2f, 0.2f, b.buildingRadius * 2f);
+                    building.GetComponent<Renderer>().sharedMaterial = buildingMaterials[b.team];
+                    var buildingMarker = building.AddComponent<MapObjectiveMarker>();
+                    buildingMarker.Kind = ObjectiveKind.MainBaseBuilding;
+                    buildingMarker.ObjectiveId = b.id;
+                    buildingMarker.Team = b.team;
+                    buildingMarker.Radius = b.buildingRadius;
+                }
+
                 var go = GameObject.CreatePrimitive(PrimitiveType.Cube);
                 go.name = "MainBase_" + b.id;
                 go.transform.SetParent(parent);
@@ -178,6 +200,15 @@ namespace MechaBattle.EditorTools.Generators
                 marker.Team = b.team;
                 marker.Radius = b.attackRadius;
             }
+        }
+
+        private static Material[] BuildBuildingMaterials()
+        {
+            // Muted/darker versions of the team colors so the building footprint reads
+            // as a distinct, lower-profile layer underneath the brighter core cube.
+            var blue = CreateOrLoadMaterial(MaterialFolder + "/BuildingBlue.mat", new Color(0.12f, 0.22f, 0.55f));
+            var orange = CreateOrLoadMaterial(MaterialFolder + "/BuildingOrange.mat", new Color(0.55f, 0.28f, 0.06f));
+            return new[] { blue, orange };
         }
 
         private static void BuildCapturePoints(MapDefinition map, Transform parent)

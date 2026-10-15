@@ -22,6 +22,14 @@ namespace MechaBattle.Battlefield
         public int team;
         public float x, z, spawnRadius, attackRadius;
         public string approachRoute;
+
+        // Optional "core must be entered to hit" radius (user request 2026-10-15): the
+        // core (attackRadius) can only be damaged by an attacker standing inside this
+        // larger building footprint, and the base's own counter-fire reaches exactly
+        // this far too - one shared number instead of two independently tuned radii
+        // that can drift out of sync. 0 (unset) preserves the old unrestricted-range
+        // behaviour, so existing maps/tests that don't set this are unaffected.
+        public float buildingRadius;
     }
 
     [Serializable]
@@ -57,6 +65,8 @@ namespace MechaBattle.Battlefield
                 CheckPosition(map, b.id, b.x, b.z, errors);
                 if (!Positive(b.spawnRadius) || !Positive(b.attackRadius))
                     errors.Add("Main base radii must be finite and positive: " + b.id);
+                if (b.buildingRadius != 0 && (!Finite(b.buildingRadius) || b.buildingRadius <= 0 || b.buildingRadius < b.attackRadius))
+                    errors.Add("Main base buildingRadius, when set, must be finite, positive, and at least attackRadius (the core sits inside the building): " + b.id);
                 if (string.IsNullOrWhiteSpace(b.approachRoute))
                     errors.Add("Main base approach route is required: " + b.id);
                 else if (validTeam) routes[b.team].Add(b.approachRoute);

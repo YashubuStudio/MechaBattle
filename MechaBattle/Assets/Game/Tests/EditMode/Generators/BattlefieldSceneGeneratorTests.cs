@@ -47,6 +47,9 @@ namespace MechaBattle.Tests.Generators
             var markers = AllComponents<MapObjectiveMarker>(scene);
             Assert.That(markers.Count(m => m.Kind == ObjectiveKind.MainBase), Is.EqualTo(map.mainBases.Length));
             Assert.That(markers.Count(m => m.Kind == ObjectiveKind.CapturePoint), Is.EqualTo(map.capturePoints.Length));
+            Assert.That(markers.Count(m => m.Kind == ObjectiveKind.MainBaseBuilding),
+                Is.EqualTo(map.mainBases.Count(b => b.buildingRadius > 0)),
+                "Every base with a declared buildingRadius must get a building marker (user request 2026-10-15: core/building split).");
             foreach (int team in new[] { 0, 1 })
                 Assert.That(
                     markers.Count(m => m.Kind == ObjectiveKind.MainBase && m.Team == team),

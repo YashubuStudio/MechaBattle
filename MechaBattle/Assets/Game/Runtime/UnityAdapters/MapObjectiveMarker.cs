@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace MechaBattle.UnityAdapters
 {
-    public enum ObjectiveKind { MainBase, CapturePoint }
+    public enum ObjectiveKind { MainBase, CapturePoint, MainBaseBuilding }
 
     // Presentation-only marker. Does not hold any authoritative gameplay state;
     // the P0 Simulation (Game.Simulation, GPT-owned) is the source of truth once it exists.

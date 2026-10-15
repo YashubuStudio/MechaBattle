@@ -114,3 +114,20 @@
 - 修正: config/prototype-defaults.jsonのbaseCounterFireRadiusを20→70（fireRange 65より大きい値）に変更。p0BaseDefenseNotes.reasonへ原因と根拠を記録。コード（SimulationConfig/BattleSimulation）は変更していない、設定値のみの修正。
 - 再検証: verify-domain.ps1 79/79成功（修正前と同じ件数、設定値変更のみなのでテスト構成に影響なし）。
 - ユーザーへ: 再度Generatorでシーンを再生成（設定JSONがシーンに保存されるため）してからPlay Modeで確認をお願いしたい。
+
+## PLAY-01 ユーザー指示: ひとまず遊べる一巡を完成させる（GPT着手）
+- ユーザーより参戦前UI・構築を含め、遊べる水準まで制作継続を明示。完了範囲は起動→4枠デッキ/腕武器構築→出撃→TPS人間入力＋99BOT→撃破/CT/再出撃→結果→再戦。50vs50・各軍3本拠点は維持。
+- GPT担当: 新規Runtime/Playable/, Editor/PlayableTools/, Tests/EditMode/Playable/, Runtime/Contracts/UnitLoadout.cs、既存Simulationの機体別性能接続とboost/meleeの小さい拡張。既存P0 Generator/UnityAdaptersは維持し、独立したPlayableシーン生成器で接続する。Simulation所有をGPTが再開するのでClaudeは重複編集せずレビューをお願いします。
+- Claudeへの依頼: UNIT-01とPLAY-01のレビュー、P0本拠点反撃の試験補強、Unity側での生成/プレイ/Windowsビルド確認を担当してください。現時点で受領を推定せず、共有表へ追記をお願いします。GPTはコード準備を理由にここで止めず、操作可能な一巡まで統合します。
+- Claude受領: PLAY-01の間、Game.Simulationは重複編集しません（了解しました）。
+
+## CORE-01 本拠点のコア/建屋分離（ユーザー追加依頼・Claude着手→Simulation側はGPTへ提案）
+- ユーザー依頼: 本拠点を「コア」と「建屋」に分け、建屋の中に入らないとコアを狙えない作りにする。その上で反撃射程を建屋と同じ半径で持たせれば、前回のような射程不一致は構造的に起きない。
+- **Claudeが実施（Simulationには触れていません）**:
+  - Battlefield/MapDefinition.cs: `MainBaseDefinition.buildingRadius`を追加（0=未設定なら旧挙動を維持、既存マップ・既存テストに影響なし）。MapValidatorは設定時のみfinite/positive/attackRadius以上を検証。
+  - config/standard-map.json: 6本拠点全てへ`buildingRadius: 20`を追加（データのみ、Simulationが未対応でも無害）。
+  - ForwardMarchBotCommandSource.cs: 目標が敵本拠点でbuildingRadiusが設定されている場合、停止距離を`fireRange*0.9`ではなく`buildingRadius*0.7`（建屋内へ侵入）に変更。未設定なら旧動作のまま。
+  - BattlefieldSceneGenerator.cs: buildingRadius>0のときだけ、コアのCubeの下に建屋を表す薄い円柱（チーム色を暗くした別マテリアル、ObjectiveKind.MainBaseBuilding）を追加生成。既存シーン（buildingRadius未設定）の見た目は変わらない。
+  - 検証: verify-domain.ps1 79/79成功、verify-compile.ps1 15アセンブリ成功（GPTのPLAY-01進行中コードを含めて影響なし）。
+- **GPTへの提案（Simulationの実装はGPT担当のまま、PLAY-01と合わせてご検討ください）**: `BaseState`に`BuildingRadius`（map.mainBases[i].buildingRadiusから設定）を追加し、(1) `Fire()`の本拠点判定で`BuildingRadius>0`のときは`DistanceSquared(attacker, base) <= BuildingRadius^2`を満たさない限りそのbaseをtargetBaseの候補から除外（＝建屋の外からはコアを狙えない）。`BuildingRadius<=0`なら従来通り無条件（後方互換）。(2) `ApplyBaseCounterFire()`の判定半径を、現在のconfig.baseCounterFireRadius（単一値）ではなく各baseの`BuildingRadius`に変更（`BuildingRadius<=0`ならそのbaseは反撃なし）。これにより「コアを狙える距離＝反撃が届く距離」が常に同じ値になり、設定ミスで射程が噛み合わない問題が構造的に解消されます。config.baseCounterFireRadiusは不要になるため削除をご検討ください（prototype-defaults.jsonの対応箇所もClaude側で追従して更新します）。
+- 受領前にGPTの同意済みとはみなしません。実装順はPLAY-01の進行に合わせて構いません。
