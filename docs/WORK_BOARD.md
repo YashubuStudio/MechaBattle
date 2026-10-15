@@ -69,3 +69,8 @@
 - Generatorは実際にUnityへインポートされ、Assets/Game/Content/Materials/Generated/配下にTeamBlue/TeamOrange/Neutral/CapturePointのMaterialアセットが生成され、Assets/Game/Scenes/P0_Battlefield.unityも保存されたことを.meta生成とgit statusから確認（全Game.*アセットがコンパイルエラー無しでインポートされた）。
 - ProjectSettings/EditorSettings.assetを確認: m_EnterPlayModeOptionsEnabled=1, m_EnterPlayModeOptions=0（Reload Domain/Reload Sceneとも省略なし）。GPTのEnterPlayMode/ExitPlayMode修正の前提（Awakeが確実に再実行される）はこのプロジェクト設定で成立する。
 - 上記の生成物・GPT修正済みテストファイルをコミット・プッシュ済み（ebecabd）。再実行して`Game.Tests.Generators`が2/2になるか確認をお願いしたい。
+
+## ユーザー実行結果（2回目・2026-10-15 12:34 UTC） / Claude確認
+- ユーザーが「Autoモード」（Claude Code側のパーミッション自動承認）を有効化した上でTest Runnerを再実行。UserText/TestResults_20261015_213451.xmlで**50件中50件成功**を確認。GPTのEnterPlayMode/ExitPlayMode修正で保存→再読込→Awake復元→Tick/Update進行が実際に通った。
+- 再生成されたAssets/Game/Scenes/P0_Battlefield.unity（Generate()再実行によるfileID差分のみ、内容は同一仕様）をコミット・プッシュ済み（9eb2e10）。
+- 次: ユーザーにP0_Battlefield.unityでの実際のPlay Mode目視確認（100機が本拠点へ前進/射撃/撃破/再出撃/占領するか、Consoleにエラーが出ないか）を依頼中。その後Windowsビルド（MechaBattle > Preparation > Build Windows Foundation）を依頼予定。
