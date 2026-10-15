@@ -9,7 +9,7 @@
 | PREP-02 Contracts・マップ検証 | GPT | 完了（独立C#検証） | Assets/Game/Runtime/Contracts/, Battlefield/, Tests/EditMode/ | T-001/T-015の基礎、独立C#コンパイル |
 | PREP-03 実行スクリプト | GPT | 完了（Unity実行待ち） | MechaBattle/scripts/, Editor/Preparation/ | 検証・EditMode/PlayMode・Windowsビルドの入口 |
 | REVIEW-01 独立仕様レビュー | Claude CLI（GPT起動分） | 応答なしで終了・未受領 | 読み取りのみ | 制約・分担・落とし穴の指摘 |
-| P0-01 シミュレーション | GPT | 着手中 | Runtime/Simulation/, Match/ | 100枠、共通CT/弾薬/再出撃/ゲージ |
+| P0-01 シミュレーション | GPT | コード・独立C#検証完了／Unity受入待ち | Runtime/Simulation/, Match/ | 100枠、共通CT/弾薬/再出撃/ゲージ |
 | P0-02 Editor生成・Unity接続 | Claude | 着手中 | Editor/Generators/, UnityAdapters/, Scenes/ | Generatorで各軍3本拠点・100機を生成 |
 | P0-03 BOT観測・入力 | Claude（受領・着手待ち） | 未着手 | Runtime/AI/Bots/, Navigation/ | TeamKnowledgeのみ参照、共通UnitCommand |
 | P0-04 実行検証・計測 | Claude（受領・着手待ち） | 未着手 | Tests/PlayMode/, Tests/Performance/, Editor/BuildTools/ | Unity試験・Windows実行・Bench A–E実測 |
@@ -51,3 +51,13 @@
 - Claude: 上記反映後にverify-compile.ps1を再実行し10アセンブリ成功を再確認済み。Unity Editor内での実行（EditModeテスト含む）はまだユーザー確認待ち。
 
 - GPT再確認: 修正後は51件全件成功・全10アセンブリ静的コンパイル成功。実BOT＋標準設定も29.74sim秒で両ゲージ0（射撃503/本拠点命中503/撃破0）へ完走。撃破CTの検証は別シナリオ。追加確認（全ロードシーンの未保存保護、Unitチーム素材、保存再読込テスト）をGPT_REVIEW_CLAUDE_P0.mdへ追記しました。BOT停止係数0.9/0.5はconfigのp0BotPrototypeNotesへ仮値・理由・現状はコード定数である旨を記録（p0Simulationは変更せず）。
+
+- GPT → Claude（要修正）: 追加の保存再読込TestはEditModeのOpenScene直後に通常MonoBehaviour.Awakeを期待しており、Unityの標準ライフサイクル上成立しない可能性を公式資料で確認。RuntimeへExecuteAlwaysを付けず、EnterPlayMode/ExitPlayModeを使うUnityTestかPlayMode試験へ移すようレビューへ追記しました。
+
+- GPT担当引取: 保存再読込テストのライフサイクル不備はGPTがTests/EditMode/Generators/BattlefieldSceneGeneratorTests.csの該当ケースのみ修正します（このファイルの更新が12:23以降停止していることを確認）。他のClaude担当ファイルには触れません。EnterPlayMode/ExitPlayModeを使うUnityTestへ変更し、修正後に共有します。
+
+## 現在の統合状態（GPT確認）
+- GPT/Claude双方で独立C#51件・静的APIコンパイル10アセンブリの成功を確認。
+- 追加の保存再読込テストはGPTがUnityTestへ修正し、EnterPlayMode/ExitPlayMode・UpdateでのTick進行検証・失敗時退出を追加。修正後の静的APIコンパイル10アセンブリも成功。
+- シーン生成・Unity Test Runner・PlayMode実行・Windowsビルド・Bench A〜Eは未実施。P0全体を完了とはしない。
+- 次の担当はUnity側の生成/実行検証。Editor接続不能が続くため、DEVELOPMENT.mdの手順から確認する。試作BOTの正式な敵機知覚・指揮官AI・人間入力・描画計測は後続。

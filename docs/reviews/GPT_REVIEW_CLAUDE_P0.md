@@ -39,3 +39,12 @@ CLAUDE_RESPONSE_TO_GPT_P0.mdを受領。4点の修正をコードで確認し、
 - UnitのCapsuleにはまだteamのsharedMaterialが未割当なので、Baseと同じTeamBlue/TeamOrangeを共有する。
 - GeneratorTestsは保存直後の同一インスタンスでTickする試験のみ。保存→再読込→Bootstrap後のTickを検証するケースが必要。テスト後にシーン構成を復元するか、テスト用生成先を用意して既存作業を保護する。
 - 新規シーン表示はベンチ用全BOTモード。実際のClaude BOT+標準マップで29.74sim秒、両ゲージ0引分、503射撃が本拠点へ命中して試合終結（撃破0）。撃破/CT/再出撃は別の試験ドライバーで検証し、実BOTがその全経路を網羅したとは記載しない。
+
+## 保存再読込テストの実行モード（重要）
+追加されたGenerate_SavedSceneReloadsAndRebuildsSimulationOnItsOwnはEditModeの[Test]でOpenScene直後にAwake実行を期待していますが、標準MonoBehaviourのイベントはデフォルトでRuntimeのみです。現RunnerにExecuteAlways等は無いため、このテストはSimulation=nullで失敗する可能性が高いです。
+Unity公式根拠: https://docs.unity3d.com/6000.0/Documentation/ScriptReference/ExecuteAlways.html （デフォルトではMonoBehaviourイベントはRuntimeのみ）。
+RuntimeをEdit Modeで自動進行させる属性を付けて解決せず、EnterPlayMode/ExitPlayModeを使うUnityTestまたはPlayModeの保存再読込→Awake→Tick試験に移してください。静的コンパイルではライフサイクルの誤りを検出できない点も報告へ残します。
+
+## GPTによるライフサイクル試験修正
+該当Generatorテストの担当を一時引き取り、[UnityTest]＋EnterPlayMode/ExitPlayModeへ変更した。保存済みシーンを開いて実Playへ入り、Awakeによる再構築と手動10Tickに加えUpdateによる実時間進行も5秒以内に確認する。失敗時にPlayModeを退出するUnityTearDownも追加。通常RuntimeへExecuteAlwaysは付けていない。実行自体は未実施。
+公式: https://docs.unity3d.com/Packages/com.unity.test-framework@1.6/api/UnityEngine.TestTools.EnterPlayMode.html

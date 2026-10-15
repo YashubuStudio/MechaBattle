@@ -1,4 +1,6 @@
 using System.IO;
+using System.Collections;
+using UnityEngine.TestTools;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -20,6 +22,7 @@ namespace MechaBattle.Tests.Generators
         [SetUp]
         public void SkipIfActiveSceneHasUnsavedChanges()
         {
+            if (UnityEditor.EditorApplication.isPlaying) return;
             if (EditorSceneManager.GetActiveScene().isDirty)
                 Assert.Ignore("Active scene has unsaved changes; the generator refuses to discard them.");
         }
@@ -72,24 +75,41 @@ namespace MechaBattle.Tests.Generators
         // in-memory objects are still alive. OpenScene forces an actual deserialize, so
         // BattleSimulationRunner.Awake() has to rebuild Simulation/CommandSource from the
         // serialized JSON fields on its own - exactly what Bootstrap() exists for.
-        [Test]
-        public void Generate_SavedSceneReloadsAndRebuildsSimulationOnItsOwn()
+        [UnityTest]
+        public IEnumerator Generate_SavedSceneReloadsAndRebuildsSimulationOnItsOwn()
         {
-            BattlefieldSceneGenerator.Generate();
-            const string path = "Assets/Game/Scenes/P0_Battlefield.unity";
+            // Normal MonoBehaviour.Awake is a runtime callback. A scene opened in
+            // Edit Mode cannot prove that the saved runtime bootstrap works.
+            if (!UnityEditor.EditorApplication.isPlaying)
+            {
+                BattlefieldSceneGenerator.Generate();
+                EditorSceneManager.OpenScene("Assets/Game/Scenes/P0_Battlefield.unity", OpenSceneMode.Single);
+            }
+            yield return new EnterPlayMode();
 
-            Scene reloaded = EditorSceneManager.OpenScene(path, OpenSceneMode.Single);
-            var runners = AllComponents<BattleSimulationRunner>(reloaded);
+            var runners = AllComponents<BattleSimulationRunner>(SceneManager.GetActiveScene());
             Assert.That(runners.Count, Is.EqualTo(1));
-
             BattleSimulation sim = runners[0].Simulation;
-            Assert.That(sim, Is.Not.Null, "BattleSimulationRunner.Awake() did not rebuild Simulation after a real scene reload.");
+            Assert.That(sim, Is.Not.Null, "Awake did not restore the saved Simulation on entering Play Mode.");
             Assert.That(sim.AliveCount, Is.EqualTo(MatchLimits.TotalControllerSlots));
-            Assert.That(sim.CurrentTick, Is.EqualTo(0));
+            long startTick = sim.CurrentTick;
+            for (int i = 0; i < 10; i++) runners[0].Tick();
+            long manualTick = startTick + 10;
+            Assert.That(sim.CurrentTick, Is.EqualTo(manualTick));
 
-            for (int i = 0; i < 10; i++)
-                runners[0].Tick();
-            Assert.That(sim.CurrentTick, Is.EqualTo(10));
+            // Also prove Update is advancing, instead of only calling Tick by hand.
+            float deadline = Time.realtimeSinceStartup + 5f;
+            while (sim.CurrentTick <= manualTick && Time.realtimeSinceStartup < deadline)
+                yield return null;
+            Assert.That(sim.CurrentTick, Is.GreaterThan(manualTick));
+            yield return new ExitPlayMode();
+        }
+
+        [UnityTearDown]
+        public IEnumerator ExitPlayModeAfterFailure()
+        {
+            if (UnityEditor.EditorApplication.isPlaying)
+                yield return new ExitPlayMode();
         }
 
         private static System.Collections.Generic.List<T> AllComponents<T>(Scene scene) where T : Component

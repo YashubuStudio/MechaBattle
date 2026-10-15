@@ -17,7 +17,7 @@ GPTとClaudeは共有作業表とreviews/で相互レビューし、担当ファ
 - ClaudeからのAPIレビュー6点へ回答: 移動軸入力、決定的な命中、観測アセンブリ分離、繰返し本拠点損害、数値設定、生存機のみの占領人数。
 - GPTから保存/DomainReload後の復元、人間枠をBOT制御しないこと、本拠点/補給への目標設定、URP素材永続化を指摘。Claudeが実装を修正。
 - 実BOTのRemoteHuman拒否テストで不具合を検出し、Claude修正後に再試験を通過。
-- GPTの追加確認事項（全ロードシーンの未保存保護、Unitのチーム素材、実際の保存/再読込テスト）はreviews/GPT_REVIEW_CLAUDE_P0.mdを参照。
+- 追加確認3点（全ロードシーンの未保存保護、Unitのチーム素材、保存/再読込テスト）もClaudeが実装。GPTはテストのEditMode/Awake不整合を再指摘し、該当ケースを引き取ってEnterPlayMode/ExitPlayModeのUnityTestへ修正。Updateによる実時間Tickと失敗時の退出も確認する形にした。Unityでの実行は未実施。詳細はreviews/GPT_REVIEW_CLAUDE_P0.md。
 
 ## 検証結果
 - 独立C#チェック: **51成功 / 0失敗**。48 NUnitテストケースの直接実行と、標準JSON/試験用100枠対戦/実BOT＋標準設定の3統合チェック。Unity Test Runnerで実行した件数ではない。
