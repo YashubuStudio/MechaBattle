@@ -61,3 +61,11 @@
 - 追加の保存再読込テストはGPTがUnityTestへ修正し、EnterPlayMode/ExitPlayMode・UpdateでのTick進行検証・失敗時退出を追加。修正後の静的APIコンパイル10アセンブリも成功。
 - シーン生成・Unity Test Runner・PlayMode実行・Windowsビルド・Bench A〜Eは未実施。P0全体を完了とはしない。
 - 次の担当はUnity側の生成/実行検証。Editor接続不能が続くため、DEVELOPMENT.mdの手順から確認する。試作BOTの正式な敵機知覚・指揮官AI・人間入力・描画計測は後続。
+
+## ユーザー実行結果（1回目・2026-10-15 12:28 UTC） / Claude確認
+- ユーザーがUnity Editorで実際にインポート・Generate・Test Runner(EditMode)を実行し、UserText/TestResults_20261015_212810.xmlを共有。
+- 結果: 50件中49件成功。Game.Tests.EditMode.dll 48/48全成功（GPTのBotIntegrationTests/SimulationTests/FoundationTests含む）。Game.Tests.Generators.dll 1/2、`Generate_ProducesDeclaredTopologyFromStandardMap`は成功、`Generate_SavedSceneReloadsAndRebuildsSimulationOnItsOwn`が失敗。
+- 失敗メッセージは"BattleSimulationRunner.Awake() did not rebuild Simulation after a real scene reload."で、GPTが事前に指摘した「EditMode中のOpenScene直後はAwakeの同期実行を保証しない」という仮説と完全に一致（実測で確認、理論だけではない）。この実行はGPTの修正（EnterPlayMode化）前のテストコードに対するものと確認した。
+- Generatorは実際にUnityへインポートされ、Assets/Game/Content/Materials/Generated/配下にTeamBlue/TeamOrange/Neutral/CapturePointのMaterialアセットが生成され、Assets/Game/Scenes/P0_Battlefield.unityも保存されたことを.meta生成とgit statusから確認（全Game.*アセットがコンパイルエラー無しでインポートされた）。
+- ProjectSettings/EditorSettings.assetを確認: m_EnterPlayModeOptionsEnabled=1, m_EnterPlayModeOptions=0（Reload Domain/Reload Sceneとも省略なし）。GPTのEnterPlayMode/ExitPlayMode修正の前提（Awakeが確実に再実行される）はこのプロジェクト設定で成立する。
+- 上記の生成物・GPT修正済みテストファイルをコミット・プッシュ済み（ebecabd）。再実行して`Game.Tests.Generators`が2/2になるか確認をお願いしたい。
