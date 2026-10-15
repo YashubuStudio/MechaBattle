@@ -1,0 +1,62 @@
+{
+  "documentStatus": "PROTOTYPE_VALUES_ONLY_DO_NOT_TREAT_AS_FINAL",
+  "teams": 2,
+  "controllerSlotsPerTeam": 50,
+  "commanderSlotsPerTeam": 1,
+  "squadSize": 4,
+  "normalSquadsPerTeam": 2,
+  "starterDeckSlots": 4,
+  "simulationTickHz": 50,
+  "botDecisionHz": 5,
+  "squadDecisionHz": 2,
+  "commanderDecisionHz": 1,
+  "botToHumanRedLockRangeMultiplier": 0.8,
+  "capture": {
+    "radiusMeters": "TBD",
+    "maxPresenceAdvantage": 8,
+    "captureTimeSeconds": "TBD",
+    "tiedProgress": "hold"
+  },
+  "gauge": {
+    "initialValue": "TBD",
+    "unitLossCurve": "TBD",
+    "baseDamageFactor": "TBD"
+  },
+  "nuclear": {
+    "friendlyFire": true,
+    "friendlyDamageMultiplier": 1.0,
+    "radiusMeters": "TBD"
+  },
+  "goldMerit": {
+    "awardRule": "TBD",
+    "cooldownReductionSeconds": "TBD",
+    "applicationPolicy": "TBD"
+  },
+  "performance": {
+    "baselineCPU": "Intel Core i5-9400F",
+    "baselineGPU": "NVIDIA GTX 1660 6GB",
+    "ramGB": 16,
+    "resolution": "1920x1080",
+    "targetAverageFps": 60
+  },
+  "note": "Prototype assumptions; no implementation or measured result is implied.",
+  "mainBases": {
+    "minimumPerTeam": 2,
+    "standardPrototypePerTeam": 3,
+    "separateFromCapturePoints": true,
+    "mustProvideDistinctAttackOptions": true,
+    "prototypeBaseIds": {
+      "teamBlue": [
+        "Blue-A",
+        "Blue-B",
+        "Blue-C"
+      ],
+      "teamOrange": [
+        "Orange-A",
+        "Orange-B",
+        "Orange-C"
+      ]
+    },
+    "note": "Per-team minimum is a confirmed requirement; three per team is the adjustable standard test-map proposal."
+  }
+}

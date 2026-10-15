@@ -1,0 +1,43 @@
+# ===== Unity (MechaBattle/) =====
+MechaBattle/Library/
+MechaBattle/Temp/
+MechaBattle/Obj/
+MechaBattle/Build/
+MechaBattle/Builds/
+MechaBattle/Logs/
+MechaBattle/UserSettings/
+MechaBattle/MemoryCaptures/
+MechaBattle/Recordings/
+
+# Visual Studio / Rider / VS Code generated project files
+MechaBattle/.vs/
+MechaBattle/*.csproj
+MechaBattle/*.sln
+MechaBattle/*.slnx
+MechaBattle/*.suo
+MechaBattle/*.user
+MechaBattle/*.userprefs
+MechaBattle/*.pidb
+MechaBattle/*.booproj
+MechaBattle/*.svd
+MechaBattle/*.pdb
+MechaBattle/*.mdb
+MechaBattle/*.opendb
+MechaBattle/*.VC.db
+MechaBattle/.idea/
+
+# Unity crash reports
+MechaBattle/sysinfo.txt
+
+# Builds
+MechaBattle/*.apk
+MechaBattle/*.unitypackage
+MechaBattle/*.app
+
+# Asset meta backups / OS files
+*.orig
+.DS_Store
+Thumbs.db
+
+# Packages lock can stay tracked; cache should not
+MechaBattle/Packages/packages-lock.json.meta
