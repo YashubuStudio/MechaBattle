@@ -1,0 +1,1031 @@
+{
+  "name": "MB-01 FIELD WORKER",
+  "originalAsset": true,
+  "prototypeOnly": true,
+  "rigged": false,
+  "animated": false,
+  "textures": false,
+  "parts": [
+    {
+      "name": "Foot_L",
+      "type": "box",
+      "center": [
+        -0.27,
+        0.1,
+        0.105
+      ],
+      "size": [
+        0.4,
+        0.2,
+        0.62
+      ],
+      "bevel": 0.04,
+      "rotation": [
+        0,
+        -5,
+        0
+      ],
+      "material": "Frame",
+      "firstVertex": 0,
+      "vertexCount": 96
+    },
+    {
+      "name": "FootArmor_L",
+      "type": "box",
+      "center": [
+        -0.27,
+        0.205,
+        0.105
+      ],
+      "size": [
+        0.34,
+        0.13,
+        0.46
+      ],
+      "bevel": 0.0325,
+      "rotation": [
+        0,
+        -5,
+        0
+      ],
+      "material": "TeamArmor",
+      "firstVertex": 96,
+      "vertexCount": 96
+    },
+    {
+      "name": "Ankle_L",
+      "type": "box",
+      "center": [
+        -0.27,
+        0.255,
+        -0.025
+      ],
+      "size": [
+        0.21,
+        0.16,
+        0.22
+      ],
+      "bevel": 0.025,
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "material": "Frame",
+      "firstVertex": 192,
+      "vertexCount": 96
+    },
+    {
+      "name": "Shin_L",
+      "type": "box",
+      "center": [
+        -0.27,
+        0.45,
+        -0.015
+      ],
+      "size": [
+        0.34,
+        0.4,
+        0.34
+      ],
+      "bevel": 0.055,
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "material": "TeamArmor",
+      "firstVertex": 288,
+      "vertexCount": 96
+    },
+    {
+      "name": "ShinVent_L",
+      "type": "box",
+      "center": [
+        -0.27,
+        0.43,
+        0.168
+      ],
+      "size": [
+        0.18,
+        0.065,
+        0.022
+      ],
+      "bevel": 0,
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "material": "Frame",
+      "firstVertex": 384,
+      "vertexCount": 24
+    },
+    {
+      "name": "Knee_L",
+      "type": "cylinderX",
+      "center": [
+        -0.27,
+        0.7,
+        0.005
+      ],
+      "radius": 0.125,
+      "length": 0.35,
+      "material": "Frame",
+      "firstVertex": 408,
+      "vertexCount": 48
+    },
+    {
+      "name": "Thigh_L",
+      "type": "box",
+      "center": [
+        -0.24,
+        0.91,
+        -0.025
+      ],
+      "size": [
+        0.3,
+        0.34,
+        0.33
+      ],
+      "bevel": 0.045,
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "material": "TeamArmor",
+      "firstVertex": 456,
+      "vertexCount": 96
+    },
+    {
+      "name": "Foot_R",
+      "type": "box",
+      "center": [
+        0.27,
+        0.1,
+        0.105
+      ],
+      "size": [
+        0.4,
+        0.2,
+        0.62
+      ],
+      "bevel": 0.04,
+      "rotation": [
+        0,
+        5,
+        0
+      ],
+      "material": "Frame",
+      "firstVertex": 552,
+      "vertexCount": 96
+    },
+    {
+      "name": "FootArmor_R",
+      "type": "box",
+      "center": [
+        0.27,
+        0.205,
+        0.105
+      ],
+      "size": [
+        0.34,
+        0.13,
+        0.46
+      ],
+      "bevel": 0.0325,
+      "rotation": [
+        0,
+        5,
+        0
+      ],
+      "material": "TeamArmor",
+      "firstVertex": 648,
+      "vertexCount": 96
+    },
+    {
+      "name": "Ankle_R",
+      "type": "box",
+      "center": [
+        0.27,
+        0.255,
+        -0.025
+      ],
+      "size": [
+        0.21,
+        0.16,
+        0.22
+      ],
+      "bevel": 0.025,
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "material": "Frame",
+      "firstVertex": 744,
+      "vertexCount": 96
+    },
+    {
+      "name": "Shin_R",
+      "type": "box",
+      "center": [
+        0.27,
+        0.45,
+        -0.015
+      ],
+      "size": [
+        0.34,
+        0.4,
+        0.34
+      ],
+      "bevel": 0.055,
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "material": "TeamArmor",
+      "firstVertex": 840,
+      "vertexCount": 96
+    },
+    {
+      "name": "ShinVent_R",
+      "type": "box",
+      "center": [
+        0.27,
+        0.43,
+        0.168
+      ],
+      "size": [
+        0.18,
+        0.065,
+        0.022
+      ],
+      "bevel": 0,
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "material": "Frame",
+      "firstVertex": 936,
+      "vertexCount": 24
+    },
+    {
+      "name": "Knee_R",
+      "type": "cylinderX",
+      "center": [
+        0.27,
+        0.7,
+        0.005
+      ],
+      "radius": 0.125,
+      "length": 0.35,
+      "material": "Frame",
+      "firstVertex": 960,
+      "vertexCount": 48
+    },
+    {
+      "name": "Thigh_R",
+      "type": "box",
+      "center": [
+        0.24,
+        0.91,
+        -0.025
+      ],
+      "size": [
+        0.3,
+        0.34,
+        0.33
+      ],
+      "bevel": 0.045,
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "material": "TeamArmor",
+      "firstVertex": 1008,
+      "vertexCount": 96
+    },
+    {
+      "name": "HipAxle",
+      "type": "cylinderX",
+      "center": [
+        0,
+        1.105,
+        -0.02
+      ],
+      "radius": 0.15,
+      "length": 0.69,
+      "material": "Frame",
+      "firstVertex": 1104,
+      "vertexCount": 48
+    },
+    {
+      "name": "Pelvis",
+      "type": "box",
+      "center": [
+        0,
+        1.19,
+        -0.015
+      ],
+      "size": [
+        0.71,
+        0.27,
+        0.43
+      ],
+      "bevel": 0.065,
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "material": "TeamArmor",
+      "firstVertex": 1152,
+      "vertexCount": 96
+    },
+    {
+      "name": "Abdomen",
+      "type": "box",
+      "center": [
+        0,
+        1.4,
+        -0.035
+      ],
+      "size": [
+        0.43,
+        0.22,
+        0.31
+      ],
+      "bevel": 0.035,
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "material": "Frame",
+      "firstVertex": 1248,
+      "vertexCount": 96
+    },
+    {
+      "name": "Torso",
+      "type": "box",
+      "center": [
+        0,
+        1.73,
+        -0.02
+      ],
+      "size": [
+        0.88,
+        0.59,
+        0.51
+      ],
+      "bevel": 0.095,
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "material": "TeamArmor",
+      "firstVertex": 1344,
+      "vertexCount": 96
+    },
+    {
+      "name": "ChestPlate",
+      "type": "box",
+      "center": [
+        0,
+        1.78,
+        0.26
+      ],
+      "size": [
+        0.66,
+        0.29,
+        0.09
+      ],
+      "bevel": 0.0225,
+      "rotation": [
+        8,
+        0,
+        0
+      ],
+      "material": "TeamArmor",
+      "firstVertex": 1440,
+      "vertexCount": 96
+    },
+    {
+      "name": "ChestCore",
+      "type": "box",
+      "center": [
+        0,
+        1.56,
+        0.25
+      ],
+      "size": [
+        0.26,
+        0.12,
+        0.07
+      ],
+      "bevel": 0.015,
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "material": "Frame",
+      "firstVertex": 1536,
+      "vertexCount": 96
+    },
+    {
+      "name": "ChestSignal",
+      "type": "box",
+      "center": [
+        0,
+        1.57,
+        0.29
+      ],
+      "size": [
+        0.16,
+        0.035,
+        0.016
+      ],
+      "bevel": 0,
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "material": "Signal",
+      "firstVertex": 1632,
+      "vertexCount": 24
+    },
+    {
+      "name": "ChestVent_-0.25",
+      "type": "box",
+      "center": [
+        -0.25,
+        1.62,
+        0.257
+      ],
+      "size": [
+        0.13,
+        0.045,
+        0.03
+      ],
+      "bevel": 0,
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "material": "Frame",
+      "firstVertex": 1656,
+      "vertexCount": 24
+    },
+    {
+      "name": "ChestVent_0.25",
+      "type": "box",
+      "center": [
+        0.25,
+        1.62,
+        0.257
+      ],
+      "size": [
+        0.13,
+        0.045,
+        0.03
+      ],
+      "bevel": 0,
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "material": "Frame",
+      "firstVertex": 1680,
+      "vertexCount": 24
+    },
+    {
+      "name": "ShoulderJoint_L",
+      "type": "cylinderX",
+      "center": [
+        -0.49,
+        1.91,
+        -0.02
+      ],
+      "radius": 0.145,
+      "length": 0.21,
+      "material": "Frame",
+      "firstVertex": 1704,
+      "vertexCount": 48
+    },
+    {
+      "name": "ShoulderArmor_L",
+      "type": "box",
+      "center": [
+        -0.65,
+        1.99,
+        -0.025
+      ],
+      "size": [
+        0.43,
+        0.29,
+        0.49
+      ],
+      "bevel": 0.06,
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "material": "TeamArmor",
+      "firstVertex": 1752,
+      "vertexCount": 96
+    },
+    {
+      "name": "UpperArm_L",
+      "type": "box",
+      "center": [
+        -0.65,
+        1.71,
+        -0.025
+      ],
+      "size": [
+        0.23,
+        0.32,
+        0.27
+      ],
+      "bevel": 0.035,
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "material": "Frame",
+      "firstVertex": 1848,
+      "vertexCount": 96
+    },
+    {
+      "name": "Elbow_L",
+      "type": "cylinderX",
+      "center": [
+        -0.65,
+        1.49,
+        0.005
+      ],
+      "radius": 0.12,
+      "length": 0.28,
+      "material": "Frame",
+      "firstVertex": 1944,
+      "vertexCount": 48
+    },
+    {
+      "name": "Forearm_L",
+      "type": "box",
+      "center": [
+        -0.65,
+        1.28,
+        0.025
+      ],
+      "size": [
+        0.33,
+        0.36,
+        0.36
+      ],
+      "bevel": 0.05,
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "material": "TeamArmor",
+      "firstVertex": 1992,
+      "vertexCount": 96
+    },
+    {
+      "name": "Hand_L",
+      "type": "box",
+      "center": [
+        -0.65,
+        1.025,
+        0.04
+      ],
+      "size": [
+        0.245,
+        0.19,
+        0.25
+      ],
+      "bevel": 0.028,
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "material": "Frame",
+      "firstVertex": 2088,
+      "vertexCount": 96
+    },
+    {
+      "name": "ShoulderJoint_R",
+      "type": "cylinderX",
+      "center": [
+        0.49,
+        1.91,
+        -0.02
+      ],
+      "radius": 0.145,
+      "length": 0.21,
+      "material": "Frame",
+      "firstVertex": 2184,
+      "vertexCount": 48
+    },
+    {
+      "name": "ShoulderArmor_R",
+      "type": "box",
+      "center": [
+        0.65,
+        1.99,
+        -0.025
+      ],
+      "size": [
+        0.43,
+        0.29,
+        0.49
+      ],
+      "bevel": 0.06,
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "material": "TeamArmor",
+      "firstVertex": 2232,
+      "vertexCount": 96
+    },
+    {
+      "name": "UpperArm_R",
+      "type": "box",
+      "center": [
+        0.65,
+        1.71,
+        -0.025
+      ],
+      "size": [
+        0.23,
+        0.32,
+        0.27
+      ],
+      "bevel": 0.035,
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "material": "Frame",
+      "firstVertex": 2328,
+      "vertexCount": 96
+    },
+    {
+      "name": "Elbow_R",
+      "type": "cylinderX",
+      "center": [
+        0.65,
+        1.49,
+        0.005
+      ],
+      "radius": 0.12,
+      "length": 0.28,
+      "material": "Frame",
+      "firstVertex": 2424,
+      "vertexCount": 48
+    },
+    {
+      "name": "Forearm_R",
+      "type": "box",
+      "center": [
+        0.65,
+        1.28,
+        0.025
+      ],
+      "size": [
+        0.33,
+        0.36,
+        0.36
+      ],
+      "bevel": 0.05,
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "material": "TeamArmor",
+      "firstVertex": 2472,
+      "vertexCount": 96
+    },
+    {
+      "name": "Hand_R",
+      "type": "box",
+      "center": [
+        0.65,
+        1.025,
+        0.04
+      ],
+      "size": [
+        0.245,
+        0.19,
+        0.25
+      ],
+      "bevel": 0.028,
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "material": "Frame",
+      "firstVertex": 2568,
+      "vertexCount": 96
+    },
+    {
+      "name": "Neck",
+      "type": "box",
+      "center": [
+        0,
+        2.105,
+        -0.025
+      ],
+      "size": [
+        0.22,
+        0.18,
+        0.22
+      ],
+      "bevel": 0.025,
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "material": "Frame",
+      "firstVertex": 2664,
+      "vertexCount": 96
+    },
+    {
+      "name": "SensorHead",
+      "type": "box",
+      "center": [
+        0,
+        2.29,
+        -0.015
+      ],
+      "size": [
+        0.46,
+        0.27,
+        0.37
+      ],
+      "bevel": 0.055,
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "material": "Frame",
+      "firstVertex": 2760,
+      "vertexCount": 96
+    },
+    {
+      "name": "HeadArmor",
+      "type": "box",
+      "center": [
+        0,
+        2.405,
+        -0.02
+      ],
+      "size": [
+        0.51,
+        0.13,
+        0.42
+      ],
+      "bevel": 0.0325,
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "material": "TeamArmor",
+      "firstVertex": 2856,
+      "vertexCount": 96
+    },
+    {
+      "name": "SensorVisor",
+      "type": "box",
+      "center": [
+        0,
+        2.3,
+        0.187
+      ],
+      "size": [
+        0.33,
+        0.065,
+        0.033
+      ],
+      "bevel": 0.008,
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "material": "Signal",
+      "firstVertex": 2952,
+      "vertexCount": 96
+    },
+    {
+      "name": "Backpack",
+      "type": "box",
+      "center": [
+        0,
+        1.76,
+        -0.4
+      ],
+      "size": [
+        0.6,
+        0.48,
+        0.24
+      ],
+      "bevel": 0.045,
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "material": "Frame",
+      "firstVertex": 3048,
+      "vertexCount": 96
+    },
+    {
+      "name": "CoolingStack_-1",
+      "type": "box",
+      "center": [
+        -0.18,
+        1.75,
+        -0.565
+      ],
+      "size": [
+        0.16,
+        0.3,
+        0.1
+      ],
+      "bevel": 0.018,
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "material": "TeamArmor",
+      "firstVertex": 3144,
+      "vertexCount": 96
+    },
+    {
+      "name": "CoolingStack_1",
+      "type": "box",
+      "center": [
+        0.18,
+        1.75,
+        -0.565
+      ],
+      "size": [
+        0.16,
+        0.3,
+        0.1
+      ],
+      "bevel": 0.018,
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "material": "TeamArmor",
+      "firstVertex": 3240,
+      "vertexCount": 96
+    },
+    {
+      "name": "ToolHousing",
+      "type": "box",
+      "center": [
+        0.65,
+        1.27,
+        0.32
+      ],
+      "size": [
+        0.22,
+        0.19,
+        0.39
+      ],
+      "bevel": 0.025,
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "material": "Frame",
+      "firstVertex": 3336,
+      "vertexCount": 96
+    },
+    {
+      "name": "ToolMuzzle",
+      "type": "box",
+      "center": [
+        0.65,
+        1.27,
+        0.53
+      ],
+      "size": [
+        0.15,
+        0.12,
+        0.08
+      ],
+      "bevel": 0.018,
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "material": "Frame",
+      "firstVertex": 3432,
+      "vertexCount": 96
+    },
+    {
+      "name": "ToolSignal",
+      "type": "box",
+      "center": [
+        0.65,
+        1.38,
+        0.37
+      ],
+      "size": [
+        0.1,
+        0.022,
+        0.14
+      ],
+      "bevel": 0,
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "material": "Signal",
+      "firstVertex": 3528,
+      "vertexCount": 24
+    }
+  ],
+  "materials": [
+    {
+      "name": "TeamArmor",
+      "color": [
+        0.59,
+        0.65,
+        0.7
+      ],
+      "metallic": 0.25,
+      "roughness": 0.62
+    },
+    {
+      "name": "Frame",
+      "color": [
+        0.085,
+        0.115,
+        0.15
+      ],
+      "metallic": 0.45,
+      "roughness": 0.64
+    },
+    {
+      "name": "Signal",
+      "color": [
+        0.25,
+        0.95,
+        0.8
+      ],
+      "metallic": 0,
+      "roughness": 0.35
+    }
+  ],
+  "bounds": {
+    "min": [
+      -0.865,
+      0,
+      -0.615
+    ],
+    "max": [
+      0.865,
+      2.47,
+      0.57
+    ]
+  },
+  "heightMeters": 2.47,
+  "vertexCount": 3552,
+  "triangleCount": 1676,
+  "materialCount": 3,
+  "notes": "Visual prototype only. No change to gameplay scale, collision, or P0 scene. TeamArmor is replaceable; no texture/UV dependency."
+}

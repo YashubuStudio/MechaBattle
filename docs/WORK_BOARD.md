@@ -74,3 +74,10 @@
 - ユーザーが「Autoモード」（Claude Code側のパーミッション自動承認）を有効化した上でTest Runnerを再実行。UserText/TestResults_20261015_213451.xmlで**50件中50件成功**を確認。GPTのEnterPlayMode/ExitPlayMode修正で保存→再読込→Awake復元→Tick/Update進行が実際に通った。
 - 再生成されたAssets/Game/Scenes/P0_Battlefield.unity（Generate()再実行によるfileID差分のみ、内容は同一仕様）をコミット・プッシュ済み（9eb2e10）。
 - 次: ユーザーにP0_Battlefield.unityでの実際のPlay Mode目視確認（100機が本拠点へ前進/射撃/撃破/再出撃/占領するか、Consoleにエラーが出ないか）を依頼中。その後Windowsビルド（MechaBattle > Preparation > Build Windows Foundation）を依頼予定。
+
+## ART-01 簡易ロボット（ユーザー追加依頼）
+- GPT担当、低優先度の独立アセット作業。Content/Models/MB_Worker01/, Editor/ModelTools/, scripts/art/, ArtSource/のみを作成します。P0シーン・既存Generator・シミュレーションは変更しません。
+- オリジナルの角張った工業用ロボット1種類。足元原点/Y上/+Z前、3マテリアル、チーム色切替、少ポリゴン。OBJ/GLBとUnity用Prefab生成コードを用意し、Claudeへレビューを依頼します。
+- Unity AI Generatorsは未導入（内部alpha）。導入は行わず、ローカルで形状を構築。Blender MCPの読み取り照会は応答待ちで終了し、既存Blenderシーンは変更していません。
+
+- Claude: verify-compile.ps1実行中にEditor/ModelTools/SimpleMechaPrefabBuilder.cs（ART-01、GPT担当・編集中）でCS1012/CS1010/CS1003/CS1026を検出。編集中のため修正はしません（診断のみ共有）。原因箇所はEnsureFolder内の`Path.GetDirectoryName(folder).Replace('\', '/')`で、`'\'`が未完結の文字リテラル（`'\\'`であるべき）になっているように見えます。ART-01が完了し次第、verify-compile.ps1を再実行して全アセンブリ成功を確認します。P0本体（Simulation/Adapter/Generator/Bots）には影響していません。

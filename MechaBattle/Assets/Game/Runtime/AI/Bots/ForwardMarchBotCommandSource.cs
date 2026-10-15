@@ -5,17 +5,20 @@ using MechaBattle.Observation;
 
 namespace MechaBattle.AI.Bots
 {
-    // P0 PLACEHOLDER BOT: no enemy-UNIT perception at all, by design. It only reads its
-    // own SelfObservation (never Game.Simulation/world truth for other units) plus
-    // public, static map geometry (every main base's location is a known objective, not
-    // hidden unit intel) to script: advance to the lane-matched enemy main base, hold
-    // and fire once in range, retreat home to resupply when ammo runs dry, repeat. This
-    // exists to exercise the full movement/fire/destroy/respawn/capture/base-damage loop
-    // for P0 benchmarking (README's first task). Real TeamKnowledge-based perception and
-    // decision-making is later P0-03 / P3 Squad / P4 Commander work, not this class.
+    // P0 PLACEHOLDER BOT: no map-wide enemy perception, by design. It reads its own
+    // SelfObservation, a weapon-range-only INearbyThreatSensor (never farther than its
+    // own gun range - never full TeamKnowledge), and public static map geometry (every
+    // main base's location is a known objective, not hidden unit intel) to script:
+    // advance to the lane-matched enemy main base, engage anything that comes within
+    // weapon range along the way, hold and fire once close to the base, retreat home to
+    // resupply when ammo runs dry, repeat. This exists to exercise the full movement/
+    // fire/destroy/respawn/capture/base-damage loop for P0 benchmarking (README's first
+    // task). Real TeamKnowledge-based perception and tactics is later P0-03 / P3 Squad /
+    // P4 Commander work, not this class.
     public sealed class ForwardMarchBotCommandSource : IUnitCommandSource
     {
         private readonly ISelfObservationSource selfSource;
+        private readonly INearbyThreatSensor threatSensor;
         private readonly float fireRange;
         private readonly int maxAmmo;
         private readonly (float X, float Z)[] homeBySlot = new (float X, float Z)[MatchLimits.TotalControllerSlots];
@@ -24,11 +27,21 @@ namespace MechaBattle.AI.Bots
         private readonly bool[] retreating = new bool[MatchLimits.TotalControllerSlots];
         private readonly uint[] nextSequence = new uint[MatchLimits.TotalControllerSlots];
 
+        // Back-compat overload: no engagement sensor, so this BOT only aims/fires once
+        // close to its objective (the old behaviour). Kept so existing callers that only
+        // care about movement/retreat/human-rejection don't need to change.
         public ForwardMarchBotCommandSource(MapDefinition map, ISelfObservationSource selfSource,
             float fireRange, int maxAmmo, float homeSupplyRadius)
+            : this(map, selfSource, NoThreatSensor.Instance, fireRange, maxAmmo, homeSupplyRadius)
+        {
+        }
+
+        public ForwardMarchBotCommandSource(MapDefinition map, ISelfObservationSource selfSource,
+            INearbyThreatSensor threatSensor, float fireRange, int maxAmmo, float homeSupplyRadius)
         {
             if (map == null) throw new ArgumentNullException(nameof(map));
             this.selfSource = selfSource ?? throw new ArgumentNullException(nameof(selfSource));
+            this.threatSensor = threatSensor ?? throw new ArgumentNullException(nameof(threatSensor));
             this.fireRange = fireRange;
             this.maxAmmo = maxAmmo;
             this.homeSupplyRadius = homeSupplyRadius;
@@ -87,17 +100,41 @@ namespace MechaBattle.AI.Bots
                 moveX = dx / distance;
                 moveY = dz / distance;
             }
-            // +Z = 0 degrees, +X = 90 degrees (docs/P0_SIMULATION_API.md AimYaw contract).
-            float aimYaw = distance > 0.01f
-                ? (float)(Math.Atan2(dx, dz) * (180.0 / Math.PI))
-                : 0f;
+
+            // Default aim/fire: toward the objective, only once close enough to hit it.
+            float aimDx = dx, aimDz = dz;
             bool fire = !retreating[slotId] && distance <= fireRange;
+
+            // Engage anything that crosses weapon range along the way, instead of
+            // walking through it. Still advances toward the objective either way.
+            if (!retreating[slotId])
+            {
+                var threat = threatSensor.FindNearestEnemy(slotId, fireRange);
+                if (threat.Found)
+                {
+                    aimDx = threat.X - self.X;
+                    aimDz = threat.Z - self.Z;
+                    fire = true;
+                }
+            }
+
+            float aimLength = (float)Math.Sqrt((double)aimDx * aimDx + (double)aimDz * aimDz);
+            // +Z = 0 degrees, +X = 90 degrees (docs/P0_SIMULATION_API.md AimYaw contract).
+            float aimYaw = aimLength > 0.01f
+                ? (float)(Math.Atan2(aimDx, aimDz) * (180.0 / Math.PI))
+                : 0f;
 
             command = new UnitCommand(
                 unitId: self.UnitId, tick: tick, sequence: ++nextSequence[slotId],
                 moveX: moveX, moveY: moveY, aimYaw: aimYaw, aimPitch: 0f,
                 boost: false, firePrimary: fire, fireSecondary: false, melee: false, useAbility: false);
             return true;
+        }
+
+        private sealed class NoThreatSensor : INearbyThreatSensor
+        {
+            public static readonly NoThreatSensor Instance = new NoThreatSensor();
+            public NearbyEnemy FindNearestEnemy(int slotId, float rangeMeters) => NearbyEnemy.None;
         }
     }
 }

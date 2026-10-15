@@ -18,7 +18,7 @@ namespace MechaBattle.UnityAdapters
     // (Editor open, Play mode, or a future build) without re-running the generator.
     // unitTransformsBySlot is a normal [SerializeField] Transform[] — Unity serializes
     // scene object references natively, no JSON needed for that part.
-    public sealed class BattleSimulationRunner : MonoBehaviour, ISelfObservationSource
+    public sealed class BattleSimulationRunner : MonoBehaviour, ISelfObservationSource, INearbyThreatSensor
     {
         [SerializeField] private string mapJson;
         [SerializeField] private string configJson;
@@ -56,7 +56,7 @@ namespace MechaBattle.UnityAdapters
             // P0 default wiring: the only placeholder BOT that exists today. Swap this
             // for a factory once real TeamKnowledge-based AI (P0-03/P3/P4) lands.
             CommandSource = new ForwardMarchBotCommandSource(
-                map, this, config.fireRange, config.maxAmmo, config.homeSupplyRadius);
+                map, this, this, config.fireRange, config.maxAmmo, config.homeSupplyRadius);
             accumulatedSeconds = 0;
             SyncPresentation();
         }
@@ -67,6 +67,28 @@ namespace MechaBattle.UnityAdapters
             var u = Simulation.GetUnit(slotId);
             self = new SelfObservation(slotId, u.UnitId, u.Team, u.Controller, u.IsAlive, u.X, u.Z, u.Ammo);
             return true;
+        }
+
+        // Weapon-range-only scan: never returns anything beyond rangeMeters, and never
+        // exposes team-wide enemy positions to the caller - just "what's closest to me".
+        public NearbyEnemy FindNearestEnemy(int slotId, float rangeMeters)
+        {
+            if (Simulation == null) return NearbyEnemy.None;
+            var self = Simulation.GetUnit(slotId);
+            if (!self.IsAlive) return NearbyEnemy.None;
+
+            float bestSquared = rangeMeters * rangeMeters;
+            bool found = false;
+            float bestX = 0f, bestZ = 0f;
+            for (int slot = 0; slot < MatchLimits.TotalControllerSlots; slot++)
+            {
+                var u = Simulation.GetUnit(slot);
+                if (!u.IsAlive || u.Team == self.Team) continue;
+                float dx = u.X - self.X, dz = u.Z - self.Z;
+                float squared = dx * dx + dz * dz;
+                if (squared <= bestSquared) { bestSquared = squared; found = true; bestX = u.X; bestZ = u.Z; }
+            }
+            return found ? new NearbyEnemy(true, bestX, bestZ) : NearbyEnemy.None;
         }
 
         // Advances the simulation by one fixed tick: collect every slot's command from

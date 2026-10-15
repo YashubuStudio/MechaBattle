@@ -1,0 +1,7 @@
+{
+  "name": "Game.Editor.ModelTools",
+  "rootNamespace": "MechaBattle.EditorTools.Models",
+  "includePlatforms": [
+    "Editor"
+  ]
+}

@@ -1,0 +1,23 @@
+newmtl TeamArmor
+Kd 0.59 0.65 0.7
+Ka 0.1 0.1 0.1
+Ks 0.15 0.15 0.15
+Ns 24
+d 1
+illum 2
+
+newmtl Frame
+Kd 0.085 0.115 0.15
+Ka 0.1 0.1 0.1
+Ks 0.15 0.15 0.15
+Ns 24
+d 1
+illum 2
+
+newmtl Signal
+Kd 0.25 0.95 0.8
+Ka 0.1 0.1 0.1
+Ks 0.15 0.15 0.15
+Ns 24
+d 1
+illum 2
