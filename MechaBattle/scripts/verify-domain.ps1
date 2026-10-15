@@ -15,7 +15,7 @@ if (-not $compiler -or -not $refPack) { throw '.NET 9 SDK/targeting pack is requ
 $output = Join-Path $projectRoot 'Build/DomainSmoke'
 New-Item -ItemType Directory -Path $output -Force | Out-Null
 $references = @(Get-ChildItem -Path (Join-Path $refPack.FullName 'ref/net9.0/*.dll') -File)
-$sources = @(Get-ChildItem -Path (Join-Path $projectRoot 'Assets/Game/Runtime/Contracts/*.cs'), (Join-Path $projectRoot 'Assets/Game/Runtime/Battlefield/*.cs'), (Join-Path $projectRoot 'Assets/Game/Runtime/Simulation/*.cs'), (Join-Path $projectRoot 'Assets/Game/Runtime/Observation/*.cs'), (Join-Path $projectRoot 'Assets/Game/Runtime/AI/Bots/*.cs') -File)
+$sources = @(Get-ChildItem -Path (Join-Path $projectRoot 'Assets/Game/Runtime/Contracts/*.cs'), (Join-Path $projectRoot 'Assets/Game/Runtime/Battlefield/*.cs'), (Join-Path $projectRoot 'Assets/Game/Runtime/Simulation/*.cs'), (Join-Path $projectRoot 'Assets/Game/Runtime/Observation/*.cs'), (Join-Path $projectRoot 'Assets/Game/Runtime/AI/Bots/*.cs'), (Join-Path $projectRoot 'Assets/Game/Runtime/Contracts/Construction/*.cs'), (Join-Path $projectRoot 'Assets/Game/Runtime/Construction/*.cs') -File)
 $sources += Get-ChildItem -Path (Join-Path $projectRoot 'Assets/Game/Tests/EditMode/*.cs') -File
 $sources += Get-ChildItem -Path (Join-Path $PSScriptRoot 'DomainSmoke/*.cs') -File
 $assemblyPath = Join-Path $output 'DomainSmoke.dll'

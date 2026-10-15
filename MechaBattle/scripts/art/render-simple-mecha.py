@@ -28,7 +28,10 @@ def norm(v):
 def dot(a,b):return sum(x*y for x,y in zip(a,b))
 def cross(a,b):return (a[1]*b[2]-a[2]*b[1],a[2]*b[0]-a[0]*b[2],a[0]*b[1]-a[1]*b[0])
 
-def render(cx,cy,scale,eye,armor,shadow=True):
+def render(cx,cy,scale,eye,armor,shadow=True,reinforced=False):
+    source = json.loads((assets / 'MB_Worker01_reinforced.mesh.json').read_text(encoding='utf-8')) if reinforced else mesh
+    vertices = [(v['x'], v['y'], v['z']) for v in source['vertices']]
+    normals = [(v['x'], v['y'], v['z']) for v in source['normals']]
     view=norm(eye);right=norm(cross((0,1,0),view));up=cross(view,right)
     target=(0,1.22,0)
     light=norm((-3,7,6))
@@ -40,7 +43,7 @@ def render(cx,cy,scale,eye,armor,shadow=True):
         image.paste(Image.alpha_composite(image.convert('RGBA'),layer).convert('RGB'))
     polygons=[]
     colors=[armor,(0.10,0.14,0.19),(0.40,1.0,0.85)]
-    for material,group in enumerate(mesh['subMeshes']):
+    for material,group in enumerate(source['subMeshes']):
         idx=group['triangles']
         for i in range(0,len(idx),3):
             ids=idx[i:i+3];n=normals[ids[0]]
@@ -77,18 +80,18 @@ def render(cx,cy,scale,eye,armor,shadow=True):
     image.paste(Image.fromarray(pixels))
 
 text(70,50,'MECHABATTLE  /  ORIGINAL PROTOTYPE',16,'#7dd9d1',True)
-text(67,83,'MB-01  FIELD WORKER',43,'#ecf2f9',True)
-text(70,143,'Compact sensor head. Beveled armor. Shared frame.',19)
+text(67,83,'MB-01  MODULAR FRAME',43,'#ecf2f9',True)
+text(70,143,'One frame. Swappable arms and weapons. Two saved builds.',19)
 draw.line((1000*S,195*S,1000*S,815*S),fill='#334255',width=S)
-text(70,210,'BLUE  /  THREE-QUARTER',15,'#6ba6ff',True)
+text(70,210,'STANDARD ARMS + CARBINE',15,'#6ba6ff',True)
 render(490,520,220,(4,2.4,6),(0.16,0.37,0.85))
-text(1070,210,'ORANGE  /  FRONT',15,'#ffb572',True)
-render(1275,380,102,(0,0.25,8),(0.95,0.40,0.10))
-text(1070,525,'NEUTRAL  /  REAR',15,'#c3cdd9',True)
+text(1070,210,'REINFORCED ARMS + LONG RIFLE',15,'#ffb572',True)
+render(1275,380,102,(3,1.7,7),(0.95,0.40,0.10),reinforced=True)
+text(1070,525,'SHARED FRAME / REAR',15,'#c3cdd9',True)
 render(1275,690,102,(-4,2,-6),(0.59,0.65,0.70))
 draw=ImageDraw.Draw(image)
 draw.line((70*S,835*S,1530*S,835*S),fill='#334255',width=S)
-text(70,852,f"{spec['triangleCount']:,} TRIANGLES   /   3 MATERIAL SLOTS   /   STATIC MESH",15,'#a3b1c5')
+text(70,852,'1,676 / 2,016 TRIANGLES   /   3 MATERIAL SLOTS   /   STATIC PROTOTYPE',15,'#a3b1c5')
 text(1090,852,'Y UP  /  +Z FRONT  /  FOOT PIVOT',14,'#a3b1c5')
 image.resize((W,H),Image.Resampling.LANCZOS).save(output/'MB_Worker01_preview.png')
 print(output/'MB_Worker01_preview.png')

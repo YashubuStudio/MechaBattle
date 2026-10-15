@@ -6,7 +6,9 @@
     "Game.Battlefield",
     "Game.Simulation",
     "Game.Observation.Contracts",
-    "Game.AI.Bots"
+    "Game.AI.Bots",
+    "Game.Construction.Contracts",
+    "Game.Construction"
   ],
   "includePlatforms": [
     "Editor"

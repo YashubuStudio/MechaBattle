@@ -109,34 +109,114 @@ box('ToolHousing',[0.65,1.27,0.32],[0.22,0.19,0.39],1,0.025);
 box('ToolMuzzle',[0.65,1.27,0.53],[0.15,0.12,0.08],1,0.018);
 box('ToolSignal',[0.65,1.38,0.37],[0.10,0.022,0.14],2);
 
-const min=[0,1,2].map(a=>Math.min(...vertices.map(v=>v[a]))),max=[0,1,2].map(a=>Math.max(...vertices.map(v=>v[a])));
-const triangleCount=groups.reduce((s,g)=>s+g.triangles.length/3,0);
-const mesh={name:'MB_Worker01',coordinateSystem:'Y-up, +Z forward, meters; origin between feet on ground',vertices:vertices.map(v=>({x:v[0],y:v[1],z:v[2]})),normals:normals.map(v=>({x:v[0],y:v[1],z:v[2]})),subMeshes:groups};
+// Preserve the original build, then add compatible replacement modules.
+const baseParts=[...parts];
+for(const side of [-1,1]) {
+  const tag=side<0?'L':'R',x=side*0.65;
+  box('ReinforcedShoulder_'+tag,[x,2.15,-0.025],[0.43,0.10,0.46],0,0.025);
+  box('ReinforcedForearm_'+tag,[x,1.28,0.255],[0.42,0.40,0.12],0,0.035);
+  box('ReinforcedSignal_'+tag,[x,2.21,0.08],[0.22,0.025,0.10],2,0.005);
+}
+box('RifleBody',[0.65,1.27,0.39],[0.24,0.22,0.54],1,0.03);
+box('RifleBarrel',[0.65,1.27,0.79],[0.12,0.12,0.32],1,0.015);
+box('RifleMuzzle',[0.65,1.27,1.005],[0.18,0.16,0.11],0,0.02);
+box('RifleSight',[0.65,1.43,0.45],[0.10,0.08,0.21],2,0.008);
+const config=JSON.parse(await fs.readFile(path.join(workspace,'MechaBattle/config/prototype-defaults.json'),'utf8')).constructionPrototype;
+const standard=config.visual.connectionStandard;
+const xyz=v=>[v.x,v.y,v.z];const vector=v=>({x:round(v[0]),y:round(v[1]),z:round(v[2])});
+const left=xyz(config.visual.leftShoulder),right=xyz(config.visual.rightShoulder),hold=xyz(config.visual.primaryWeaponOnRightArm);
+const weaponOrigin=right.map((v,i)=>round(v+hold[i]));
+const armNames=tag=>['ShoulderJoint_','ShoulderArmor_','UpperArm_','Elbow_','Forearm_','Hand_'].map(n=>n+tag);
+const armPartNames=new Set([...armNames('L'),...armNames('R')]);
+const toolNames=['ToolHousing','ToolMuzzle','ToolSignal'];
+function extract(name,selection,origin=[0,0,0]) {
+  const index=new Map(),vv=[],nn=[],solids=[];
+  for(const part of selection) { solids.push({name:part.name,firstVertex:vv.length,vertexCount:part.vertexCount}); for(let i=part.firstVertex;i<part.firstVertex+part.vertexCount;i++) {
+    index.set(i,vv.length);vv.push(vector(sub(vertices[i],origin)));nn.push(vector(normals[i]));
+  }}
+  return {name,vertices:vv,normals:nn,solids,subMeshes:groups.map(g=>({material:g.material,triangles:g.triangles.filter(i=>index.has(i)).map(i=>index.get(i))}))};
+}
+function module(id,selection,origin,parentSocket,sockets=[]) {
+  return {partId:id,connectionStandard:standard,parentSocket,worldOrigin:vector(origin),sockets,mesh:extract(id,selection,origin)};
+}
+const find=names=>parts.filter(p=>names.includes(p.name));
+const modules=[module('frame.standard.v1',baseParts.filter(p=>!armPartNames.has(p.name)&&!toolNames.includes(p.name)),[0,0,0],'',[
+  {id:'arm.left',position:vector(left)},{id:'arm.right',position:vector(right)}])];
+for(const side of ['left','right'])for(const type of ['standard','reinforced']) {
+  const tag=side==='left'?'L':'R';const names=armNames(tag);
+  if(type==='reinforced')names.push('ReinforcedShoulder_'+tag,'ReinforcedForearm_'+tag,'ReinforcedSignal_'+tag);
+  modules.push(module('arm.'+type+'.'+side,find(names),side==='left'?left:right,'arm.'+side,
+    side==='right'?[{id:'weapon.primary',position:vector(hold)}]:[]));
+}
+modules.push(module('weapon.carbine',find(toolNames),weaponOrigin,'weapon.primary',[{id:'muzzle',position:{x:0,y:0,z:0.25}}]));
+modules.push(module('weapon.longrifle',find(['RifleBody','RifleBarrel','RifleMuzzle','RifleSight']),weaponOrigin,'weapon.primary',[{id:'muzzle',position:{x:0,y:0,z:0.74}}]));
+const presets=config.catalog.presets;
+function assembled(preset) {
+  const chosen=[modules.find(m=>m.partId===preset.frameId),...preset.equipment.map(e=>modules.find(m=>m.partId===e.partId))];
+  const mesh={name:preset.id,vertices:[],normals:[],subMeshes:materials.map(m=>({material:m.name,triangles:[]}))};
+  for(const m of chosen) {
+    const offset=mesh.vertices.length,origin=xyz(m.worldOrigin);
+    mesh.vertices.push(...m.mesh.vertices.map(v=>vector(xyz(v).map((x,i)=>x+origin[i]))));
+    mesh.normals.push(...m.mesh.normals);
+    m.mesh.subMeshes.forEach((g,i)=>mesh.subMeshes[i].triangles.push(...g.triangles.map(x=>x+offset)));
+  }
+  return mesh;
+}
+const assemblyMeshes=presets.map(assembled);
+const mesh=assemblyMeshes[0];
 await fs.writeFile(path.join(assetDir,'MB_Worker01.mesh.json'),JSON.stringify(mesh));
-let obj='# Original MechaBattle simple robot. Y-up, +Z forward, meters.\nmtllib MB_Worker01.mtl\no MB_Worker01\n';
-for(const v of vertices)obj+='v '+v.join(' ')+'\n';
-for(const n of normals)obj+='vn '+n.join(' ')+'\n';
-for(const g of groups){obj+='g '+g.material+'\nusemtl '+g.material+'\n';for(let i=0;i<g.triangles.length;i+=3)obj+='f '+g.triangles.slice(i,i+3).map(v=>(v+1)+'//'+(v+1)).join(' ')+'\n';}
-await fs.writeFile(path.join(assetDir,'MB_Worker01.obj'),obj);
-await fs.writeFile(path.join(assetDir,'MB_Worker01.mtl'),materials.map(m=>'newmtl '+m.name+'\nKd '+m.color.join(' ')+'\nKa 0.1 0.1 0.1\nKs 0.15 0.15 0.15\nNs 24\nd 1\nillum 2\n').join('\n'));
-const spec={name:'MB-01 FIELD WORKER',originalAsset:true,prototypeOnly:true,rigged:false,animated:false,textures:false,parts,materials,bounds:{min,max},heightMeters:round(max[1]-min[1]),vertexCount:vertices.length,triangleCount,materialCount:materials.length,notes:'Visual prototype only. No change to gameplay scale, collision, or P0 scene. TeamArmor is replaceable; no texture/UV dependency.'};
+await fs.writeFile(path.join(assetDir,'MB_Worker01_reinforced.mesh.json'),JSON.stringify(assemblyMeshes[1]));
+const kit={schemaVersion:1,connectionStandard:standard,coordinateSystem:'Y-up, +Z forward, meters; foot origin',modules,presets};
+await fs.writeFile(path.join(assetDir,'module-kit.json'),JSON.stringify(kit));
+// OBJ keeps named module groups, so the source is editable rather than a fixed character.
+let obj='# Original MechaBattle modular frame. Y-up, +Z forward, meters.\nmtllib MB_Worker01.mtl\n';
+for(const v of mesh.vertices)obj+='v '+xyz(v).join(' ')+'\n';
+for(const n of mesh.normals)obj+='vn '+xyz(n).join(' ')+'\n';
+let start=0;
+for(const id of [presets[0].frameId,...presets[0].equipment.map(e=>e.partId)]) {
+  const m=modules.find(m=>m.partId===id);obj+='o '+id+'\n';
+  for(const g of m.mesh.subMeshes){obj+='g '+id+'.'+g.material+'\nusemtl '+g.material+'\n';for(let i=0;i<g.triangles.length;i+=3)obj+='f '+g.triangles.slice(i,i+3).map(v=>(v+start+1)+'//'+(v+start+1)).join(' ')+'\n';}
+  start+=m.mesh.vertices.length;
+}
+await fs.writeFile(path.join(assetDir,'MB_Worker01.obj'),obj.replaceAll('\\n','\n'));
+await fs.writeFile(path.join(assetDir,'MB_Worker01.mtl'),materials.map(m=>'newmtl '+m.name+'\nKd '+m.color.join(' ')+'\nKa 0.1 0.1 0.1\nKs 0.15 0.15 0.15\nNs 24\nd 1\nillum 2\n').join('\n').replaceAll('\\n','\n'));
+const vv=mesh.vertices.map(xyz),min=[0,1,2].map(a=>Math.min(...vv.map(v=>v[a]))),max=[0,1,2].map(a=>Math.max(...vv.map(v=>v[a])));
+const spec={name:'MB-01 MODULAR FRAME',originalAsset:true,prototypeOnly:true,rigged:false,animated:false,textures:false,parts:baseParts,materials,bounds:{min,max},heightMeters:round(max[1]-min[1]),vertexCount:mesh.vertices.length,triangleCount:mesh.subMeshes.reduce((s,g)=>s+g.triangles.length/3,0),materialCount:3,modules:modules.map(m=>({partId:m.partId,vertices:m.mesh.vertices.length,triangles:m.mesh.subMeshes.reduce((s,g)=>s+g.triangles.length/3,0)})),presets:assemblyMeshes.map(m=>({id:m.name,triangles:m.subMeshes.reduce((s,g)=>s+g.triangles.length/3,0)})),notes:'One frame, two arm types, two weapons. Presets are ordinary builds. Static geometry; no rig/LOD/collision. Editor assembly combines material groups. Gameplay scale remains unverified.'};
 await fs.writeFile(path.join(assetDir,'model-spec.json'),JSON.stringify(spec,null,2)+'\n');
-
-// A self-contained, standard glTF 2.0 GLB for DCC preview/sharing outside Unity.
-const pos=Buffer.from(new Float32Array(vertices.flat()).buffer),norm=Buffer.from(new Float32Array(normals.flat()).buffer);
-const binaryParts=[pos,norm];const bufferViews=[{buffer:0,byteOffset:0,byteLength:pos.length,target:34962},{buffer:0,byteOffset:pos.length,byteLength:norm.length,target:34962}];
-const accessors=[{bufferView:0,componentType:5126,count:vertices.length,type:'VEC3',min,max},{bufferView:1,componentType:5126,count:normals.length,type:'VEC3'}];
-let offset=pos.length+norm.length;const primitives=[];
-for(let i=0;i<groups.length;i++){
-  const indices=Buffer.from(new Uint16Array(groups[i].triangles).buffer);const padded=Buffer.alloc(Math.ceil(indices.length/4)*4);indices.copy(padded);binaryParts.push(padded);
-  bufferViews.push({buffer:0,byteOffset:offset,byteLength:indices.length,target:34963});
-  accessors.push({bufferView:bufferViews.length-1,componentType:5123,count:groups[i].triangles.length,type:'SCALAR'});
-  primitives.push({attributes:{POSITION:0,NORMAL:1},indices:accessors.length-1,material:i});offset+=padded.length;
+// GLB stores each module with its own local origin and two selectable assembly scenes.
+const binaryParts=[],bufferViews=[],accessors=[],meshes=[];let offset=0;
+function accessor(buffer,componentType,type,count,target,min,max) {
+  const padded=Buffer.alloc(Math.ceil(buffer.length/4)*4);buffer.copy(padded);binaryParts.push(padded);
+  bufferViews.push({buffer:0,byteOffset:offset,byteLength:buffer.length,target});offset+=padded.length;
+  accessors.push({bufferView:bufferViews.length-1,componentType,count,type,...(min?{min,max}:{})});return accessors.length-1;
+}
+for(const m of modules) {
+  const floats=new Float32Array(m.mesh.vertices.flatMap(xyz));
+  const min=[0,1,2].map(a=>Math.min(...Array.from({length:m.mesh.vertices.length},(_,i)=>floats[i*3+a])));
+  const max=[0,1,2].map(a=>Math.max(...Array.from({length:m.mesh.vertices.length},(_,i)=>floats[i*3+a])));
+  const position=accessor(Buffer.from(floats.buffer),5126,'VEC3',m.mesh.vertices.length,34962,min,max);
+  const normal=accessor(Buffer.from(new Float32Array(m.mesh.normals.flatMap(xyz)).buffer),5126,'VEC3',m.mesh.normals.length,34962);
+  const primitives=[];
+  m.mesh.subMeshes.forEach((g,i)=>{if(g.triangles.length)primitives.push({attributes:{POSITION:position,NORMAL:normal},indices:accessor(Buffer.from(new Uint16Array(g.triangles).buffer),5123,'SCALAR',g.triangles.length,34963),material:i});});
+  meshes.push({name:m.partId,primitives});
+}
+const nodes=[],scenes=[];
+for(const preset of presets) {
+  const frame=nodes.length;nodes.push({name:preset.id,mesh:0,children:[]});
+  for(const e of preset.equipment.filter(e=>e.slot!==2)) {
+    const m=modules.find(m=>m.partId===e.partId),index=nodes.length;
+    nodes.push({name:m.partId,mesh:modules.indexOf(m),translation:xyz(m.worldOrigin)});nodes[frame].children.push(index);
+    if(e.slot===1) {
+      const wm=modules.find(m=>m.partId===preset.equipment.find(e=>e.slot===2).partId);
+      nodes[index].children=[nodes.length];nodes.push({name:wm.partId,mesh:modules.indexOf(wm),translation:hold});
+    }
+  }
+  scenes.push({name:preset.id,nodes:[frame]});
 }
 const bin=Buffer.concat(binaryParts);
-const gltf={asset:{version:'2.0',generator:'MechaBattle original procedural study'},scene:0,scenes:[{nodes:[0]}],nodes:[{name:'MB_Worker01',mesh:0}],meshes:[{name:'MB_Worker01',primitives}],materials:materials.map((m,i)=>({name:m.name,pbrMetallicRoughness:{baseColorFactor:[...m.color,1],metallicFactor:m.metallic,roughnessFactor:m.roughness},...(i===2?{emissiveFactor:m.color.map(v=>v*0.35)}:{})})),buffers:[{byteLength:bin.length}],bufferViews,accessors};
+const gltf={asset:{version:'2.0',generator:'MechaBattle original modular prototype'},scene:0,scenes,nodes,meshes,materials:materials.map((m,i)=>({name:m.name,pbrMetallicRoughness:{baseColorFactor:[...m.color,1],metallicFactor:m.metallic,roughnessFactor:m.roughness},...(i===2?{emissiveFactor:m.color.map(v=>v*0.35)}:{})})),buffers:[{byteLength:bin.length}],bufferViews,accessors};
 const rawJson=Buffer.from(JSON.stringify(gltf)),json=Buffer.alloc(Math.ceil(rawJson.length/4)*4,32);rawJson.copy(json);
 const header=Buffer.alloc(12);header.writeUInt32LE(0x46546c67,0);header.writeUInt32LE(2,4);header.writeUInt32LE(12+8+json.length+8+bin.length,8);
 const jHeader=Buffer.alloc(8);jHeader.writeUInt32LE(json.length,0);jHeader.writeUInt32LE(0x4e4f534a,4);const bHeader=Buffer.alloc(8);bHeader.writeUInt32LE(bin.length,0);bHeader.writeUInt32LE(0x004e4942,4);
 await fs.writeFile(path.join(sourceDir,'MB_Worker01.glb'),Buffer.concat([header,jHeader,json,bHeader,bin]));
-console.log(JSON.stringify({assetDir,sourceDir,triangleCount,vertexCount:vertices.length,heightMeters:spec.heightMeters,parts:parts.length,materials:3}));
+console.log(JSON.stringify({modules:modules.length,presets:spec.presets,heightMeters:spec.heightMeters,materialSlots:3}));

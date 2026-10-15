@@ -3,5 +3,9 @@
   "rootNamespace": "MechaBattle.EditorTools.Models",
   "includePlatforms": [
     "Editor"
+  ],
+  "references": [
+    "Game.Construction.Contracts",
+    "Game.Construction"
   ]
 }

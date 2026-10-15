@@ -45,6 +45,8 @@ try { var battle = HeadlessBattleSmoke.Run(project); passed++; cases.Add(battle)
 catch (Exception ex) { failed++; cases.Add(new { name = "ActualConfig_100SlotPublicObjectiveBattle", status = "failed", error = ex.ToString() }); }
 try { var battle = ActualBotDefaultsSmoke.Run(project); passed++; cases.Add(battle); }
 catch (Exception ex) { failed++; cases.Add(new { name = "ActualClaudeBot_ActualConfig_100Slots", status = "failed", error = ex.ToString() }); }
+try { var construction = ConstructionDefaultsSmoke.Run(project); passed++; cases.Add(construction); }
+catch (Exception ex) { failed++; cases.Add(new { name = "Construction_ActualCatalogAndSavedBuildRoundTrip", status = "failed", error = ex.ToString() }); }
 var output = Path.Combine(project, "Build/Reports/domain-smoke.json");
 Directory.CreateDirectory(Path.GetDirectoryName(output));
 var report = JsonSerializer.Serialize(new { scope = "pure-csharp-smoke-not-unity-test-runner", executedUtc = DateTime.UtcNow, passed, failed, cases }, new JsonSerializerOptions { WriteIndented = true });

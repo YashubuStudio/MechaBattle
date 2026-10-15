@@ -1,0 +1,15 @@
+{
+  "name": "Game.Tests.ModelTools",
+  "rootNamespace": "MechaBattle.Tests.Models",
+  "references": [
+    "Game.Editor.ModelTools",
+    "Game.Construction.Contracts",
+    "Game.Construction"
+  ],
+  "includePlatforms": [
+    "Editor"
+  ],
+  "optionalUnityReferences": [
+    "TestAssemblies"
+  ]
+}

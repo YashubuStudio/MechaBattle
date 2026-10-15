@@ -22,6 +22,7 @@ namespace MechaBattle.Simulation
             public int Team;
             public float X, Z, SpawnRadius, AttackRadius;
             public double Damage;
+            public long NextCounterShot;
         }
         private sealed class CaptureState
         {
@@ -40,10 +41,10 @@ namespace MechaBattle.Simulation
         private readonly double[] baseDamage;
         private readonly double[] gauges = new double[MatchLimits.TeamCount];
         private readonly float halfWidth, halfDepth;
-        private readonly long durationTicks, shotIntervalTicks, respawnDelayTicks;
+        private readonly long durationTicks, shotIntervalTicks, respawnDelayTicks, baseCounterFireIntervalTicks;
         private readonly long[] cooldownTicks;
         private int nextUnitId;
-        private long shotsFired, unitsDestroyed, unitsSpawned, baseHits, captureChanges;
+        private long shotsFired, unitsDestroyed, unitsSpawned, baseHits, captureChanges, baseCounterShotsFired;
 
         public long CurrentTick { get; private set; }
         public float FixedDeltaTime { get; }
@@ -53,7 +54,7 @@ namespace MechaBattle.Simulation
         public int MainBaseCount => bases.Length;
         public int CapturePointCount => captures.Length;
         public int DeckCount => cooldownTicks.Length;
-        public SimulationCounters Counters => new SimulationCounters(shotsFired, unitsDestroyed, unitsSpawned, baseHits, captureChanges);
+        public SimulationCounters Counters => new SimulationCounters(shotsFired, unitsDestroyed, unitsSpawned, baseHits, captureChanges, baseCounterShotsFired);
 
         public BattleSimulation(MapDefinition map, SimulationConfig config, int humanSlotId = 0)
         {
@@ -66,6 +67,8 @@ namespace MechaBattle.Simulation
             durationTicks = SecondsToTicks(config.maxDurationSeconds);
             shotIntervalTicks = SecondsToTicks(config.fireIntervalSeconds);
             respawnDelayTicks = SecondsToTicks(config.respawnDelaySeconds);
+            baseCounterFireIntervalTicks = config.baseCounterFireIntervalSeconds > 0
+                ? SecondsToTicks(config.baseCounterFireIntervalSeconds) : 0;
             cooldownTicks = new long[config.deckCosts.Length];
             for (int i = 0; i < cooldownTicks.Length; i++) cooldownTicks[i] = SecondsToTicks(config.deckCooldownSeconds[i]);
             halfWidth = map.halfWidth; halfDepth = map.halfDepth;
@@ -173,6 +176,7 @@ namespace MechaBattle.Simulation
             for (int i = 0; i < units.Length; i++) Move(units[i]);
             // Gather all shot intents before resolving any lethal damage.
             for (int i = 0; i < units.Length; i++) Fire(units[i]);
+            ApplyBaseCounterFire();
             for (int i = 0; i < units.Length; i++) ResolveDamage(i);
             for (int i = 0; i < bases.Length; i++)
             {
@@ -220,6 +224,35 @@ namespace MechaBattle.Simulation
             }
             if (targetUnit >= 0) unitDamage[targetUnit] += config.fireDamage;
             else if (targetBase >= 0) { baseDamage[targetBase] += config.fireDamage; baseHits++; }
+        }
+
+        // Main-base defensive weapon, NOT a per-unit auto-counter (AGENTS.md prohibits
+        // automatic melee retaliation/guard-interrupt between mobile units; this is a
+        // static structure's own slow-firing area weapon, independent of whether the
+        // base itself was hit). Fires at most once per baseCounterFireIntervalTicks, and
+        // only once an enemy is actually within range - an idle base keeps waiting
+        // rather than firing at nothing. Hits every enemy unit in range simultaneously
+        // (area attack), folded into the same unitDamage[] buffer Fire() uses so it
+        // resolves fairly alongside ordinary unit fire in ResolveDamage().
+        private void ApplyBaseCounterFire()
+        {
+            if (baseCounterFireIntervalTicks <= 0) return;
+            double radiusSquared = (double)config.baseCounterFireRadius * config.baseCounterFireRadius;
+            for (int b = 0; b < bases.Length; b++)
+            {
+                var baseState = bases[b];
+                if (CurrentTick < baseState.NextCounterShot) continue;
+                bool fired = false;
+                for (int i = 0; i < units.Length; i++)
+                {
+                    var u = units[i];
+                    if (!u.Alive || u.Team == baseState.Team) continue;
+                    if (DistanceSquared(u.X, u.Z, baseState.X, baseState.Z) > radiusSquared) continue;
+                    unitDamage[i] += config.baseCounterFireDamage;
+                    fired = true;
+                }
+                if (fired) { baseState.NextCounterShot = CurrentTick + baseCounterFireIntervalTicks; baseCounterShotsFired++; }
+            }
         }
 
         private void ResolveDamage(int slot)

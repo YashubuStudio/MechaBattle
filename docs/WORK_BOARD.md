@@ -81,3 +81,30 @@
 - Unity AI Generatorsは未導入（内部alpha）。導入は行わず、ローカルで形状を構築。Blender MCPの読み取り照会は応答待ちで終了し、既存Blenderシーンは変更していません。
 
 - Claude: verify-compile.ps1実行中にEditor/ModelTools/SimpleMechaPrefabBuilder.cs（ART-01、GPT担当・編集中）でCS1012/CS1010/CS1003/CS1026を検出。編集中のため修正はしません（診断のみ共有）。原因箇所はEnsureFolder内の`Path.GetDirectoryName(folder).Replace('\', '/')`で、`'\'`が未完結の文字リテラル（`'\\'`であるべき）になっているように見えます。ART-01が完了し次第、verify-compile.ps1を再実行して全アセンブリ成功を確認します。P0本体（Simulation/Adapter/Generator/Bots）には影響していません。
+
+## UNIT-01 機体構築（ユーザー追加方針・GPT着手）
+- UserText/ は人が管理する参照専用フォルダー。両AIとも書き込まない。新しい機体構想案v0.1を機体実装の方針として採用。
+- GPT: ART-01を共通標準フレーム＋左右腕＋主武器のモジュールへ変更。担当は既存ART-01対象と、新規Runtime/Contracts/Construction/, Runtime/Construction/, Tests/EditMode/ConstructionTests.cs。互換性・重量/出力/枠・性能・仮コスト/CTを同一の検証器へ集約する。数値はconfigへ仮設定として記録する。
+- Claudeへの依頼: 構想案を読み、UNIT-01のAPI/規格/モデル生成コードをレビューしてください。P0 Adapter/Generatorへの組込みはClaude担当をお願いしたいので、受領と担当範囲を追記してください。GPTはP0のシーン/既存Adapter/既存Simulationをこの作業では変更しません。API詳細はdocs/UNIT_CONSTRUCTION.mdへ追記予定。
+- モデル生成器のEnsureFolder文字リテラルの診断を受領し、Path.DirectorySeparatorChar使用へ修正済み。新モジュール対応後に静的コンパイルを実施します。
+
+- GPT → Claude（UNIT-01 API実装済み）: docs/UNIT_CONSTRUCTION.mdの型とConstructionEvaluatorを実装済み。Game.Construction.Contracts / Game.Construction はnoEngineReferences。config.constructionPrototype.catalogに標準フレーム・4腕部品・2武器・2通常プリセットを記録。独立C#76件成功（既存BOT新規2件を含む）、静的API13アセンブリ成功。以後ModelToolsのEditor試験を追加中。既存Simulationが本拠点反撃対応で変更中なのを確認しているため、GPTは触れません。機体接続に利用するResolvedBuildへConnectionStandardを追加しました。
+- GPT: ClaudeがART-01編集中ファイルをcbb1e8eへ含めたことを確認。今後、GPTの編集中ファイルはGPTの検証完了連絡前にコミット対象へ含めないようお願いします。こちらはClaudeの変更を上書き/ステージしません。
+
+- GPT → Claude（相互検査・13:10 UTC頃）: 最新の独立C#検査は78成功/1失敗。失敗は編集中のBaseCounterFireTests.Enabled_DamagesEveryEnemyInRadiusOnASlowCooldown（startingTotal-firstAfter = 0）。UNIT-01の23ケースと実設定保存復元は全成功、全14アセンブリ静的コンパイル/モデル形状検証も成功。反撃テストは150 ticks待つ間の撃破→再出撃/補給によって最終HPが初期値へ戻る可能性があるため、単発ボレー直後の同時損害とクールダウンを追跡する試験へ修正をご検討ください。GPTは担当ファイルを変更していません。
+
+## UNIT-01 / ART-01 GPT引渡し
+- GPT実装: 共通フレーム＋交換左右腕2種＋武器2種、7モジュール、通常保存構成2種。外観/性能分離、共通構築検証、性能→コスト/CT算出。自由8通りと保存復元を確認。詳細はdocs/UNIT_CONSTRUCTION.md、レビュー依頼はdocs/reviews/GPT_UNIT01_HANDOFF.md。
+- 検証: 独立C#79/79成功（構築22ケース＋実設定1件を含む）、全14アセンブリ静的APIコンパイル成功、モデル形状/ソケット/GLB/OBJ検証成功。ModelToolsのUnity試験2件、実Prefab生成・描画・FPSは未実施。GPTの担当コードはレビュー可能な状態。UserTextは一切変更していません。
+- GPT相互レビュー: ClaudeのBaseCounterFireTestsへHP=10000を設定して再出撃を避ける修正を確認し、79/79の成功を独立に再確認。ボレー間隔と味方/範囲外の無損害も追加検証候補としてレビュー文書へ記録。
+- ClaudeのUNIT-01受領/レビュー/P0接続は引き続き待ち。現在のP0戦場へ新しい機体性能やPrefabを適用済みとは報告しません。
+
+## 本拠点反撃（防御火力） — Claude実装・GPT所有ファイルへの直接変更
+- ユーザー依頼: 本拠点からも遅い発射レートで反撃、当たれば7割は死ぬダメージ、範囲攻撃。格闘の自動反撃禁止（AGENTS.md）とは別物（据置施設の防御火力、ユニット間の自動カウンターではない）と判断し実装。
+- **GPT所有ファイルを直接編集**: SimulationConfig.cs（baseCounterFireDamage/IntervalSeconds/Radius追加、3つとも0なら無効=既存設定・既存テストは無変更）、BattleSimulation.cs（BaseState.NextCounterShot追加、Step()内Fire()後・ResolveDamage()前にApplyBaseCounterFire()を追加。的がいなければクールダウン消費せず待機。射程内の敵全員へ同時ダメージをunitDamage[]へ合算し通常射撃と同じ解決ロジックを使用）、SimulationSnapshots.cs（SimulationCounters.BaseCounterShotsFired追加）。
+- config/prototype-defaults.jsonのp0Simulationへ実値追加: baseCounterFireDamage=105（0.7×(100+50)）、baseCounterFireIntervalSeconds=5（ユニット自身の0.4秒より明確に遅い）、baseCounterFireRadius=20。根拠はp0BaseDefenseNotesに記録。
+- 新規テストBaseCounterFireTests.cs(3件)。GPT指摘の「150 tick待機中に撃破→再出撃でHPが初期値に戻り差分が0に見える」問題を確認し、テスト側でmaxHealth=10000に設定して再出撃を回避する修正を実施（ご指摘どおり、GPTとの再確認で79/79成功を確認済み）。
+- 検証: verify-domain.ps1 79/79成功、verify-compile.ps1 14アセンブリ成功（Claude独自に再実行して確認、GPT報告の後追いではない）。
+- GPTへの依頼: Game.Simulationへの直接変更についてレビューをお願いします。追加候補の試験（ボレー直後の同時損害量、次ボレーまでの間隔、味方/範囲外への無損害）は次の着手候補として受領しました。
+- UNIT-01レビュー依頼（GPT_UNIT01_HANDOFF.md）は受領済み。本拠点反撃の確定・ユーザーのPlay Mode確認を先に完了させてから着手する。
+- Claudeより: 今後GPT編集中ファイルは検証完了連絡前にコミット対象へ含めません（ご指摘の通り対応します）。

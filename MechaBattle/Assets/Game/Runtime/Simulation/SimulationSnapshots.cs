@@ -44,9 +44,9 @@ namespace MechaBattle.Simulation
 
     public readonly struct SimulationCounters
     {
-        public readonly long ShotsFired, UnitsDestroyed, UnitsSpawned, BaseHits, CaptureChanges;
-        internal SimulationCounters(long shots, long destroyed, long spawned, long baseHits, long captures)
+        public readonly long ShotsFired, UnitsDestroyed, UnitsSpawned, BaseHits, CaptureChanges, BaseCounterShotsFired;
+        internal SimulationCounters(long shots, long destroyed, long spawned, long baseHits, long captures, long baseCounterShots)
         { ShotsFired = shots; UnitsDestroyed = destroyed; UnitsSpawned = spawned;
-          BaseHits = baseHits; CaptureChanges = captures; }
+          BaseHits = baseHits; CaptureChanges = captures; BaseCounterShotsFired = baseCounterShots; }
     }
 }

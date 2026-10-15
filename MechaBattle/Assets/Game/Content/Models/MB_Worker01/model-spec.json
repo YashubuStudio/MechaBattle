@@ -1,5 +1,5 @@
 {
-  "name": "MB-01 FIELD WORKER",
+  "name": "MB-01 MODULAR FRAME",
   "originalAsset": true,
   "prototypeOnly": true,
   "rigged": false,
@@ -1027,5 +1027,52 @@
   "vertexCount": 3552,
   "triangleCount": 1676,
   "materialCount": 3,
-  "notes": "Visual prototype only. No change to gameplay scale, collision, or P0 scene. TeamArmor is replaceable; no texture/UV dependency."
+  "modules": [
+    {
+      "partId": "frame.standard.v1",
+      "vertices": 2376,
+      "triangles": 1112
+    },
+    {
+      "partId": "arm.standard.left",
+      "vertices": 480,
+      "triangles": 232
+    },
+    {
+      "partId": "arm.reinforced.left",
+      "vertices": 768,
+      "triangles": 364
+    },
+    {
+      "partId": "arm.standard.right",
+      "vertices": 480,
+      "triangles": 232
+    },
+    {
+      "partId": "arm.reinforced.right",
+      "vertices": 768,
+      "triangles": 364
+    },
+    {
+      "partId": "weapon.carbine",
+      "vertices": 216,
+      "triangles": 100
+    },
+    {
+      "partId": "weapon.longrifle",
+      "vertices": 384,
+      "triangles": 176
+    }
+  ],
+  "presets": [
+    {
+      "id": "standard-carbine",
+      "triangles": 1676
+    },
+    {
+      "id": "reinforced-longrifle",
+      "triangles": 2016
+    }
+  ],
+  "notes": "One frame, two arm types, two weapons. Presets are ordinary builds. Static geometry; no rig/LOD/collision. Editor assembly combines material groups. Gameplay scale remains unverified."
 }
