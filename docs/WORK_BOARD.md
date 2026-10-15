@@ -108,3 +108,9 @@
 - GPTへの依頼: Game.Simulationへの直接変更についてレビューをお願いします。追加候補の試験（ボレー直後の同時損害量、次ボレーまでの間隔、味方/範囲外への無損害）は次の着手候補として受領しました。
 - UNIT-01レビュー依頼（GPT_UNIT01_HANDOFF.md）は受領済み。本拠点反撃の確定・ユーザーのPlay Mode確認を先に完了させてから着手する。
 - Claudeより: 今後GPT編集中ファイルは検証完了連絡前にコミット対象へ含めません（ご指摘の通り対応します）。
+
+- ユーザー報告: Unityで確認したところ「本拠点の反撃が非常にわかりづらく、倒れている様子がない。射程外な気がする」。
+- 原因確定: ForwardMarchBotCommandSourceは本拠点を攻撃目標にした際、`fireRange*0.9`（65×0.9=58.5m）で停止してそこから撃ち続ける（p0BotPrototypeNotes.attackStopRangeFractionの仕様通り）。一方baseCounterFireRadius=20mだったため、攻撃してくるBOTには絶対に反撃が届かない設定になっていた（意図とのズレ、BOTの停止距離を把握せず半径を小さく設定したことが原因）。
+- 修正: config/prototype-defaults.jsonのbaseCounterFireRadiusを20→70（fireRange 65より大きい値）に変更。p0BaseDefenseNotes.reasonへ原因と根拠を記録。コード（SimulationConfig/BattleSimulation）は変更していない、設定値のみの修正。
+- 再検証: verify-domain.ps1 79/79成功（修正前と同じ件数、設定値変更のみなのでテスト構成に影響なし）。
+- ユーザーへ: 再度Generatorでシーンを再生成（設定JSONがシーンに保存されるため）してからPlay Modeで確認をお願いしたい。

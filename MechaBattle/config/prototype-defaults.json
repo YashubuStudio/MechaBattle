@@ -116,7 +116,7 @@
     "spawnScatterFraction": 0.6,
     "baseCounterFireDamage": 105,
     "baseCounterFireIntervalSeconds": 5,
-    "baseCounterFireRadius": 20
+    "baseCounterFireRadius": 70
   },
   "p0SimulationNotes": {
     "status": "PROTOTYPE_ONLY",
@@ -127,7 +127,7 @@
   "p0BaseDefenseNotes": {
     "status": "PROTOTYPE_ONLY",
     "source": "User request 2026-10-15: base should fire back, slow rate, roughly 70%-of-max-effective-HP damage, as an area attack.",
-    "reason": "baseCounterFireDamage=105 = 0.7*(maxHealth 100 + maxShield 50). baseCounterFireIntervalSeconds=5 keeps the rate clearly slower than a unit's own fireIntervalSeconds(0.4s). baseCounterFireRadius=20 matches homeSupplyRadius's scale so the base's defensive reach extends a bit past its attackRadius(8).",
+    "reason": "baseCounterFireDamage=105 = 0.7*(maxHealth 100 + maxShield 50). baseCounterFireIntervalSeconds=5 keeps the rate clearly slower than a unit's own fireIntervalSeconds(0.4s). baseCounterFireRadius=70: the first value (20) never overlapped an attacker in practice because ForwardMarchBotCommandSource's p0BotPrototypeNotes.attackStopRangeFraction(0.9) means a BOT parks ~58.5m from the base (0.9*fireRange 65) to shoot it - raised to 70 (>fireRange 65) so anyone actually within weapon range of the base is also within the base's own return-fire range. User-reported 2026-10-15: counter-fire had no visible effect because of this gap.",
     "notACounter": "This is a static structure's own weapon firing on a cooldown at anyone in range, not a per-unit automatic melee counter/guard-interrupt (AGENTS.md's prohibition is about the latter only).",
     "rules": "Fires at most once per intervalSeconds per base, only once an enemy is actually inside radius (an idle base keeps waiting rather than firing at nothing); damages every enemy unit in radius simultaneously (area attack), through shield then health, same as ordinary unit fire."
   },
