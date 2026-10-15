@@ -1,0 +1,367 @@
+{
+  "documentStatus": "PROTOTYPE_VALUES_ONLY_DO_NOT_TREAT_AS_FINAL",
+  "teams": 2,
+  "controllerSlotsPerTeam": 50,
+  "commanderSlotsPerTeam": 1,
+  "squadSize": 4,
+  "normalSquadsPerTeam": 2,
+  "starterDeckSlots": 4,
+  "simulationTickHz": 50,
+  "botDecisionHz": 5,
+  "squadDecisionHz": 2,
+  "commanderDecisionHz": 1,
+  "botToHumanRedLockRangeMultiplier": 0.8,
+  "capture": {
+    "radiusMeters": "TBD",
+    "maxPresenceAdvantage": 8,
+    "captureTimeSeconds": "TBD",
+    "tiedProgress": "hold"
+  },
+  "gauge": {
+    "initialValue": "TBD",
+    "unitLossCurve": "TBD",
+    "baseDamageFactor": "TBD"
+  },
+  "nuclear": {
+    "friendlyFire": true,
+    "friendlyDamageMultiplier": 1,
+    "radiusMeters": "TBD"
+  },
+  "goldMerit": {
+    "awardRule": "TBD",
+    "cooldownReductionSeconds": "TBD",
+    "applicationPolicy": "TBD"
+  },
+  "performance": {
+    "baselineCPU": "Intel Core i5-9400F",
+    "baselineGPU": "NVIDIA GTX 1660 6GB",
+    "ramGB": 16,
+    "resolution": "1920x1080",
+    "targetAverageFps": 60
+  },
+  "note": "Prototype assumptions; no implementation or measured result is implied.",
+  "mainBases": {
+    "minimumPerTeam": 2,
+    "standardPrototypePerTeam": 3,
+    "separateFromCapturePoints": true,
+    "mustProvideDistinctAttackOptions": true,
+    "prototypeBaseIds": {
+      "teamBlue": [
+        "Blue-A",
+        "Blue-B",
+        "Blue-C"
+      ],
+      "teamOrange": [
+        "Orange-A",
+        "Orange-B",
+        "Orange-C"
+      ]
+    },
+    "note": "Per-team minimum is a confirmed requirement; three per team is the adjustable standard test-map proposal."
+  },
+  "preparation": {
+    "source": "MechaBattle_MasterPlan/config/prototype-defaults.json v0.2",
+    "standardMap": "config/standard-map.json",
+    "mapAssumptions": {
+      "boundsHalfWidthMeters": 240,
+      "boundsHalfDepthMeters": 140,
+      "baseX": 200,
+      "laneZ": [
+        -80,
+        0,
+        80
+      ],
+      "spawnRadiusMeters": 12,
+      "attackRadiusMeters": 8,
+      "captureRadiusMeters": 18
+    },
+    "reason": "マップ定義検証用の仮座標・半径。地形・到達性・バランスは未検証。",
+    "status": "P0_DOMAIN_IMPLEMENTED_UNITY_VALIDATION_PENDING"
+  },
+  "p0Simulation": {
+    "tickHz": 50,
+    "maxDurationSeconds": 600,
+    "initialGauge": 10000,
+    "maxHealth": 100,
+    "maxShield": 50,
+    "maxAmmo": 30,
+    "moveSpeed": 12,
+    "unitRadius": 1.5,
+    "fireDamage": 20,
+    "fireRange": 65,
+    "fireIntervalSeconds": 0.4,
+    "redLockRange": 50,
+    "botToHumanRedLockMultiplier": 0.8,
+    "deckCosts": [
+      120,
+      160,
+      200,
+      240
+    ],
+    "deckCooldownSeconds": [
+      45,
+      60,
+      80,
+      100
+    ],
+    "respawnDelaySeconds": 3,
+    "unitGaugeLossPerCost": 0.1,
+    "baseGaugeDamageFactor": 2,
+    "captureSecondsPerAdvantage": 8,
+    "capturePresenceCap": 8,
+    "homeSupplyRadius": 20,
+    "homeHealthPerSecond": 30,
+    "homeShieldPerSecond": 40,
+    "homeAmmoPerSecond": 15,
+    "spawnScatterFraction": 0.6,
+    "baseCounterFireDamage": 105,
+    "baseCounterFireIntervalSeconds": 5,
+    "baseCounterFireRadius": 70
+  },
+  "p0SimulationNotes": {
+    "status": "PROTOTYPE_ONLY",
+    "reason": "P0の移動・射撃・有限弾薬・CT・占領・試合終結を回帰試験するための仮値。正式な武器/機体バランスではない。",
+    "rules": "平面hitscan、通常射撃は敵のみ。本拠点は繰返し損害を受ける標的。時間切れ同値は引分。味方中継を再出撃候補とし、敵が占領半径にいる間は出撃を停止。補給は本拠点半径内で時間ごとに回復し、CTを短縮しない。帰投チャネル/支援機/核は未実装。",
+    "timing": "全機移動→全機の射撃意図→損害一括解決→占領→補給→勝敗。入力のtickはStep前のCurrentTick。"
+  },
+  "p0BaseDefenseNotes": {
+    "status": "PROTOTYPE_ONLY",
+    "source": "User request 2026-10-15: base should fire back, slow rate, roughly 70%-of-max-effective-HP damage, as an area attack.",
+    "reason": "baseCounterFireDamage=105 = 0.7*(maxHealth 100 + maxShield 50). baseCounterFireIntervalSeconds=5 keeps the rate clearly slower than a unit's own fireIntervalSeconds(0.4s). baseCounterFireRadius=70: the first value (20) never overlapped an attacker in practice because ForwardMarchBotCommandSource's p0BotPrototypeNotes.attackStopRangeFraction(0.9) means a BOT parks ~58.5m from the base (0.9*fireRange 65) to shoot it - raised to 70 (>fireRange 65) so anyone actually within weapon range of the base is also within the base's own return-fire range. User-reported 2026-10-15: counter-fire had no visible effect because of this gap.",
+    "notACounter": "This is a static structure's own weapon firing on a cooldown at anyone in range, not a per-unit automatic melee counter/guard-interrupt (AGENTS.md's prohibition is about the latter only).",
+    "rules": "Fires at most once per intervalSeconds per base, only once an enemy is actually inside radius (an idle base keeps waiting rather than firing at nothing); damages every enemy unit in radius simultaneously (area attack), through shield then health, same as ordinary unit fire."
+  },
+  "p0BotPrototypeNotes": {
+    "attackStopRangeFraction": 0.9,
+    "returnStopSupplyRadiusFraction": 0.5,
+    "implementation": "Current P0 BOT uses these as documented constants. This section records assumptions; changing these values alone does not yet reconfigure BOT code.",
+    "reason": "本拠点の射程縁で振動せず、帰還時には補給範囲内へ確実に入るための仮係数。AI.Bots独自の設定型でデータ読込する作業を後続に残す。"
+  },
+  "constructionPrototype": {
+    "status": "PROTOTYPE_ONLY",
+    "source": "UserText/MechaBattle機体構想・カスタマイズシステム構想案.md v0.1",
+    "reason": "段階1の共通フレーム/腕/武器と段階2の構築検証を動かす仮値。単位・係数・上限は最終仕様ではなく、既存P0シミュレーション設定は変更しない。",
+    "visual": {
+      "connectionStandard": "mb.humanoid.standard.v1",
+      "heightMeters": 2.47,
+      "leftShoulder": {
+        "x": -0.49,
+        "y": 1.91,
+        "z": -0.02
+      },
+      "rightShoulder": {
+        "x": 0.49,
+        "y": 1.91,
+        "z": -0.02
+      },
+      "primaryWeaponOnRightArm": {
+        "x": 0.16,
+        "y": -0.64,
+        "z": 0.34
+      },
+      "reason": "元の工業ロボット形状を共通規格の試作として再利用。足元Y0/+Z前。見た目の規格でありP0 unitRadius=1.5との一致や物理性能は未検証。"
+    },
+    "costFormula": "ceil(frame.baseCost + sum(parts.equipmentCost) + finalHealth*healthPerPoint + finalShield*shieldPerPoint + finalMoveSpeed*speedPerMeter + weaponDPS*damagePerSecond + weaponRange*rangePerMeter + weaponAmmo*ammoPerRound + matchedCombinationCosts)",
+    "cooldownFormula": "minimumCooldownSeconds + cost*cooldownPerCost + cost^2*cooldownQuadratic",
+    "scope": "Primary hitscan weapon/health/shield/ground speed only. No hidden BOT bonus. Boost, melee, support, skills, gold merit, role classification, squad generation, LOD, collision and animation remain follow-up work.",
+    "catalog": {
+      "schemaVersion": 1,
+      "frames": [
+        {
+          "id": "frame.standard.v1",
+          "connectionStandard": "mb.humanoid.standard.v1",
+          "weight": 45,
+          "energy": 10,
+          "maxWeight": 100,
+          "maxEnergy": 65,
+          "weaponHardpoints": 1,
+          "skillSlots": 0,
+          "baseCost": 80,
+          "maxHealth": 100,
+          "maxShield": 50,
+          "moveSpeed": 12,
+          "requiredSlots": [
+            0,
+            1,
+            2
+          ]
+        }
+      ],
+      "parts": [
+        {
+          "id": "arm.standard.left",
+          "slot": 0,
+          "connectionStandard": "mb.humanoid.standard.v1",
+          "weight": 8,
+          "energy": 5,
+          "healthDelta": 0,
+          "shieldDelta": 0,
+          "moveSpeedDelta": 0,
+          "weaponHardpoints": 0,
+          "skillSlots": 0,
+          "equipmentCost": 10,
+          "exclusiveGroup": ""
+        },
+        {
+          "id": "arm.reinforced.left",
+          "slot": 0,
+          "connectionStandard": "mb.humanoid.standard.v1",
+          "weight": 14,
+          "energy": 8,
+          "healthDelta": 20,
+          "shieldDelta": 0,
+          "moveSpeedDelta": -0.5,
+          "weaponHardpoints": 0,
+          "skillSlots": 0,
+          "equipmentCost": 18,
+          "exclusiveGroup": ""
+        },
+        {
+          "id": "arm.standard.right",
+          "slot": 1,
+          "connectionStandard": "mb.humanoid.standard.v1",
+          "weight": 8,
+          "energy": 5,
+          "healthDelta": 0,
+          "shieldDelta": 0,
+          "moveSpeedDelta": 0,
+          "weaponHardpoints": 0,
+          "skillSlots": 0,
+          "equipmentCost": 10,
+          "exclusiveGroup": ""
+        },
+        {
+          "id": "arm.reinforced.right",
+          "slot": 1,
+          "connectionStandard": "mb.humanoid.standard.v1",
+          "weight": 14,
+          "energy": 8,
+          "healthDelta": 20,
+          "shieldDelta": 0,
+          "moveSpeedDelta": -0.5,
+          "weaponHardpoints": 0,
+          "skillSlots": 0,
+          "equipmentCost": 18,
+          "exclusiveGroup": ""
+        },
+        {
+          "id": "weapon.carbine",
+          "slot": 2,
+          "connectionStandard": "mb.humanoid.standard.v1",
+          "weight": 10,
+          "energy": 15,
+          "equipmentCost": 20,
+          "weaponHardpoints": 1,
+          "skillSlots": 0,
+          "weapon": {
+            "damage": 20,
+            "range": 65,
+            "intervalSeconds": 0.4,
+            "ammo": 30
+          }
+        },
+        {
+          "id": "weapon.longrifle",
+          "slot": 2,
+          "connectionStandard": "mb.humanoid.standard.v1",
+          "weight": 16,
+          "energy": 22,
+          "equipmentCost": 32,
+          "weaponHardpoints": 1,
+          "skillSlots": 0,
+          "weapon": {
+            "damage": 30,
+            "range": 85,
+            "intervalSeconds": 0.6,
+            "ammo": 20
+          }
+        }
+      ],
+      "presets": [
+        {
+          "id": "standard-carbine",
+          "frameId": "frame.standard.v1",
+          "equipment": [
+            {
+              "slot": 0,
+              "partId": "arm.standard.left"
+            },
+            {
+              "slot": 1,
+              "partId": "arm.standard.right"
+            },
+            {
+              "slot": 2,
+              "partId": "weapon.carbine"
+            }
+          ],
+          "appearance": {
+            "paintId": "Neutral"
+          }
+        },
+        {
+          "id": "reinforced-longrifle",
+          "frameId": "frame.standard.v1",
+          "equipment": [
+            {
+              "slot": 0,
+              "partId": "arm.reinforced.left"
+            },
+            {
+              "slot": 1,
+              "partId": "arm.reinforced.right"
+            },
+            {
+              "slot": 2,
+              "partId": "weapon.longrifle"
+            }
+          ],
+          "appearance": {
+            "paintId": "Neutral"
+          }
+        }
+      ],
+      "combinationRules": [
+        {
+          "id": "reinforced-rifle-pair",
+          "partIds": [
+            "arm.reinforced.right",
+            "weapon.longrifle"
+          ],
+          "addedCost": 8
+        }
+      ],
+      "costPolicy": {
+        "healthPerPoint": 0.25,
+        "shieldPerPoint": 0.125,
+        "speedPerMeter": 2,
+        "damagePerSecond": 0.5,
+        "rangePerMeter": 0.25,
+        "ammoPerRound": 0.125,
+        "minimumCooldownSeconds": 10,
+        "cooldownPerCost": 0.25,
+        "cooldownQuadratic": 0.0009765625
+      }
+    }
+  },
+  "playablePrototype": {
+    "status": "PROTOTYPE_ONLY",
+    "reason": "PLAY-01の最小TPS試遊用。平面移動/hitscanを維持し、ブーストと手動格闘は全操縦者へ同じ条件で適用。武装性能とCTは構築結果を使用する。",
+    "boostCapacity": 100,
+    "boostDrainPerSecond": 35,
+    "boostRecoveryPerSecond": 20,
+    "boostSpeedMultiplier": 1.8,
+    "meleeDamage": 60,
+    "meleeRange": 4,
+    "meleeIntervalSeconds": 1.2,
+    "meleeHalfAngleDegrees": 55,
+    "cameraDistance": 7,
+    "cameraHeight": 2,
+    "mouseSensitivity": 0.12,
+    "aimAssistDegrees": 2.5,
+    "uiRefreshHz": 10,
+    "profileSchemaVersion": 1,
+    "starterDeckSlots": 4,
+    "note": "aimAssistDegrees is an on-screen target indicator cone only; firing is not auto-corrected. No automatic counter. CJK uses Windows system fonts through TMP DynamicOS; no proprietary font files are copied."
+  }
+}

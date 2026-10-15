@@ -1,0 +1,88 @@
+{
+  "id": "p0-three-lanes",
+  "prototypeOnly": true,
+  "halfWidth": 240,
+  "halfDepth": 140,
+  "mainBases": [
+    {
+      "id": "Blue-A",
+      "team": 0,
+      "x": -200,
+      "z": -80,
+      "spawnRadius": 12,
+      "attackRadius": 8,
+      "buildingRadius": 20,
+      "approachRoute": "north"
+    },
+    {
+      "id": "Blue-B",
+      "team": 0,
+      "x": -200,
+      "z": 0,
+      "spawnRadius": 12,
+      "attackRadius": 8,
+      "buildingRadius": 20,
+      "approachRoute": "center"
+    },
+    {
+      "id": "Blue-C",
+      "team": 0,
+      "x": -200,
+      "z": 80,
+      "spawnRadius": 12,
+      "attackRadius": 8,
+      "buildingRadius": 20,
+      "approachRoute": "south"
+    },
+    {
+      "id": "Orange-A",
+      "team": 1,
+      "x": 200,
+      "z": -80,
+      "spawnRadius": 12,
+      "attackRadius": 8,
+      "buildingRadius": 20,
+      "approachRoute": "north"
+    },
+    {
+      "id": "Orange-B",
+      "team": 1,
+      "x": 200,
+      "z": 0,
+      "spawnRadius": 12,
+      "attackRadius": 8,
+      "buildingRadius": 20,
+      "approachRoute": "center"
+    },
+    {
+      "id": "Orange-C",
+      "team": 1,
+      "x": 200,
+      "z": 80,
+      "spawnRadius": 12,
+      "attackRadius": 8,
+      "buildingRadius": 20,
+      "approachRoute": "south"
+    }
+  ],
+  "capturePoints": [
+    {
+      "id": "Relay-North",
+      "x": 0,
+      "z": -80,
+      "radius": 18
+    },
+    {
+      "id": "Relay-Center",
+      "x": 0,
+      "z": 0,
+      "radius": 18
+    },
+    {
+      "id": "Relay-South",
+      "x": 0,
+      "z": 80,
+      "radius": 18
+    }
+  ]
+}

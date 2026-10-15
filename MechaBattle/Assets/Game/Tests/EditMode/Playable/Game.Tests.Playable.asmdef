@@ -1,0 +1,20 @@
+{
+  "name": "Game.Tests.Playable",
+  "rootNamespace": "MechaBattle.Tests.Playable",
+  "references": [
+    "Game.Editor.Playable",
+    "Game.Playable",
+    "Game.Contracts",
+    "Game.Simulation",
+    "Game.Construction.Contracts",
+    "Game.Construction",
+    "UnityEngine.UI",
+    "Unity.TextMeshPro"
+  ],
+  "includePlatforms": [
+    "Editor"
+  ],
+  "optionalUnityReferences": [
+    "TestAssemblies"
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "name": "Game.Editor.Playable",
+  "rootNamespace": "MechaBattle.EditorTools",
+  "references": [
+    "Game.Playable",
+    "Game.Battlefield",
+    "Game.Simulation",
+    "Game.Construction",
+    "Game.Construction.Contracts",
+    "Unity.TextMeshPro"
+  ],
+  "includePlatforms": [
+    "Editor"
+  ]
+}

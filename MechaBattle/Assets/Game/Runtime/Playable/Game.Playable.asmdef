@@ -1,0 +1,16 @@
+{
+  "name": "Game.Playable",
+  "rootNamespace": "MechaBattle.Playable",
+  "references": [
+    "Game.Contracts",
+    "Game.Battlefield",
+    "Game.Simulation",
+    "Game.Construction.Contracts",
+    "Game.Construction",
+    "Game.AI.Bots",
+    "Game.Observation.Contracts",
+    "Unity.InputSystem",
+    "UnityEngine.UI",
+    "Unity.TextMeshPro"
+  ]
+}
