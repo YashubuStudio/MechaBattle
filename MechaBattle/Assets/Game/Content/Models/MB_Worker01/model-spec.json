@@ -131,7 +131,7 @@
       ],
       "radius": 0.125,
       "length": 0.35,
-      "material": "Frame",
+      "material": "Signal",
       "firstVertex": 408,
       "vertexCount": 48
     },
@@ -283,7 +283,7 @@
       ],
       "radius": 0.125,
       "length": 0.35,
-      "material": "Frame",
+      "material": "Signal",
       "firstVertex": 960,
       "vertexCount": 48
     },
@@ -541,7 +541,7 @@
         0,
         0
       ],
-      "material": "TeamArmor",
+      "material": "Signal",
       "firstVertex": 1752,
       "vertexCount": 96
     },
@@ -661,7 +661,7 @@
         0,
         0
       ],
-      "material": "TeamArmor",
+      "material": "Signal",
       "firstVertex": 2232,
       "vertexCount": 96
     },
@@ -813,7 +813,7 @@
         0,
         0
       ],
-      "material": "TeamArmor",
+      "material": "Signal",
       "firstVertex": 2856,
       "vertexCount": 96
     },
@@ -1059,9 +1059,89 @@
       "triangles": 100
     },
     {
+      "partId": "weapon.assaultrifle",
+      "vertices": 480,
+      "triangles": 220
+    },
+    {
       "partId": "weapon.longrifle",
       "vertices": 384,
       "triangles": 176
+    },
+    {
+      "partId": "weapon.cannon",
+      "vertices": 312,
+      "triangles": 144
+    },
+    {
+      "partId": "weapon.charge",
+      "vertices": 384,
+      "triangles": 176
+    },
+    {
+      "partId": "weapon.beam",
+      "vertices": 672,
+      "triangles": 308
+    },
+    {
+      "partId": "weapon.bazooka",
+      "vertices": 576,
+      "triangles": 264
+    },
+    {
+      "partId": "weapon.melee",
+      "vertices": 192,
+      "triangles": 88
+    },
+    {
+      "partId": "weapon.repairpod",
+      "vertices": 432,
+      "triangles": 200
+    },
+    {
+      "partId": "weapon.grenade",
+      "vertices": 480,
+      "triangles": 220
+    },
+    {
+      "partId": "weapon.mine",
+      "vertices": 576,
+      "triangles": 264
+    },
+    {
+      "partId": "weapon.repairgun",
+      "vertices": 480,
+      "triangles": 220
+    },
+    {
+      "partId": "weapon.radar",
+      "vertices": 576,
+      "triangles": 264
+    },
+    {
+      "partId": "frame.heavy.v1",
+      "vertices": 2376,
+      "triangles": 1112
+    },
+    {
+      "partId": "arm.mobile.left",
+      "vertices": 672,
+      "triangles": 320
+    },
+    {
+      "partId": "arm.mobile.right",
+      "vertices": 672,
+      "triangles": 320
+    },
+    {
+      "partId": "frame.light.v1",
+      "vertices": 2640,
+      "triangles": 1228
+    },
+    {
+      "partId": "frame.support.v1",
+      "vertices": 2928,
+      "triangles": 1360
     }
   ],
   "presets": [
@@ -1072,7 +1152,39 @@
     {
       "id": "reinforced-longrifle",
       "triangles": 2016
+    },
+    {
+      "id": "standard-cannon",
+      "triangles": 1720
+    },
+    {
+      "id": "standard-charge",
+      "triangles": 1752
+    },
+    {
+      "id": "standard-beam",
+      "triangles": 1884
+    },
+    {
+      "id": "standard-bazooka",
+      "triangles": 1840
+    },
+    {
+      "id": "heavy-cannon",
+      "triangles": 1984
+    },
+    {
+      "id": "standard-assaultrifle",
+      "triangles": 1796
+    },
+    {
+      "id": "light-mobile-carbine",
+      "triangles": 1968
+    },
+    {
+      "id": "support-carbine",
+      "triangles": 1924
     }
   ],
-  "notes": "One frame, two arm types, two weapons. Presets are ordinary builds. Static geometry; no rig/LOD/collision. Editor assembly combines material groups. Gameplay scale remains unverified."
+  "notes": "Four frames, three arm families, thirteen equipment parts; up to three carried, only the selected equipment is displayed. Presets are ordinary builds. Static geometry; no rig/LOD/collision. Shoulder armor, knees and head caps use the fixed team Signal channel independently of hull paint. Editor assembly combines three material groups. Gameplay scale remains unverified."
 }

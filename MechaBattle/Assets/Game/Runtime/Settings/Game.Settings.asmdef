@@ -1,0 +1,8 @@
+{
+  "name": "Game.Settings",
+  "rootNamespace": "MechaBattle.Settings",
+  "references": [
+    "Game.Settings.Contracts"
+  ],
+  "noEngineReferences": true
+}

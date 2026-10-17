@@ -3,7 +3,9 @@
   "rootNamespace": "MechaBattle.Simulation",
   "references": [
     "Game.Contracts",
-    "Game.Battlefield"
+    "Game.Battlefield",
+    "Game.Observation.Contracts",
+    "Game.AI.Squads"
   ],
   "noEngineReferences": true
 }

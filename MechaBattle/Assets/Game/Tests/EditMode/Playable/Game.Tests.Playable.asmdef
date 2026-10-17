@@ -9,7 +9,10 @@
     "Game.Construction.Contracts",
     "Game.Construction",
     "UnityEngine.UI",
-    "Unity.TextMeshPro"
+    "Unity.TextMeshPro",
+    "Game.Battlefield",
+    "Game.Settings",
+    "Game.Settings.Contracts"
   ],
   "includePlatforms": [
     "Editor"

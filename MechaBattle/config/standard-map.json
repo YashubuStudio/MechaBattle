@@ -84,5 +84,838 @@
       "z": 80,
       "radius": 18
     }
-  ]
+  ],
+  "obstacles": [
+    {
+      "id": "central-plaza",
+      "x": 0,
+      "y": 1,
+      "z": 0,
+      "width": 80,
+      "height": 2,
+      "depth": 64,
+      "platform": true
+    },
+    {
+      "id": "main-ramp--1-0",
+      "x": -41.5,
+      "y": 0.9,
+      "z": 0,
+      "width": 3.2,
+      "height": 1.8,
+      "depth": 32,
+      "platform": true
+    },
+    {
+      "id": "main-ramp--1-1",
+      "x": -44.5,
+      "y": 0.8,
+      "z": 0,
+      "width": 3.2,
+      "height": 1.6,
+      "depth": 32,
+      "platform": true
+    },
+    {
+      "id": "main-ramp--1-2",
+      "x": -47.5,
+      "y": 0.7,
+      "z": 0,
+      "width": 3.2,
+      "height": 1.4,
+      "depth": 32,
+      "platform": true
+    },
+    {
+      "id": "main-ramp--1-3",
+      "x": -50.5,
+      "y": 0.6,
+      "z": 0,
+      "width": 3.2,
+      "height": 1.2,
+      "depth": 32,
+      "platform": true
+    },
+    {
+      "id": "main-ramp--1-4",
+      "x": -53.5,
+      "y": 0.5,
+      "z": 0,
+      "width": 3.2,
+      "height": 1,
+      "depth": 32,
+      "platform": true
+    },
+    {
+      "id": "main-ramp--1-5",
+      "x": -56.5,
+      "y": 0.4,
+      "z": 0,
+      "width": 3.2,
+      "height": 0.8,
+      "depth": 32,
+      "platform": true
+    },
+    {
+      "id": "main-ramp--1-6",
+      "x": -59.5,
+      "y": 0.3,
+      "z": 0,
+      "width": 3.2,
+      "height": 0.6,
+      "depth": 32,
+      "platform": true
+    },
+    {
+      "id": "main-ramp--1-7",
+      "x": -62.5,
+      "y": 0.2,
+      "z": 0,
+      "width": 3.2,
+      "height": 0.4,
+      "depth": 32,
+      "platform": true
+    },
+    {
+      "id": "main-ramp--1-8",
+      "x": -65.5,
+      "y": 0.1,
+      "z": 0,
+      "width": 3.2,
+      "height": 0.2,
+      "depth": 32,
+      "platform": true
+    },
+    {
+      "id": "main-ramp-1-0",
+      "x": 41.5,
+      "y": 0.9,
+      "z": 0,
+      "width": 3.2,
+      "height": 1.8,
+      "depth": 32,
+      "platform": true
+    },
+    {
+      "id": "main-ramp-1-1",
+      "x": 44.5,
+      "y": 0.8,
+      "z": 0,
+      "width": 3.2,
+      "height": 1.6,
+      "depth": 32,
+      "platform": true
+    },
+    {
+      "id": "main-ramp-1-2",
+      "x": 47.5,
+      "y": 0.7,
+      "z": 0,
+      "width": 3.2,
+      "height": 1.4,
+      "depth": 32,
+      "platform": true
+    },
+    {
+      "id": "main-ramp-1-3",
+      "x": 50.5,
+      "y": 0.6,
+      "z": 0,
+      "width": 3.2,
+      "height": 1.2,
+      "depth": 32,
+      "platform": true
+    },
+    {
+      "id": "main-ramp-1-4",
+      "x": 53.5,
+      "y": 0.5,
+      "z": 0,
+      "width": 3.2,
+      "height": 1,
+      "depth": 32,
+      "platform": true
+    },
+    {
+      "id": "main-ramp-1-5",
+      "x": 56.5,
+      "y": 0.4,
+      "z": 0,
+      "width": 3.2,
+      "height": 0.8,
+      "depth": 32,
+      "platform": true
+    },
+    {
+      "id": "main-ramp-1-6",
+      "x": 59.5,
+      "y": 0.3,
+      "z": 0,
+      "width": 3.2,
+      "height": 0.6,
+      "depth": 32,
+      "platform": true
+    },
+    {
+      "id": "main-ramp-1-7",
+      "x": 62.5,
+      "y": 0.2,
+      "z": 0,
+      "width": 3.2,
+      "height": 0.4,
+      "depth": 32,
+      "platform": true
+    },
+    {
+      "id": "main-ramp-1-8",
+      "x": 65.5,
+      "y": 0.1,
+      "z": 0,
+      "width": 3.2,
+      "height": 0.2,
+      "depth": 32,
+      "platform": true
+    },
+    {
+      "id": "upper-ledge--46--43",
+      "x": -46,
+      "y": 2.7,
+      "z": -43,
+      "width": 38,
+      "height": 5.4,
+      "depth": 14,
+      "platform": true
+    },
+    {
+      "id": "upper-ledge-0--43",
+      "x": 0,
+      "y": 2.7,
+      "z": -43,
+      "width": 38,
+      "height": 5.4,
+      "depth": 14,
+      "platform": true
+    },
+    {
+      "id": "upper-ledge-46--43",
+      "x": 46,
+      "y": 2.7,
+      "z": -43,
+      "width": 38,
+      "height": 5.4,
+      "depth": 14,
+      "platform": true
+    },
+    {
+      "id": "upper-ledge--46-43",
+      "x": -46,
+      "y": 1.8,
+      "z": 43,
+      "width": 38,
+      "height": 3.6,
+      "depth": 14,
+      "platform": true
+    },
+    {
+      "id": "upper-ledge-0-43",
+      "x": 0,
+      "y": 1.8,
+      "z": 43,
+      "width": 38,
+      "height": 3.6,
+      "depth": 14,
+      "platform": true
+    },
+    {
+      "id": "upper-ledge-46-43",
+      "x": 46,
+      "y": 1.8,
+      "z": 43,
+      "width": 38,
+      "height": 3.6,
+      "depth": 14,
+      "platform": true
+    },
+    {
+      "id": "north-jump-step--34",
+      "x": 0,
+      "y": 1.7,
+      "z": -34,
+      "width": 16,
+      "height": 3.4,
+      "depth": 5,
+      "platform": true
+    },
+    {
+      "id": "north-jump-step--39",
+      "x": 0,
+      "y": 2.2,
+      "z": -39,
+      "width": 16,
+      "height": 4.4,
+      "depth": 5,
+      "platform": true
+    },
+    {
+      "id": "central-cover--20--12",
+      "x": -20,
+      "y": 2.75,
+      "z": -12,
+      "width": 10,
+      "height": 1.5,
+      "depth": 4,
+      "platform": false
+    },
+    {
+      "id": "central-cover--20-12",
+      "x": -20,
+      "y": 2.75,
+      "z": 12,
+      "width": 10,
+      "height": 1.5,
+      "depth": 4,
+      "platform": false
+    },
+    {
+      "id": "central-cover-20--12",
+      "x": 20,
+      "y": 2.75,
+      "z": -12,
+      "width": 10,
+      "height": 1.5,
+      "depth": 4,
+      "platform": false
+    },
+    {
+      "id": "central-cover-20-12",
+      "x": 20,
+      "y": 2.75,
+      "z": 12,
+      "width": 10,
+      "height": 1.5,
+      "depth": 4,
+      "platform": false
+    },
+    {
+      "id": "approach-cover--85",
+      "x": -85,
+      "y": 2.75,
+      "z": 0,
+      "width": 4,
+      "height": 5.5,
+      "depth": 28,
+      "platform": false
+    },
+    {
+      "id": "approach-cover-85",
+      "x": 85,
+      "y": 2.75,
+      "z": 0,
+      "width": 4,
+      "height": 5.5,
+      "depth": 28,
+      "platform": false
+    },
+    {
+      "id": "approach-tower--110--30",
+      "x": -110,
+      "y": 4,
+      "z": -30,
+      "width": 18,
+      "height": 8,
+      "depth": 6,
+      "platform": false
+    },
+    {
+      "id": "approach-tower--110-30",
+      "x": -110,
+      "y": 4,
+      "z": 30,
+      "width": 18,
+      "height": 8,
+      "depth": 6,
+      "platform": false
+    },
+    {
+      "id": "approach-tower-110--30",
+      "x": 110,
+      "y": 4,
+      "z": -30,
+      "width": 18,
+      "height": 8,
+      "depth": 6,
+      "platform": false
+    },
+    {
+      "id": "approach-tower-110-30",
+      "x": 110,
+      "y": 4,
+      "z": 30,
+      "width": 18,
+      "height": 8,
+      "depth": 6,
+      "platform": false
+    },
+    {
+      "id": "side-corridor-wall--72--96",
+      "x": -72,
+      "y": 4,
+      "z": -96,
+      "width": 92,
+      "height": 8,
+      "depth": 3,
+      "platform": false
+    },
+    {
+      "id": "side-corridor-wall--72--64",
+      "x": -72,
+      "y": 4,
+      "z": -64,
+      "width": 92,
+      "height": 8,
+      "depth": 3,
+      "platform": false
+    },
+    {
+      "id": "side-corridor-wall--72-64",
+      "x": -72,
+      "y": 4,
+      "z": 64,
+      "width": 92,
+      "height": 8,
+      "depth": 3,
+      "platform": false
+    },
+    {
+      "id": "side-corridor-wall--72-96",
+      "x": -72,
+      "y": 4,
+      "z": 96,
+      "width": 92,
+      "height": 8,
+      "depth": 3,
+      "platform": false
+    },
+    {
+      "id": "side-corridor-wall-72--96",
+      "x": 72,
+      "y": 4,
+      "z": -96,
+      "width": 92,
+      "height": 8,
+      "depth": 3,
+      "platform": false
+    },
+    {
+      "id": "side-corridor-wall-72--64",
+      "x": 72,
+      "y": 4,
+      "z": -64,
+      "width": 92,
+      "height": 8,
+      "depth": 3,
+      "platform": false
+    },
+    {
+      "id": "side-corridor-wall-72-64",
+      "x": 72,
+      "y": 4,
+      "z": 64,
+      "width": 92,
+      "height": 8,
+      "depth": 3,
+      "platform": false
+    },
+    {
+      "id": "side-corridor-wall-72-96",
+      "x": 72,
+      "y": 4,
+      "z": 96,
+      "width": 92,
+      "height": 8,
+      "depth": 3,
+      "platform": false
+    },
+    {
+      "id": "side-floor--80",
+      "x": 0,
+      "y": 0.6,
+      "z": -80,
+      "width": 112,
+      "height": 1.2,
+      "depth": 18,
+      "platform": true
+    },
+    {
+      "id": "side-step--80--1-0",
+      "x": -58,
+      "y": 0.5,
+      "z": -80,
+      "width": 4.2,
+      "height": 1,
+      "depth": 18,
+      "platform": true
+    },
+    {
+      "id": "side-step--80--1-1",
+      "x": -62,
+      "y": 0.35,
+      "z": -80,
+      "width": 4.2,
+      "height": 0.7,
+      "depth": 18,
+      "platform": true
+    },
+    {
+      "id": "side-step--80--1-2",
+      "x": -66,
+      "y": 0.2,
+      "z": -80,
+      "width": 4.2,
+      "height": 0.4,
+      "depth": 18,
+      "platform": true
+    },
+    {
+      "id": "side-step--80-1-0",
+      "x": 58,
+      "y": 0.5,
+      "z": -80,
+      "width": 4.2,
+      "height": 1,
+      "depth": 18,
+      "platform": true
+    },
+    {
+      "id": "side-step--80-1-1",
+      "x": 62,
+      "y": 0.35,
+      "z": -80,
+      "width": 4.2,
+      "height": 0.7,
+      "depth": 18,
+      "platform": true
+    },
+    {
+      "id": "side-step--80-1-2",
+      "x": 66,
+      "y": 0.2,
+      "z": -80,
+      "width": 4.2,
+      "height": 0.4,
+      "depth": 18,
+      "platform": true
+    },
+    {
+      "id": "flank-cover--40--80",
+      "x": -40,
+      "y": 2.3,
+      "z": -80,
+      "width": 6,
+      "height": 2.2,
+      "depth": 7,
+      "platform": false
+    },
+    {
+      "id": "flank-cover-40--80",
+      "x": 40,
+      "y": 2.3,
+      "z": -80,
+      "width": 6,
+      "height": 2.2,
+      "depth": 7,
+      "platform": false
+    },
+    {
+      "id": "side-floor-80",
+      "x": 0,
+      "y": 0.6,
+      "z": 80,
+      "width": 112,
+      "height": 1.2,
+      "depth": 18,
+      "platform": true
+    },
+    {
+      "id": "side-step-80--1-0",
+      "x": -58,
+      "y": 0.5,
+      "z": 80,
+      "width": 4.2,
+      "height": 1,
+      "depth": 18,
+      "platform": true
+    },
+    {
+      "id": "side-step-80--1-1",
+      "x": -62,
+      "y": 0.35,
+      "z": 80,
+      "width": 4.2,
+      "height": 0.7,
+      "depth": 18,
+      "platform": true
+    },
+    {
+      "id": "side-step-80--1-2",
+      "x": -66,
+      "y": 0.2,
+      "z": 80,
+      "width": 4.2,
+      "height": 0.4,
+      "depth": 18,
+      "platform": true
+    },
+    {
+      "id": "side-step-80-1-0",
+      "x": 58,
+      "y": 0.5,
+      "z": 80,
+      "width": 4.2,
+      "height": 1,
+      "depth": 18,
+      "platform": true
+    },
+    {
+      "id": "side-step-80-1-1",
+      "x": 62,
+      "y": 0.35,
+      "z": 80,
+      "width": 4.2,
+      "height": 0.7,
+      "depth": 18,
+      "platform": true
+    },
+    {
+      "id": "side-step-80-1-2",
+      "x": 66,
+      "y": 0.2,
+      "z": 80,
+      "width": 4.2,
+      "height": 0.4,
+      "depth": 18,
+      "platform": true
+    },
+    {
+      "id": "flank-cover--40-80",
+      "x": -40,
+      "y": 2.3,
+      "z": 80,
+      "width": 6,
+      "height": 2.2,
+      "depth": 7,
+      "platform": false
+    },
+    {
+      "id": "flank-cover-40-80",
+      "x": 40,
+      "y": 2.3,
+      "z": 80,
+      "width": 6,
+      "height": 2.2,
+      "depth": 7,
+      "platform": false
+    },
+    {
+      "id": "boundary-north",
+      "x": 0,
+      "y": 4,
+      "z": -139,
+      "width": 480,
+      "height": 8,
+      "depth": 2,
+      "platform": false
+    },
+    {
+      "id": "boundary-south",
+      "x": 0,
+      "y": 4,
+      "z": 139,
+      "width": 480,
+      "height": 8,
+      "depth": 2,
+      "platform": false
+    },
+    {
+      "id": "boundary-west",
+      "x": -239,
+      "y": 4,
+      "z": 0,
+      "width": 2,
+      "height": 8,
+      "depth": 276,
+      "platform": false
+    },
+    {
+      "id": "boundary-east",
+      "x": 239,
+      "y": 4,
+      "z": 0,
+      "width": 2,
+      "height": 8,
+      "depth": 276,
+      "platform": false
+    },
+    {
+      "id": "outer-screen--1",
+      "x": 0,
+      "y": 4,
+      "z": -96,
+      "width": 54,
+      "height": 8,
+      "depth": 3,
+      "platform": false
+    },
+    {
+      "id": "outer-flank-cover--1",
+      "x": 0,
+      "y": 2.25,
+      "z": -112,
+      "width": 6,
+      "height": 4.5,
+      "depth": 20,
+      "platform": false
+    },
+    {
+      "id": "outer-screen-1",
+      "x": 0,
+      "y": 4,
+      "z": 96,
+      "width": 54,
+      "height": 8,
+      "depth": 3,
+      "platform": false
+    },
+    {
+      "id": "outer-flank-cover-1",
+      "x": 0,
+      "y": 2.25,
+      "z": 112,
+      "width": 6,
+      "height": 4.5,
+      "depth": 20,
+      "platform": false
+    },
+    {
+      "id": "base-approach-screen--1--1",
+      "x": -166,
+      "y": 3,
+      "z": -40,
+      "width": 76,
+      "height": 6,
+      "depth": 3,
+      "platform": false
+    },
+    {
+      "id": "flank-gate--1--1--1",
+      "x": -150,
+      "y": 3,
+      "z": -91.5,
+      "width": 4,
+      "height": 6,
+      "depth": 17,
+      "platform": false
+    },
+    {
+      "id": "flank-gate--1--1-1",
+      "x": -150,
+      "y": 3,
+      "z": -68.5,
+      "width": 4,
+      "height": 6,
+      "depth": 17,
+      "platform": false
+    },
+    {
+      "id": "base-approach-screen--1-1",
+      "x": -166,
+      "y": 3,
+      "z": 40,
+      "width": 76,
+      "height": 6,
+      "depth": 3,
+      "platform": false
+    },
+    {
+      "id": "flank-gate--1-1--1",
+      "x": -150,
+      "y": 3,
+      "z": 68.5,
+      "width": 4,
+      "height": 6,
+      "depth": 17,
+      "platform": false
+    },
+    {
+      "id": "flank-gate--1-1-1",
+      "x": -150,
+      "y": 3,
+      "z": 91.5,
+      "width": 4,
+      "height": 6,
+      "depth": 17,
+      "platform": false
+    },
+    {
+      "id": "base-approach-screen-1--1",
+      "x": 166,
+      "y": 3,
+      "z": -40,
+      "width": 76,
+      "height": 6,
+      "depth": 3,
+      "platform": false
+    },
+    {
+      "id": "flank-gate-1--1--1",
+      "x": 150,
+      "y": 3,
+      "z": -91.5,
+      "width": 4,
+      "height": 6,
+      "depth": 17,
+      "platform": false
+    },
+    {
+      "id": "flank-gate-1--1-1",
+      "x": 150,
+      "y": 3,
+      "z": -68.5,
+      "width": 4,
+      "height": 6,
+      "depth": 17,
+      "platform": false
+    },
+    {
+      "id": "base-approach-screen-1-1",
+      "x": 166,
+      "y": 3,
+      "z": 40,
+      "width": 76,
+      "height": 6,
+      "depth": 3,
+      "platform": false
+    },
+    {
+      "id": "flank-gate-1-1--1",
+      "x": 150,
+      "y": 3,
+      "z": 68.5,
+      "width": 4,
+      "height": 6,
+      "depth": 17,
+      "platform": false
+    },
+    {
+      "id": "flank-gate-1-1-1",
+      "x": 150,
+      "y": 3,
+      "z": 91.5,
+      "width": 4,
+      "height": 6,
+      "depth": 17,
+      "platform": false
+    }
+  ],
+  "description": " Central raised battlefield with side flanking corridors (LINE-05)."
 }

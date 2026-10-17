@@ -1,51 +1,60 @@
-# 機体構築の実装契約（UNIT-01）
+# 機体構築の実装契約（UNIT-01 / FIELD-04）
 
-UserText/MechaBattle機体構想・カスタマイズシステム構想案.md v0.1を追加方針とする。UserTextは参照専用。初期は標準フレーム1種、左右の腕2種、主武器2種を用意する。個別の固定機体は定義せず、テンプレートも通常のBuildDefinitionとして保存する。
+方針はUserText/MechaBattle機体構想・カスタマイズシステム構想案.md v0.1。UserTextは参照専用。標準/重量フレーム2種、左右腕各2種、13種の装備から最大3装備を自由選択する。プリセットも通常BuildDefinitionで、固定キャラクターの例外性能はない。
 
-## GPT / Claude の分担
-GPTは純粋C#の構築契約・検証/性能計算、config仮値、モデルとEditor組立ツールを担当。既存P0 Simulation/Adapter/Generatorは変更しない。ClaudeへP0への接続と相互レビューを依頼中（受領前）。
+## API・互換性
 
-## 実装したAPI
-- Game.Construction.Contracts（Runtime/Contracts/Construction/）、namespace MechaBattle.Contracts.Construction：Unity非依存のSerializableなフィールド型。ConstructionCatalog、FrameDefinition、PartDefinition、BuildDefinition、EquipmentSelection、AppearanceDefinition、CostPolicy、CombinationCostRule。
-- Game.Construction（Runtime/Construction/）、namespace MechaBattle.Construction：ConstructionEvaluator.Evaluate(catalog, build) → immutable ResolvedBuild。無効な入力はArgumentException。TryEvaluate(catalog, build, out resolved, out errors)でエラー一覧。人間/BOTの区別や特別な性能経路を持たない。
-- BuildDefinition：id, frameId, equipment[]（slot, partId）, appearance.paintId。プリセットはこの同一型。外観は性能/コストに影響しない。
-- 初期PartSlot：LeftArm=0, RightArm=1, PrimaryWeapon=2。今後の枠は新しい構築スキーマで追加する。宣言だけの未実装部位を有効扱いにしない。
-- ResolvedBuild：FrameId, ConnectionStandard, Equipment（ReadOnly）, PaintId, MaxHealth, MaxShield, MoveSpeed, FireDamage, FireRange, FireIntervalSeconds, MaxAmmo, Weight, Energy, Cost, CooldownSeconds。必須部位/重複/ID/部位/規格/重量/出力/武装枠/スキル枠/排他/有限数値を検証してから返す。
-- 仮データ：config/prototype-defaults.json の constructionPrototype.catalog。接続後も既存p0Simulationの互換性を保ち、構築データがない既存試験は従来動作とする。BOTも同じResolvedBuildを使い、CT/弾薬/ゲージ損失は共通ルールへ流す。
+- Game.Contracts：不変UnitLoadout、WeaponKind、WeaponFireMode、MeleeStyle、UnitCommand。黄/赤ロック範囲と非ロック散布も共通データ。人間/BOT/Simulation共通。
+- Game.Construction.Contracts：SerializableなConstructionCatalog/FrameDefinition/PartDefinition/WeaponDefinition/BuildDefinition/SavedDeck/CostPolicy。Unity非依存。
+- ConstructionEvaluator.Evaluate/TryEvaluate：ID/規格/必須部位/重量/出力/枠/排他/有限値を検証し、不変ResolvedBuildとCombatLoadoutを返す。
+- PartSlotはLeftArm=0/RightArm=1/PrimaryWeapon=2/SecondaryWeapon=3/TertiaryWeapon=4。左右腕と装備1は必須、装備2・3は任意。全装備部品はカタログ上slot=2で定義し、3装備枠のいずれにも選べる。旧schemaVersion=1の1装備保存を読み込める。
+- UnitLoadout.WeaponCount/GetWeapon(index)/WithWeapons(...)は1〜3装備の不変スナップショット。HP/盾/速度/コスト/CTは共通、弾薬/射撃性能は各装備。ResolvedBuild.WeaponPartId(index)は枠順の描画部品ID。
+- 武器性能には方式・DP・弾倉/装填・チャージ/照射・射程/赤範囲/弾速・爆風・投擲重力/起爆・設置半径/寿命/耐久値（UtilityHealth）を含む。戦闘開始時に各操縦者4機分をSimulationへ渡し、構築データの後編集は試合へ影響しない。
+- Unity JsonUtilityが腕の欠落weaponを全0オブジェクトにした場合は未装備として扱い、実性能のある腕weaponは拒否する。
 
-## 見た目の規格（試作）
-規格ID mb.humanoid.standard.v1。Y上/+Z前/メートル/足元原点。標準フレームの見た目高2.47mは仮値で、既存シミュレーション半径とは別。腕原点は肩接続、主武器原点は右腕の保持ソケット。module-kit.jsonに親子/ローカル位置/対応部品IDを記録する。左右腕と主武器を交換し、形状をEditorで組み立てて3サブメッシュへ結合する。アニメーション/LOD/当たり判定の自動生成は後続で、現時点は静的表示。既存P0シーンは変更しない。
+## 仮容量・コスト・CT
 
-## 段階と未実装
-段階1の共通フレーム・腕/武器組立と、段階2の性能/コスト/CT算出を先行。戦場への反映、保存UI、BOT条件生成、役割推定、4機小隊最適化、金功績連動、追加部位、100機の描画/アニメ計測は別途検証が必要。2019ミドルPCでの60fpsは未測定。
+標準フレームは重量上限145/出力上限135/武器枠3。全装備の重量・出力・装備費を加算する。性能費は最も高い1装備を100%、残りを35%として加算し、同時発射不可の予備装備を評価する。HP/盾/速度/DP耐性、装填込みDPS/DP、射程/赤範囲/弾速/弾数/爆風、特定部品組合せもコストに含む。
 
-## 実際の試作データ（正式バランスではない）
+数値の正本はMechaBattle/config/prototype-defaults.json。CTは10 + 0.10×cost + 0.0003×cost²。HP2000〜3850と大きなダメージ表記に合わせコスト係数を正規化し、高コストほど増加する凸形は保持する。金功績による短縮は未実装。
 
-| 保存構成 | HP / Shield | 移動速度 | 主武器 威力 / 間隔 / 射程 / 弾数 | 自動コスト | 自動CT |
-|---|---|---|---|---|---|
-| standard-carbine | 100 / 50 | 12 m/s | 20 / 0.4s / 65m / 30 | 221 | 約112.95秒 |
-| reinforced-longrifle | 140 / 50 | 11 m/s | 30 / 0.6s / 85m / 20 | 268 | 約147.14秒 |
+以下は射撃＋格闘＋回復ポッドを持つ8テンプレート。旧1装備データのコスト/CTはそれ自身の性能から再計算する。
 
-左右の腕を独立に選べるため、現在の部品だけで8通りを構築できる。上表はそのうち2つを通常の保存構成として用意したもの。CTは算出結果であり、現時点のP0戦場は従来のdeckCooldownSecondsを使う。構築値を既存試合へ流す接続は未実装。金功績による短縮は未実装。
+| 保存構成 | HP / 盾 / DP耐性 | 速度 | コスト | CT |
+|---|---|---|---|---|
+| standard-carbine | 2000 / 900 / 600 | 12m/s | 427 | 107.40秒 |
+| reinforced-longrifle | 3200 / 900 / 750 | 11m/s | 478 | 126.35秒 |
+| standard-cannon | 2000 / 900 / 600 | 12m/s | 440 | 112.08秒 |
+| standard-charge | 2000 / 900 / 600 | 12m/s | 453 | 116.86秒 |
+| standard-beam | 2000 / 900 / 600 | 12m/s | 435 | 110.27秒 |
+| standard-bazooka | 2000 / 900 / 600 | 12m/s | 451 | 116.12秒 |
+| heavy-cannon | 3850 / 1100 / 900 | 8.5m/s | 504 | 136.60秒 |
+| standard-assaultrifle | 2000 / 900 / 600 | 12m/s | 427 | 107.40秒 |
 
-## Unityでの生成・確認
+格納庫は4機保存、左右腕/3装備交換、選択装備のプレビュー、性能と制約表示を接続済み。人間/BOTの戦闘・補給・撃破コスト・CTへ同じ計算結果を使用する。BOTは8テンプレートをずらした4機デッキを持つ。既存P0は構築データを渡さなければ従来ルールを使う。戦闘詳細は[COMBAT_RULES.md](COMBAT_RULES.md)、起動は[PLAYABLE_GUIDE.md](PLAYABLE_GUIDE.md)。
 
-1. Edit Modeでインポート完了後、MechaBattle > Models > Generate Simple Robot Prefabs を実行。
-2. Assets/Game/Content/Models/MB_Worker01/Generated/ に部品Prefab 7個、保存構成2種×Neutral/Blue/Orangeの完成表示Prefab 6個を生成する。既存SceneやBuild Settingsの変更はしない。
-3. Window > General > Test Runner のEditModeでGame.Tests.ModelToolsを実行する。2ケースで結合Mesh・取り付け・部品混在・色共有・GUID維持・開いたScene保護・Unity JSON保存復元を確認する。
-4. 個別の保存構成には SimpleMechaPrefabBuilder.GenerateBuild(catalog, build, "Blue") を使う。主武器は右腕のweapon.primary、発射位置は武器のmuzzleソケット。チーム色は外観設定に優先できる。
+## モデル
 
-完成表示Prefabは1 MeshRenderer / 3 submeshes。見た目の各部品ノードとソケットは階層に残すが、形状を結合した静的試作であり、ノードを動かしても腕の形状は動かない。腕の可動/歩行/照準アニメーションは未実装。Collider、Rigidbody、Animator、シミュレーション用Scriptは自動付与しない。
+接続規格mb.humanoid.standard.v1、Y上/+Z前/メートル/足元原点、フレーム高2.47m。腕原点は肩、現在装備は右腕のweapon.primaryソケットへ表示する。19モジュール（フレーム2＋腕4＋装備12）をmodule-kit.jsonに記録。予備装備の背面収納表示はまだない。
 
-## ソース再生成
+**MechaBattle > Models > Generate Simple Robot Prefabs** で部品19個と8構成×Neutral/Blue/Orangeの完成表示24個をContent/Models/MB_Worker01/Generatedへ生成する。開いたSceneを変えず、既存GUID/共有素材を維持する。完成Prefabは現在装備1つの静的結合1 MeshRenderer/3 submeshes。任意構成はSimpleMechaPrefabBuilder.GenerateBuild(catalog, build, "Blue")。
 
-- MechaBattle/scripts/art/generate-simple-mecha.mjs：Nodeで7部品とOBJ/GLB/Unity用mesh JSONを生成。外部モデル/テクスチャを使用しない。
-- validate-simple-mecha.mjs：有限座標、法線、面向き、各閉立体の辺/体積、接続位置、カタログID、GLBバッファ/Float32境界、OBJ部品分割を確認。
-- render-simple-mecha.py：Pillow/numpyで確認画像を生成。ランタイム依存ではない。
-- ArtSource/MB_Worker01/MB_Worker01.glb：部品単位のMeshと2つのシーンを持つDCC向けソース。Unity Prefabはmodule-kit.jsonからEditor APIで生成する。
+Playable実戦は股関節/膝/右腕/現在装備を分け、歩行・ダッシュ・ジャンプ/着地と反動、格闘動作・銃の上下照準・盾/刃/弾道/爆発・よろけ/転倒を描画。装備切替に外観も追従する。全身スケルトン/完成版アニメーション/LOD/mesh衝突は未実装。
 
-## 検証結果と制限
+ソース生成はscripts/art/generate-simple-mecha.mjs、幾何検査はvalidate-simple-mecha.mjs、画像はrender-simple-mecha.py。外部モデル不使用。GLBは18部品メッシュ/7組立シーン、OBJは標準カービン4部品。確認画像はUnity画面ではない。
 
-2026-10-15 GPT検証：独立C# 79件成功（構築関連22ケース＋実設定/保存復元1件を含む）。実データ2プリセットと自由構築8通りを検証。モデルの7モジュール/67閉立体インスタンス/2,580部品三角形の検証に成功。完成構成は1,676 / 2,016三角形。Unity APIに対する全14アセンブリ静的コンパイル成功。
+## 検証・後続
 
-今回追加したModelToolsのUnity EditMode試験2件・Prefabの実生成・Unityでの描画確認・100機性能測定は未実施。以前のP0に対するユーザー実行50/50件成功とは区別する。Editorの検出情報をGPT環境から読めないため、実Editor接続による実行結果は報告していない。
+独立C#で8テンプレート、標準フレームの自由52単装備構成と8788三装備構成の全評価/保存復元/順序不変を確認。モデル19モジュール/153閉立体/6060部品三角形、8構成は1676〜2016三角形。Unity用には実JsonUtilityの3装備混在、Prefab/共有素材/GUID/Scene保護と画面一巡試験を更新したが、実Unity Test Runnerは未実施。
+
+ユーザーは旧構築→戦闘、新攻撃/DPと照準改善を実機確認済み。FIELD-04の基本動作はユーザー実機確認済み。LINE-05/AIM-06の操作感/見栄え、Windows起動/100機性能は未確認。小隊/指揮官、金功績、追加フレーム/部位、アートと最終バランスを後続として管理する。
+
+最新追加: weapon.repairgun（味方HP回復FA）/weapon.radar（設置索敵）。ポッドとレーダーはammoResupplyDisabled=true、ポッドの盾/弾薬はpodShieldPerSecond/podAmmoPerSecondで外部定義。末尾任意引数で旧装備は互換。最新の支援/ブースト/格闘と検証値は[引渡し](reviews/GPT_AIR15_HANDOFF.md)参照。
+
+設置物のutilityHealthはWeaponDefinition→ResolvedBuild→UnitLoadoutへ互換末尾引数で渡す。実ポッド1800/レーダー900/地雷450、旧省略0はロック/破壊対象外。寿命はポッド180秒/レーダー900秒、有限弾数と補給不可は維持。耐久/長寿命の追加コスト係数はまだ導入せず、今回のHP引下げと通常格闘間隔0.35→0.31秒により、上記8構成のコスト/CTは再計算済み。命中後の条件付き補正は現状のコスト式へ直接加算しない仮仕様とする。全フレームの全組合せを網羅したとは扱わず、8788通りは標準フレームでの検証。実戦に置いたポッド/レーダー/地雷もMechaMeshLibrary.CreateDeployableで既存専用モジュールを使い、地面と論理判定の高さ/幅へ合わせる。
+
+UI-11: 機体制作/参戦準備は専用RenderTextureのプレビューへ分離し、参戦準備で選んだデッキ番号を初回出撃へ反映。以前の「選択にかかわらずデッキ0へ出撃」は修正。詳細は[UI修正引渡し](reviews/GPT_UI11_HANDOFF.md)。
+
+SUPPORT-12: 標準フレーム2000/重量2650へ共通HPを引き下げた（Claude経由でユーザー了承を受領）。標準補強腕2本3200と最低2000の指定を維持する。現在機体の回復FA/ポッド所持が味方ロックを許可し、FAは物理65/黄60/赤25m。予備デッキは含めない。格闘の命中時だけ後隙×0.5/消費ブースト50%返還。通常格闘の基礎間隔0.31秒へ合わせ、表のコスト/CTは実評価値へ更新済み。追加の命中効果を考慮したコスト係数は今後の調整対象。
+
+AIR-15統合: Claude追加のAR/8番目構成に必要なweapon.assaultrifle表示モジュールを追加生成。全19部品IDがカタログと一致し、元の18部品の形状は変えない。19部品/8構成/153閉立体/6060三角形の幾何検証と全GLB接続検査は成功。Unity Prefab生成/見栄えは未確認。フレーム別武器許可リストはClaude実装を保持し、標準フレーム52/8788の保存復元を再確認した。

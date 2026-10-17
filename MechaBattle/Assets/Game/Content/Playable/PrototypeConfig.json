@@ -114,9 +114,10 @@
     "homeShieldPerSecond": 40,
     "homeAmmoPerSecond": 15,
     "spawnScatterFraction": 0.6,
-    "baseCounterFireDamage": 105,
+    "baseCounterFireDamage": 70,
     "baseCounterFireIntervalSeconds": 5,
-    "baseCounterFireRadius": 70
+    "baseCounterFireRadius": 70,
+    "baseCounterFireDownPoints": 450
   },
   "p0SimulationNotes": {
     "status": "PROTOTYPE_ONLY",
@@ -127,9 +128,9 @@
   "p0BaseDefenseNotes": {
     "status": "PROTOTYPE_ONLY",
     "source": "User request 2026-10-15: base should fire back, slow rate, roughly 70%-of-max-effective-HP damage, as an area attack.",
-    "reason": "baseCounterFireDamage=105 = 0.7*(maxHealth 100 + maxShield 50). baseCounterFireIntervalSeconds=5 keeps the rate clearly slower than a unit's own fireIntervalSeconds(0.4s). baseCounterFireRadius=70: the first value (20) never overlapped an attacker in practice because ForwardMarchBotCommandSource's p0BotPrototypeNotes.attackStopRangeFraction(0.9) means a BOT parks ~58.5m from the base (0.9*fireRange 65) to shoot it - raised to 70 (>fireRange 65) so anyone actually within weapon range of the base is also within the base's own return-fire range. User-reported 2026-10-15: counter-fire had no visible effect because of this gap.",
+    "reason": "baseCounterFireDamage=70 = 0.7*maxHealth(100). Originally set to 105 = 0.7*(maxHealth 100 + maxShield 50) back when base fire resolved through the shield like ordinary unit fire. COMBAT-02 later made base-area attacks bypass the directional shield entirely (unitDamage[] feeds ResolveDamage's shield-bypassing `damage` path once directionalShieldEnabled, per docs/COMBAT_RULES.md's shield section and BattleSimulation.ApplyBaseCounterFire). With the shield no longer in the way, 105 against HP100 was a 105%-of-HP one-shot kill instead of the intended 70%; corrected to 70 on 2026-10-15 brush-up review (Claude) now that the bypass is confirmed in code. baseCounterFireIntervalSeconds=5 keeps the rate clearly slower than a unit's own fireIntervalSeconds(0.4s). baseCounterFireRadius=70: the first value (20) never overlapped an attacker in practice because ForwardMarchBotCommandSource's p0BotPrototypeNotes.attackStopRangeFraction(0.9) means a BOT parks ~58.5m from the base (0.9*fireRange 65) to shoot it - raised to 70 (>fireRange 65) so anyone actually within weapon range of the base is also within the base's own return-fire range. User-reported 2026-10-15: counter-fire had no visible effect because of this gap.",
     "notACounter": "This is a static structure's own weapon firing on a cooldown at anyone in range, not a per-unit automatic melee counter/guard-interrupt (AGENTS.md's prohibition is about the latter only).",
-    "rules": "Fires at most once per intervalSeconds per base, only once an enemy is actually inside radius (an idle base keeps waiting rather than firing at nothing); damages every enemy unit in radius simultaneously (area attack), through shield then health, same as ordinary unit fire."
+    "rules": "Fires at most once per intervalSeconds per base, only once an enemy is actually inside radius (an idle base keeps waiting rather than firing at nothing); damages every enemy unit in radius simultaneously (area attack). Bypasses the directional shield (same rule as melee/explosions) when directionalShieldEnabled; otherwise resolves through shield then health like ordinary unit fire."
   },
   "p0BotPrototypeNotes": {
     "attackStopRangeFraction": 0.9,
@@ -172,18 +173,112 @@
           "connectionStandard": "mb.humanoid.standard.v1",
           "weight": 45,
           "energy": 10,
-          "maxWeight": 100,
-          "maxEnergy": 65,
-          "weaponHardpoints": 1,
+          "maxWeight": 145,
+          "maxEnergy": 135,
+          "weaponHardpoints": 3,
           "skillSlots": 0,
           "baseCost": 80,
-          "maxHealth": 100,
-          "maxShield": 50,
+          "maxHealth": 2000,
+          "maxShield": 900,
           "moveSpeed": 12,
           "requiredSlots": [
             0,
             1,
             2
+          ],
+          "downPointCapacity": 600
+        },
+        {
+          "id": "frame.heavy.v1",
+          "connectionStandard": "mb.humanoid.standard.v1",
+          "weight": 65,
+          "energy": 10,
+          "maxWeight": 170,
+          "maxEnergy": 135,
+          "weaponHardpoints": 3,
+          "skillSlots": 0,
+          "baseCost": 110,
+          "maxHealth": 2650,
+          "maxShield": 1100,
+          "moveSpeed": 9.5,
+          "requiredSlots": [
+            0,
+            1,
+            2
+          ],
+          "downPointCapacity": 750,
+          "allowedWeaponIds": [
+            "weapon.cannon",
+            "weapon.bazooka",
+            "weapon.melee",
+            "weapon.repairpod",
+            "weapon.grenade",
+            "weapon.mine",
+            "weapon.repairgun",
+            "weapon.radar"
+          ]
+        },
+        {
+          "id": "frame.light.v1",
+          "connectionStandard": "mb.humanoid.standard.v1",
+          "weight": 30,
+          "energy": 8,
+          "maxWeight": 120,
+          "maxEnergy": 140,
+          "weaponHardpoints": 3,
+          "skillSlots": 0,
+          "baseCost": 85,
+          "maxHealth": 2000,
+          "maxShield": 600,
+          "moveSpeed": 14,
+          "requiredSlots": [
+            0,
+            1,
+            2
+          ],
+          "downPointCapacity": 550,
+          "allowedWeaponIds": [
+            "weapon.carbine",
+            "weapon.assaultrifle",
+            "weapon.longrifle",
+            "weapon.charge",
+            "weapon.melee",
+            "weapon.repairpod",
+            "weapon.grenade",
+            "weapon.mine",
+            "weapon.repairgun",
+            "weapon.radar"
+          ]
+        },
+        {
+          "id": "frame.support.v1",
+          "connectionStandard": "mb.humanoid.standard.v1",
+          "weight": 50,
+          "energy": 10,
+          "maxWeight": 155,
+          "maxEnergy": 155,
+          "weaponHardpoints": 3,
+          "skillSlots": 0,
+          "baseCost": 90,
+          "maxHealth": 2300,
+          "maxShield": 950,
+          "moveSpeed": 10.5,
+          "requiredSlots": [
+            0,
+            1,
+            2
+          ],
+          "downPointCapacity": 650,
+          "allowedWeaponIds": [
+            "weapon.carbine",
+            "weapon.assaultrifle",
+            "weapon.beam",
+            "weapon.melee",
+            "weapon.repairpod",
+            "weapon.grenade",
+            "weapon.mine",
+            "weapon.repairgun",
+            "weapon.radar"
           ]
         }
       ],
@@ -200,7 +295,29 @@
           "weaponHardpoints": 0,
           "skillSlots": 0,
           "equipmentCost": 10,
-          "exclusiveGroup": ""
+          "exclusiveGroup": "",
+          "downPointCapacityDelta": 0,
+          "armFamily": "standard",
+          "chargeMelee": {
+            "style": 4,
+            "damage": 500,
+            "downPoints": 1600,
+            "range": 6.5,
+            "minimumRange": 3,
+            "chargeScalesRange": true,
+            "halfAngleDegrees": 180,
+            "windupSeconds": 0.18,
+            "recoverySeconds": 0.5,
+            "cooldownSeconds": 0.8,
+            "lungeMeters": 0.01,
+            "boostCost": 25,
+            "moveMultiplier": 0.3,
+            "comboSteps": 1,
+            "maximumTargets": 6,
+            "minimumChargeSeconds": 0.4,
+            "fullChargeSeconds": 1.4,
+            "minimumChargeMultiplier": 0.3
+          }
         },
         {
           "id": "arm.reinforced.left",
@@ -208,13 +325,36 @@
           "connectionStandard": "mb.humanoid.standard.v1",
           "weight": 14,
           "energy": 8,
-          "healthDelta": 20,
+          "healthDelta": 600,
           "shieldDelta": 0,
           "moveSpeedDelta": -0.5,
           "weaponHardpoints": 0,
           "skillSlots": 0,
           "equipmentCost": 18,
-          "exclusiveGroup": ""
+          "exclusiveGroup": "",
+          "downPointCapacityDelta": 75,
+          "armFamily": "reinforced",
+          "chargeMelee": {
+            "style": 4,
+            "damage": 3000,
+            "downPoints": 2200,
+            "belowThresholdDamage": 550,
+            "belowThresholdDownPoints": 700,
+            "thresholdChargeFraction": 0.5,
+            "range": 4.5,
+            "halfAngleDegrees": 40,
+            "windupSeconds": 0.18,
+            "recoverySeconds": 0.7,
+            "cooldownSeconds": 1,
+            "lungeMeters": 2,
+            "boostCost": 30,
+            "moveMultiplier": 0.3,
+            "comboSteps": 1,
+            "maximumTargets": 5,
+            "minimumChargeSeconds": 0.4,
+            "fullChargeSeconds": 1.4,
+            "minimumChargeMultiplier": 0.3
+          }
         },
         {
           "id": "arm.standard.right",
@@ -228,7 +368,29 @@
           "weaponHardpoints": 0,
           "skillSlots": 0,
           "equipmentCost": 10,
-          "exclusiveGroup": ""
+          "exclusiveGroup": "",
+          "downPointCapacityDelta": 0,
+          "armFamily": "standard",
+          "chargeMelee": {
+            "style": 4,
+            "damage": 500,
+            "downPoints": 1600,
+            "range": 6.5,
+            "minimumRange": 3,
+            "chargeScalesRange": true,
+            "halfAngleDegrees": 180,
+            "windupSeconds": 0.18,
+            "recoverySeconds": 0.5,
+            "cooldownSeconds": 0.8,
+            "lungeMeters": 0.01,
+            "boostCost": 25,
+            "moveMultiplier": 0.3,
+            "comboSteps": 1,
+            "maximumTargets": 6,
+            "minimumChargeSeconds": 0.4,
+            "fullChargeSeconds": 1.4,
+            "minimumChargeMultiplier": 0.3
+          }
         },
         {
           "id": "arm.reinforced.right",
@@ -236,13 +398,36 @@
           "connectionStandard": "mb.humanoid.standard.v1",
           "weight": 14,
           "energy": 8,
-          "healthDelta": 20,
+          "healthDelta": 600,
           "shieldDelta": 0,
           "moveSpeedDelta": -0.5,
           "weaponHardpoints": 0,
           "skillSlots": 0,
           "equipmentCost": 18,
-          "exclusiveGroup": ""
+          "exclusiveGroup": "",
+          "downPointCapacityDelta": 75,
+          "armFamily": "reinforced",
+          "chargeMelee": {
+            "style": 4,
+            "damage": 3000,
+            "downPoints": 2200,
+            "belowThresholdDamage": 550,
+            "belowThresholdDownPoints": 700,
+            "thresholdChargeFraction": 0.5,
+            "range": 4.5,
+            "halfAngleDegrees": 40,
+            "windupSeconds": 0.18,
+            "recoverySeconds": 0.7,
+            "cooldownSeconds": 1,
+            "lungeMeters": 2,
+            "boostCost": 30,
+            "moveMultiplier": 0.3,
+            "comboSteps": 1,
+            "maximumTargets": 5,
+            "minimumChargeSeconds": 0.4,
+            "fullChargeSeconds": 1.4,
+            "minimumChargeMultiplier": 0.3
+          }
         },
         {
           "id": "weapon.carbine",
@@ -254,10 +439,58 @@
           "weaponHardpoints": 1,
           "skillSlots": 0,
           "weapon": {
-            "damage": 20,
-            "range": 65,
-            "intervalSeconds": 0.4,
-            "ammo": 30
+            "magazineCapacity": 42,
+            "reloadSeconds": 2.2,
+            "minimumChargeSeconds": 0,
+            "fullChargeSeconds": 0,
+            "maximumBeamSeconds": 0,
+            "beamRecoverySeconds": 0,
+            "firingMoveMultiplier": 1,
+            "downPoints": 28,
+            "blastRadius": 0,
+            "splashDamage": 0,
+            "splashDownPoints": 0,
+            "projectileSpeed": 90,
+            "mode": 0,
+            "damage": 36,
+            "range": 220,
+            "intervalSeconds": 0.13,
+            "ammo": 170,
+            "redLockRange": 55,
+            "yellowLockRange": 140,
+            "hipSpreadDegrees": 0.7
+          }
+        },
+        {
+          "id": "weapon.assaultrifle",
+          "slot": 2,
+          "connectionStandard": "mb.humanoid.standard.v1",
+          "weight": 12,
+          "energy": 16,
+          "equipmentCost": 22,
+          "weaponHardpoints": 1,
+          "skillSlots": 0,
+          "weapon": {
+            "magazineCapacity": 20,
+            "reloadSeconds": 2,
+            "minimumChargeSeconds": 0,
+            "fullChargeSeconds": 0,
+            "maximumBeamSeconds": 0,
+            "beamRecoverySeconds": 0,
+            "firingMoveMultiplier": 1,
+            "downPoints": 34,
+            "blastRadius": 0,
+            "splashDamage": 0,
+            "splashDownPoints": 0,
+            "projectileSpeed": 100,
+            "mode": 0,
+            "damage": 52,
+            "range": 240,
+            "intervalSeconds": 0.22,
+            "ammo": 100,
+            "redLockRange": 58,
+            "yellowLockRange": 150,
+            "hipSpreadDegrees": 0.5
           }
         },
         {
@@ -270,10 +503,450 @@
           "weaponHardpoints": 1,
           "skillSlots": 0,
           "weapon": {
-            "damage": 30,
-            "range": 85,
-            "intervalSeconds": 0.6,
-            "ammo": 20
+            "magazineCapacity": 10,
+            "reloadSeconds": 2,
+            "minimumChargeSeconds": 0,
+            "fullChargeSeconds": 0,
+            "maximumBeamSeconds": 0,
+            "beamRecoverySeconds": 0,
+            "firingMoveMultiplier": 1,
+            "downPoints": 150,
+            "blastRadius": 0,
+            "splashDamage": 0,
+            "splashDownPoints": 0,
+            "projectileSpeed": 120,
+            "mode": 1,
+            "damage": 138,
+            "range": 300,
+            "intervalSeconds": 0.65,
+            "ammo": 50,
+            "redLockRange": 70,
+            "yellowLockRange": 200,
+            "hipSpreadDegrees": 0.4
+          }
+        },
+        {
+          "id": "weapon.cannon",
+          "slot": 2,
+          "connectionStandard": "mb.humanoid.standard.v1",
+          "weight": 22,
+          "energy": 25,
+          "equipmentCost": 38,
+          "weaponHardpoints": 1,
+          "skillSlots": 0,
+          "weapon": {
+            "magazineCapacity": 1,
+            "reloadSeconds": 3,
+            "minimumChargeSeconds": 0,
+            "fullChargeSeconds": 0,
+            "maximumBeamSeconds": 0,
+            "beamRecoverySeconds": 0,
+            "firingMoveMultiplier": 1,
+            "downPoints": 330,
+            "blastRadius": 0,
+            "splashDamage": 0,
+            "splashDownPoints": 0,
+            "projectileSpeed": 70,
+            "mode": 2,
+            "damage": 400,
+            "range": 260,
+            "intervalSeconds": 0.2,
+            "ammo": 12,
+            "redLockRange": 50,
+            "yellowLockRange": 160,
+            "hipSpreadDegrees": 0.45
+          }
+        },
+        {
+          "id": "weapon.charge",
+          "slot": 2,
+          "connectionStandard": "mb.humanoid.standard.v1",
+          "weight": 20,
+          "energy": 30,
+          "equipmentCost": 40,
+          "weaponHardpoints": 1,
+          "skillSlots": 0,
+          "weapon": {
+            "magazineCapacity": 3,
+            "reloadSeconds": 3.2,
+            "minimumChargeSeconds": 0.45,
+            "fullChargeSeconds": 1.6,
+            "maximumBeamSeconds": 0,
+            "beamRecoverySeconds": 0,
+            "firingMoveMultiplier": 0.65,
+            "downPoints": 650,
+            "blastRadius": 0,
+            "splashDamage": 0,
+            "splashDownPoints": 0,
+            "projectileSpeed": 140,
+            "mode": 3,
+            "damage": 880,
+            "range": 340,
+            "intervalSeconds": 1.4,
+            "ammo": 15,
+            "redLockRange": 65,
+            "yellowLockRange": 210,
+            "hipSpreadDegrees": 0.25
+          }
+        },
+        {
+          "id": "weapon.beam",
+          "slot": 2,
+          "connectionStandard": "mb.humanoid.standard.v1",
+          "weight": 22,
+          "energy": 35,
+          "equipmentCost": 42,
+          "weaponHardpoints": 1,
+          "skillSlots": 0,
+          "weapon": {
+            "magazineCapacity": 16,
+            "reloadSeconds": 2.8,
+            "minimumChargeSeconds": 0,
+            "fullChargeSeconds": 0,
+            "maximumBeamSeconds": 1.6,
+            "beamRecoverySeconds": 0.9,
+            "firingMoveMultiplier": 0.45,
+            "downPoints": 13,
+            "blastRadius": 0,
+            "splashDamage": 0,
+            "splashDownPoints": 0,
+            "projectileSpeed": 0,
+            "mode": 4,
+            "damage": 38,
+            "range": 150,
+            "intervalSeconds": 0.1,
+            "ammo": 64,
+            "redLockRange": 35,
+            "yellowLockRange": 100,
+            "hipSpreadDegrees": 0.3
+          }
+        },
+        {
+          "id": "weapon.bazooka",
+          "slot": 2,
+          "connectionStandard": "mb.humanoid.standard.v1",
+          "weight": 24,
+          "energy": 20,
+          "equipmentCost": 45,
+          "weaponHardpoints": 1,
+          "skillSlots": 0,
+          "weapon": {
+            "magazineCapacity": 1,
+            "reloadSeconds": 3.5,
+            "minimumChargeSeconds": 0,
+            "fullChargeSeconds": 0,
+            "maximumBeamSeconds": 0,
+            "beamRecoverySeconds": 0,
+            "firingMoveMultiplier": 1,
+            "downPoints": 800,
+            "blastRadius": 5,
+            "splashDamage": 210,
+            "splashDownPoints": 300,
+            "projectileSpeed": 50,
+            "mode": 2,
+            "damage": 500,
+            "range": 260,
+            "intervalSeconds": 0.2,
+            "ammo": 10,
+            "redLockRange": 45,
+            "yellowLockRange": 150,
+            "hipSpreadDegrees": 0.55
+          }
+        },
+        {
+          "id": "weapon.melee",
+          "slot": 2,
+          "connectionStandard": "mb.humanoid.standard.v1",
+          "weight": 8,
+          "energy": 5,
+          "equipmentCost": 20,
+          "weaponHardpoints": 1,
+          "skillSlots": 0,
+          "weapon": {
+            "mode": 0,
+            "magazineCapacity": 0,
+            "reloadSeconds": 0,
+            "minimumChargeSeconds": 0,
+            "fullChargeSeconds": 0,
+            "maximumBeamSeconds": 0,
+            "beamRecoverySeconds": 0,
+            "firingMoveMultiplier": 1,
+            "downPoints": 900,
+            "blastRadius": 0,
+            "splashDamage": 0,
+            "splashDownPoints": 0,
+            "projectileSpeed": 0,
+            "redLockRange": 3.4,
+            "utilityRadius": 0,
+            "utilityDuration": 0,
+            "projectileGravity": 0,
+            "fuseSeconds": 0,
+            "kind": 1,
+            "damage": 760,
+            "range": 3.4,
+            "intervalSeconds": 0.31,
+            "ammo": 1,
+            "yellowLockRange": 45
+          }
+        },
+        {
+          "id": "weapon.repairpod",
+          "slot": 2,
+          "connectionStandard": "mb.humanoid.standard.v1",
+          "weight": 10,
+          "energy": 12,
+          "equipmentCost": 40,
+          "weaponHardpoints": 1,
+          "skillSlots": 0,
+          "weapon": {
+            "mode": 2,
+            "magazineCapacity": 1,
+            "reloadSeconds": 1.5,
+            "minimumChargeSeconds": 0,
+            "fullChargeSeconds": 0,
+            "maximumBeamSeconds": 0,
+            "beamRecoverySeconds": 0,
+            "firingMoveMultiplier": 1,
+            "downPoints": 0,
+            "blastRadius": 0,
+            "splashDamage": 0,
+            "splashDownPoints": 0,
+            "projectileSpeed": 0,
+            "redLockRange": 0,
+            "utilityRadius": 8,
+            "utilityDuration": 180,
+            "projectileGravity": 0,
+            "fuseSeconds": 0,
+            "kind": 2,
+            "damage": 40,
+            "range": 8,
+            "intervalSeconds": 1.5,
+            "ammo": 3,
+            "podShieldPerSecond": 160,
+            "podAmmoPerSecond": 6,
+            "ammoResupplyDisabled": true,
+            "utilityHealth": 1800
+          }
+        },
+        {
+          "id": "weapon.grenade",
+          "slot": 2,
+          "connectionStandard": "mb.humanoid.standard.v1",
+          "weight": 8,
+          "energy": 3,
+          "equipmentCost": 28,
+          "weaponHardpoints": 1,
+          "skillSlots": 0,
+          "weapon": {
+            "mode": 2,
+            "magazineCapacity": 1,
+            "reloadSeconds": 1.6,
+            "minimumChargeSeconds": 0,
+            "fullChargeSeconds": 0,
+            "maximumBeamSeconds": 0,
+            "beamRecoverySeconds": 0,
+            "firingMoveMultiplier": 1,
+            "downPoints": 450,
+            "blastRadius": 5,
+            "splashDamage": 300,
+            "splashDownPoints": 350,
+            "projectileSpeed": 20,
+            "redLockRange": 0,
+            "utilityRadius": 0,
+            "utilityDuration": 0,
+            "projectileGravity": 18,
+            "fuseSeconds": 2,
+            "kind": 3,
+            "damage": 350,
+            "range": 45,
+            "intervalSeconds": 0.3,
+            "ammo": 5
+          }
+        },
+        {
+          "id": "weapon.mine",
+          "slot": 2,
+          "connectionStandard": "mb.humanoid.standard.v1",
+          "weight": 8,
+          "energy": 6,
+          "equipmentCost": 32,
+          "weaponHardpoints": 1,
+          "skillSlots": 0,
+          "weapon": {
+            "mode": 2,
+            "magazineCapacity": 1,
+            "reloadSeconds": 2.5,
+            "minimumChargeSeconds": 0,
+            "fullChargeSeconds": 0,
+            "maximumBeamSeconds": 0,
+            "beamRecoverySeconds": 0,
+            "firingMoveMultiplier": 1,
+            "downPoints": 800,
+            "blastRadius": 4,
+            "splashDamage": 700,
+            "splashDownPoints": 800,
+            "projectileSpeed": 0,
+            "redLockRange": 0,
+            "utilityRadius": 2.5,
+            "utilityDuration": 30,
+            "projectileGravity": 0,
+            "fuseSeconds": 0,
+            "kind": 4,
+            "damage": 700,
+            "range": 3,
+            "intervalSeconds": 2.5,
+            "ammo": 5,
+            "utilityHealth": 450
+          }
+        },
+        {
+          "id": "weapon.repairgun",
+          "slot": 2,
+          "connectionStandard": "mb.humanoid.standard.v1",
+          "weight": 10,
+          "energy": 18,
+          "equipmentCost": 38,
+          "weaponHardpoints": 1,
+          "skillSlots": 0,
+          "weapon": {
+            "mode": 0,
+            "magazineCapacity": 30,
+            "reloadSeconds": 2,
+            "minimumChargeSeconds": 0,
+            "fullChargeSeconds": 0,
+            "maximumBeamSeconds": 0,
+            "beamRecoverySeconds": 0,
+            "firingMoveMultiplier": 1,
+            "downPoints": 0,
+            "blastRadius": 0,
+            "splashDamage": 0,
+            "splashDownPoints": 0,
+            "projectileSpeed": 0,
+            "redLockRange": 25,
+            "utilityRadius": 0,
+            "utilityDuration": 0,
+            "projectileGravity": 0,
+            "fuseSeconds": 0,
+            "kind": 5,
+            "damage": 45,
+            "range": 65,
+            "intervalSeconds": 0.15,
+            "ammo": 180,
+            "podShieldPerSecond": 0,
+            "podAmmoPerSecond": 0,
+            "ammoResupplyDisabled": false,
+            "yellowLockRange": 60
+          }
+        },
+        {
+          "id": "weapon.radar",
+          "slot": 2,
+          "connectionStandard": "mb.humanoid.standard.v1",
+          "weight": 8,
+          "energy": 14,
+          "equipmentCost": 48,
+          "weaponHardpoints": 1,
+          "skillSlots": 0,
+          "weapon": {
+            "mode": 2,
+            "magazineCapacity": 1,
+            "reloadSeconds": 2,
+            "minimumChargeSeconds": 0,
+            "fullChargeSeconds": 0,
+            "maximumBeamSeconds": 0,
+            "beamRecoverySeconds": 0,
+            "firingMoveMultiplier": 1,
+            "downPoints": 0,
+            "blastRadius": 0,
+            "splashDamage": 0,
+            "splashDownPoints": 0,
+            "projectileSpeed": 0,
+            "redLockRange": 0,
+            "utilityRadius": 90,
+            "utilityDuration": 900,
+            "projectileGravity": 0,
+            "fuseSeconds": 0,
+            "kind": 6,
+            "damage": 1,
+            "range": 3,
+            "intervalSeconds": 2,
+            "ammo": 3,
+            "podShieldPerSecond": 0,
+            "podAmmoPerSecond": 0,
+            "ammoResupplyDisabled": true,
+            "utilityHealth": 900
+          }
+        },
+        {
+          "id": "arm.mobile.left",
+          "slot": 0,
+          "connectionStandard": "mb.humanoid.standard.v1",
+          "weight": 6,
+          "energy": 8,
+          "healthDelta": 0,
+          "shieldDelta": -50,
+          "moveSpeedDelta": 0.4,
+          "weaponHardpoints": 0,
+          "skillSlots": 0,
+          "equipmentCost": 15,
+          "exclusiveGroup": "",
+          "downPointCapacityDelta": -25,
+          "armFamily": "mobile",
+          "chargeMelee": {
+            "style": 4,
+            "damage": 500,
+            "downPoints": 1600,
+            "range": 6.5,
+            "minimumRange": 3,
+            "chargeScalesRange": true,
+            "halfAngleDegrees": 180,
+            "windupSeconds": 0.18,
+            "recoverySeconds": 0.5,
+            "cooldownSeconds": 0.8,
+            "lungeMeters": 0.01,
+            "boostCost": 25,
+            "moveMultiplier": 0.3,
+            "comboSteps": 1,
+            "maximumTargets": 6,
+            "minimumChargeSeconds": 0.4,
+            "fullChargeSeconds": 1.4,
+            "minimumChargeMultiplier": 0.3
+          }
+        },
+        {
+          "id": "arm.mobile.right",
+          "slot": 1,
+          "connectionStandard": "mb.humanoid.standard.v1",
+          "weight": 6,
+          "energy": 8,
+          "healthDelta": 0,
+          "shieldDelta": -50,
+          "moveSpeedDelta": 0.4,
+          "weaponHardpoints": 0,
+          "skillSlots": 0,
+          "equipmentCost": 15,
+          "exclusiveGroup": "",
+          "downPointCapacityDelta": -25,
+          "armFamily": "mobile",
+          "chargeMelee": {
+            "style": 4,
+            "damage": 500,
+            "downPoints": 1600,
+            "range": 6.5,
+            "minimumRange": 3,
+            "chargeScalesRange": true,
+            "halfAngleDegrees": 180,
+            "windupSeconds": 0.18,
+            "recoverySeconds": 0.5,
+            "cooldownSeconds": 0.8,
+            "lungeMeters": 0.01,
+            "boostCost": 25,
+            "moveMultiplier": 0.3,
+            "comboSteps": 1,
+            "maximumTargets": 6,
+            "minimumChargeSeconds": 0.4,
+            "fullChargeSeconds": 1.4,
+            "minimumChargeMultiplier": 0.3
           }
         }
       ],
@@ -293,6 +966,14 @@
             {
               "slot": 2,
               "partId": "weapon.carbine"
+            },
+            {
+              "slot": 3,
+              "partId": "weapon.melee"
+            },
+            {
+              "slot": 4,
+              "partId": "weapon.repairpod"
             }
           ],
           "appearance": {
@@ -314,10 +995,250 @@
             {
               "slot": 2,
               "partId": "weapon.longrifle"
+            },
+            {
+              "slot": 3,
+              "partId": "weapon.melee"
+            },
+            {
+              "slot": 4,
+              "partId": "weapon.repairpod"
             }
           ],
           "appearance": {
             "paintId": "Neutral"
+          }
+        },
+        {
+          "id": "standard-cannon",
+          "frameId": "frame.standard.v1",
+          "equipment": [
+            {
+              "slot": 0,
+              "partId": "arm.standard.left"
+            },
+            {
+              "slot": 1,
+              "partId": "arm.standard.right"
+            },
+            {
+              "slot": 2,
+              "partId": "weapon.cannon"
+            },
+            {
+              "slot": 3,
+              "partId": "weapon.melee"
+            },
+            {
+              "slot": 4,
+              "partId": "weapon.repairpod"
+            }
+          ],
+          "appearance": {
+            "paintId": "Neutral"
+          }
+        },
+        {
+          "id": "standard-charge",
+          "frameId": "frame.standard.v1",
+          "equipment": [
+            {
+              "slot": 0,
+              "partId": "arm.standard.left"
+            },
+            {
+              "slot": 1,
+              "partId": "arm.standard.right"
+            },
+            {
+              "slot": 2,
+              "partId": "weapon.charge"
+            },
+            {
+              "slot": 3,
+              "partId": "weapon.melee"
+            },
+            {
+              "slot": 4,
+              "partId": "weapon.repairpod"
+            }
+          ],
+          "appearance": {
+            "paintId": "Neutral"
+          }
+        },
+        {
+          "id": "standard-beam",
+          "frameId": "frame.standard.v1",
+          "equipment": [
+            {
+              "slot": 0,
+              "partId": "arm.standard.left"
+            },
+            {
+              "slot": 1,
+              "partId": "arm.standard.right"
+            },
+            {
+              "slot": 2,
+              "partId": "weapon.beam"
+            },
+            {
+              "slot": 3,
+              "partId": "weapon.melee"
+            },
+            {
+              "slot": 4,
+              "partId": "weapon.repairpod"
+            }
+          ],
+          "appearance": {
+            "paintId": "Neutral"
+          }
+        },
+        {
+          "id": "standard-bazooka",
+          "frameId": "frame.standard.v1",
+          "equipment": [
+            {
+              "slot": 0,
+              "partId": "arm.standard.left"
+            },
+            {
+              "slot": 1,
+              "partId": "arm.standard.right"
+            },
+            {
+              "slot": 2,
+              "partId": "weapon.bazooka"
+            },
+            {
+              "slot": 3,
+              "partId": "weapon.melee"
+            },
+            {
+              "slot": 4,
+              "partId": "weapon.repairpod"
+            }
+          ],
+          "appearance": {
+            "paintId": "Neutral"
+          }
+        },
+        {
+          "id": "heavy-cannon",
+          "frameId": "frame.heavy.v1",
+          "equipment": [
+            {
+              "slot": 0,
+              "partId": "arm.reinforced.left"
+            },
+            {
+              "slot": 1,
+              "partId": "arm.reinforced.right"
+            },
+            {
+              "slot": 2,
+              "partId": "weapon.cannon"
+            },
+            {
+              "slot": 3,
+              "partId": "weapon.melee"
+            },
+            {
+              "slot": 4,
+              "partId": "weapon.repairpod"
+            }
+          ],
+          "appearance": {
+            "paintId": "Neutral"
+          }
+        },
+        {
+          "id": "standard-assaultrifle",
+          "frameId": "frame.standard.v1",
+          "equipment": [
+            {
+              "slot": 0,
+              "partId": "arm.standard.left"
+            },
+            {
+              "slot": 1,
+              "partId": "arm.standard.right"
+            },
+            {
+              "slot": 2,
+              "partId": "weapon.assaultrifle"
+            },
+            {
+              "slot": 3,
+              "partId": "weapon.melee"
+            },
+            {
+              "slot": 4,
+              "partId": "weapon.repairpod"
+            }
+          ],
+          "appearance": {
+            "paintId": "Neutral"
+          }
+        },
+        {
+          "id": "light-mobile-carbine",
+          "frameId": "frame.light.v1",
+          "equipment": [
+            {
+              "slot": 0,
+              "partId": "arm.mobile.left"
+            },
+            {
+              "slot": 1,
+              "partId": "arm.mobile.right"
+            },
+            {
+              "slot": 2,
+              "partId": "weapon.carbine"
+            },
+            {
+              "slot": 3,
+              "partId": "weapon.melee"
+            },
+            {
+              "slot": 4,
+              "partId": "weapon.grenade"
+            }
+          ],
+          "appearance": {
+            "paintId": "Graphite"
+          }
+        },
+        {
+          "id": "support-carbine",
+          "frameId": "frame.support.v1",
+          "equipment": [
+            {
+              "slot": 0,
+              "partId": "arm.standard.left"
+            },
+            {
+              "slot": 1,
+              "partId": "arm.standard.right"
+            },
+            {
+              "slot": 2,
+              "partId": "weapon.carbine"
+            },
+            {
+              "slot": 3,
+              "partId": "weapon.repairgun"
+            },
+            {
+              "slot": 4,
+              "partId": "weapon.radar"
+            }
+          ],
+          "appearance": {
+            "paintId": "White"
           }
         }
       ],
@@ -332,28 +1253,35 @@
         }
       ],
       "costPolicy": {
-        "healthPerPoint": 0.25,
-        "shieldPerPoint": 0.125,
+        "healthPerPoint": 0.01,
+        "shieldPerPoint": 0.007,
         "speedPerMeter": 2,
-        "damagePerSecond": 0.5,
+        "damagePerSecond": 0.04,
         "rangePerMeter": 0.25,
         "ammoPerRound": 0.125,
         "minimumCooldownSeconds": 10,
-        "cooldownPerCost": 0.25,
-        "cooldownQuadratic": 0.0009765625
+        "cooldownPerCost": 0.1,
+        "cooldownQuadratic": 0.0003,
+        "downPointsPerSecond": 0.0175,
+        "downPointCapacityPerPoint": 0.015,
+        "blastRadiusPerMeter": 2,
+        "redLockPerMeter": 0.12,
+        "projectileSpeedPerMeter": 0.015,
+        "reserveWeaponPerformanceMultiplier": 0.35
       }
     }
   },
   "playablePrototype": {
     "status": "PROTOTYPE_ONLY",
-    "reason": "PLAY-01の最小TPS試遊用。平面移動/hitscanを維持し、ブーストと手動格闘は全操縦者へ同じ条件で適用。武装性能とCTは構築結果を使用する。",
+    "reason": "Latest RADAR/BOOST/MELEE-09: 17.5 boost drain/100 normal recovery/20 overheated recovery,760 normal/2280 dash melee,0.06/0.14 normal timings; user-directed revision, other shot/DP constraints retained.",
     "boostCapacity": 100,
-    "boostDrainPerSecond": 35,
-    "boostRecoveryPerSecond": 20,
+    "boostDrainPerSecond": 17.5,
+    "boostRecoveryPerSecond": 100,
     "boostSpeedMultiplier": 1.8,
-    "meleeDamage": 60,
-    "meleeRange": 4,
-    "meleeIntervalSeconds": 1.2,
+    "humanBoostCapacityMultiplier": 1.3,
+    "meleeDamage": 760,
+    "meleeRange": 3.4,
+    "meleeIntervalSeconds": 0.31,
     "meleeHalfAngleDegrees": 55,
     "cameraDistance": 7,
     "cameraHeight": 2,
@@ -362,6 +1290,432 @@
     "uiRefreshHz": 10,
     "profileSchemaVersion": 1,
     "starterDeckSlots": 4,
-    "note": "aimAssistDegrees is an on-screen target indicator cone only; firing is not auto-corrected. No automatic counter. CJK uses Windows system fonts through TMP DynamicOS; no proprietary font files are copied."
+    "note": "Latest user overrides continuous homing: redLockAssistEnabled=false in playable. RMB marks a visible yellow-range target and removes weapon spread while valid; only manual acquisition inside red range briefly aligns the camera. No continuous camera follow, automatic aim or projectile homing. Space jump/Shift boost. Legacy guidance stays opt-in for old regression cases only.",
+    "directionalShieldEnabled": true,
+    "shieldHalfAngleDegrees": 60,
+    "shieldRecoverySeconds": 0.35,
+    "downPointRecoverySeconds": 1.5,
+    "staggerSeconds": 0.35,
+    "knockdownSeconds": 1.25,
+    "knockdownThresholdMultiplier": 1.8,
+    "meleeAttacks": [
+      {
+        "maximumTargets": 3,
+        "minimumChargeSeconds": 0,
+        "fullChargeSeconds": 0,
+        "minimumChargeMultiplier": 0,
+        "style": 0,
+        "damage": 760,
+        "downPoints": 900,
+        "range": 3.4,
+        "halfAngleDegrees": 70,
+        "windupSeconds": 0.06,
+        "recoverySeconds": 0.1,
+        "cooldownSeconds": 0.15,
+        "lungeMeters": 0.8,
+        "boostCost": 0,
+        "moveMultiplier": 0.8,
+        "comboSteps": 1
+      },
+      {
+        "maximumTargets": 3,
+        "minimumChargeSeconds": 0,
+        "fullChargeSeconds": 0,
+        "minimumChargeMultiplier": 0,
+        "style": 1,
+        "damage": 400,
+        "downPoints": 450,
+        "range": 3.2,
+        "halfAngleDegrees": 75,
+        "windupSeconds": 0.1,
+        "recoverySeconds": 0.18,
+        "cooldownSeconds": 0.6,
+        "lungeMeters": 0.5,
+        "boostCost": 4,
+        "moveMultiplier": 0.45,
+        "comboSteps": 3
+      },
+      {
+        "maximumTargets": 3,
+        "minimumChargeSeconds": 0,
+        "fullChargeSeconds": 0,
+        "minimumChargeMultiplier": 0,
+        "style": 2,
+        "damage": 2280,
+        "downPoints": 1400,
+        "range": 3.8,
+        "halfAngleDegrees": 60,
+        "windupSeconds": 0.12,
+        "recoverySeconds": 0.16,
+        "cooldownSeconds": 0.2,
+        "lungeMeters": 5,
+        "boostCost": 30,
+        "moveMultiplier": 0.35,
+        "comboSteps": 1
+      },
+      {
+        "maximumTargets": 3,
+        "minimumChargeSeconds": 0,
+        "fullChargeSeconds": 0,
+        "minimumChargeMultiplier": 0,
+        "style": 3,
+        "damage": 850,
+        "downPoints": 800,
+        "range": 3.5,
+        "halfAngleDegrees": 65,
+        "windupSeconds": 0.14,
+        "recoverySeconds": 0.24,
+        "cooldownSeconds": 0.75,
+        "lungeMeters": 3,
+        "boostCost": 20,
+        "moveMultiplier": 0.35,
+        "comboSteps": 2
+      },
+      {
+        "maximumTargets": 3,
+        "minimumChargeSeconds": 0.4,
+        "fullChargeSeconds": 1.4,
+        "minimumChargeMultiplier": 0.3,
+        "style": 4,
+        "damage": 2600,
+        "downPoints": 1800,
+        "range": 4.2,
+        "halfAngleDegrees": 75,
+        "windupSeconds": 0.18,
+        "recoverySeconds": 0.6,
+        "cooldownSeconds": 0.7,
+        "lungeMeters": 2.8,
+        "boostCost": 25,
+        "moveMultiplier": 0.3,
+        "comboSteps": 1
+      }
+    ],
+    "aimIn3DEnabled": true,
+    "unitHeight": 2.47,
+    "shotOriginHeight": 1.3,
+    "coreHeight": 3.6,
+    "cameraShoulderOffset": 1.05,
+    "traversalEnabled": true,
+    "redLockAssistEnabled": false,
+    "gravity": 24,
+    "jumpSpeed": 11,
+    "jumpBoostCost": 12,
+    "airControl": 0.95,
+    "maximumStepHeight": 0.25,
+    "playerUnitRadius": 0.8,
+    "lockAcquisitionDegrees": 12,
+    "cameraHeadHeight": 2.2,
+    "cameraCollisionRadius": 0.2,
+    "firstPersonDistance": 1.15,
+    "equipmentRulesEnabled": true,
+    "jumpHoldGravityMultiplier": 0.35,
+    "jumpHoldDrainPerSecond": 25,
+    "initialGauge": 30000,
+    "baseCounterFireDamage": 1400,
+    "baseGaugeDamageFactor": 0.08,
+    "botLineCombatEnabled": true,
+    "botPreferredRangeFraction": 0.9,
+    "botStrafeFraction": 0.3,
+    "botRetreatHealthFraction": 0.35,
+    "botAssaultModulo": 6,
+    "unitGaugeLossPerCost": 0.03,
+    "botCentralApproachEnabled": true,
+    "weaponSpreadEnabled": true,
+    "baseCounterFireRadius": 20,
+    "botLockRetreatEnabled": true,
+    "botRecoveryHealthFraction": 1,
+    "botRecoveryShieldFraction": 1,
+    "botRecoveryQuietSeconds": 2.5,
+    "botCoverSearchRadius": 55,
+    "lockWarningPrototypeNotes": "LOCK-07仮値: 敵の明示ロックを黄射程/LOS/機体IDで検証し自己警告のみ共有。HP/盾の実被害を伴う被ロック被弾でBOT退避を継続。55m内の公開地形の遮蔽＋有限ポッド、無ければ共通本拠点補給。HP/盾100%かつ2.5秒無被弾で復帰し、再被ロック被弾で再退避。ロックだけでBOTを永続拘束しない。人間は警告のみで移動を強制しない。ユーザー指示に基づく試作調整。 被弾元を実ロック保持者へ結び付け、別攻撃者/拠点反撃/古い出撃の飛翔弾を誤認しない。飛翔弾の所有者情報は内部判定専用でBOTへ渡さない。",
+    "homeHealthPerSecond": 400,
+    "homeShieldPerSecond": 180,
+    "botFlankOuterOffset": 32,
+    "botFlankIngressDistance": 60,
+    "botLockEvadeEnabled": true,
+    "botLockEvadeStrafeFraction": 0.6,
+    "botLockEvadePeriodSeconds": 0.28,
+    "botProjectileLeadFraction": 0.65,
+    "sharedLockHealthSeconds": 1.7,
+    "radarScanSeconds": 0.5,
+    "radarContactSeconds": 0.75,
+    "boostOverheatEnabled": true,
+    "boostOverheatRecoveryPerSecond": 20,
+    "seamlessMeleeEnabled": true,
+    "meleeHitRecoveryMultiplier": 0.5,
+    "meleeHitBoostRefundFraction": 0.5,
+    "normalMeleeBypassesDisabledEnabled": true,
+    "meleeVerticalToleranceMeters": 4,
+    "aerialBoostEnabled": true,
+    "aerialAscentSpeed": 6,
+    "aerialAscentAcceleration": 24,
+    "aerialMaximumRise": 10,
+    "aerialGlideFallSpeed": 2.5,
+    "aerialControlAcceleration": 70,
+    "botAerialManeuversEnabled": true,
+    "botAerialBurstSeconds": 0.65,
+    "botAerialIntervalSeconds": 6.5,
+    "settingsMinimumSensitivity": 0.01,
+    "settingsMaximumSensitivity": 1,
+    "botPerceptionEnabled": true,
+    "botVisualRange": 180,
+    "botVisualDegrees": 110,
+    "botVerticalVisualDegrees": 90,
+    "botScanSeconds": 0.22,
+    "botReactionSeconds": 0.5,
+    "botReactionJitterSeconds": 0.35,
+    "botViewTurnDegreesPerSecond": 110,
+    "strategy": {
+      "enabled": true,
+      "initialPoints": 150,
+      "maximumPoints": 1000,
+      "pointsPerLoss": 25,
+      "nuclear": {
+        "cost": 600,
+        "cooldownSeconds": 90,
+        "delaySeconds": 3,
+        "durationSeconds": 2,
+        "radius": 34,
+        "unitDamage": 6500,
+        "coreDamage": 4500
+      },
+      "jammer": {
+        "cost": 150,
+        "cooldownSeconds": 35,
+        "delaySeconds": 3,
+        "durationSeconds": 45,
+        "radius": 100,
+        "unitDamage": 0,
+        "coreDamage": 0
+      },
+      "wideRadar": {
+        "cost": 100,
+        "cooldownSeconds": 30,
+        "delaySeconds": 2,
+        "durationSeconds": 25,
+        "radius": 140,
+        "unitDamage": 0,
+        "coreDamage": 0
+      },
+      "nuclearDeploymentRadius": 24,
+      "nuclearPickupRadius": 3,
+      "nuclearHealth": 2400,
+      "nuclearLifetimeSeconds": 600
+    },
+    "emergencyReturnEnabled": true,
+    "emergencyReturnSeconds": 6,
+    "returnHealthPerSecond": 1200,
+    "returnShieldPerSecond": 600,
+    "returnAmmoPerSecond": 30,
+    "mainBaseDurabilityEnabled": true,
+    "mainBaseHealth": 20000,
+    "mainBaseDestructionGaugeLoss": 8000,
+    "baseCollisionEnabled": true,
+    "botBehavior": {
+      "enabled": true,
+      "radarFraction": 0.04,
+      "interceptorFraction": 0.08,
+      "frontlineMapReaderFraction": 0.35,
+      "mapThinkSeconds": 1.5,
+      "mapReactionSeconds": 0.8,
+      "defenseRadius": 170,
+      "mapInterestRadius": 180,
+      "radarMinimumIntervalSeconds": 45,
+      "seed": 7321,
+      "smartObjectivesEnabled": true,
+      "squadTacticsEnabled": true,
+      "squadsPerTeam": 2,
+      "squadSize": 4,
+      "maximumRespondersPerContact": 2,
+      "objectiveCommitSeconds": 8,
+      "squadRallyDistance": 36
+    },
+    "crouchEnabled": true,
+    "crouchBoostRecoveryMultiplier": 2,
+    "botStuckRecoveryEnabled": true,
+    "botStuckWatchSeconds": 2,
+    "botStuckMinimumProgress": 0.3,
+    "botStuckAvoidSeconds": 1.2,
+    "botStuckAvoidAttempts": 2
+  },
+  "combatPrototypeNotes": {
+    "status": "PROTOTYPE_ONLY",
+    "firepower": "Current user-scale ranged damage36/125/400/750/38-per-tick/500-direct and210bazooka splash. Standard2400HP/900shield; heavy3600HP. Complete ranges,spread and speed are in weapon definitions; provisional values, not official historic MSGO numbers.",
+    "downPoints": "Unblocked hits accumulate DP. Standard resistance600, reinforced arms+75 each; stagger at1x, knockdown at1.8x. Each threshold interrupts once per accumulation window; DP fully resets after1.5s without an unblocked hit (SA0.65s: one miss gives1.3s, two misses1.95s). Bazooka direct800 exceeds all currently authored frame thresholds; splash300 falls with distance and does not guarantee stagger.",
+    "shield": "Shield900 guards idle frontal direct fire +/-60deg with.35s recovery. Proportional DP absorption. Sides/rear/melee/splash/base area bypass. Friendly supply/pods restore shield.",
+    "melee": "Current manual equipped attacks normal950/900DP, combo400/450DP x3, dash1500/1400DP, dash combo850/800DP x2, full charge2600/1800DP. Existing windup/boost/recovery apply. Shift+normal/combo selects dash; Q style and E shortcut. No automatic counter.",
+    "cost": "Sustained DPS includes reload/charge/beam downtime. Added coefficients DP/sec0.035, resistance/point0.015, blast radius/metre2; provisional, not final tuning. Reload overlaps shot recovery; the final shot interval is not double-counted. Cadence estimator uses authored seconds; simulation intervals round upward to fixed ticks.",
+    "aim": "AIM-06 supersedes homing: broad circle + center cross, manual free camera, one-time red manual-acquisition snap, straight locked shots/no spread, moving targets require lead. Physical > yellow > red; torso diamond and distance; outer ring communicates stationary hit confidence."
+  },
+  "fieldAndLockPrototypeNotes": {
+    "status": "PROTOTYPE_ONLY",
+    "balance": "FIELD-04 small-number balance is superseded by linePrototypeNotes and aimPrototypeNotes. Keep legacy p0Simulation separate; playable overrides are authoritative.",
+    "lock": "AIM-06 supersedes FIELD-04 homing. See aimPrototypeNotes; playable redLockAssistEnabled=false. Yellow lock only removes spread, with no aim-follow or projectile guidance.",
+    "traversal": "Space jump/hold, Shift boost. Central raised plaza2m, ledges3.6/5.4m, towers/walls8m, entry ramps and side corridors;67 solid boxes. Foot support and camera/shot occlusion use the same shapes. Raised-relay spawn and world markers follow the surface.",
+    "camera": "Sphere sweep radius.2 from head2.2m to intended shoulder camera. Push inward before the wall; if available distance<=1.15m switch to head first-person, hide only the local body/equipment, restore third-person beyond1.55m. No camera can pass through solid cover."
+  },
+  "equipmentPrototypeNotes": {
+    "status": "PROTOTYPE_ONLY",
+    "slots": "Three freely chosen equipment slots; direct menu picker for all10 items, wheel/1-3 switching. Empty gaps compact on edit so labels match hotkeys. LMB use, RMB lock, Space jump, Shift dash, Q melee style, E manual shortcut only with blade equipped.",
+    "resources": "Per-slot ammo/magazine/reload/recovery persist; switching cancels charge/beam. Repair pod240HP/s and96shield/s in8m for12s,1per owner,no ammo/DP. Mine700area/800DP before falloff,3per owner,30s. Grenade350direct/300splash,20m/s,gravity18,fuse2s. Ground placement requires a support surface; invalid placement spends no charge.",
+    "capacity": "Weight145/energy135/3hardpoints; all equipment capacity/cost counts. Best performance full +35% reserve. Cost numeric scale normalized for2400+HP and900+melee, CT10+.10cost+.0003cost². See actual-catalog report for current starter costs/CT.",
+    "reference": "User directs system decisions toward MSGO. Official legacy site search did not return a working manual; unverified historical details are not labelled officially confirmed. Explicit user requirements and MechaBattle MasterPlan constraints take priority."
+  },
+  "linePrototypeNotes": {
+    "status": "PROTOTYPE_ONLY",
+    "source": "2026-10-16 user reports frontline collapses into immediate wipes despite working controls.",
+    "durability": "User specified minimum2000HP and customized3000+. Standard frame2400HP/900shield; reinforced arms+600 each ->3000/3600HP. Human/BOT share these values and no hidden damage reduction.",
+    "frontline": "Visible-contact-only BOT adapter: five out of six controllers maintain weapon-dependent stand-off distance with 30% lateral movement; one out of six keeps objective pressure. Dedicated assault BOTs may enter melee at5.8m, rifle BOTs only commit within3m. Below35%HP stop firing and boost backwards, allowing the same idle frontal shield to protect withdrawal; repair pod is selected only without a currently visible contact. No new enemy world-truth access or hidden buffs.",
+    "rotation": "Numerical HP/weapon scale is normalized in cost coefficients (HP.01, shield.007, DPS.04, DP/s.0175) rather than producing ten-minute CT from the old small-number coefficients. CT10+.10*cost+.0003*cost² stays convex. Playable unit gauge.03/core.75; base return fire1680 equals70% of standard2400HP, legacyP0 remains70.",
+    "support": "Repair pod240HP/s and96shield/s (12s, finite charges); no ammo/DP refill.",
+    "acceptance": "Record per-team live populations, life and engaged-life durations, CT waiting and core/kill gauge damage during the actual100BOT test. Headless numbers do not certify UI feel, motion appearance or FPS.",
+    "melee": "User minimums honored: normal950/900DP, combo400/450DP x3, dash1500/1400DP, dash combo850/800DP x2, full charge2600/1800DP. Melee bypasses shields and uses existing risk/windup/boost/recovery; charge can destroy an undamaged standard but not a full heavy frame.",
+    "shooting": "Ranged damage is expressed at the same new scale: FA36/.22s, SA125/.65s, single400, full charge750, beam38/.1s, bazooka500 direct/210splash. Non-beam bullet speeds70/110/65/140/45m/s improve visible travel time; gravity grenade20m/s remains. DP reset cadence unchanged. Visual tracers/impact feedback are required so incoming fire can be read.",
+    "controls": "Explicit 2026-10-16 user override: Space jump/hold, Shift boost/dash. Shift+normal/combo melee selects its dash form.",
+    "field": "Central raised main battlefield, multiple platform heights and short cover. Most BOTs route via central relay/base; a small static role subset may use side corridors for flanking. Only public map/capture ownership and bounded visible contact enter the controller.",
+    "baseDefense": "BuildingRadius20 already governs real counter-fire and core access. Align fallback baseCounterFireRadius70->20 for maps without an authored building; current standard-map real radius stays20. Damage1680=70% of standardHP2400, interval5s. LegacyP0 retains Claude70 fallback/70damage.",
+    "homeSupply": "Playable HP400/shield180 per second replaces legacy30/40 only for current2400-3600HP/900shield scale. Standard full HP6s, reinforced9s; both humans/BOTs use the same supply radius and ammo/cooldown rules. P0 retained.",
+    "flanking": "Six of fifty use side lanes: four raiders and two relay roles. Blue raids north/holds south, Orange raids south/holds north. Raiders stage at Z=+/-112 (inner80+outerOffset32) in their own rear, pass the known outer walls, then enter toward the enemy building after X=+/-140 (baseX200-ingress60). Two relay roles use inner80; main44 follow central objectives. Public geometry only; lock-hit still forces retreat.",
+    "outerCover": "LOCK-07 actual100BOT exposed raiders at the central break of outer96m walls. Add two bridge walls at Z+/-96/X0 and two flanking cover blocks at Z+/-112/X0.71 shared solids total. Inner relay entrances at64m remain open; outer raiders must circle a cover and enter at enemy wall ends. Same LOS/projectile/movement rules for all.",
+    "lockEvasion": "LOCK-07 explicit pre-hit reaction: an own incoming-lock warning causes short0.28s alternating lateral input0.6 and shared boost above15, based only on current movement or already visible contact. No unseen attacker bearing. A real locked hit still latches withdrawal; this does not make shots homing, alter hitboxes or grant immunity.",
+    "finalApproach": "Measured raiders were caught39-49m before cores by adjacent central-lane fire. Four6m-high screens at X+/-166/Z+/-40 (width76) separate the last flank approach from central-lane sight. Eight gate posts at X+/-150 surround6m-wide passages centered at Z+/-80. Shared83-box map; no damage immunity or hidden-unit knowledge. Normal central objective paths pass the screen ends naturally, inner flank passages remain walkable.",
+    "baseGaugeBalance": "High-HP melee950+ scaled against old coreFactor3 caused first flank wave to end a100BOT battle at38.86s. Use factor0.5: one normal core melee950 costs475 gauge versus roughly11 for a unit kill, so core remains primary without a single early group consuming30000 immediately. Human/BOT equal; prototype TBD.",
+    "roleDeployment": "Only BOT flank roles choose a public home base nearest their assigned80m lane. This removes the Blue north raiders160m extra initial crossing caused by all local%9 slots originally mapping to southern spawns. Humans keep their own chosen spawn; captured relay rules unchanged."
+  },
+  "aimPrototypeNotes": {
+    "status": "PROTOTYPE_ONLY",
+    "source": "Explicit 2026-10-16 user revision supersedes continuous red-lock homing.",
+    "rules": "Physical range > yellow lock > red lock per gun. Hip fire has small deterministic disk spread around manual aim; a valid explicit weapon lock removes spread only. Red manual acquisition gets one brief camera correction, then aiming stays free. Projectiles do not home and do not continuously auto-aim, including inside red. The original optional guidance remains solely for legacy regression fixtures, disabled in playable configuration.",
+    "ranges": "FA220/140/55m at90m/s; SA300/200/70 at120; single260/160/50 at70; charge340/210/65 at140; beam150/100/35 instant; bazooka260/150/45 at50. Long-range lateral movement evades unled shots.",
+    "ui": "Broad circular reticle plus center cross; target diamond on torso with distance. Ring turns green only when the current aim and spread cone can hit a stationary target, amber for centered but uncertain spread. No promise for a moving target or a newly blocking wall/shield.",
+    "objectives": "Playable core gauge coefficient3 versus unit-cost loss.03 keeps rare successful flanks valuable during a long central exchange; actual match metrics will be checked.",
+    "botLead": "Playable BOTs use65% of the simple lead inferred only from consecutive visible samples. This keeps close range meaningful while making long-range strafing/dash evade straight projectiles, as requested. Legacy0 retains full prediction for regression. No hidden target velocity, homing, hitbox changes or human aim changes."
+  },
+  "supportPrototypeNotes": {
+    "status": "TBD tuning; explicit user support split, not claimed historical MSGO values",
+    "repairFA": "HP-only allied aimed FA: 45HP/0.15s (300HP/s theoretical; 50Hz rounds to 0.16s), range65m, 30/180 rounds, reload2s. No enemy healing, shield/DP reset or revival. Home HP400/s is faster.",
+    "pod": "40HP/s, shield160/s, reserve ammo6/s per eligible weapon, 8m/180s, 3 charges, one per owner; same LOS, timing and resource rules for all controllers. Home shield180/s, ammo15/s is faster.",
+    "resupply": "RepairPod and Radar have ammoResupplyDisabled=true, including holstered equipment and home supply. No replenishment loops. Other equipment remains configurable.",
+    "radar": "90m 3D radius,900s lifetime,2 non-resuppliable charges,1 per owner; map-only team reports through cover every0.5s, age limit0.75s. Does not grant HP, a lock or BOT aim through cover.",
+    "teamLock": "Valid explicit enemy locks share last observed position+HP with the same team, refreshed each simulation tick. Remain for1.7s after last valid lock; expired/lost/dead/new UnitId cannot inherit contact. Head bars require own line of sight and screen projection; map shows shared last known position.",
+    "feedback": "Hit and kill feedback comes from actual resolved HP/shield damage, with spawn identity attribution. Lethal tick credit uses largest actual HP contribution (environment can win); no damage or credit created by presentation."
+  },
+  "boostMeleePrototypeNotes": {
+    "status": "Latest user overrides prior 900+ normal melee request; provisional timing",
+    "boost": "Move drain35->17.5/s, normal grounded recovery20->100/s. Jump initial12/hold25 unchanged. Every spend at zero enters overheat; recovery20/s while grounded, unlock only at100. Dash/jump/air hold/boost-cost melee disabled during overheat; walking, normal melee and falling remain. Same state for human/BOT.",
+    "melee": "Normal950->760 (80%), D格=normal*3=2280. Normal windup0.06/recovery0.14/cooldown0.15; D格0.12/0.22/0.20: explicit post-hit0.22s plus0.20 cooldown. Combo/charge styles retain their individual values. Boost+movement converts any single melee style to D格, combo to dash-combo; boost key without movement does not convert. Already committed melee retains its style.",
+    "motion": "Playable lunge is integrated over windup instead of instantaneous5m teleport, shared collision/LOS. Attack visuals blend limbs through windup/contact/recovery and locomotion; no automated enemy targeting."
+  },
+  "objectLockPrototypeNotes": {
+    "status": "TBD user-directed support persistence and object targeting; not claimed original MSGO values",
+    "lifetimes": "RepairPod12->180s; Radar45->900s (20x; user says10x is still short). Mine30s unchanged. Charges/resupply-disabled/owner limits unchanged.",
+    "durability": "RepairPod1800HP / Radar900HP / Mine450HP. Authored utilityHealth>0 enables damage and enemy locking; zero retains legacy non-targetable fixtures. Weapon damage, blast LOS/falloff, friendly safety and melee LOS are shared. Shooting a mine before its trigger resolves destroys it without detonation.",
+    "identity": "Monotonic placement ID separate from100 controller slots. A destroyed/expired/replaced object cannot lend a lock or damage to its replacement in the same array slot.",
+    "selection": "Settings: ReticleCenter (default) or NearestCycle. Range/LOS/camera-frustum filtered enemy units are always selected before enemy equipment, regardless of equipment distance. Center mode ranks angle then distance; cycle mode orders distance then angle/index and wraps. RMB acquire/release retained, Tab acquire/next. Object lock gives precision only, never homing; red acquisition snaps once.",
+    "settings": "Main menu / deployment prep / Pause switch control mode, saved independently at mechabattle-controls-v1.json to avoid changing decks. No settings writes in persistence-disabled tests."
+  },
+  "weaponBalance10Notes": "Claudeから作業表で受領したユーザー指定の試作調整: 継続ビームDP20->13（威力38維持）、チャージ満充填750->880（DP650維持）、SA125->138（DP150維持）、FA36/28据え置き。公式値とは称さない。",
+  "supportLock12Notes": {
+    "status": "PROTOTYPE_ONLY; latest user ally-health/support-lock/melee requests; Claude relayed globally approved HP reduction",
+    "friendlyHealth": "All living visible allies except self show current HP without requiring a lock. Local LOS and viewport gate presentation. CanvasGroup alpha0.5 applies to bar and label; enemy shared HP still expires1.7s after last hostile lock and is not exposed by allied locks.",
+    "eligibility": "Current spawned build must carry RepairGun or RepairPod in one of its three slots. Holstered or empty support equipment still counts; equipment only in another deck slot does not. Friendly lock range is maximum recovery-weapon yellow range (or physical range for legacy equipment): repairFA60m, pod8m. Self/dead/occluded/out-of-range are invalid.",
+    "selection": "RepairFA selected: allies only, center/nearest-cycle unchanged. Other selected equipment: eligible allies and enemies participate in the same unit-level ordering; deployables remain the lower priority category. Switching weapon preserves a valid allied lock while the current build still carries support gear.",
+    "aim": "RepairFA physical65m > yellow60m > red25m. Friendly red acquisition snaps only once and then remains manual. Friendly lock while holding an offensive weapon does not remove its spread or grant enemy red homing. Friendly lock never increments incoming hostile locks or enemy team contacts."
+  },
+  "melee12Notes": {
+    "status": "PROTOTYPE_ONLY; user asked for a little less post-hit recovery",
+    "recovery": "Normal0.14->0.10, combo0.24->0.18, dash0.22->0.16, dash-combo0.33->0.24, charge0.80->0.60 seconds. Windup/damage/DP/boost/cooldown unchanged; dash and dash-combo retain at least0.1s explicit post-hit lockout.",
+    "construction": "Normal cadence0.06 windup+0.10 recovery+0.15 additional cooldown=0.31s authored (50Hz quantizes total to0.32s). Set melee catalog interval and legacy Playable interval0.31 so construction cost accounts for the faster normal attack.",
+    "confirmedHit": "Latest follow-up: only actual enemy unit HP/shield damage, enemy deployable HP damage, or a valid core hit triggers recovery*0.5 and refund50% of that strike boost cost, once per strike even against multiple targets. Misses/walls/friendlies/stale replaced objects/ranged hits give no benefit. D格0.16->0.08s on hit is the latest conditional override to the earlier0.1s minimum; normal0.10->0.05 authored rounds to0.06 at50Hz. Additional cooldown, windup, damage and DP unchanged. Existing OH remains latched until full, even after refund. Animation uses effective recovery."
+  },
+  "hp12Notes": {
+    "status": "PROTOTYPE_ONLY; Claude WORK_BOARD relayed user confirmation that HP should be reduced globally including the player build",
+    "frames": "Standard2400->2000 (user minimum), heavy3200->2650, reinforced arms+600 each unchanged: standard double-reinforced3200 >=3000, heavy double-reinforced3850. Both teams and all controllers use the same resolved loadouts; no enemy-only health multiplier.",
+    "baseDefense": "Playable counterfire1680->1400 to retain70% of new standard2000HP. Shield/DP/speed/ranged damage unchanged. Legacy P0 unchanged."
+  },
+  "aerial15Notes": {
+    "status": "PROTOTYPE_ONLY, user requested more three-dimensional movement; not verified official MSGO values",
+    "input": "Space tap jumps; hold/re-press Space boosts upward and holds the 10m-above-takeoff ceiling; Shift+movement without Space glides downward at 2.5m/s; release both for gravity descent",
+    "resource": "Takeoff12, ascent/hover25/s plus horizontal dash17.5/s; no recovery aloft; empty fuel latches overheat; human130/BOT100 preserved; no extra jump impulse in midair",
+    "motion": "Rise6m/s with24m/s2 braking, airborne horizontal acceleration70m/s2 and speed factor0.95; collision-clipped velocity prevents wall push; respawn resets origin/velocity",
+    "bots": "Public-terrain climbability extends to85% of the same10m rise limit; one in five ranged BOTs makes a0.65s visible-contact ascent every6.5s with>=65% boost and sufficient health, never while retreating/overheated/disrupted; most troops hold the line",
+    "unchanged": "Existing 83-solid map retained; 50vs50+2commander slots/3bases/explicit lock/free aim/finite resources remain; larger-map UI and arm-charge tasks remain Claude tasks"
+  },
+  "settings17Notes": {
+    "status": "prototype-only-TBD",
+    "sensitivityRangeReason": "設定UIは0.01〜1.00度/マウスdeltaを暫定範囲とする。既定mouseSensitivity=0.12は維持。実際のDPI/画面での調整余地は未実機。",
+    "audio": "既存AudioListener.volumeを起動時の既定として保持し、ユーザー適用後は0〜1の全体音量。",
+    "quality": "実際のQualitySettings.namesから選択。品質の追加やURPアセットの再構成はしない。保存名を優先し品質リスト再順序にも対応。"
+  },
+  "content22Notes": {
+    "status": "PROTOTYPE_ONLY",
+    "source": "User requested map, frame and appearance expansion; UserText modular construction concept",
+    "frames": "Light: HP2000/shield600/speed14/DP550, lower shield/DP and no cannon/bazooka/continuous beam in exchange for mobility; support: HP2300/shield950/speed10.5/DP650, higher energy capacity155 for ranged/support inventory. These are provisional original-game values, not verified official Gundam Online statistics.",
+    "arms": "Mobile pair: weight6/energy8/cost15 each, shield-50/speed+0.4/DP-25 each; HP unchanged and same standard-arm charge pattern. Weight/energy/hardpoints remain evaluated by the shared construction rules.",
+    "maps": "Three selectable fields: existing480x280 standard;560x320 terraced industrial field;640x360 canyon field. Each has3 bases per team and3 relays, a main center line and optional north/south routes, high platforms reachable with shared aerial movement. New layout/cover/height values are provisional for playtesting.",
+    "appearance": "Neutral follows team colors; White/Sand/Olive/Graphite are cosmetic hull paints. Team sensor/chest lights stay blue/orange so paint cannot erase the team identifier. No stat/cost differences.",
+    "sourceAndAssets": "config map JSON plus config/map-catalog.json are implementation sources; scripts/content/sync-map-catalog.mjs generates Resources JSON. UserText and MasterPlan are not edited."
+  },
+  "strategy23Notes": {
+    "status": "PROTOTYPE_ONLY",
+    "source": "User request 2026-10-17; FR-601/602/603/705/707/802",
+    "reason": "前線以外からの単独侵入を360度即時索敵で潰さない。視認180m/水平110度/上下90度、0.22秒分散走査、認識0.5〜0.85秒、視線旋回110度/秒。マップ共有接触は既知位置へ振向く手掛かりだけ、射撃は実視認後。人間にもミニマップの自機目視を射界/LOSで制約。",
+    "economy": "陣営共有150開始/1000上限、味方1機の撃破確定ごと25補充。試合ごとリセット。核600/妨害150/広域レーダー100。TBDの試作値で当時公式の確認済み調整値ではない。",
+    "weapons": "M戦術マップで選択→地点→発動。核は12秒の両軍警告後34m球内へ敵味方同率6500、両軍本拠点4500、設置物にも損害。遮蔽物を貫通する領域攻撃で占領フラグを直接変更しない。設置運搬は今回マップ指定の予告型試作で、機体運搬は後続。同種は各軍1つ、同種CT90/35/30秒。",
+    "jammer": "指定地点から半径100m/45秒、敵のレーダーと共有マップ接触を抑制。直接の目視・照準・味方位置には干渉しない。広域レーダーは半径140m/25秒、位置のみを通常の短期TTLへ供給。",
+    "urbanMap": "urban-overpass: 独立の街区配置、開口のある複数階、屋上、歩廊、階段。建物は床・壁・柱を別のAABBにし、視線/移動の空間を残す。各軍3本拠点と中央主戦場・裏路地を維持。"
+  },
+  "carry24Notes": {
+    "status": "PROTOTYPE_ONLY",
+    "source": "User request 2026-10-17; FR-301/304/601/602/603/604",
+    "nuclear": "核の地図直撃を廃止。自軍本拠点の24m以内に耐久2400/寿命600秒のオブジェクトを要請、Fで3m以内・LOS内の味方が拾得/手放し。運搬中は武器/盾/帰投を使えず、通常の機動/燃料/被弾制約。被撃破/転倒で落下、敵は核を射撃/格闘等で破壊可能。地上で左クリックを新しく押すとその位置で起動、3秒予告後に従来34m/6500機体損害/4500拠点損害（両軍）を1回。起動前の敵運搬位置を全軍へ自動公開しない。",
+    "emergencyReturn": "Bで6秒の地上待機帰投。移動/ジャンプ/ダッシュ/攻撃/装備切替/被弾/行動阻害/再Bで中断。完了は非撃破・ゲージ/撃破数/戦略pt/CTを変えず同じ機体を待機へ。待機中はHP1200/盾600/補給可能弾30毎秒で補給し、禁止弾は回復しない。現在の同じ機体だけを有効な自軍本拠点/確保中継へ再配置。核の運搬中は帰投不可。",
+    "tuning": "速度/範囲/秒数/耐久は原作公式の確認済み数値ではなく試作TBD。射撃・機体HP・マップ配置は今回変更しない。"
+  },
+  "color25Notes": {
+    "request": "User-2026-10-17: PL用塗装を原色寄りにし、肩/ひざ/頭頂部で陣営を常時判別する。",
+    "palette": "Neutral=陣営カラー、White=白、Sand=鮮やかな黄、Olive=鮮やかな緑、Graphite=黒、Red=赤、Cobalt=青。旧5IDを保持して既存保存を読めるようにする。外観のみ・性能/コストは不変。",
+    "teamMarks": "両肩装甲/補強肩/膝関節/頭頂装甲を既存Signal材質へ割当。青軍RGB(0.04,0.26,1)、橙軍RGB(1,0.36,0.015)、Neutral preview RGB(0.59,0.65,0.70)。選択塗装によらず固定。胴体等の選択色・フレーム暗色は独立。",
+    "rendering": "3材質/既存頂点・三角形数を維持。装甲metallic=0.1、識別面emission係数0.2は原色が白く飛びにくい仮設定。実画面調整は未実施。"
+  },
+  "city26Notes": {
+    "request": "User-2026-10-17: selectable central/terraced removed, ABC/XYZ, finite cores with reduced direct gauge loss + destruction bonus, solid cores and no unrequested aim reversal, original two-storey city with six numbered relays.",
+    "tuning": "Playable core HP20000 / direct gauge factor0.08 (old0.5) / one destruction loss8000. Same health for A/B/C/X/Y/Z; B/Y protected by deeper geometry and forward spawn, never hidden invulnerability. HP/bonus provisional, P0 legacy durability opt-in unchanged.",
+    "height": "Original layered city underground Y0, main street Y16. Objectives/spawns carry their own Y; presence, supply, projectile, melee and camera respect the physical layer. 5/6 entrances connect by continuous stairs to 4/C/Z.",
+    "retiredMaps": "Central industrial and terraced works are removed from playable selection; standard/terraced JSON retained only as historical foundation/regression fixtures, never silently reinserted by an old playable scene."
+  },
+  "yard28Notes": {
+    "status": "PROTOTYPE_ONLY_TBD",
+    "reference": "https://ggame.jp/news/detail.php?id=2184",
+    "request": "Shangri-La-inspired original field, user 2026-10-17. No copied map geometry/assets; the published factory/junkyard/lower-area roles are reference only.",
+    "topology": "reclamation-yard:900x520m. North and central terraceY18, south open-air lowlandY0. Central 18m drops exceed the shared10m aerial rise; two outer120m stepped ramps give a long return. Each ramp has72 rises of0.25m, within existing maximumStepHeight. Six relays and3 finite cores per team; center B/Y approaches are closer than the lower C/Z.",
+    "provisional": "All authored distances, cover and visual colors are original playtest values. Existing health/weapons/boost/DP/core-gauge/strategy rules unchanged. Lower objectives are labelled lowland, the previous layered city stays labelled underground.",
+    "traceAim": "A camera aim point may coincide with the muzzle inside an overlapping target. A finite zero-length segment now returns origin and no hit; NaN/Infinity/invalid range still throw. No exception-swallowing HUD loop or false green hit confirmation."
+  },
+  "bot29Notes": {
+    "status": "PROTOTYPE_ONLY_TBD",
+    "roles": "4% radar support /8% interceptor / remaining frontline. Per-team quotas round the current BOT-only slot count, then assign shuffled slots once per match; human/remote-human slots are excluded. Initial50BOT teams have2 radar/4 defender/44 frontline;35% of frontline read the shared map.",
+    "intel": "Map readers turn/search and choose movement from bounded current team reports only. Think1.2-1.8s with staggered phase, at least0.8s report recognition. Reports never become a firing aim point; visual FOV/LOS/reaction remain mandatory. Interceptors prioritize reported enemies within170m of a live own core; ordinary map readers consider reports within180m.",
+    "radar": "Existing legal support preset has carbine/HP repair FA/radar. Radar roles receive that preset in all deck entries, preserving real cost/CT/fuel/ammo and never replenishing prohibited radar ammo. Placement seeks an own-side public route behind the front, avoids existing allied coverage, uses one-grounded-click and keeps a live own radar. Replacements have45s minimum interval; radar role returns to normal fighting after placement.",
+    "settings": "Settings sliders persist three ratios in optional schema1 fields. Missing legacy fields use defaults. Role fractions share100%, remaining slots are frontline. In-match changes affect only the next match; visual/audio settings retain their existing behavior. All values are original tuning, not claimed official MSGO values."
+  },
+  "deploy30Notes": {
+    "source": "User-2026-10-17 explicit concurrent per-player limits",
+    "limits": "Radar3 / RepairPod3 / Mine5 per controller slot, aggregated across equipped copies, deck changes and respawns. Replace the oldest still-active item of the same kind after a successful placement at the limit.",
+    "inventory": "Radar ammo2->3 and Mine4->5 so each deployment can fill its limit; RepairPod ammo3 is unchanged. Existing magazine/reload/lifetime/health/repair/radar values and ammo-resupply restrictions remain.",
+    "capacity": "1102 entries = 100 controller slots * (3 radar + 3 pod + 5 mine) + 2 team nuclear objects. Presentation and object-damage buffers use the same capacity. Performance is not measured by this change."
+  },
+  "stuck31Notes": {
+    "status": "PROTOTYPE_ONLY_TBD; user requested coordinate-based BOT recovery and crouching",
+    "stuck": "Compare actual self 3D displacement against the last issued nonzero movement, excluding intentional waits, melee/disruption and return. Observe about2s; try two terrain-aware side escapes of1.2s then request ordinary grounded emergency return. Timings are provisional and staggered, not official MSGO values.",
+    "return": "A BOT holds still during the normal interruptible channel, refills with existing reserve supply, and redeploys the same frame at another live public home base. No free HP/ammo/fuel, cooldown or controller ownership bypass.",
+    "crouch": "Hold left Ctrl while grounded and still; moving/jumping/boosting/melee/disruption releases the pose. Return channel automatically crouches. Normal boost recovery100->200/s and overheat20->40/s while crouching; no air regeneration or early OH release. Existing collision dimensions/weapon power remain."
+  },
+  "tactics32Notes": {
+    "status": "PROTOTYPE_VALUES_ONLY",
+    "reason": "User requested special paint only for squad leaders and smarter AI on both teams. Same existing 2x4 squad layout per team; fixed first slot leads and alone uses saved paint. Ordinary battle units use standard faction armor; saved garage appearance unchanged.",
+    "tactics": "Public relay objectives shared within a squad, maximum 2 second assembly wait, 8 second objective commitment, 36m regroup threshold and allied crowding/assignment penalties. Public coordination is distinct from the configurable shared-intel reader fraction. At most 2 interceptor BOTs per nearby 24m/6m-height report cluster; other defenders patrol separate living home bases. Defaults are provisional, not historical official values.",
+    "radar": "Rare support BOTs may spread their existing finite radar charges up to the same 3-per-owner cap, at the existing minimum interval and uncovered legal terrain. No free ammo or hidden contacts.",
+    "constraints": "No new visual range, FOV, LOS, reaction, turn rate, enemy truth, resource, CT or player-control privileges. Nuclear carrying automation and full commander operations are not part of this step."
   }
 }

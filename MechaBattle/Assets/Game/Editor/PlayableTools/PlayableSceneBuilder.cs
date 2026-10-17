@@ -28,7 +28,7 @@ namespace MechaBattle.EditorTools
             var config = JsonUtility.FromJson<PlayableConfiguration>(configText);
             config.playablePrototype.Apply(config.p0Simulation);
             DeckConstruction.CreateDefault(config.constructionPrototype.catalog, config.playablePrototype.starterDeckSlots);
-            var mapText = File.ReadAllText(Path.Combine(Project, "config/standard-map.json"));
+            var mapText = File.ReadAllText(Path.Combine(Project, "config/canyon-cross-map.json"));
             MapValidator.ThrowIfInvalid(JsonUtility.FromJson<MapDefinition>(mapText));
             if (Shader.Find("TextMeshPro/Mobile/Distance Field") == null)
             {

@@ -1,0 +1,37 @@
+{
+  "schemaVersion": 1,
+  "entries": [
+    {
+      "id": "canyon-cross",
+      "title": "荒地渓谷",
+      "description": "長い射線を岩棚で遮る広域戦。中央の谷筋と外周の高台。",
+      "resourcePath": "MechaBattleMaps/CanyonCross",
+      "theme": "canyon",
+      "sourceFile": "canyon-cross-map.json"
+    },
+    {
+      "id": "urban-overpass",
+      "title": "立体市街・連絡橋",
+      "description": "建物内の通り抜け、6〜24mの階床・屋上、車道上の連絡橋。中央大通りと裏路地で別の射線を作る。",
+      "resourcePath": "MechaBattleMaps/UrbanOverpass",
+      "theme": "urban",
+      "sourceFile": "urban-overpass-map.json"
+    },
+    {
+      "id": "layered-city",
+      "title": "二層都心・地下回廊",
+      "description": "地上のビル街と折れた地下通路。北1/2/3、地下4、地上入口5/6。後方本拠点は前方出撃。",
+      "resourcePath": "MechaBattleMaps/LayeredCity",
+      "sourceFile": "layered-city-map.json",
+      "theme": "urban"
+    },
+    {
+      "id": "reclamation-yard",
+      "title": "再生工廠・三帯戦線",
+      "description": "北の工場路地、中央の積層ジャンク、18m下の南部低地。中央から飛び降り、外周ランプで帰還。",
+      "resourcePath": "MechaBattleMaps/ReclamationYard",
+      "sourceFile": "reclamation-yard-map.json",
+      "theme": "works"
+    }
+  ]
+}

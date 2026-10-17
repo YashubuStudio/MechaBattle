@@ -1,0 +1,313 @@
+{
+  "taskIds": [
+    "SUPPORT-12",
+    "ALLY-12",
+    "MELEE-12"
+  ],
+  "owner": "GPT",
+  "recordedUtc": "2026-10-16T06:39:07.158Z",
+  "status": "source-implemented-independent-checks-passed-native-acceptance-and-Claude-final-review-pending",
+  "requirements": [
+    "FR-302",
+    "FR-501",
+    "FR-801",
+    "FR-805",
+    "latest-user-allied-hp-and-recovery-equipment-lock",
+    "latest-user-confirmed-melee-half-recovery-and-lower-boost"
+  ],
+  "scope": "not-unity-test-runner-import-play-windows-or-performance-acceptance",
+  "isolationDirectory": "MechaBattle/Build/SUPPORT12_1792131300470",
+  "domain": {
+    "passed": 293,
+    "failed": 0,
+    "exitCode": 0,
+    "sourceCount": 63,
+    "optimization": "optimize+",
+    "framework": ".NET9 with Unity-resolved NUnit",
+    "newFocusedCases": 27,
+    "claudeNewSquadCases": 6,
+    "report": "MechaBattle/Build/SUPPORT12_1792131300470/Build/Reports/domain-smoke.json",
+    "log": "MechaBattle/Build/SUPPORT12_1792131300470/domain-run.log"
+  },
+  "staticApi": {
+    "assemblyCount": 18,
+    "exitCode": 0,
+    "assemblies": [
+      {
+        "assembly": "Game.Contracts",
+        "status": "compiled",
+        "sourceCount": 4
+      },
+      {
+        "assembly": "Game.Observation.Contracts",
+        "status": "compiled",
+        "sourceCount": 2
+      },
+      {
+        "assembly": "Game.AI.Squads",
+        "status": "compiled",
+        "sourceCount": 1
+      },
+      {
+        "assembly": "Game.Battlefield",
+        "status": "compiled",
+        "sourceCount": 2
+      },
+      {
+        "assembly": "Game.Construction.Contracts",
+        "status": "compiled",
+        "sourceCount": 2
+      },
+      {
+        "assembly": "Game.Editor.Preparation",
+        "status": "compiled",
+        "sourceCount": 1
+      },
+      {
+        "assembly": "Game.Simulation",
+        "status": "compiled",
+        "sourceCount": 18
+      },
+      {
+        "assembly": "Game.AI.Bots",
+        "status": "compiled",
+        "sourceCount": 1
+      },
+      {
+        "assembly": "Game.Construction",
+        "status": "compiled",
+        "sourceCount": 4
+      },
+      {
+        "assembly": "Game.Editor.ModelTools",
+        "status": "compiled",
+        "sourceCount": 1
+      },
+      {
+        "assembly": "Game.Playable",
+        "status": "compiled",
+        "sourceCount": 13
+      },
+      {
+        "assembly": "Game.Tests.EditMode",
+        "status": "compiled",
+        "sourceCount": 24
+      },
+      {
+        "assembly": "Game.Tests.ModelTools",
+        "status": "compiled",
+        "sourceCount": 1
+      },
+      {
+        "assembly": "Game.UnityAdapters",
+        "status": "compiled",
+        "sourceCount": 3
+      },
+      {
+        "assembly": "Game.Editor.Generators",
+        "status": "compiled",
+        "sourceCount": 1
+      },
+      {
+        "assembly": "Game.Editor.Playable",
+        "status": "compiled",
+        "sourceCount": 2
+      },
+      {
+        "assembly": "Game.Tests.Generators",
+        "status": "compiled",
+        "sourceCount": 1
+      },
+      {
+        "assembly": "Game.Tests.Playable",
+        "status": "compiled",
+        "sourceCount": 2
+      }
+    ],
+    "report": "MechaBattle/Build/SUPPORT12_1792131300470/static-api-compile.json",
+    "log": "MechaBattle/Build/SUPPORT12_1792131300470/compile.log",
+    "warnings": "Existing CS0649 JSON-injected fields"
+  },
+  "constructedBattle": {
+    "scope": "constructed-domain-bot-match-not-ui-player-or-fps-acceptance",
+    "peakAlive": 100,
+    "simulatedSeconds": 424.28,
+    "WinnerTeam": 1,
+    "ShotsFired": 23593,
+    "UnitsDestroyed": 37,
+    "UnitsSpawned": 137,
+    "BaseHits": 95,
+    "BaseCounterShotsFired": 35,
+    "CaptureChanges": 17,
+    "averageAlive": 99.61577260299802,
+    "minBlueAlive": 47,
+    "minOrangeAlive": 47,
+    "bothTeamsAtLeast20Fraction": 1,
+    "completedLives": 37,
+    "meanLifeSeconds": 137.34918611919556,
+    "meanFirstDamageToDeathSeconds": 122.12053781093374,
+    "centralBattlefieldFraction": 0.7644321949312389,
+    "coreGaugeDamage": 43700,
+    "unitGaugeDamage": 500.12999057769775,
+    "blueGauge": 0,
+    "orangeGauge": 16090.350005133078
+  },
+  "catalog": {
+    "presets": 7,
+    "singleCombinations": 48,
+    "tripleCombinations": 6912,
+    "builds": [
+      {
+        "id": "standard-carbine",
+        "cost": 422,
+        "cooldownSeconds": 105.625206,
+        "health": 2000,
+        "speed": 12,
+        "damage": 36,
+        "range": 220
+      },
+      {
+        "id": "reinforced-longrifle",
+        "cost": 477,
+        "cooldownSeconds": 125.9587,
+        "health": 3200,
+        "speed": 11,
+        "damage": 138,
+        "range": 300
+      },
+      {
+        "id": "standard-cannon",
+        "cost": 439,
+        "cooldownSeconds": 111.7163,
+        "health": 2000,
+        "speed": 12,
+        "damage": 400,
+        "range": 260
+      },
+      {
+        "id": "standard-charge",
+        "cost": 451,
+        "cooldownSeconds": 116.1203,
+        "health": 2000,
+        "speed": 12,
+        "damage": 880,
+        "range": 340
+      },
+      {
+        "id": "standard-beam",
+        "cost": 434,
+        "cooldownSeconds": 109.90681,
+        "health": 2000,
+        "speed": 12,
+        "damage": 38,
+        "range": 150
+      },
+      {
+        "id": "standard-bazooka",
+        "cost": 450,
+        "cooldownSeconds": 115.75,
+        "health": 2000,
+        "speed": 12,
+        "damage": 500,
+        "range": 260
+      },
+      {
+        "id": "heavy-cannon",
+        "cost": 502,
+        "cooldownSeconds": 135.80121,
+        "health": 3850,
+        "speed": 8.5,
+        "damage": 400,
+        "range": 260
+      }
+    ]
+  },
+  "audit": {
+    "postVerificationSourceSnapshotFile": "MechaBattle/Build/SUPPORT12_1792131300470/source-sha256.json",
+    "snapshotFileCount": 120,
+    "snapshotRecheckDifferences": [],
+    "domainFilesModifiedAfterCompile": [],
+    "staticFilesModifiedAfterCompile": [],
+    "productionConfigCopiesEqual": true,
+    "isolatedTestConfigEqual": true,
+    "isolatedTestMapEqual": true,
+    "diffCheckExcludes": "**/*.unity existing generated scene",
+    "diffCheck": {
+      "exitCode": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    "newCSharpMetadata": [
+      {
+        "path": "MechaBattle/Assets/Game/Runtime/Simulation/BattleFriendlyLocks.cs.meta",
+        "exists": false
+      },
+      {
+        "path": "MechaBattle/Assets/Game/Runtime/Simulation/BattleHealthDisplay.cs.meta",
+        "exists": false
+      },
+      {
+        "path": "MechaBattle/Assets/Game/Tests/EditMode/FriendlySupportTests.cs.meta",
+        "exists": false
+      },
+      {
+        "path": "MechaBattle/Assets/Game/Tests/EditMode/ConfirmedMeleeTests.cs.meta",
+        "exists": false
+      }
+    ]
+  },
+  "rules": {
+    "friendlyHpOpacity": 0.5,
+    "carriedRecovery": "current deployed build RepairGun or RepairPod, not reserve decks",
+    "repairRangesMeters": {
+      "physical": 65,
+      "yellow": 60,
+      "red": 25
+    },
+    "podFriendlyRangeMeters": 8,
+    "enemyHpRetentionSeconds": 1.7,
+    "meleeRecoverySeconds": {
+      "normal": 0.1,
+      "combo": 0.18,
+      "dash": 0.16,
+      "dashCombo": 0.24,
+      "charge": 0.6
+    },
+    "meleeHitRecoveryMultiplier": 0.5,
+    "meleeHitBoostRefundFraction": 0.5,
+    "confirmedHitOnly": true,
+    "oncePerStrike": true,
+    "overheatStaysLatchedOnRefund": true,
+    "upfrontBoostRequired": true,
+    "standardFrameHp": 2000,
+    "heavyFrameHp": 2650,
+    "reinforcedStandardHp": 3200,
+    "reinforcedHeavyHp": 3850,
+    "playableBaseCounterfireDamage": 1400
+  },
+  "collaboration": {
+    "channel": "docs/WORK_BOARD.md and docs/reviews",
+    "received": "Claude UI11 independent approval; user-confirmed HP adjustment; D-melee report hypothesis; new squad data and six tests",
+    "support12FinalReview": "not received",
+    "squadReview": "docs/reviews/GPT_SQUAD12_REVIEW.md: overflow, mutable array, human exclusion wording unresolved; no GPT squad source edits",
+    "sourceListIntegration": "Both agents added AI/Squads concurrently; GPT removed duplicate glob"
+  },
+  "nativeAcceptance": {
+    "unitTestRunner": "not run",
+    "newIntegrationAssertions": "PlayableFlowTests: real support loadout -> ally lock -> alpha/label/nonraycast HUD -> return",
+    "editorImport": "not verified",
+    "gameViewHudLockAndMotion": "not run by GPT",
+    "windowsBuildAndLaunch": "not run",
+    "fpsAndGc": "not measured",
+    "reason": "Known Unity discovery descriptor access denied across OS users; no privilege bypass or second Editor launch"
+  },
+  "preserved": [
+    "UserText read-only",
+    "canonical specs unchanged",
+    "Scene/Prefab/SO YAML not edited",
+    "Git index and prior changes preserved",
+    "Editor unsaved state not changed",
+    "Observation and bot source ownership retained"
+  ],
+  "handoff": "docs/reviews/GPT_SUPPORT12_HANDOFF.md"
+}

@@ -1,0 +1,95 @@
+{
+  "id": "forward-center-skirmish",
+  "prototypeOnly": true,
+  "halfWidth": 720,
+  "halfDepth": 420,
+  "mainBases": [
+    {
+      "id": "Blue-A",
+      "team": 0,
+      "x": -650,
+      "z": -280,
+      "spawnRadius": 12,
+      "attackRadius": 8,
+      "buildingRadius": 20,
+      "approachRoute": "north"
+    },
+    {
+      "id": "Blue-B",
+      "team": 0,
+      "x": -300,
+      "z": 0,
+      "spawnRadius": 12,
+      "attackRadius": 8,
+      "buildingRadius": 20,
+      "approachRoute": "center"
+    },
+    {
+      "id": "Blue-C",
+      "team": 0,
+      "x": -650,
+      "z": 280,
+      "spawnRadius": 12,
+      "attackRadius": 8,
+      "buildingRadius": 20,
+      "approachRoute": "south"
+    },
+    {
+      "id": "Orange-A",
+      "team": 1,
+      "x": 650,
+      "z": -280,
+      "spawnRadius": 12,
+      "attackRadius": 8,
+      "buildingRadius": 20,
+      "approachRoute": "north"
+    },
+    {
+      "id": "Orange-B",
+      "team": 1,
+      "x": 300,
+      "z": 0,
+      "spawnRadius": 12,
+      "attackRadius": 8,
+      "buildingRadius": 20,
+      "approachRoute": "center"
+    },
+    {
+      "id": "Orange-C",
+      "team": 1,
+      "x": 650,
+      "z": 280,
+      "spawnRadius": 12,
+      "attackRadius": 8,
+      "buildingRadius": 20,
+      "approachRoute": "south"
+    }
+  ],
+  "capturePoints": [
+    {
+      "id": "Relay-North",
+      "x": 0,
+      "z": -280,
+      "radius": 18
+    },
+    {
+      "id": "Relay-Center",
+      "x": 0,
+      "z": 0,
+      "radius": 18
+    },
+    {
+      "id": "Relay-South",
+      "x": 0,
+      "z": 280,
+      "radius": 18
+    }
+  ],
+  "obstacles": [],
+  "notes": {
+    "status": "PROTOTYPE_ONLY",
+    "source": "User request 2026-10-16: add map variety, 3x larger bounds, and deliberate lane bias by pushing one lane's bases forward and the others back.",
+    "reason": "halfWidth/halfDepth are roughly 3x config/standard-map.json (240x140 -> 720x420). The center lane's bases sit at x=+-300 (distance ~600 between them), far closer than the north/south lane bases at x=+-650 (distance ~1300). This makes the center a short, fast, contested corridor while the flanks require a long, sustained push - deliberate asymmetry across the 3 lanes, not a uniform map. Base/capture radii are left at the same unit-scale values as standard-map.json (weapon range/move speed are unchanged by map size, so these radii describe unit-to-unit interaction distances, not the battlefield scale). No obstacles authored yet; this map starts simple like the original P0 map did before FIELD-04 added walls, and can gain terrain later as a separate pass.",
+    "stillTodo": "No hand-authored obstacles/cover yet. Not yet wired into any in-game map-selection flow; today map choice is made by pointing the Editor's map TextAsset reference at this file instead of standard-map.json (see docs/MAP_VARIATIONS.md)."
+  }
+}

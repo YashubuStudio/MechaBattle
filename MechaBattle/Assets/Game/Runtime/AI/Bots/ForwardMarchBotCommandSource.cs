@@ -19,11 +19,17 @@ namespace MechaBattle.AI.Bots
     {
         private readonly ISelfObservationSource selfSource;
         private readonly INearbyThreatSensor threatSensor;
+        private readonly ICapturePointStatusSource capturePointSource;
+        private readonly MainBaseDefinition[] publicBases;
+        private readonly bool[] noCoreTarget=new bool[100];
         private readonly float fireRange;
         private readonly int maxAmmo;
         private readonly (float X, float Z)[] homeBySlot = new (float X, float Z)[MatchLimits.TotalControllerSlots];
         private readonly (float X, float Z)[] targetBySlot = new (float X, float Z)[MatchLimits.TotalControllerSlots];
         private readonly float[] targetBuildingRadiusBySlot = new float[MatchLimits.TotalControllerSlots];
+        private readonly int[] relayIndexBySlot = new int[MatchLimits.TotalControllerSlots];
+        private readonly (float X, float Z, float Radius)[] relayBySlot = new (float X, float Z, float Radius)[MatchLimits.TotalControllerSlots];
+        private readonly int[] teamBySlot = new int[MatchLimits.TotalControllerSlots];
         private readonly float homeSupplyRadius;
         private readonly bool[] retreating = new bool[MatchLimits.TotalControllerSlots];
         private readonly uint[] nextSequence = new uint[MatchLimits.TotalControllerSlots];
@@ -38,11 +44,13 @@ namespace MechaBattle.AI.Bots
         }
 
         public ForwardMarchBotCommandSource(MapDefinition map, ISelfObservationSource selfSource,
-            INearbyThreatSensor threatSensor, float fireRange, int maxAmmo, float homeSupplyRadius)
+            INearbyThreatSensor threatSensor, float fireRange, int maxAmmo, float homeSupplyRadius,
+            ICapturePointStatusSource capturePointSource = null)
         {
             if (map == null) throw new ArgumentNullException(nameof(map));
             this.selfSource = selfSource ?? throw new ArgumentNullException(nameof(selfSource));
             this.threatSensor = threatSensor ?? throw new ArgumentNullException(nameof(threatSensor));
+            this.capturePointSource = capturePointSource;publicBases=map.mainBases;
             this.fireRange = fireRange;
             this.maxAmmo = maxAmmo;
             this.homeSupplyRadius = homeSupplyRadius;
@@ -62,6 +70,7 @@ namespace MechaBattle.AI.Bots
             for (int slot = 0; slot < MatchLimits.TotalControllerSlots; slot++)
             {
                 int team = slot / MatchLimits.ControllerSlotsPerTeam;
+                teamBySlot[slot] = team;
                 int local = slot % MatchLimits.ControllerSlotsPerTeam;
                 var ownBases = basesByTeam[team];
                 var home = ownBases[local % ownBases.Length];
@@ -78,6 +87,25 @@ namespace MechaBattle.AI.Bots
                 }
                 targetBySlot[slot] = (best.x, best.z);
                 targetBuildingRadiusBySlot[slot] = best.buildingRadius;
+
+                // Lane-matched capture point (relay), same Z-closest pairing as the enemy
+                // base above. MSGO-style deliberate routing: push through your lane's
+                // relay before committing fully to the enemy main base, instead of
+                // marching straight past it. -1/default when the map has none.
+                relayIndexBySlot[slot] = -1;
+                if (map.capturePoints != null && map.capturePoints.Length > 0)
+                {
+                    int bestIndex = 0;
+                    float bestRelayDz = Math.Abs(map.capturePoints[0].z - home.z);
+                    for (int c = 1; c < map.capturePoints.Length; c++)
+                    {
+                        float dz = Math.Abs(map.capturePoints[c].z - home.z);
+                        if (dz < bestRelayDz) { bestRelayDz = dz; bestIndex = c; }
+                    }
+                    relayIndexBySlot[slot] = bestIndex;
+                    var relay = map.capturePoints[bestIndex];
+                    relayBySlot[slot] = (relay.x, relay.z, relay.radius);
+                }
             }
         }
 
@@ -88,18 +116,41 @@ namespace MechaBattle.AI.Bots
                 self.Controller != ControllerType.Bot)
                 return false; // Only ever drives Bot slots; never puppets Human or RemoteHuman.
 
+            if(capturePointSource is IMainBaseStatusSource status)
+            {
+                MainBaseDefinition home=null,target=null;float homeScore=float.PositiveInfinity,targetScore=float.PositiveInfinity;
+                for(int i=0;i<publicBases.Length;i++){var b=publicBases[i];if(i<status.MainBaseCount&&status.IsMainBaseDestroyed(i))continue;
+                    if(b.team==self.Team){float score=(b.x-self.X)*(b.x-self.X)+(b.z-self.Z)*(b.z-self.Z)+16*(b.y-self.Y)*(b.y-self.Y);if(score<homeScore){homeScore=score;home=b;}}}
+                if(home!=null)homeBySlot[slotId]=(home.x,home.z);
+                for(int i=0;i<publicBases.Length;i++){var b=publicBases[i];if(b.team==self.Team||i<status.MainBaseCount&&status.IsMainBaseDestroyed(i))continue;float score=Math.Abs(b.z-homeBySlot[slotId].Z);if(score<targetScore){targetScore=score;target=b;}}
+                noCoreTarget[slotId]=target==null;if(target!=null){targetBySlot[slotId]=(target.x,target.z);targetBuildingRadiusBySlot[slotId]=target.buildingRadius;}
+            }
             if (self.Ammo <= 0) retreating[slotId] = true;
             else if (self.Ammo >= maxAmmo) retreating[slotId] = false;
 
-            var (destX, destZ) = retreating[slotId] ? homeBySlot[slotId] : targetBySlot[slotId];
+            // MSGO-style deliberate routing: while this lane's relay is not yet ours,
+            // push through it instead of marching straight past to the enemy main base.
+            // Capture ownership is public battlefield status (see CapturePointObservation),
+            // not hidden intel, so reading it here does not grant omniscient enemy info.
+            bool seekingRelay = false;
+            int relayIndex = relayIndexBySlot[slotId];
+            if (!retreating[slotId] && capturePointSource != null && relayIndex >= 0 && relayIndex < capturePointSource.CapturePointCount
+                && capturePointSource.GetCapturePoint(relayIndex).OwnerTeam != teamBySlot[slotId])
+            {
+                seekingRelay = true;
+            }
+
+            var (destX, destZ) = retreating[slotId] ? homeBySlot[slotId]
+                : seekingRelay ? (relayBySlot[slotId].X, relayBySlot[slotId].Z)
+                : targetBySlot[slotId];
             float dx = destX - self.X, dz = destZ - self.Z;
             float distance = (float)Math.Sqrt((double)dx * dx + (double)dz * dz);
             // When a building radius is declared for the target base, walk inside it
             // (the core can only be hit from there) instead of parking at long range.
             // 0 (unset) preserves the old long-range stand-off behaviour.
             float targetBuildingRadius = targetBuildingRadiusBySlot[slotId];
-            float stopDistance = retreating[slotId]
-                ? homeSupplyRadius * 0.5f
+            float stopDistance = retreating[slotId] ? homeSupplyRadius * 0.5f
+                : seekingRelay ? relayBySlot[slotId].Radius * 0.5f
                 : (targetBuildingRadius > 0 ? targetBuildingRadius * 0.7f : fireRange * 0.9f);
 
             float moveX = 0f, moveY = 0f;
@@ -114,9 +165,12 @@ namespace MechaBattle.AI.Bots
             // the same threshold Game.Simulation itself gates on (BuildingRadius), not
             // fireRange - otherwise the BOT "thinks" it's in range and wastes ammo firing
             // from outside the building, long before BuildingRadius lets the shot land.
-            float objectiveFireRange = (!retreating[slotId] && targetBuildingRadius > 0) ? targetBuildingRadius : fireRange;
+            // A relay is captured by presence, not destroyed, so there is nothing to aim
+            // at by default while seekingRelay - only the opportunistic engagement below
+            // can set fire=true in that case.
+            float objectiveFireRange = (!retreating[slotId] && !seekingRelay && targetBuildingRadius > 0) ? targetBuildingRadius : fireRange;
             float aimDx = dx, aimDz = dz;
-            bool fire = !retreating[slotId] && distance <= objectiveFireRange;
+            bool fire = !noCoreTarget[slotId] && !retreating[slotId] && !seekingRelay && distance <= objectiveFireRange;
 
             // Engage anything that crosses weapon range along the way, instead of
             // walking through it. Still advances toward the objective either way.

@@ -11,6 +11,8 @@
     "Game.Observation.Contracts",
     "Unity.InputSystem",
     "UnityEngine.UI",
-    "Unity.TextMeshPro"
+    "Unity.TextMeshPro",
+    "Game.Settings",
+    "Game.Settings.Contracts"
   ]
 }

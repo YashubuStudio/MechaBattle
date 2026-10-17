@@ -1,0 +1,68 @@
+{
+  "owner": "GPT",
+  "executedUtc": "2026-10-16T00:02:29.1459987Z",
+  "requirements": [
+    "LINE-05",
+    "UX-05",
+    "MOTION-05",
+    "AIM-06",
+    "LOCK-07"
+  ],
+  "scope": "pure-csharp-independent-harness-and-static-api-not-unity-play-or-fps",
+  "domain": {
+    "passed": 186,
+    "failed": 0,
+    "sourceDirectory": "MechaBattle/Build/LOCK07Final_1792106511347",
+    "report": "MechaBattle/Build/LOCK07Final_1792106511347/Build/Reports/domain-smoke.json",
+    "compilerSdk": "9.0.312",
+    "optimizedCompilation": true
+  },
+  "staticApi": {
+    "assemblies": 17,
+    "exitCode": 0
+  },
+  "art": {
+    "modules": 15,
+    "presets": 6,
+    "closedSolidInstances": 97,
+    "triangles": 3804,
+    "passed": true,
+    "scope": "source geometry and GLB, not Unity rendering"
+  },
+  "constructedBattle": {
+    "scope": "constructed-domain-bot-match-not-ui-player-or-fps-acceptance",
+    "peakAlive": 100,
+    "simulatedSeconds": 367.72,
+    "WinnerTeam": 1,
+    "ShotsFired": 20746,
+    "UnitsDestroyed": 57,
+    "UnitsSpawned": 157,
+    "BaseHits": 117,
+    "BaseCounterShotsFired": 39,
+    "CaptureChanges": 9,
+    "averageAlive": 99.53453714782987,
+    "minBlueAlive": 47,
+    "minOrangeAlive": 47,
+    "bothTeamsAtLeast20Fraction": 1,
+    "completedLives": 57,
+    "meanLifeSeconds": 108.35999757796526,
+    "meanFirstDamageToDeathSeconds": 92.69368213866102,
+    "centralBattlefieldFraction": 0.845127051559449,
+    "coreGaugeDamage": 58600,
+    "unitGaugeDamage": 650.4899806976318,
+    "blueGauge": 0,
+    "orangeGauge": 769.1500068362802
+  },
+  "sourceManifestSha256": "128d772ab0ebf8ec22736df49235021c1cc25d534683e71d77ce1dab69ccc6d4",
+  "sourceChangedSinceCompilation": [],
+  "configCopiesEqual": true,
+  "mapCopiesEqual": true,
+  "nativeUnityTests": "not executed",
+  "windowsBuildAndRun": "not executed",
+  "fpsAndGC": "not measured",
+  "nativeImportPending": [
+    "Runtime/Simulation/BotRecovery.cs.meta",
+    "Tests/EditMode/LockWarningTests.cs.meta"
+  ],
+  "claudeLatestReview": "Earlier FIELD-AIM review and baseHits diagnostics received; final LOCK-07/LINE changes awaiting review"
+}

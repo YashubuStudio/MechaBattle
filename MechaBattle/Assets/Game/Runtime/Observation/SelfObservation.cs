@@ -12,13 +12,13 @@ namespace MechaBattle.Observation
         public readonly int SlotId, UnitId, Team, Ammo;
         public readonly ControllerType Controller;
         public readonly bool IsAlive;
-        public readonly float X, Z;
+        public readonly float X, Y, Z;
 
         public SelfObservation(int slotId, int unitId, int team, ControllerType controller,
-            bool isAlive, float x, float z, int ammo)
+            bool isAlive, float x, float z, int ammo, float y = 0)
         {
             SlotId = slotId; UnitId = unitId; Team = team; Controller = controller;
-            IsAlive = isAlive; X = x; Z = z; Ammo = ammo;
+            IsAlive = isAlive; X = x; Y = y; Z = z; Ammo = ammo;
         }
     }
 
@@ -30,11 +30,14 @@ namespace MechaBattle.Observation
     public readonly struct NearbyEnemy
     {
         public readonly bool Found;
-        public readonly float X, Z;
-        public NearbyEnemy(bool found, float x, float z) { Found = found; X = x; Z = z; }
+        public readonly float X, Y, Z;
+        public readonly int SlotId, UnitId;
+        public NearbyEnemy(bool found, float x, float z, float y = 0, int slotId = -1, int unitId = 0) { Found = found; X = x; Y = y; Z = z; SlotId = slotId; UnitId = unitId; }
         public static readonly NearbyEnemy None = new NearbyEnemy(false, 0f, 0f);
     }
 
+    // Production adapters must enforce FOV, LOS, scan cadence and acquisition delay.
+    // A radar report alone is not a visual firing contact.
     // Bounded-range enemy detection ONLY: callers may ask "is anything within
     // rangeMeters of my own position" and nothing else. This is a weapon-range sensor
     // (what you can see down your own gun barrel), not map-wide TeamKnowledge/radar -

@@ -7,8 +7,11 @@
     "Game.Simulation",
     "Game.Observation.Contracts",
     "Game.AI.Bots",
+    "Game.AI.Squads",
     "Game.Construction.Contracts",
-    "Game.Construction"
+    "Game.Construction",
+    "Game.Settings",
+    "Game.Settings.Contracts"
   ],
   "includePlatforms": [
     "Editor"

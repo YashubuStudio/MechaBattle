@@ -1,0 +1,54 @@
+{
+  "task": "SETTINGS-18",
+  "owner": "GPT",
+  "executedUtc": "2026-10-16T12:03:01.475Z",
+  "userSymptom": "Clicking Settings does nothing after successful compile",
+  "confirmedBefore": {
+    "exception": "MissingComponentException: MainMenu has no CanvasGroup",
+    "callStack": [
+      "PlayableSettingsView.Open:64",
+      "PlayableEntry.OpenSettings:63",
+      "UnityEngine.UI.Button.OnPointerClick"
+    ],
+    "sourceLog": "C:/Users/吉嶺圭人/AppData/Local/Unity/Editor/Editor.log",
+    "sourceLogModifiedUtc": "2026-10-16T12:00:00.735Z",
+    "evidence": "MechaBattle/Build/SETTINGS18_1792152023319/editor-error-before.txt"
+  },
+  "cause": "UnityEngine.Object missing-component wrapper is not CLR null, so GetComponent<CanvasGroup>() ?? AddComponent<CanvasGroup>() skips AddComponent. Open then dereferences an invalid native CanvasGroup.",
+  "fix": [
+    "Use Unity == null to add a real CanvasGroup",
+    "Recreate removed background groups before opening",
+    "Restore surviving groups on close",
+    "Validate real groups and Button.IsInteractable at all four settings entry points"
+  ],
+  "static": {
+    "exitCode": 0,
+    "assemblies": 20,
+    "report": "MechaBattle/Build/SETTINGS18_1792152023319/project/Build/Reports/static-api-compile.json",
+    "log": "MechaBattle/Build/SETTINGS18_1792152023319/static-compile.log"
+  },
+  "nativeTests": {
+    "fixture": "Game.Tests.Playable / MechaBattle.Tests.Playable.PlayableSettingsViewTests",
+    "casesAdded": 5,
+    "executed": false,
+    "existingFlowExtended": true
+  },
+  "snapshot": {
+    "root": "MechaBattle/Build/SETTINGS18_1792152023319",
+    "files": 122,
+    "manifest": "MechaBattle/Build/SETTINGS18_1792152023319/source-sha256.json",
+    "currentDifferences": []
+  },
+  "officialReference": "https://docs.unity3d.com/6000.3/Documentation/ScriptReference/Object.html",
+  "notExecuted": [
+    "Unity Test Runner (the five new cases are compiled only)",
+    "Settings actual button click after this fix",
+    "Slider/Apply/Cancel after this fix",
+    "Real restart persistence",
+    "Windows build/launch and performance measurement"
+  ],
+  "pureDomainRerun": false,
+  "note": "Previous19/396 pure C# results did not exercise native UI components and are not evidence that Settings opens.",
+  "editReservations": "released",
+  "runningProcesses": []
+}

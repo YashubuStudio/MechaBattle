@@ -1,0 +1,186 @@
+{
+  "task": "AIR-15",
+  "owner": "GPT",
+  "recordedUtc": "2026-10-16T08:26:24.457Z",
+  "status": "source-and-independent-validation-complete-native-and-Claude-review-pending",
+  "requirements": [
+    "FR-501",
+    "FR-801",
+    "user-more-three-dimensional-movement"
+  ],
+  "isolation": "MechaBattle/Build/AIR15_1792138034645",
+  "domain": {
+    "passed": 335,
+    "failed": 0,
+    "sourceCount": 71,
+    "newAerialCases": 18,
+    "focusedPassed": 49,
+    "exitCode": 0,
+    "report": "MechaBattle/Build/AIR15_1792138034645/project/Build/Reports/domain-smoke.json"
+  },
+  "staticApi": {
+    "assemblies": 18,
+    "exitCode": 0,
+    "report": "MechaBattle/Build/AIR15_1792138034645/project/Build/Reports/static-api-compile.json"
+  },
+  "constructedBattle": {
+    "scope": "constructed-domain-bot-match-not-ui-player-or-fps-acceptance",
+    "peakAlive": 100,
+    "simulatedSeconds": 323.9,
+    "WinnerTeam": 1,
+    "ShotsFired": 25454,
+    "UnitsDestroyed": 58,
+    "UnitsSpawned": 157,
+    "BaseHits": 84,
+    "BaseCounterShotsFired": 21,
+    "CaptureChanges": 11,
+    "peakAirborne": 55,
+    "airborneUnitSeconds": 8150.6797,
+    "maximumHeight": 13.123195,
+    "averageAlive": 99.46384686631677,
+    "minBlueAlive": 47,
+    "minOrangeAlive": 48,
+    "bothTeamsAtLeast20Fraction": 1,
+    "completedLives": 58,
+    "meanLifeSeconds": 110.96758372657773,
+    "meanFirstDamageToDeathSeconds": 94.83379098374782,
+    "centralBattlefieldFraction": 0.7504255984276006,
+    "coreGaugeDamage": 39520,
+    "unitGaugeDamage": 783.9899845123291,
+    "blueGauge": 0,
+    "orangeGauge": 20055.370009938255
+  },
+  "configurationAppliedBy": "Actual Runtime/Playable/PlayableConfiguration.cs: PlayablePrototype.Apply; replaces partial manual field copies",
+  "catalog": {
+    "name": "Construction_ActualCatalogAndSavedBuildRoundTrip",
+    "status": "passed",
+    "presets": 8,
+    "freeCombinations": 52,
+    "tripleCombinations": 8788,
+    "builds": [
+      {
+        "id": "standard-carbine",
+        "cost": 427,
+        "cooldownSeconds": 107.398705,
+        "health": 2000,
+        "speed": 12,
+        "damage": 36,
+        "range": 220
+      },
+      {
+        "id": "reinforced-longrifle",
+        "cost": 478,
+        "cooldownSeconds": 126.34521,
+        "health": 3200,
+        "speed": 11,
+        "damage": 138,
+        "range": 300
+      },
+      {
+        "id": "standard-cannon",
+        "cost": 440,
+        "cooldownSeconds": 112.08,
+        "health": 2000,
+        "speed": 12,
+        "damage": 400,
+        "range": 260
+      },
+      {
+        "id": "standard-charge",
+        "cost": 453,
+        "cooldownSeconds": 116.8627,
+        "health": 2000,
+        "speed": 12,
+        "damage": 880,
+        "range": 340
+      },
+      {
+        "id": "standard-beam",
+        "cost": 435,
+        "cooldownSeconds": 110.2675,
+        "health": 2000,
+        "speed": 12,
+        "damage": 38,
+        "range": 150
+      },
+      {
+        "id": "standard-bazooka",
+        "cost": 451,
+        "cooldownSeconds": 116.1203,
+        "health": 2000,
+        "speed": 12,
+        "damage": 500,
+        "range": 260
+      },
+      {
+        "id": "heavy-cannon",
+        "cost": 504,
+        "cooldownSeconds": 136.6048,
+        "health": 3850,
+        "speed": 8.5,
+        "damage": 400,
+        "range": 260
+      },
+      {
+        "id": "standard-assaultrifle",
+        "cost": 427,
+        "cooldownSeconds": 107.398705,
+        "health": 2000,
+        "speed": 12,
+        "damage": 52,
+        "range": 240
+      }
+    ]
+  },
+  "model": {
+    "scope": "source-geometry-and-glb-not-unity-rendering",
+    "modules": 19,
+    "presets": 8,
+    "closedSolidInstances": 153,
+    "validatedTriangles": 6060,
+    "passed": true,
+    "missingPartFixed": "weapon.assaultrifle",
+    "existingModuleShapeChanges": [],
+    "geometryLog": "MechaBattle/Build/AIR15_1792138034645/model-geometry.log",
+    "manifest": "MechaBattle/Build/AIR15_1792138034645/art-source-sha256.json"
+  },
+  "audit": {
+    "manifest": "MechaBattle/Build/AIR15_1792138034645/source-sha256.json",
+    "fileCount": 116,
+    "currentDifferences": [],
+    "productionConfigCopiesEqual": true,
+    "diffCheck": {
+      "exitCode": 0,
+      "excludes": "**/*.unity existing generated scenes"
+    },
+    "brokenDocLinks": [],
+    "newCSharpMetadata": [
+      {
+        "path": "MechaBattle/Assets/Game/Runtime/Simulation/BattleAerialMotion.cs.meta",
+        "exists": false
+      },
+      {
+        "path": "MechaBattle/Assets/Game/Runtime/Simulation/BotAerialTraversal.cs.meta",
+        "exists": false
+      },
+      {
+        "path": "MechaBattle/Assets/Game/Tests/EditMode/AerialTraversalTests.cs.meta",
+        "exists": false
+      }
+    ]
+  },
+  "unrun": [
+    "Unity Test Runner",
+    "Unity import/Play and movement feel",
+    "native HUD/poses/air aim",
+    "new Prefab generation/preview images",
+    "Windows build launch",
+    "FPS/GC"
+  ],
+  "collaboration": {
+    "ClaudeUpdatesReceived": "boost130/normal-melee-disabled/height/lock/FA-AR/frame-weapon restrictions and collision report",
+    "finalAirReview": "not received",
+    "locks": "implementation/config/model scopes released at each milestone, documentation scope released at final record"
+  },
+  "handoff": "docs/reviews/GPT_AIR15_HANDOFF.md"
+}

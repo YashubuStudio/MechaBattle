@@ -47,7 +47,7 @@ for(const module of kit.modules) {
 }
 for(const preset of kit.presets) {
   const sockets=new Map();
-  for(const id of [preset.frameId,...preset.equipment.sort((a,b)=>a.slot-b.slot).map(e=>e.partId)]){
+  for(const id of [preset.frameId,...preset.equipment.filter(e=>e.slot<=2).sort((a,b)=>a.slot-b.slot).map(e=>e.partId)]){
     const module=kit.modules.find(m=>m.partId===id);
     const origin=module.parentSocket?sockets.get(module.parentSocket):[0,0,0];
     check(origin,'Missing assembly socket');
@@ -61,7 +61,14 @@ const jsonLength=glb.readUInt32LE(12);check(glb.readUInt32LE(16)===0x4e4f534a,'M
 const gltf=JSON.parse(glb.subarray(20,20+jsonLength).toString('utf8'));
 const binHeader=20+jsonLength,binStart=binHeader+8;
 check(glb.readUInt32LE(binHeader+4)===0x004e4942&&binStart+glb.readUInt32LE(binHeader)===glb.length,'Invalid BIN chunk');
-check(gltf.meshes.length===7&&gltf.scenes.length===2,'Missing modular GLB assemblies');
+check(gltf.meshes.length===kit.modules.length&&gltf.scenes.length===config.catalog.presets.length,'Missing modular GLB assemblies');
+for(const preset of kit.presets){
+  const scene=gltf.scenes.find(s=>s.name===preset.id),rootNode=gltf.nodes[scene.nodes[0]];
+  check(gltf.meshes[rootNode.mesh].name===preset.frameId,'GLB frame mismatch: '+preset.id);
+  const visible=[];function visit(index){const n=gltf.nodes[index];if(n.mesh!==undefined)visible.push(gltf.meshes[n.mesh].name);for(const child of n.children??[])visit(child);}visit(scene.nodes[0]);
+  const expected=[preset.frameId,...preset.equipment.filter(e=>e.slot<=2).map(e=>e.partId)].sort();
+  check(JSON.stringify(visible.sort())===JSON.stringify(expected),'GLB must show the selected weapon only: '+preset.id);
+}
 for(const view of gltf.bufferViews)check(view.byteOffset%4===0&&view.byteOffset+view.byteLength<=gltf.buffers[0].byteLength,'Invalid buffer view');
 for(const a of gltf.accessors) {
   const view=gltf.bufferViews[a.bufferView],width=a.type==='VEC3'?3:1,bytes=a.componentType===5126?4:2;
@@ -78,6 +85,6 @@ for(const mesh of gltf.meshes)for(const p of mesh.primitives){
 const obj=await fs.readFile(path.join(assets,'MB_Worker01.obj'),'utf8');
 check(obj.split('\n').filter(l=>l.startsWith('o ')).length===4,'OBJ lost module grouping');
 check(obj.split('\n').filter(l=>l.startsWith('f ')).length===1676,'OBJ face count mismatch');
-const report={scope:'source-geometry-and-glb-not-unity-rendering',modules:7,presets:2,closedSolidInstances:solidCount,validatedTriangles:triangleCount,passed:true};
+const report={scope:'source-geometry-and-glb-not-unity-rendering',modules:kit.modules.length,presets:kit.presets.length,closedSolidInstances:solidCount,validatedTriangles:triangleCount,passed:true};
 const output=path.join(workspace,'MechaBattle/Build/Reports/simple-mecha.json');
 await fs.mkdir(path.dirname(output),{recursive:true});await fs.writeFile(output,JSON.stringify(report,null,2)+'\n');console.log(JSON.stringify(report));

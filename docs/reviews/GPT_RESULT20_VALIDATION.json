@@ -1,0 +1,84 @@
+{
+  "task": "RESULT-20",
+  "owner": "GPT",
+  "executedUtc": "2026-10-16T12:45:49.487Z",
+  "status": "implemented-independent-validation-passed-native-acceptance-pending",
+  "requirements": [
+    "FR-801",
+    "FR-805",
+    "user requested personal end-of-match statistics"
+  ],
+  "metrics": {
+    "DamageDealt": "effective enemy unit HP + shield damage, excluding enemy core/deployable damage",
+    "DamageReceived": "effective own HP + shield damage, including main-base counterfire",
+    "HealingDealt": "effective HP restored to other friendly units by repair gun/owned pod; self healing excluded",
+    "HealingReceived": "effective own HP restored by friendly repair gun, own/friendly pod, or home supply; respawn excluded",
+    "CoreDamageDealt": "accepted damage to enemy main bases, separate from unit damage"
+  },
+  "lifetime": "controller slot, across all deck units/respawns; reset for each new BattleSimulation",
+  "presentation": {
+    "screen": "Results/PersonalStats",
+    "values": "grouped whole numbers rounded for display",
+    "alsoShows": [
+      "Kills",
+      "Deaths"
+    ],
+    "uiTest": "extended PlayableFlowTests, compiled but not executed"
+  },
+  "api": {
+    "existingSnapshot": "MechaBattle.Simulation.SlotStatsSnapshot",
+    "newFields": [
+      "DamageReceived",
+      "HealingDealt",
+      "HealingReceived"
+    ],
+    "totalsType": "double (including existing DamageDealt/CoreDamageDealt)",
+    "contractsChanged": false,
+    "saveFormatChanged": false,
+    "balanceValuesChanged": false
+  },
+  "validation": {
+    "artifactDirectory": "MechaBattle/Build/RESULT20_1792154553015",
+    "quick": {
+      "exitCode": 0,
+      "passed": 45,
+      "failed": 0,
+      "log": "MechaBattle/Build/RESULT20_1792154553015/quick-tests.log"
+    },
+    "domain": {
+      "passed": 424,
+      "failed": 0,
+      "newCases": 16,
+      "sourceCount": 82,
+      "exitCode": 0,
+      "report": "MechaBattle/Build/RESULT20_1792154553015/project/Build/Reports/domain-smoke.json"
+    },
+    "static": {
+      "assemblies": 20,
+      "exitCode": 0,
+      "report": "MechaBattle/Build/RESULT20_1792154553015/project/Build/Reports/static-api-compile.json"
+    },
+    "snapshot": {
+      "fileCount": 134,
+      "changedFiles": [],
+      "hashes": "MechaBattle/Build/RESULT20_1792154553015/source-sha256.json"
+    },
+    "configCopiesIdentical": true,
+    "diffCheck": "passed, existing generated .unity files excluded",
+    "editorLog": {
+      "modifiedUtc": "2026-10-16T12:44:21.749Z",
+      "errors": []
+    },
+    "nativeTestRunner": "not executed",
+    "nativeDisplay": "not verified",
+    "windowsPlayer": "not built or run",
+    "fpsGc": "not measured",
+    "newTestMeta": "not yet observed; let Editor generate on Refresh"
+  },
+  "collaboration": {
+    "reservations": "released",
+    "claudeDirectMessage": "not sent; work board/handoff shared",
+    "reviewAcceptance": "not confirmed"
+  },
+  "runningProcesses": "all GPT started validation commands exited"
+}

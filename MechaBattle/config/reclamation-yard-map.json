@@ -1,0 +1,3832 @@
+{
+  "id": "reclamation-yard",
+  "prototypeOnly": true,
+  "halfWidth": 450,
+  "halfDepth": 260,
+  "surfaceY": 18,
+  "lowerLayerName": "低地",
+  "mainBases": [
+    {
+      "id": "A",
+      "team": 0,
+      "x": -350,
+      "y": 18,
+      "z": 185,
+      "spawnRadius": 7,
+      "attackRadius": 4,
+      "buildingRadius": 23,
+      "spawnOverride": true,
+      "spawnX": -325,
+      "spawnY": 18,
+      "spawnZ": 165,
+      "approachRoute": "factory-alley"
+    },
+    {
+      "id": "B",
+      "team": 0,
+      "x": -265,
+      "y": 18,
+      "z": 0,
+      "spawnRadius": 7,
+      "attackRadius": 4,
+      "buildingRadius": 23,
+      "spawnOverride": true,
+      "spawnX": -220,
+      "spawnY": 18,
+      "spawnZ": -10,
+      "approachRoute": "scrap-front"
+    },
+    {
+      "id": "C",
+      "team": 0,
+      "x": -405,
+      "y": 0,
+      "z": -215,
+      "spawnRadius": 7,
+      "attackRadius": 4,
+      "buildingRadius": 23,
+      "spawnOverride": true,
+      "spawnX": -375,
+      "spawnY": 0,
+      "spawnZ": -215,
+      "approachRoute": "lower-service"
+    },
+    {
+      "id": "X",
+      "team": 1,
+      "x": 350,
+      "y": 18,
+      "z": 185,
+      "spawnRadius": 7,
+      "attackRadius": 4,
+      "buildingRadius": 23,
+      "spawnOverride": true,
+      "spawnX": 325,
+      "spawnY": 18,
+      "spawnZ": 165,
+      "approachRoute": "factory-alley"
+    },
+    {
+      "id": "Y",
+      "team": 1,
+      "x": 265,
+      "y": 18,
+      "z": 0,
+      "spawnRadius": 7,
+      "attackRadius": 4,
+      "buildingRadius": 23,
+      "spawnOverride": true,
+      "spawnX": 220,
+      "spawnY": 18,
+      "spawnZ": -10,
+      "approachRoute": "scrap-front"
+    },
+    {
+      "id": "Z",
+      "team": 1,
+      "x": 405,
+      "y": 0,
+      "z": -215,
+      "spawnRadius": 7,
+      "attackRadius": 4,
+      "buildingRadius": 23,
+      "spawnOverride": true,
+      "spawnX": 375,
+      "spawnY": 0,
+      "spawnZ": -215,
+      "approachRoute": "lower-service"
+    }
+  ],
+  "capturePoints": [
+    {
+      "id": "1",
+      "x": 0,
+      "y": 18,
+      "z": 20,
+      "radius": 12
+    },
+    {
+      "id": "2",
+      "x": -210,
+      "y": 18,
+      "z": 120,
+      "radius": 12
+    },
+    {
+      "id": "3",
+      "x": 210,
+      "y": 18,
+      "z": 120,
+      "radius": 12
+    },
+    {
+      "id": "4",
+      "x": 0,
+      "y": 0,
+      "z": -180,
+      "radius": 12
+    },
+    {
+      "id": "5",
+      "x": -160,
+      "y": 18,
+      "z": -60,
+      "radius": 12
+    },
+    {
+      "id": "6",
+      "x": 160,
+      "y": 18,
+      "z": -60,
+      "radius": 12
+    }
+  ],
+  "obstacles": [
+    {
+      "id": "YardUpperDeck",
+      "x": 0,
+      "y": 9,
+      "z": 90,
+      "width": 900,
+      "height": 18,
+      "depth": 340,
+      "platform": true
+    },
+    {
+      "id": "Factory--235-west-wall",
+      "x": -267,
+      "y": 22,
+      "z": 170,
+      "width": 2,
+      "height": 8,
+      "depth": 60,
+      "platform": false
+    },
+    {
+      "id": "Factory--235-east-wall",
+      "x": -203,
+      "y": 22,
+      "z": 170,
+      "width": 2,
+      "height": 8,
+      "depth": 60,
+      "platform": false
+    },
+    {
+      "id": "Factory--235-door-jamb-140--1",
+      "x": -255,
+      "y": 22,
+      "z": 140,
+      "width": 24,
+      "height": 8,
+      "depth": 2,
+      "platform": false
+    },
+    {
+      "id": "Factory--235-door-jamb-140-1",
+      "x": -215,
+      "y": 22,
+      "z": 140,
+      "width": 24,
+      "height": 8,
+      "depth": 2,
+      "platform": false
+    },
+    {
+      "id": "Factory--235-door-jamb-200--1",
+      "x": -255,
+      "y": 22,
+      "z": 200,
+      "width": 24,
+      "height": 8,
+      "depth": 2,
+      "platform": false
+    },
+    {
+      "id": "Factory--235-door-jamb-200-1",
+      "x": -215,
+      "y": 22,
+      "z": 200,
+      "width": 24,
+      "height": 8,
+      "depth": 2,
+      "platform": false
+    },
+    {
+      "id": "Factory--235-roof",
+      "x": -235,
+      "y": 25.7,
+      "z": 170,
+      "width": 66,
+      "height": 0.6,
+      "depth": 62,
+      "platform": true
+    },
+    {
+      "id": "Factory--235-machine",
+      "x": -249,
+      "y": 19.5,
+      "z": 174,
+      "width": 8,
+      "height": 3,
+      "depth": 10,
+      "platform": false
+    },
+    {
+      "id": "Factory--235-pallet",
+      "x": -220,
+      "y": 19,
+      "z": 182,
+      "width": 7,
+      "height": 2,
+      "depth": 9,
+      "platform": true
+    },
+    {
+      "id": "Factory--95-west-wall",
+      "x": -127,
+      "y": 22,
+      "z": 170,
+      "width": 2,
+      "height": 8,
+      "depth": 60,
+      "platform": false
+    },
+    {
+      "id": "Factory--95-east-wall",
+      "x": -63,
+      "y": 22,
+      "z": 170,
+      "width": 2,
+      "height": 8,
+      "depth": 60,
+      "platform": false
+    },
+    {
+      "id": "Factory--95-door-jamb-140--1",
+      "x": -115,
+      "y": 22,
+      "z": 140,
+      "width": 24,
+      "height": 8,
+      "depth": 2,
+      "platform": false
+    },
+    {
+      "id": "Factory--95-door-jamb-140-1",
+      "x": -75,
+      "y": 22,
+      "z": 140,
+      "width": 24,
+      "height": 8,
+      "depth": 2,
+      "platform": false
+    },
+    {
+      "id": "Factory--95-door-jamb-200--1",
+      "x": -115,
+      "y": 22,
+      "z": 200,
+      "width": 24,
+      "height": 8,
+      "depth": 2,
+      "platform": false
+    },
+    {
+      "id": "Factory--95-door-jamb-200-1",
+      "x": -75,
+      "y": 22,
+      "z": 200,
+      "width": 24,
+      "height": 8,
+      "depth": 2,
+      "platform": false
+    },
+    {
+      "id": "Factory--95-roof",
+      "x": -95,
+      "y": 25.7,
+      "z": 170,
+      "width": 66,
+      "height": 0.6,
+      "depth": 62,
+      "platform": true
+    },
+    {
+      "id": "Factory--95-machine",
+      "x": -109,
+      "y": 19.5,
+      "z": 174,
+      "width": 8,
+      "height": 3,
+      "depth": 10,
+      "platform": false
+    },
+    {
+      "id": "Factory--95-pallet",
+      "x": -80,
+      "y": 19,
+      "z": 182,
+      "width": 7,
+      "height": 2,
+      "depth": 9,
+      "platform": true
+    },
+    {
+      "id": "Factory-95-west-wall",
+      "x": 63,
+      "y": 22,
+      "z": 170,
+      "width": 2,
+      "height": 8,
+      "depth": 60,
+      "platform": false
+    },
+    {
+      "id": "Factory-95-east-wall",
+      "x": 127,
+      "y": 22,
+      "z": 170,
+      "width": 2,
+      "height": 8,
+      "depth": 60,
+      "platform": false
+    },
+    {
+      "id": "Factory-95-door-jamb-140--1",
+      "x": 75,
+      "y": 22,
+      "z": 140,
+      "width": 24,
+      "height": 8,
+      "depth": 2,
+      "platform": false
+    },
+    {
+      "id": "Factory-95-door-jamb-140-1",
+      "x": 115,
+      "y": 22,
+      "z": 140,
+      "width": 24,
+      "height": 8,
+      "depth": 2,
+      "platform": false
+    },
+    {
+      "id": "Factory-95-door-jamb-200--1",
+      "x": 75,
+      "y": 22,
+      "z": 200,
+      "width": 24,
+      "height": 8,
+      "depth": 2,
+      "platform": false
+    },
+    {
+      "id": "Factory-95-door-jamb-200-1",
+      "x": 115,
+      "y": 22,
+      "z": 200,
+      "width": 24,
+      "height": 8,
+      "depth": 2,
+      "platform": false
+    },
+    {
+      "id": "Factory-95-roof",
+      "x": 95,
+      "y": 25.7,
+      "z": 170,
+      "width": 66,
+      "height": 0.6,
+      "depth": 62,
+      "platform": true
+    },
+    {
+      "id": "Factory-95-machine",
+      "x": 81,
+      "y": 19.5,
+      "z": 174,
+      "width": 8,
+      "height": 3,
+      "depth": 10,
+      "platform": false
+    },
+    {
+      "id": "Factory-95-pallet",
+      "x": 110,
+      "y": 19,
+      "z": 182,
+      "width": 7,
+      "height": 2,
+      "depth": 9,
+      "platform": true
+    },
+    {
+      "id": "Factory-235-west-wall",
+      "x": 203,
+      "y": 22,
+      "z": 170,
+      "width": 2,
+      "height": 8,
+      "depth": 60,
+      "platform": false
+    },
+    {
+      "id": "Factory-235-east-wall",
+      "x": 267,
+      "y": 22,
+      "z": 170,
+      "width": 2,
+      "height": 8,
+      "depth": 60,
+      "platform": false
+    },
+    {
+      "id": "Factory-235-door-jamb-140--1",
+      "x": 215,
+      "y": 22,
+      "z": 140,
+      "width": 24,
+      "height": 8,
+      "depth": 2,
+      "platform": false
+    },
+    {
+      "id": "Factory-235-door-jamb-140-1",
+      "x": 255,
+      "y": 22,
+      "z": 140,
+      "width": 24,
+      "height": 8,
+      "depth": 2,
+      "platform": false
+    },
+    {
+      "id": "Factory-235-door-jamb-200--1",
+      "x": 215,
+      "y": 22,
+      "z": 200,
+      "width": 24,
+      "height": 8,
+      "depth": 2,
+      "platform": false
+    },
+    {
+      "id": "Factory-235-door-jamb-200-1",
+      "x": 255,
+      "y": 22,
+      "z": 200,
+      "width": 24,
+      "height": 8,
+      "depth": 2,
+      "platform": false
+    },
+    {
+      "id": "Factory-235-roof",
+      "x": 235,
+      "y": 25.7,
+      "z": 170,
+      "width": 66,
+      "height": 0.6,
+      "depth": 62,
+      "platform": true
+    },
+    {
+      "id": "Factory-235-machine",
+      "x": 221,
+      "y": 19.5,
+      "z": 174,
+      "width": 8,
+      "height": 3,
+      "depth": 10,
+      "platform": false
+    },
+    {
+      "id": "Factory-235-pallet",
+      "x": 250,
+      "y": 19,
+      "z": 182,
+      "width": 7,
+      "height": 2,
+      "depth": 9,
+      "platform": true
+    },
+    {
+      "id": "FactoryStore--1-1",
+      "x": -310,
+      "y": 24,
+      "z": 225,
+      "width": 44,
+      "height": 12,
+      "depth": 20,
+      "platform": false
+    },
+    {
+      "id": "FactoryStore--1-2",
+      "x": -155,
+      "y": 23,
+      "z": 226,
+      "width": 22,
+      "height": 10,
+      "depth": 20,
+      "platform": false
+    },
+    {
+      "id": "FactoryStore--1-3",
+      "x": -35,
+      "y": 22.5,
+      "z": 208,
+      "width": 16,
+      "height": 9,
+      "depth": 35,
+      "platform": false
+    },
+    {
+      "id": "FactoryStore--1-4",
+      "x": -320,
+      "y": 20.5,
+      "z": 112,
+      "width": 10,
+      "height": 5,
+      "depth": 28,
+      "platform": false
+    },
+    {
+      "id": "FactoryGantry-pier--1",
+      "x": -85,
+      "y": 21,
+      "z": 90,
+      "width": 3,
+      "height": 6,
+      "depth": 14,
+      "platform": false
+    },
+    {
+      "id": "YardAccess-pallet--1-0",
+      "x": -85,
+      "y": 19,
+      "z": 62,
+      "width": 10,
+      "height": 2,
+      "depth": 8,
+      "platform": true
+    },
+    {
+      "id": "YardAccess-pallet--1-1",
+      "x": -85,
+      "y": 20,
+      "z": 70,
+      "width": 10,
+      "height": 4,
+      "depth": 8,
+      "platform": true
+    },
+    {
+      "id": "YardAccess-pallet--1-2",
+      "x": -85,
+      "y": 21,
+      "z": 78,
+      "width": 10,
+      "height": 6,
+      "depth": 8,
+      "platform": true
+    },
+    {
+      "id": "Scrap--1-0-0-base",
+      "x": -80,
+      "y": 20,
+      "z": -36,
+      "width": 30,
+      "height": 4,
+      "depth": 22,
+      "platform": true
+    },
+    {
+      "id": "Scrap--1-0-0-stack",
+      "x": -83,
+      "y": 23.5,
+      "z": -35,
+      "width": 22,
+      "height": 3,
+      "depth": 16,
+      "platform": true
+    },
+    {
+      "id": "Scrap--1-0-0-cap",
+      "x": -85,
+      "y": 26.5,
+      "z": -37,
+      "width": 12,
+      "height": 3,
+      "depth": 10,
+      "platform": true
+    },
+    {
+      "id": "Scrap--1-0-1-base",
+      "x": -80,
+      "y": 20,
+      "z": 36,
+      "width": 30,
+      "height": 4,
+      "depth": 22,
+      "platform": true
+    },
+    {
+      "id": "Scrap--1-0-1-stack",
+      "x": -83,
+      "y": 23.5,
+      "z": 37,
+      "width": 22,
+      "height": 3,
+      "depth": 16,
+      "platform": true
+    },
+    {
+      "id": "Scrap--1-0-1-cap",
+      "x": -85,
+      "y": 26.5,
+      "z": 35,
+      "width": 12,
+      "height": 3,
+      "depth": 10,
+      "platform": true
+    },
+    {
+      "id": "Scrap--1-1-0-base",
+      "x": -170,
+      "y": 20,
+      "z": -36,
+      "width": 30,
+      "height": 4,
+      "depth": 22,
+      "platform": true
+    },
+    {
+      "id": "Scrap--1-1-0-stack",
+      "x": -173,
+      "y": 23.5,
+      "z": -35,
+      "width": 22,
+      "height": 3,
+      "depth": 16,
+      "platform": true
+    },
+    {
+      "id": "Scrap--1-1-0-cap",
+      "x": -175,
+      "y": 26.5,
+      "z": -37,
+      "width": 12,
+      "height": 3,
+      "depth": 10,
+      "platform": true
+    },
+    {
+      "id": "Scrap--1-1-1-base",
+      "x": -170,
+      "y": 20,
+      "z": 36,
+      "width": 30,
+      "height": 4,
+      "depth": 22,
+      "platform": true
+    },
+    {
+      "id": "Scrap--1-1-1-stack",
+      "x": -173,
+      "y": 23.5,
+      "z": 37,
+      "width": 22,
+      "height": 3,
+      "depth": 16,
+      "platform": true
+    },
+    {
+      "id": "Scrap--1-1-1-cap",
+      "x": -175,
+      "y": 26.5,
+      "z": 35,
+      "width": 12,
+      "height": 3,
+      "depth": 10,
+      "platform": true
+    },
+    {
+      "id": "Scrap-front-cover--1",
+      "x": -105,
+      "y": 18.8,
+      "z": 12,
+      "width": 7,
+      "height": 1.6,
+      "depth": 7,
+      "platform": false
+    },
+    {
+      "id": "Scrap-east-west-screen--1",
+      "x": -52,
+      "y": 21,
+      "z": 60,
+      "width": 16,
+      "height": 6,
+      "depth": 14,
+      "platform": true
+    },
+    {
+      "id": "Service-cargo--1-1",
+      "x": -80,
+      "y": 2,
+      "z": -130,
+      "width": 25,
+      "height": 4,
+      "depth": 14,
+      "platform": true
+    },
+    {
+      "id": "Service-cargo--1-2",
+      "x": -220,
+      "y": 2,
+      "z": -225,
+      "width": 28,
+      "height": 4,
+      "depth": 16,
+      "platform": true
+    },
+    {
+      "id": "Service-cargo--1-3",
+      "x": -290,
+      "y": 2,
+      "z": -120,
+      "width": 18,
+      "height": 4,
+      "depth": 22,
+      "platform": true
+    },
+    {
+      "id": "Service-cargo--1-4",
+      "x": -42,
+      "y": 1.5,
+      "z": -237,
+      "width": 24,
+      "height": 3,
+      "depth": 14,
+      "platform": true
+    },
+    {
+      "id": "Service-cargo--1-5",
+      "x": -400,
+      "y": 3,
+      "z": -145,
+      "width": 26,
+      "height": 6,
+      "depth": 20,
+      "platform": true
+    },
+    {
+      "id": "Service-core-screen--1",
+      "x": -420,
+      "y": 4.5,
+      "z": -185,
+      "width": 10,
+      "height": 9,
+      "depth": 32,
+      "platform": false
+    },
+    {
+      "id": "YardAccess-ramp--1-0",
+      "x": -350,
+      "y": 0.125,
+      "z": -199.16666666666666,
+      "width": 24,
+      "height": 0.25,
+      "depth": 1.7,
+      "platform": true
+    },
+    {
+      "id": "YardAccess-ramp--1-1",
+      "x": -350,
+      "y": 0.25,
+      "z": -197.5,
+      "width": 24,
+      "height": 0.5,
+      "depth": 1.7,
+      "platform": true
+    },
+    {
+      "id": "YardAccess-ramp--1-2",
+      "x": -350,
+      "y": 0.375,
+      "z": -195.83333333333334,
+      "width": 24,
+      "height": 0.75,
+      "depth": 1.7,
+      "platform": true
+    },
+    {
+      "id": "YardAccess-ramp--1-3",
+      "x": -350,
+      "y": 0.5,
+      "z": -194.16666666666666,
+      "width": 24,
+      "height": 1,
+      "depth": 1.7,
+      "platform": true
+    },
+    {
+      "id": "YardAccess-ramp--1-4",
+      "x": -350,
+      "y": 0.625,
+      "z": -192.5,
+      "width": 24,
+      "height": 1.25,
+      "depth": 1.7,
+      "platform": true
+    },
+    {
+      "id": "YardAccess-ramp--1-5",
+      "x": -350,
+      "y": 0.75,
+      "z": -190.83333333333334,
+      "width": 24,
+      "height": 1.5,
+      "depth": 1.7,
+      "platform": true
+    },
+    {
+      "id": "YardAccess-ramp--1-6",
+      "x": -350,
+      "y": 0.875,
+      "z": -189.16666666666666,
+      "width": 24,
+      "height": 1.75,
+      "depth": 1.7,
+      "platform": true
+    },
+    {
+      "id": "YardAccess-ramp--1-7",
+      "x": -350,
+      "y": 1,
+      "z": -187.5,
+      "width": 24,
+      "height": 2,
+      "depth": 1.7,
+      "platform": true
+    },
+    {
+      "id": "YardAccess-ramp--1-8",
+      "x": -350,
+      "y": 1.125,
+      "z": -185.83333333333334,
+      "width": 24,
+      "height": 2.25,
+      "depth": 1.7,
+      "platform": true
+    },
+    {
+      "id": "YardAccess-ramp--1-9",
+      "x": -350,
+      "y": 1.25,
+      "z": -184.16666666666666,
+      "width": 24,
+      "height": 2.5,
+      "depth": 1.7,
+      "platform": true
+    },
+    {
+      "id": "YardAccess-ramp--1-10",
+      "x": -350,
+      "y": 1.375,
+      "z": -182.5,
+      "width": 24,
+      "height": 2.75,
+      "depth": 1.7,
+      "platform": true
+    },
+    {
+      "id": "YardAccess-ramp--1-11",
+      "x": -350,
+      "y": 1.5,
+      "z": -180.83333333333334,
+      "width": 24,
+      "height": 3,
+      "depth": 1.7,
+      "platform": true
+    },
+    {
+      "id": "YardAccess-ramp--1-12",
+      "x": -350,
+      "y": 1.625,
+      "z": -179.16666666666666,
+      "width": 24,
+      "height": 3.25,
+      "depth": 1.7,
+      "platform": true
+    },
+    {
+      "id": "YardAccess-ramp--1-13",
+      "x": -350,
+      "y": 1.75,
+      "z": -177.5,
+      "width": 24,
+      "height": 3.5,
+      "depth": 1.7,
+      "platform": true
+    },
+    {
+      "id": "YardAccess-ramp--1-14",
+      "x": -350,
+      "y": 1.875,
+      "z": -175.83333333333334,
+      "width": 24,
+      "height": 3.75,
+      "depth": 1.7,
+      "platform": true
+    },
+    {
+      "id": "YardAccess-ramp--1-15",
+      "x": -350,
+      "y": 2,
+      "z": -174.16666666666666,
+      "width": 24,
+      "height": 4,
+      "depth": 1.7,
+      "platform": true
+    },
+    {
+      "id": "YardAccess-ramp--1-16",
+      "x": -350,
+      "y": 2.125,
+      "z": -172.5,
+      "width": 24,
+      "height": 4.25,
+      "depth": 1.7,
+      "platform": true
+    },
+    {
+      "id": "YardAccess-ramp--1-17",
+      "x": -350,
+      "y": 2.25,
+      "z": -170.83333333333334,
+      "width": 24,
+      "height": 4.5,
+      "depth": 1.7,
+      "platform": true
+    },
+    {
+      "id": "YardAccess-ramp--1-18",
+      "x": -350,
+      "y": 2.375,
+      "z": -169.16666666666666,
+      "width": 24,
+      "height": 4.75,
+      "depth": 1.7,
+      "platform": true
+    },
+    {
+      "id": "YardAccess-ramp--1-19",
+      "x": -350,
+      "y": 2.5,
+      "z": -167.5,
+      "width": 24,
+      "height": 5,
+      "depth": 1.7,
+      "platform": true
+    },
+    {
+      "id": "YardAccess-ramp--1-20",
+      "x": -350,
+      "y": 2.625,
+      "z": -165.83333333333331,
+      "width": 24,
+      "height": 5.25,
+      "depth": 1.7,
+      "platform": true
+    },
+    {
+      "id": "YardAccess-ramp--1-21",
+      "x": -350,
+      "y": 2.75,
+      "z": -164.16666666666666,
+      "width": 24,
+      "height": 5.5,
+      "depth": 1.7,
+      "platform": true
+    },
+    {
+      "id": "YardAccess-ramp--1-22",
+      "x": -350,
+      "y": 2.875,
+      "z": -162.5,
+      "width": 24,
+      "height": 5.75,
+      "depth": 1.7,
+      "platform": true
+    },
+    {
+      "id": "YardAccess-ramp--1-23",
+      "x": -350,
+      "y": 3,
+      "z": -160.83333333333331,
+      "width": 24,
+      "height": 6,
+      "depth": 1.7,
+      "platform": true
+    },
+    {
+      "id": "YardAccess-ramp--1-24",
+      "x": -350,
+      "y": 3.125,
+      "z": -159.16666666666666,
+      "width": 24,
+      "height": 6.25,
+      "depth": 1.7,
+      "platform": true
+    },
+    {
+      "id": "YardAccess-ramp--1-25",
+      "x": -350,
+      "y": 3.25,
+      "z": -157.5,
+      "width": 24,
+      "height": 6.5,
+      "depth": 1.7,
+      "platform": true
+    },
+    {
+      "id": "YardAccess-ramp--1-26",
+      "x": -350,
+      "y": 3.375,
+      "z": -155.83333333333331,
+      "width": 24,
+      "height": 6.75,
+      "depth": 1.7,
+      "platform": true
+    },
+    {
+      "id": "YardAccess-ramp--1-27",
+      "x": -350,
+      "y": 3.5,
+      "z": -154.16666666666666,
+      "width": 24,
+      "height": 7,
+      "depth": 1.7,
+      "platform": true
+    },
+    {
+      "id": "YardAccess-ramp--1-28",
+      "x": -350,
+      "y": 3.625,
+      "z": -152.5,
+      "width": 24,
+      "height": 7.25,
+      "depth": 1.7,
+      "platform": true
+    },
+    {
+      "id": "YardAccess-ramp--1-29",
+      "x": -350,
+      "y": 3.75,
+      "z": -150.83333333333331,
+      "width": 24,
+      "height": 7.5,
+      "depth": 1.7,
+      "platform": true
+    },
+    {
+      "id": "YardAccess-ramp--1-30",
+      "x": -350,
+      "y": 3.875,
+      "z": -149.16666666666666,
+      "width": 24,
+      "height": 7.75,
+      "depth": 1.7,
+      "platform": true
+    },
+    {
+      "id": "YardAccess-ramp--1-31",
+      "x": -350,
+      "y": 4,
+      "z": -147.5,
+      "width": 24,
+      "height": 8,
+      "depth": 1.7,
+      "platform": true
+    },
+    {
+      "id": "YardAccess-ramp--1-32",
+      "x": -350,
+      "y": 4.125,
+      "z": -145.83333333333331,
+      "width": 24,
+      "height": 8.25,
+      "depth": 1.7,
+      "platform": true
+    },
+    {
+      "id": "YardAccess-ramp--1-33",
+      "x": -350,
+      "y": 4.25,
+      "z": -144.16666666666666,
+      "width": 24,
+      "height": 8.5,
+      "depth": 1.7,
+      "platform": true
+    },
+    {
+      "id": "YardAccess-ramp--1-34",
+      "x": -350,
+      "y": 4.375,
+      "z": -142.5,
+      "width": 24,
+      "height": 8.75,
+      "depth": 1.7,
+      "platform": true
+    },
+    {
+      "id": "YardAccess-ramp--1-35",
+      "x": -350,
+      "y": 4.5,
+      "z": -140.83333333333331,
+      "width": 24,
+      "height": 9,
+      "depth": 1.7,
+      "platform": true
+    },
+    {
+      "id": "YardAccess-ramp--1-36",
+      "x": -350,
+      "y": 4.625,
+      "z": -139.16666666666666,
+      "width": 24,
+      "height": 9.25,
+      "depth": 1.7,
+      "platform": true
+    },
+    {
+      "id": "YardAccess-ramp--1-37",
+      "x": -350,
+      "y": 4.75,
+      "z": -137.5,
+      "width": 24,
+      "height": 9.5,
+      "depth": 1.7,
+      "platform": true
+    },
+    {
+      "id": "YardAccess-ramp--1-38",
+      "x": -350,
+      "y": 4.875,
+      "z": -135.83333333333331,
+      "width": 24,
+      "height": 9.75,
+      "depth": 1.7,
+      "platform": true
+    },
+    {
+      "id": "YardAccess-ramp--1-39",
+      "x": -350,
+      "y": 5,
+      "z": -134.16666666666666,
+      "width": 24,
+      "height": 10,
+      "depth": 1.7,
+      "platform": true
+    },
+    {
+      "id": "YardAccess-ramp--1-40",
+      "x": -350,
+      "y": 5.125,
+      "z": -132.5,
+      "width": 24,
+      "height": 10.25,
+      "depth": 1.7,
+      "platform": true
+    },
+    {
+      "id": "YardAccess-ramp--1-41",
+      "x": -350,
+      "y": 5.25,
+      "z": -130.83333333333331,
+      "width": 24,
+      "height": 10.5,
+      "depth": 1.7,
+      "platform": true
+    },
+    {
+      "id": "YardAccess-ramp--1-42",
+      "x": -350,
+      "y": 5.375,
+      "z": -129.16666666666666,
+      "width": 24,
+      "height": 10.75,
+      "depth": 1.7,
+      "platform": true
+    },
+    {
+      "id": "YardAccess-ramp--1-43",
+      "x": -350,
+      "y": 5.5,
+      "z": -127.5,
+      "width": 24,
+      "height": 11,
+      "depth": 1.7,
+      "platform": true
+    },
+    {
+      "id": "YardAccess-ramp--1-44",
+      "x": -350,
+      "y": 5.625,
+      "z": -125.83333333333333,
+      "width": 24,
+      "height": 11.25,
+      "depth": 1.7,
+      "platform": true
+    },
+    {
+      "id": "YardAccess-ramp--1-45",
+      "x": -350,
+      "y": 5.75,
+      "z": -124.16666666666666,
+      "width": 24,
+      "height": 11.5,
+      "depth": 1.7,
+      "platform": true
+    },
+    {
+      "id": "YardAccess-ramp--1-46",
+      "x": -350,
+      "y": 5.875,
+      "z": -122.5,
+      "width": 24,
+      "height": 11.75,
+      "depth": 1.7,
+      "platform": true
+    },
+    {
+      "id": "YardAccess-ramp--1-47",
+      "x": -350,
+      "y": 6,
+      "z": -120.83333333333333,
+      "width": 24,
+      "height": 12,
+      "depth": 1.7,
+      "platform": true
+    },
+    {
+      "id": "YardAccess-ramp--1-48",
+      "x": -350,
+      "y": 6.125,
+      "z": -119.16666666666666,
+      "width": 24,
+      "height": 12.25,
+      "depth": 1.7,
+      "platform": true
+    },
+    {
+      "id": "YardAccess-ramp--1-49",
+      "x": -350,
+      "y": 6.25,
+      "z": -117.5,
+      "width": 24,
+      "height": 12.5,
+      "depth": 1.7,
+      "platform": true
+    },
+    {
+      "id": "YardAccess-ramp--1-50",
+      "x": -350,
+      "y": 6.375,
+      "z": -115.83333333333333,
+      "width": 24,
+      "height": 12.75,
+      "depth": 1.7,
+      "platform": true
+    },
+    {
+      "id": "YardAccess-ramp--1-51",
+      "x": -350,
+      "y": 6.5,
+      "z": -114.16666666666666,
+      "width": 24,
+      "height": 13,
+      "depth": 1.7,
+      "platform": true
+    },
+    {
+      "id": "YardAccess-ramp--1-52",
+      "x": -350,
+      "y": 6.625,
+      "z": -112.5,
+      "width": 24,
+      "height": 13.25,
+      "depth": 1.7,
+      "platform": true
+    },
+    {
+      "id": "YardAccess-ramp--1-53",
+      "x": -350,
+      "y": 6.75,
+      "z": -110.83333333333333,
+      "width": 24,
+      "height": 13.5,
+      "depth": 1.7,
+      "platform": true
+    },
+    {
+      "id": "YardAccess-ramp--1-54",
+      "x": -350,
+      "y": 6.875,
+      "z": -109.16666666666666,
+      "width": 24,
+      "height": 13.75,
+      "depth": 1.7,
+      "platform": true
+    },
+    {
+      "id": "YardAccess-ramp--1-55",
+      "x": -350,
+      "y": 7,
+      "z": -107.5,
+      "width": 24,
+      "height": 14,
+      "depth": 1.7,
+      "platform": true
+    },
+    {
+      "id": "YardAccess-ramp--1-56",
+      "x": -350,
+      "y": 7.125,
+      "z": -105.83333333333333,
+      "width": 24,
+      "height": 14.25,
+      "depth": 1.7,
+      "platform": true
+    },
+    {
+      "id": "YardAccess-ramp--1-57",
+      "x": -350,
+      "y": 7.25,
+      "z": -104.16666666666666,
+      "width": 24,
+      "height": 14.5,
+      "depth": 1.7,
+      "platform": true
+    },
+    {
+      "id": "YardAccess-ramp--1-58",
+      "x": -350,
+      "y": 7.375,
+      "z": -102.5,
+      "width": 24,
+      "height": 14.75,
+      "depth": 1.7,
+      "platform": true
+    },
+    {
+      "id": "YardAccess-ramp--1-59",
+      "x": -350,
+      "y": 7.5,
+      "z": -100.83333333333333,
+      "width": 24,
+      "height": 15,
+      "depth": 1.7,
+      "platform": true
+    },
+    {
+      "id": "YardAccess-ramp--1-60",
+      "x": -350,
+      "y": 7.625,
+      "z": -99.16666666666666,
+      "width": 24,
+      "height": 15.25,
+      "depth": 1.7,
+      "platform": true
+    },
+    {
+      "id": "YardAccess-ramp--1-61",
+      "x": -350,
+      "y": 7.75,
+      "z": -97.5,
+      "width": 24,
+      "height": 15.5,
+      "depth": 1.7,
+      "platform": true
+    },
+    {
+      "id": "YardAccess-ramp--1-62",
+      "x": -350,
+      "y": 7.875,
+      "z": -95.83333333333333,
+      "width": 24,
+      "height": 15.75,
+      "depth": 1.7,
+      "platform": true
+    },
+    {
+      "id": "YardAccess-ramp--1-63",
+      "x": -350,
+      "y": 8,
+      "z": -94.16666666666666,
+      "width": 24,
+      "height": 16,
+      "depth": 1.7,
+      "platform": true
+    },
+    {
+      "id": "YardAccess-ramp--1-64",
+      "x": -350,
+      "y": 8.125,
+      "z": -92.5,
+      "width": 24,
+      "height": 16.25,
+      "depth": 1.7,
+      "platform": true
+    },
+    {
+      "id": "YardAccess-ramp--1-65",
+      "x": -350,
+      "y": 8.25,
+      "z": -90.83333333333333,
+      "width": 24,
+      "height": 16.5,
+      "depth": 1.7,
+      "platform": true
+    },
+    {
+      "id": "YardAccess-ramp--1-66",
+      "x": -350,
+      "y": 8.375,
+      "z": -89.16666666666666,
+      "width": 24,
+      "height": 16.75,
+      "depth": 1.7,
+      "platform": true
+    },
+    {
+      "id": "YardAccess-ramp--1-67",
+      "x": -350,
+      "y": 8.5,
+      "z": -87.5,
+      "width": 24,
+      "height": 17,
+      "depth": 1.7,
+      "platform": true
+    },
+    {
+      "id": "YardAccess-ramp--1-68",
+      "x": -350,
+      "y": 8.625,
+      "z": -85.83333333333333,
+      "width": 24,
+      "height": 17.25,
+      "depth": 1.7,
+      "platform": true
+    },
+    {
+      "id": "YardAccess-ramp--1-69",
+      "x": -350,
+      "y": 8.75,
+      "z": -84.16666666666666,
+      "width": 24,
+      "height": 17.5,
+      "depth": 1.7,
+      "platform": true
+    },
+    {
+      "id": "YardAccess-ramp--1-70",
+      "x": -350,
+      "y": 8.875,
+      "z": -82.5,
+      "width": 24,
+      "height": 17.75,
+      "depth": 1.7,
+      "platform": true
+    },
+    {
+      "id": "YardAccess-ramp--1-71",
+      "x": -350,
+      "y": 9,
+      "z": -80.83333333333333,
+      "width": 24,
+      "height": 18,
+      "depth": 1.7,
+      "platform": true
+    },
+    {
+      "id": "YardAccess-landing--1",
+      "x": -350,
+      "y": 9,
+      "z": -79,
+      "width": 26,
+      "height": 18,
+      "depth": 3,
+      "platform": true
+    },
+    {
+      "id": "FactoryStore-1-1",
+      "x": 310,
+      "y": 24,
+      "z": 225,
+      "width": 44,
+      "height": 12,
+      "depth": 20,
+      "platform": false
+    },
+    {
+      "id": "FactoryStore-1-2",
+      "x": 155,
+      "y": 23,
+      "z": 226,
+      "width": 22,
+      "height": 10,
+      "depth": 20,
+      "platform": false
+    },
+    {
+      "id": "FactoryStore-1-3",
+      "x": 35,
+      "y": 22.5,
+      "z": 208,
+      "width": 16,
+      "height": 9,
+      "depth": 35,
+      "platform": false
+    },
+    {
+      "id": "FactoryStore-1-4",
+      "x": 320,
+      "y": 20.5,
+      "z": 112,
+      "width": 10,
+      "height": 5,
+      "depth": 28,
+      "platform": false
+    },
+    {
+      "id": "FactoryGantry-pier-1",
+      "x": 85,
+      "y": 21,
+      "z": 90,
+      "width": 3,
+      "height": 6,
+      "depth": 14,
+      "platform": false
+    },
+    {
+      "id": "YardAccess-pallet-1-0",
+      "x": 85,
+      "y": 19,
+      "z": 62,
+      "width": 10,
+      "height": 2,
+      "depth": 8,
+      "platform": true
+    },
+    {
+      "id": "YardAccess-pallet-1-1",
+      "x": 85,
+      "y": 20,
+      "z": 70,
+      "width": 10,
+      "height": 4,
+      "depth": 8,
+      "platform": true
+    },
+    {
+      "id": "YardAccess-pallet-1-2",
+      "x": 85,
+      "y": 21,
+      "z": 78,
+      "width": 10,
+      "height": 6,
+      "depth": 8,
+      "platform": true
+    },
+    {
+      "id": "Scrap-1-0-0-base",
+      "x": 80,
+      "y": 20,
+      "z": -36,
+      "width": 30,
+      "height": 4,
+      "depth": 22,
+      "platform": true
+    },
+    {
+      "id": "Scrap-1-0-0-stack",
+      "x": 83,
+      "y": 23.5,
+      "z": -35,
+      "width": 22,
+      "height": 3,
+      "depth": 16,
+      "platform": true
+    },
+    {
+      "id": "Scrap-1-0-0-cap",
+      "x": 85,
+      "y": 26.5,
+      "z": -37,
+      "width": 12,
+      "height": 3,
+      "depth": 10,
+      "platform": true
+    },
+    {
+      "id": "Scrap-1-0-1-base",
+      "x": 80,
+      "y": 20,
+      "z": 36,
+      "width": 30,
+      "height": 4,
+      "depth": 22,
+      "platform": true
+    },
+    {
+      "id": "Scrap-1-0-1-stack",
+      "x": 83,
+      "y": 23.5,
+      "z": 37,
+      "width": 22,
+      "height": 3,
+      "depth": 16,
+      "platform": true
+    },
+    {
+      "id": "Scrap-1-0-1-cap",
+      "x": 85,
+      "y": 26.5,
+      "z": 35,
+      "width": 12,
+      "height": 3,
+      "depth": 10,
+      "platform": true
+    },
+    {
+      "id": "Scrap-1-1-0-base",
+      "x": 170,
+      "y": 20,
+      "z": -36,
+      "width": 30,
+      "height": 4,
+      "depth": 22,
+      "platform": true
+    },
+    {
+      "id": "Scrap-1-1-0-stack",
+      "x": 173,
+      "y": 23.5,
+      "z": -35,
+      "width": 22,
+      "height": 3,
+      "depth": 16,
+      "platform": true
+    },
+    {
+      "id": "Scrap-1-1-0-cap",
+      "x": 175,
+      "y": 26.5,
+      "z": -37,
+      "width": 12,
+      "height": 3,
+      "depth": 10,
+      "platform": true
+    },
+    {
+      "id": "Scrap-1-1-1-base",
+      "x": 170,
+      "y": 20,
+      "z": 36,
+      "width": 30,
+      "height": 4,
+      "depth": 22,
+      "platform": true
+    },
+    {
+      "id": "Scrap-1-1-1-stack",
+      "x": 173,
+      "y": 23.5,
+      "z": 37,
+      "width": 22,
+      "height": 3,
+      "depth": 16,
+      "platform": true
+    },
+    {
+      "id": "Scrap-1-1-1-cap",
+      "x": 175,
+      "y": 26.5,
+      "z": 35,
+      "width": 12,
+      "height": 3,
+      "depth": 10,
+      "platform": true
+    },
+    {
+      "id": "Scrap-front-cover-1",
+      "x": 105,
+      "y": 18.8,
+      "z": 12,
+      "width": 7,
+      "height": 1.6,
+      "depth": 7,
+      "platform": false
+    },
+    {
+      "id": "Scrap-east-west-screen-1",
+      "x": 52,
+      "y": 21,
+      "z": 60,
+      "width": 16,
+      "height": 6,
+      "depth": 14,
+      "platform": true
+    },
+    {
+      "id": "Service-cargo-1-1",
+      "x": 80,
+      "y": 2,
+      "z": -130,
+      "width": 25,
+      "height": 4,
+      "depth": 14,
+      "platform": true
+    },
+    {
+      "id": "Service-cargo-1-2",
+      "x": 220,
+      "y": 2,
+      "z": -225,
+      "width": 28,
+      "height": 4,
+      "depth": 16,
+      "platform": true
+    },
+    {
+      "id": "Service-cargo-1-3",
+      "x": 290,
+      "y": 2,
+      "z": -120,
+      "width": 18,
+      "height": 4,
+      "depth": 22,
+      "platform": true
+    },
+    {
+      "id": "Service-cargo-1-4",
+      "x": 42,
+      "y": 1.5,
+      "z": -237,
+      "width": 24,
+      "height": 3,
+      "depth": 14,
+      "platform": true
+    },
+    {
+      "id": "Service-cargo-1-5",
+      "x": 400,
+      "y": 3,
+      "z": -145,
+      "width": 26,
+      "height": 6,
+      "depth": 20,
+      "platform": true
+    },
+    {
+      "id": "Service-core-screen-1",
+      "x": 420,
+      "y": 4.5,
+      "z": -185,
+      "width": 10,
+      "height": 9,
+      "depth": 32,
+      "platform": false
+    },
+    {
+      "id": "YardAccess-ramp-1-0",
+      "x": 350,
+      "y": 0.125,
+      "z": -199.16666666666666,
+      "width": 24,
+      "height": 0.25,
+      "depth": 1.7,
+      "platform": true
+    },
+    {
+      "id": "YardAccess-ramp-1-1",
+      "x": 350,
+      "y": 0.25,
+      "z": -197.5,
+      "width": 24,
+      "height": 0.5,
+      "depth": 1.7,
+      "platform": true
+    },
+    {
+      "id": "YardAccess-ramp-1-2",
+      "x": 350,
+      "y": 0.375,
+      "z": -195.83333333333334,
+      "width": 24,
+      "height": 0.75,
+      "depth": 1.7,
+      "platform": true
+    },
+    {
+      "id": "YardAccess-ramp-1-3",
+      "x": 350,
+      "y": 0.5,
+      "z": -194.16666666666666,
+      "width": 24,
+      "height": 1,
+      "depth": 1.7,
+      "platform": true
+    },
+    {
+      "id": "YardAccess-ramp-1-4",
+      "x": 350,
+      "y": 0.625,
+      "z": -192.5,
+      "width": 24,
+      "height": 1.25,
+      "depth": 1.7,
+      "platform": true
+    },
+    {
+      "id": "YardAccess-ramp-1-5",
+      "x": 350,
+      "y": 0.75,
+      "z": -190.83333333333334,
+      "width": 24,
+      "height": 1.5,
+      "depth": 1.7,
+      "platform": true
+    },
+    {
+      "id": "YardAccess-ramp-1-6",
+      "x": 350,
+      "y": 0.875,
+      "z": -189.16666666666666,
+      "width": 24,
+      "height": 1.75,
+      "depth": 1.7,
+      "platform": true
+    },
+    {
+      "id": "YardAccess-ramp-1-7",
+      "x": 350,
+      "y": 1,
+      "z": -187.5,
+      "width": 24,
+      "height": 2,
+      "depth": 1.7,
+      "platform": true
+    },
+    {
+      "id": "YardAccess-ramp-1-8",
+      "x": 350,
+      "y": 1.125,
+      "z": -185.83333333333334,
+      "width": 24,
+      "height": 2.25,
+      "depth": 1.7,
+      "platform": true
+    },
+    {
+      "id": "YardAccess-ramp-1-9",
+      "x": 350,
+      "y": 1.25,
+      "z": -184.16666666666666,
+      "width": 24,
+      "height": 2.5,
+      "depth": 1.7,
+      "platform": true
+    },
+    {
+      "id": "YardAccess-ramp-1-10",
+      "x": 350,
+      "y": 1.375,
+      "z": -182.5,
+      "width": 24,
+      "height": 2.75,
+      "depth": 1.7,
+      "platform": true
+    },
+    {
+      "id": "YardAccess-ramp-1-11",
+      "x": 350,
+      "y": 1.5,
+      "z": -180.83333333333334,
+      "width": 24,
+      "height": 3,
+      "depth": 1.7,
+      "platform": true
+    },
+    {
+      "id": "YardAccess-ramp-1-12",
+      "x": 350,
+      "y": 1.625,
+      "z": -179.16666666666666,
+      "width": 24,
+      "height": 3.25,
+      "depth": 1.7,
+      "platform": true
+    },
+    {
+      "id": "YardAccess-ramp-1-13",
+      "x": 350,
+      "y": 1.75,
+      "z": -177.5,
+      "width": 24,
+      "height": 3.5,
+      "depth": 1.7,
+      "platform": true
+    },
+    {
+      "id": "YardAccess-ramp-1-14",
+      "x": 350,
+      "y": 1.875,
+      "z": -175.83333333333334,
+      "width": 24,
+      "height": 3.75,
+      "depth": 1.7,
+      "platform": true
+    },
+    {
+      "id": "YardAccess-ramp-1-15",
+      "x": 350,
+      "y": 2,
+      "z": -174.16666666666666,
+      "width": 24,
+      "height": 4,
+      "depth": 1.7,
+      "platform": true
+    },
+    {
+      "id": "YardAccess-ramp-1-16",
+      "x": 350,
+      "y": 2.125,
+      "z": -172.5,
+      "width": 24,
+      "height": 4.25,
+      "depth": 1.7,
+      "platform": true
+    },
+    {
+      "id": "YardAccess-ramp-1-17",
+      "x": 350,
+      "y": 2.25,
+      "z": -170.83333333333334,
+      "width": 24,
+      "height": 4.5,
+      "depth": 1.7,
+      "platform": true
+    },
+    {
+      "id": "YardAccess-ramp-1-18",
+      "x": 350,
+      "y": 2.375,
+      "z": -169.16666666666666,
+      "width": 24,
+      "height": 4.75,
+      "depth": 1.7,
+      "platform": true
+    },
+    {
+      "id": "YardAccess-ramp-1-19",
+      "x": 350,
+      "y": 2.5,
+      "z": -167.5,
+      "width": 24,
+      "height": 5,
+      "depth": 1.7,
+      "platform": true
+    },
+    {
+      "id": "YardAccess-ramp-1-20",
+      "x": 350,
+      "y": 2.625,
+      "z": -165.83333333333331,
+      "width": 24,
+      "height": 5.25,
+      "depth": 1.7,
+      "platform": true
+    },
+    {
+      "id": "YardAccess-ramp-1-21",
+      "x": 350,
+      "y": 2.75,
+      "z": -164.16666666666666,
+      "width": 24,
+      "height": 5.5,
+      "depth": 1.7,
+      "platform": true
+    },
+    {
+      "id": "YardAccess-ramp-1-22",
+      "x": 350,
+      "y": 2.875,
+      "z": -162.5,
+      "width": 24,
+      "height": 5.75,
+      "depth": 1.7,
+      "platform": true
+    },
+    {
+      "id": "YardAccess-ramp-1-23",
+      "x": 350,
+      "y": 3,
+      "z": -160.83333333333331,
+      "width": 24,
+      "height": 6,
+      "depth": 1.7,
+      "platform": true
+    },
+    {
+      "id": "YardAccess-ramp-1-24",
+      "x": 350,
+      "y": 3.125,
+      "z": -159.16666666666666,
+      "width": 24,
+      "height": 6.25,
+      "depth": 1.7,
+      "platform": true
+    },
+    {
+      "id": "YardAccess-ramp-1-25",
+      "x": 350,
+      "y": 3.25,
+      "z": -157.5,
+      "width": 24,
+      "height": 6.5,
+      "depth": 1.7,
+      "platform": true
+    },
+    {
+      "id": "YardAccess-ramp-1-26",
+      "x": 350,
+      "y": 3.375,
+      "z": -155.83333333333331,
+      "width": 24,
+      "height": 6.75,
+      "depth": 1.7,
+      "platform": true
+    },
+    {
+      "id": "YardAccess-ramp-1-27",
+      "x": 350,
+      "y": 3.5,
+      "z": -154.16666666666666,
+      "width": 24,
+      "height": 7,
+      "depth": 1.7,
+      "platform": true
+    },
+    {
+      "id": "YardAccess-ramp-1-28",
+      "x": 350,
+      "y": 3.625,
+      "z": -152.5,
+      "width": 24,
+      "height": 7.25,
+      "depth": 1.7,
+      "platform": true
+    },
+    {
+      "id": "YardAccess-ramp-1-29",
+      "x": 350,
+      "y": 3.75,
+      "z": -150.83333333333331,
+      "width": 24,
+      "height": 7.5,
+      "depth": 1.7,
+      "platform": true
+    },
+    {
+      "id": "YardAccess-ramp-1-30",
+      "x": 350,
+      "y": 3.875,
+      "z": -149.16666666666666,
+      "width": 24,
+      "height": 7.75,
+      "depth": 1.7,
+      "platform": true
+    },
+    {
+      "id": "YardAccess-ramp-1-31",
+      "x": 350,
+      "y": 4,
+      "z": -147.5,
+      "width": 24,
+      "height": 8,
+      "depth": 1.7,
+      "platform": true
+    },
+    {
+      "id": "YardAccess-ramp-1-32",
+      "x": 350,
+      "y": 4.125,
+      "z": -145.83333333333331,
+      "width": 24,
+      "height": 8.25,
+      "depth": 1.7,
+      "platform": true
+    },
+    {
+      "id": "YardAccess-ramp-1-33",
+      "x": 350,
+      "y": 4.25,
+      "z": -144.16666666666666,
+      "width": 24,
+      "height": 8.5,
+      "depth": 1.7,
+      "platform": true
+    },
+    {
+      "id": "YardAccess-ramp-1-34",
+      "x": 350,
+      "y": 4.375,
+      "z": -142.5,
+      "width": 24,
+      "height": 8.75,
+      "depth": 1.7,
+      "platform": true
+    },
+    {
+      "id": "YardAccess-ramp-1-35",
+      "x": 350,
+      "y": 4.5,
+      "z": -140.83333333333331,
+      "width": 24,
+      "height": 9,
+      "depth": 1.7,
+      "platform": true
+    },
+    {
+      "id": "YardAccess-ramp-1-36",
+      "x": 350,
+      "y": 4.625,
+      "z": -139.16666666666666,
+      "width": 24,
+      "height": 9.25,
+      "depth": 1.7,
+      "platform": true
+    },
+    {
+      "id": "YardAccess-ramp-1-37",
+      "x": 350,
+      "y": 4.75,
+      "z": -137.5,
+      "width": 24,
+      "height": 9.5,
+      "depth": 1.7,
+      "platform": true
+    },
+    {
+      "id": "YardAccess-ramp-1-38",
+      "x": 350,
+      "y": 4.875,
+      "z": -135.83333333333331,
+      "width": 24,
+      "height": 9.75,
+      "depth": 1.7,
+      "platform": true
+    },
+    {
+      "id": "YardAccess-ramp-1-39",
+      "x": 350,
+      "y": 5,
+      "z": -134.16666666666666,
+      "width": 24,
+      "height": 10,
+      "depth": 1.7,
+      "platform": true
+    },
+    {
+      "id": "YardAccess-ramp-1-40",
+      "x": 350,
+      "y": 5.125,
+      "z": -132.5,
+      "width": 24,
+      "height": 10.25,
+      "depth": 1.7,
+      "platform": true
+    },
+    {
+      "id": "YardAccess-ramp-1-41",
+      "x": 350,
+      "y": 5.25,
+      "z": -130.83333333333331,
+      "width": 24,
+      "height": 10.5,
+      "depth": 1.7,
+      "platform": true
+    },
+    {
+      "id": "YardAccess-ramp-1-42",
+      "x": 350,
+      "y": 5.375,
+      "z": -129.16666666666666,
+      "width": 24,
+      "height": 10.75,
+      "depth": 1.7,
+      "platform": true
+    },
+    {
+      "id": "YardAccess-ramp-1-43",
+      "x": 350,
+      "y": 5.5,
+      "z": -127.5,
+      "width": 24,
+      "height": 11,
+      "depth": 1.7,
+      "platform": true
+    },
+    {
+      "id": "YardAccess-ramp-1-44",
+      "x": 350,
+      "y": 5.625,
+      "z": -125.83333333333333,
+      "width": 24,
+      "height": 11.25,
+      "depth": 1.7,
+      "platform": true
+    },
+    {
+      "id": "YardAccess-ramp-1-45",
+      "x": 350,
+      "y": 5.75,
+      "z": -124.16666666666666,
+      "width": 24,
+      "height": 11.5,
+      "depth": 1.7,
+      "platform": true
+    },
+    {
+      "id": "YardAccess-ramp-1-46",
+      "x": 350,
+      "y": 5.875,
+      "z": -122.5,
+      "width": 24,
+      "height": 11.75,
+      "depth": 1.7,
+      "platform": true
+    },
+    {
+      "id": "YardAccess-ramp-1-47",
+      "x": 350,
+      "y": 6,
+      "z": -120.83333333333333,
+      "width": 24,
+      "height": 12,
+      "depth": 1.7,
+      "platform": true
+    },
+    {
+      "id": "YardAccess-ramp-1-48",
+      "x": 350,
+      "y": 6.125,
+      "z": -119.16666666666666,
+      "width": 24,
+      "height": 12.25,
+      "depth": 1.7,
+      "platform": true
+    },
+    {
+      "id": "YardAccess-ramp-1-49",
+      "x": 350,
+      "y": 6.25,
+      "z": -117.5,
+      "width": 24,
+      "height": 12.5,
+      "depth": 1.7,
+      "platform": true
+    },
+    {
+      "id": "YardAccess-ramp-1-50",
+      "x": 350,
+      "y": 6.375,
+      "z": -115.83333333333333,
+      "width": 24,
+      "height": 12.75,
+      "depth": 1.7,
+      "platform": true
+    },
+    {
+      "id": "YardAccess-ramp-1-51",
+      "x": 350,
+      "y": 6.5,
+      "z": -114.16666666666666,
+      "width": 24,
+      "height": 13,
+      "depth": 1.7,
+      "platform": true
+    },
+    {
+      "id": "YardAccess-ramp-1-52",
+      "x": 350,
+      "y": 6.625,
+      "z": -112.5,
+      "width": 24,
+      "height": 13.25,
+      "depth": 1.7,
+      "platform": true
+    },
+    {
+      "id": "YardAccess-ramp-1-53",
+      "x": 350,
+      "y": 6.75,
+      "z": -110.83333333333333,
+      "width": 24,
+      "height": 13.5,
+      "depth": 1.7,
+      "platform": true
+    },
+    {
+      "id": "YardAccess-ramp-1-54",
+      "x": 350,
+      "y": 6.875,
+      "z": -109.16666666666666,
+      "width": 24,
+      "height": 13.75,
+      "depth": 1.7,
+      "platform": true
+    },
+    {
+      "id": "YardAccess-ramp-1-55",
+      "x": 350,
+      "y": 7,
+      "z": -107.5,
+      "width": 24,
+      "height": 14,
+      "depth": 1.7,
+      "platform": true
+    },
+    {
+      "id": "YardAccess-ramp-1-56",
+      "x": 350,
+      "y": 7.125,
+      "z": -105.83333333333333,
+      "width": 24,
+      "height": 14.25,
+      "depth": 1.7,
+      "platform": true
+    },
+    {
+      "id": "YardAccess-ramp-1-57",
+      "x": 350,
+      "y": 7.25,
+      "z": -104.16666666666666,
+      "width": 24,
+      "height": 14.5,
+      "depth": 1.7,
+      "platform": true
+    },
+    {
+      "id": "YardAccess-ramp-1-58",
+      "x": 350,
+      "y": 7.375,
+      "z": -102.5,
+      "width": 24,
+      "height": 14.75,
+      "depth": 1.7,
+      "platform": true
+    },
+    {
+      "id": "YardAccess-ramp-1-59",
+      "x": 350,
+      "y": 7.5,
+      "z": -100.83333333333333,
+      "width": 24,
+      "height": 15,
+      "depth": 1.7,
+      "platform": true
+    },
+    {
+      "id": "YardAccess-ramp-1-60",
+      "x": 350,
+      "y": 7.625,
+      "z": -99.16666666666666,
+      "width": 24,
+      "height": 15.25,
+      "depth": 1.7,
+      "platform": true
+    },
+    {
+      "id": "YardAccess-ramp-1-61",
+      "x": 350,
+      "y": 7.75,
+      "z": -97.5,
+      "width": 24,
+      "height": 15.5,
+      "depth": 1.7,
+      "platform": true
+    },
+    {
+      "id": "YardAccess-ramp-1-62",
+      "x": 350,
+      "y": 7.875,
+      "z": -95.83333333333333,
+      "width": 24,
+      "height": 15.75,
+      "depth": 1.7,
+      "platform": true
+    },
+    {
+      "id": "YardAccess-ramp-1-63",
+      "x": 350,
+      "y": 8,
+      "z": -94.16666666666666,
+      "width": 24,
+      "height": 16,
+      "depth": 1.7,
+      "platform": true
+    },
+    {
+      "id": "YardAccess-ramp-1-64",
+      "x": 350,
+      "y": 8.125,
+      "z": -92.5,
+      "width": 24,
+      "height": 16.25,
+      "depth": 1.7,
+      "platform": true
+    },
+    {
+      "id": "YardAccess-ramp-1-65",
+      "x": 350,
+      "y": 8.25,
+      "z": -90.83333333333333,
+      "width": 24,
+      "height": 16.5,
+      "depth": 1.7,
+      "platform": true
+    },
+    {
+      "id": "YardAccess-ramp-1-66",
+      "x": 350,
+      "y": 8.375,
+      "z": -89.16666666666666,
+      "width": 24,
+      "height": 16.75,
+      "depth": 1.7,
+      "platform": true
+    },
+    {
+      "id": "YardAccess-ramp-1-67",
+      "x": 350,
+      "y": 8.5,
+      "z": -87.5,
+      "width": 24,
+      "height": 17,
+      "depth": 1.7,
+      "platform": true
+    },
+    {
+      "id": "YardAccess-ramp-1-68",
+      "x": 350,
+      "y": 8.625,
+      "z": -85.83333333333333,
+      "width": 24,
+      "height": 17.25,
+      "depth": 1.7,
+      "platform": true
+    },
+    {
+      "id": "YardAccess-ramp-1-69",
+      "x": 350,
+      "y": 8.75,
+      "z": -84.16666666666666,
+      "width": 24,
+      "height": 17.5,
+      "depth": 1.7,
+      "platform": true
+    },
+    {
+      "id": "YardAccess-ramp-1-70",
+      "x": 350,
+      "y": 8.875,
+      "z": -82.5,
+      "width": 24,
+      "height": 17.75,
+      "depth": 1.7,
+      "platform": true
+    },
+    {
+      "id": "YardAccess-ramp-1-71",
+      "x": 350,
+      "y": 9,
+      "z": -80.83333333333333,
+      "width": 24,
+      "height": 18,
+      "depth": 1.7,
+      "platform": true
+    },
+    {
+      "id": "YardAccess-landing-1",
+      "x": 350,
+      "y": 9,
+      "z": -79,
+      "width": 26,
+      "height": 18,
+      "depth": 3,
+      "platform": true
+    },
+    {
+      "id": "FactoryWorkshop--165-back",
+      "x": -165,
+      "y": 21,
+      "z": 188,
+      "width": 24,
+      "height": 6,
+      "depth": 2,
+      "platform": false
+    },
+    {
+      "id": "FactoryWorkshop--165-side--1",
+      "x": -177,
+      "y": 21,
+      "z": 174,
+      "width": 2,
+      "height": 6,
+      "depth": 28,
+      "platform": false
+    },
+    {
+      "id": "FactoryWorkshop--165-side-1",
+      "x": -153,
+      "y": 21,
+      "z": 174,
+      "width": 2,
+      "height": 6,
+      "depth": 28,
+      "platform": false
+    },
+    {
+      "id": "FactoryWorkshop--165-roof",
+      "x": -165,
+      "y": 23.75,
+      "z": 174,
+      "width": 26,
+      "height": 0.5,
+      "depth": 30,
+      "platform": true
+    },
+    {
+      "id": "FactoryWorkshop-0-back",
+      "x": 0,
+      "y": 21,
+      "z": 188,
+      "width": 24,
+      "height": 6,
+      "depth": 2,
+      "platform": false
+    },
+    {
+      "id": "FactoryWorkshop-0-side--1",
+      "x": -12,
+      "y": 21,
+      "z": 174,
+      "width": 2,
+      "height": 6,
+      "depth": 28,
+      "platform": false
+    },
+    {
+      "id": "FactoryWorkshop-0-side-1",
+      "x": 12,
+      "y": 21,
+      "z": 174,
+      "width": 2,
+      "height": 6,
+      "depth": 28,
+      "platform": false
+    },
+    {
+      "id": "FactoryWorkshop-0-roof",
+      "x": 0,
+      "y": 23.75,
+      "z": 174,
+      "width": 26,
+      "height": 0.5,
+      "depth": 30,
+      "platform": true
+    },
+    {
+      "id": "FactoryWorkshop-165-back",
+      "x": 165,
+      "y": 21,
+      "z": 188,
+      "width": 24,
+      "height": 6,
+      "depth": 2,
+      "platform": false
+    },
+    {
+      "id": "FactoryWorkshop-165-side--1",
+      "x": 153,
+      "y": 21,
+      "z": 174,
+      "width": 2,
+      "height": 6,
+      "depth": 28,
+      "platform": false
+    },
+    {
+      "id": "FactoryWorkshop-165-side-1",
+      "x": 177,
+      "y": 21,
+      "z": 174,
+      "width": 2,
+      "height": 6,
+      "depth": 28,
+      "platform": false
+    },
+    {
+      "id": "FactoryWorkshop-165-roof",
+      "x": 165,
+      "y": 23.75,
+      "z": 174,
+      "width": 26,
+      "height": 0.5,
+      "depth": 30,
+      "platform": true
+    },
+    {
+      "id": "FactoryRearShield--1",
+      "x": -350,
+      "y": 22.5,
+      "z": 213,
+      "width": 70,
+      "height": 9,
+      "depth": 4,
+      "platform": false
+    },
+    {
+      "id": "FactoryOuterShield--1",
+      "x": -390,
+      "y": 22,
+      "z": 190,
+      "width": 6,
+      "height": 8,
+      "depth": 50,
+      "platform": false
+    },
+    {
+      "id": "FactoryCrane--1-leg--1",
+      "x": -230,
+      "y": 26,
+      "z": 65,
+      "width": 3,
+      "height": 16,
+      "depth": 8,
+      "platform": false
+    },
+    {
+      "id": "FactoryCrane--1-leg-1",
+      "x": -270,
+      "y": 26,
+      "z": 65,
+      "width": 3,
+      "height": 16,
+      "depth": 8,
+      "platform": false
+    },
+    {
+      "id": "FactoryCrane--1-beam",
+      "x": -250,
+      "y": 35,
+      "z": 65,
+      "width": 48,
+      "height": 2,
+      "depth": 8,
+      "platform": true
+    },
+    {
+      "id": "ScrapDetail--1-inner-base",
+      "x": -40,
+      "y": 20,
+      "z": -30,
+      "width": 22,
+      "height": 4,
+      "depth": 18,
+      "platform": true
+    },
+    {
+      "id": "ScrapDetail--1-inner-tier",
+      "x": -42,
+      "y": 24,
+      "z": -29,
+      "width": 15.84,
+      "height": 4,
+      "depth": 12.959999999999999,
+      "platform": true
+    },
+    {
+      "id": "ScrapDetail--1-inner-top",
+      "x": -43,
+      "y": 28,
+      "z": -30,
+      "width": 9.24,
+      "height": 4,
+      "depth": 7.56,
+      "platform": true
+    },
+    {
+      "id": "ScrapDetail--1-outer-north-base",
+      "x": -250,
+      "y": 20,
+      "z": 50,
+      "width": 38,
+      "height": 4,
+      "depth": 26,
+      "platform": true
+    },
+    {
+      "id": "ScrapDetail--1-outer-north-tier",
+      "x": -252,
+      "y": 24,
+      "z": 51,
+      "width": 27.36,
+      "height": 4,
+      "depth": 18.72,
+      "platform": true
+    },
+    {
+      "id": "ScrapDetail--1-outer-north-top",
+      "x": -253,
+      "y": 28,
+      "z": 50,
+      "width": 15.959999999999999,
+      "height": 4,
+      "depth": 10.92,
+      "platform": true
+    },
+    {
+      "id": "ScrapDetail--1-outer-south-base",
+      "x": -250,
+      "y": 20,
+      "z": -50,
+      "width": 38,
+      "height": 4,
+      "depth": 26,
+      "platform": true
+    },
+    {
+      "id": "ScrapDetail--1-outer-south-tier",
+      "x": -252,
+      "y": 24,
+      "z": -49,
+      "width": 27.36,
+      "height": 4,
+      "depth": 18.72,
+      "platform": true
+    },
+    {
+      "id": "ScrapDetail--1-outer-south-top",
+      "x": -253,
+      "y": 28,
+      "z": -50,
+      "width": 15.959999999999999,
+      "height": 4,
+      "depth": 10.92,
+      "platform": true
+    },
+    {
+      "id": "ScrapBarrier--1",
+      "x": -60,
+      "y": 19.15,
+      "z": -8,
+      "width": 12,
+      "height": 2.3,
+      "depth": 4,
+      "platform": false
+    },
+    {
+      "id": "ServiceStoredCargo--1",
+      "x": -130,
+      "y": 2,
+      "z": -225,
+      "width": 35,
+      "height": 4,
+      "depth": 16,
+      "platform": true
+    },
+    {
+      "id": "ServiceRelayCover--1",
+      "x": -30,
+      "y": 1.1,
+      "z": -200,
+      "width": 16,
+      "height": 2.2,
+      "depth": 10,
+      "platform": false
+    },
+    {
+      "id": "FactoryRearShield-1",
+      "x": 350,
+      "y": 22.5,
+      "z": 213,
+      "width": 70,
+      "height": 9,
+      "depth": 4,
+      "platform": false
+    },
+    {
+      "id": "FactoryOuterShield-1",
+      "x": 390,
+      "y": 22,
+      "z": 190,
+      "width": 6,
+      "height": 8,
+      "depth": 50,
+      "platform": false
+    },
+    {
+      "id": "FactoryCrane-1-leg--1",
+      "x": 230,
+      "y": 26,
+      "z": 65,
+      "width": 3,
+      "height": 16,
+      "depth": 8,
+      "platform": false
+    },
+    {
+      "id": "FactoryCrane-1-leg-1",
+      "x": 270,
+      "y": 26,
+      "z": 65,
+      "width": 3,
+      "height": 16,
+      "depth": 8,
+      "platform": false
+    },
+    {
+      "id": "FactoryCrane-1-beam",
+      "x": 250,
+      "y": 35,
+      "z": 65,
+      "width": 48,
+      "height": 2,
+      "depth": 8,
+      "platform": true
+    },
+    {
+      "id": "ScrapDetail-1-inner-base",
+      "x": 40,
+      "y": 20,
+      "z": -30,
+      "width": 22,
+      "height": 4,
+      "depth": 18,
+      "platform": true
+    },
+    {
+      "id": "ScrapDetail-1-inner-tier",
+      "x": 42,
+      "y": 24,
+      "z": -29,
+      "width": 15.84,
+      "height": 4,
+      "depth": 12.959999999999999,
+      "platform": true
+    },
+    {
+      "id": "ScrapDetail-1-inner-top",
+      "x": 43,
+      "y": 28,
+      "z": -30,
+      "width": 9.24,
+      "height": 4,
+      "depth": 7.56,
+      "platform": true
+    },
+    {
+      "id": "ScrapDetail-1-outer-north-base",
+      "x": 250,
+      "y": 20,
+      "z": 50,
+      "width": 38,
+      "height": 4,
+      "depth": 26,
+      "platform": true
+    },
+    {
+      "id": "ScrapDetail-1-outer-north-tier",
+      "x": 252,
+      "y": 24,
+      "z": 51,
+      "width": 27.36,
+      "height": 4,
+      "depth": 18.72,
+      "platform": true
+    },
+    {
+      "id": "ScrapDetail-1-outer-north-top",
+      "x": 253,
+      "y": 28,
+      "z": 50,
+      "width": 15.959999999999999,
+      "height": 4,
+      "depth": 10.92,
+      "platform": true
+    },
+    {
+      "id": "ScrapDetail-1-outer-south-base",
+      "x": 250,
+      "y": 20,
+      "z": -50,
+      "width": 38,
+      "height": 4,
+      "depth": 26,
+      "platform": true
+    },
+    {
+      "id": "ScrapDetail-1-outer-south-tier",
+      "x": 252,
+      "y": 24,
+      "z": -49,
+      "width": 27.36,
+      "height": 4,
+      "depth": 18.72,
+      "platform": true
+    },
+    {
+      "id": "ScrapDetail-1-outer-south-top",
+      "x": 253,
+      "y": 28,
+      "z": -50,
+      "width": 15.959999999999999,
+      "height": 4,
+      "depth": 10.92,
+      "platform": true
+    },
+    {
+      "id": "ScrapBarrier-1",
+      "x": 60,
+      "y": 19.15,
+      "z": -8,
+      "width": 12,
+      "height": 2.3,
+      "depth": 4,
+      "platform": false
+    },
+    {
+      "id": "ServiceStoredCargo-1",
+      "x": 130,
+      "y": 2,
+      "z": -225,
+      "width": 35,
+      "height": 4,
+      "depth": 16,
+      "platform": true
+    },
+    {
+      "id": "ServiceRelayCover-1",
+      "x": 30,
+      "y": 1.1,
+      "z": -200,
+      "width": 16,
+      "height": 2.2,
+      "depth": 10,
+      "platform": false
+    },
+    {
+      "id": "FactoryGantry-deck",
+      "x": 0,
+      "y": 23.7,
+      "z": 90,
+      "width": 174,
+      "height": 0.6,
+      "depth": 14,
+      "platform": true
+    },
+    {
+      "id": "Scrap-crosswalk",
+      "x": 0,
+      "y": 26.7,
+      "z": 36,
+      "width": 120,
+      "height": 0.6,
+      "depth": 8,
+      "platform": true
+    },
+    {
+      "id": "Service-overpass",
+      "x": 0,
+      "y": 5.7,
+      "z": -225,
+      "width": 100,
+      "height": 0.6,
+      "depth": 12,
+      "platform": true
+    },
+    {
+      "id": "Service-overpass-pier--47",
+      "x": -47,
+      "y": 2.7,
+      "z": -225,
+      "width": 3,
+      "height": 5.4,
+      "depth": 12,
+      "platform": false
+    },
+    {
+      "id": "Service-overpass-pier-47",
+      "x": 47,
+      "y": 2.7,
+      "z": -225,
+      "width": 3,
+      "height": 5.4,
+      "depth": 12,
+      "platform": false
+    }
+  ],
+  "navigationNodes": [
+    {
+      "id": "yard-nav-main-W",
+      "x": -235,
+      "y": 18,
+      "z": 0,
+      "links": [
+        1,
+        18,
+        19,
+        24,
+        46
+      ]
+    },
+    {
+      "id": "yard-nav-main-W2",
+      "x": -180,
+      "y": 18,
+      "z": 0,
+      "links": [
+        0,
+        2
+      ]
+    },
+    {
+      "id": "yard-nav-main-W3",
+      "x": -100,
+      "y": 18,
+      "z": 0,
+      "links": [
+        1,
+        3
+      ]
+    },
+    {
+      "id": "yard-nav-main",
+      "x": 0,
+      "y": 18,
+      "z": 0,
+      "links": [
+        2,
+        4,
+        7,
+        16
+      ]
+    },
+    {
+      "id": "yard-nav-main-E3",
+      "x": 100,
+      "y": 18,
+      "z": 0,
+      "links": [
+        3,
+        5
+      ]
+    },
+    {
+      "id": "yard-nav-main-E2",
+      "x": 180,
+      "y": 18,
+      "z": 0,
+      "links": [
+        4,
+        6
+      ]
+    },
+    {
+      "id": "yard-nav-main-E",
+      "x": 235,
+      "y": 18,
+      "z": 0,
+      "links": [
+        5,
+        47,
+        48,
+        53,
+        75
+      ]
+    },
+    {
+      "id": "yard-nav-relay-1",
+      "x": 0,
+      "y": 18,
+      "z": 20,
+      "links": [
+        8,
+        3
+      ]
+    },
+    {
+      "id": "yard-nav-factory-front",
+      "x": 0,
+      "y": 18,
+      "z": 110,
+      "links": [
+        7,
+        20,
+        49
+      ]
+    },
+    {
+      "id": "yard-nav-lower-W3",
+      "x": -280,
+      "y": 0,
+      "z": -180,
+      "links": [
+        10,
+        29
+      ]
+    },
+    {
+      "id": "yard-nav-lower-W2",
+      "x": -190,
+      "y": 0,
+      "z": -180,
+      "links": [
+        9,
+        11,
+        28
+      ]
+    },
+    {
+      "id": "yard-nav-lower-W",
+      "x": -90,
+      "y": 0,
+      "z": -180,
+      "links": [
+        10,
+        12
+      ]
+    },
+    {
+      "id": "yard-nav-relay-4",
+      "x": 0,
+      "y": 0,
+      "z": -180,
+      "links": [
+        11,
+        13,
+        17
+      ]
+    },
+    {
+      "id": "yard-nav-lower-E",
+      "x": 90,
+      "y": 0,
+      "z": -180,
+      "links": [
+        12,
+        14
+      ]
+    },
+    {
+      "id": "yard-nav-lower-E2",
+      "x": 190,
+      "y": 0,
+      "z": -180,
+      "links": [
+        13,
+        15,
+        57
+      ]
+    },
+    {
+      "id": "yard-nav-lower-E3",
+      "x": 280,
+      "y": 0,
+      "z": -180,
+      "links": [
+        14,
+        58
+      ]
+    },
+    {
+      "id": "yard-nav-drop-center-lip",
+      "x": 0,
+      "y": 18,
+      "z": -77,
+      "links": [
+        3,
+        17
+      ]
+    },
+    {
+      "id": "yard-nav-drop-center-floor",
+      "x": 0,
+      "y": 0,
+      "z": -105,
+      "links": [
+        12
+      ]
+    },
+    {
+      "id": "yard-nav-base-BY-W",
+      "x": -257,
+      "y": 18,
+      "z": 0,
+      "links": [
+        0
+      ]
+    },
+    {
+      "id": "yard-nav-W-factory-turn",
+      "x": -210,
+      "y": 18,
+      "z": 90,
+      "links": [
+        20,
+        0
+      ]
+    },
+    {
+      "id": "yard-nav-W-relay-23",
+      "x": -210,
+      "y": 18,
+      "z": 120,
+      "links": [
+        19,
+        21,
+        8
+      ]
+    },
+    {
+      "id": "yard-nav-W-factory-alley",
+      "x": -300,
+      "y": 18,
+      "z": 120,
+      "links": [
+        20,
+        22
+      ]
+    },
+    {
+      "id": "yard-nav-W-factory-back",
+      "x": -350,
+      "y": 18,
+      "z": 150,
+      "links": [
+        21,
+        23,
+        45
+      ]
+    },
+    {
+      "id": "yard-nav-W-base-AX",
+      "x": -350,
+      "y": 18,
+      "z": 172,
+      "links": [
+        22
+      ]
+    },
+    {
+      "id": "yard-nav-W-south-turn",
+      "x": -210,
+      "y": 18,
+      "z": -15,
+      "links": [
+        25,
+        0
+      ]
+    },
+    {
+      "id": "yard-nav-W-south-alley",
+      "x": -210,
+      "y": 18,
+      "z": -60,
+      "links": [
+        24,
+        26
+      ]
+    },
+    {
+      "id": "yard-nav-W-relay-56",
+      "x": -160,
+      "y": 18,
+      "z": -60,
+      "links": [
+        25,
+        27
+      ]
+    },
+    {
+      "id": "yard-nav-W-drop-lip",
+      "x": -160,
+      "y": 18,
+      "z": -77,
+      "links": [
+        26,
+        28
+      ]
+    },
+    {
+      "id": "yard-nav-W-drop-floor",
+      "x": -160,
+      "y": 0,
+      "z": -105,
+      "links": [
+        10
+      ]
+    },
+    {
+      "id": "yard-nav-W-low-rear",
+      "x": -320,
+      "y": 0,
+      "z": -215,
+      "links": [
+        30,
+        9,
+        32
+      ]
+    },
+    {
+      "id": "yard-nav-W-low-spawn",
+      "x": -375,
+      "y": 0,
+      "z": -215,
+      "links": [
+        29,
+        31,
+        32
+      ]
+    },
+    {
+      "id": "yard-nav-W-base-CZ",
+      "x": -392,
+      "y": 0,
+      "z": -215,
+      "links": [
+        30
+      ]
+    },
+    {
+      "id": "yard-nav-W-ramp-0",
+      "x": -350,
+      "y": 0,
+      "z": -200,
+      "links": [
+        33,
+        29,
+        30
+      ]
+    },
+    {
+      "id": "yard-nav-W-ramp-1",
+      "x": -350,
+      "y": 1.5,
+      "z": -190,
+      "links": [
+        32,
+        34
+      ]
+    },
+    {
+      "id": "yard-nav-W-ramp-2",
+      "x": -350,
+      "y": 3,
+      "z": -180,
+      "links": [
+        33,
+        35
+      ]
+    },
+    {
+      "id": "yard-nav-W-ramp-3",
+      "x": -350,
+      "y": 4.5,
+      "z": -170,
+      "links": [
+        34,
+        36
+      ]
+    },
+    {
+      "id": "yard-nav-W-ramp-4",
+      "x": -350,
+      "y": 6,
+      "z": -160,
+      "links": [
+        35,
+        37
+      ]
+    },
+    {
+      "id": "yard-nav-W-ramp-5",
+      "x": -350,
+      "y": 7.5,
+      "z": -150,
+      "links": [
+        36,
+        38
+      ]
+    },
+    {
+      "id": "yard-nav-W-ramp-6",
+      "x": -350,
+      "y": 9,
+      "z": -140,
+      "links": [
+        37,
+        39
+      ]
+    },
+    {
+      "id": "yard-nav-W-ramp-7",
+      "x": -350,
+      "y": 10.5,
+      "z": -130,
+      "links": [
+        38,
+        40
+      ]
+    },
+    {
+      "id": "yard-nav-W-ramp-8",
+      "x": -350,
+      "y": 12,
+      "z": -120,
+      "links": [
+        39,
+        41
+      ]
+    },
+    {
+      "id": "yard-nav-W-ramp-9",
+      "x": -350,
+      "y": 13.5,
+      "z": -110,
+      "links": [
+        40,
+        42
+      ]
+    },
+    {
+      "id": "yard-nav-W-ramp-10",
+      "x": -350,
+      "y": 15,
+      "z": -100,
+      "links": [
+        41,
+        43
+      ]
+    },
+    {
+      "id": "yard-nav-W-ramp-11",
+      "x": -350,
+      "y": 16.5,
+      "z": -90,
+      "links": [
+        42,
+        44
+      ]
+    },
+    {
+      "id": "yard-nav-W-ramp-12",
+      "x": -350,
+      "y": 18,
+      "z": -80,
+      "links": [
+        43,
+        45
+      ]
+    },
+    {
+      "id": "yard-nav-W-ramp-exit",
+      "x": -350,
+      "y": 18,
+      "z": -60,
+      "links": [
+        46,
+        44,
+        22
+      ]
+    },
+    {
+      "id": "yard-nav-W-upper-rear",
+      "x": -300,
+      "y": 18,
+      "z": -45,
+      "links": [
+        45,
+        0
+      ]
+    },
+    {
+      "id": "yard-nav-base-BY-E",
+      "x": 257,
+      "y": 18,
+      "z": 0,
+      "links": [
+        6
+      ]
+    },
+    {
+      "id": "yard-nav-E-factory-turn",
+      "x": 210,
+      "y": 18,
+      "z": 90,
+      "links": [
+        49,
+        6
+      ]
+    },
+    {
+      "id": "yard-nav-E-relay-23",
+      "x": 210,
+      "y": 18,
+      "z": 120,
+      "links": [
+        48,
+        50,
+        8
+      ]
+    },
+    {
+      "id": "yard-nav-E-factory-alley",
+      "x": 300,
+      "y": 18,
+      "z": 120,
+      "links": [
+        49,
+        51
+      ]
+    },
+    {
+      "id": "yard-nav-E-factory-back",
+      "x": 350,
+      "y": 18,
+      "z": 150,
+      "links": [
+        50,
+        52,
+        74
+      ]
+    },
+    {
+      "id": "yard-nav-E-base-AX",
+      "x": 350,
+      "y": 18,
+      "z": 172,
+      "links": [
+        51
+      ]
+    },
+    {
+      "id": "yard-nav-E-south-turn",
+      "x": 210,
+      "y": 18,
+      "z": -15,
+      "links": [
+        54,
+        6
+      ]
+    },
+    {
+      "id": "yard-nav-E-south-alley",
+      "x": 210,
+      "y": 18,
+      "z": -60,
+      "links": [
+        53,
+        55
+      ]
+    },
+    {
+      "id": "yard-nav-E-relay-56",
+      "x": 160,
+      "y": 18,
+      "z": -60,
+      "links": [
+        54,
+        56
+      ]
+    },
+    {
+      "id": "yard-nav-E-drop-lip",
+      "x": 160,
+      "y": 18,
+      "z": -77,
+      "links": [
+        55,
+        57
+      ]
+    },
+    {
+      "id": "yard-nav-E-drop-floor",
+      "x": 160,
+      "y": 0,
+      "z": -105,
+      "links": [
+        14
+      ]
+    },
+    {
+      "id": "yard-nav-E-low-rear",
+      "x": 320,
+      "y": 0,
+      "z": -215,
+      "links": [
+        59,
+        15,
+        61
+      ]
+    },
+    {
+      "id": "yard-nav-E-low-spawn",
+      "x": 375,
+      "y": 0,
+      "z": -215,
+      "links": [
+        58,
+        60,
+        61
+      ]
+    },
+    {
+      "id": "yard-nav-E-base-CZ",
+      "x": 392,
+      "y": 0,
+      "z": -215,
+      "links": [
+        59
+      ]
+    },
+    {
+      "id": "yard-nav-E-ramp-0",
+      "x": 350,
+      "y": 0,
+      "z": -200,
+      "links": [
+        62,
+        58,
+        59
+      ]
+    },
+    {
+      "id": "yard-nav-E-ramp-1",
+      "x": 350,
+      "y": 1.5,
+      "z": -190,
+      "links": [
+        61,
+        63
+      ]
+    },
+    {
+      "id": "yard-nav-E-ramp-2",
+      "x": 350,
+      "y": 3,
+      "z": -180,
+      "links": [
+        62,
+        64
+      ]
+    },
+    {
+      "id": "yard-nav-E-ramp-3",
+      "x": 350,
+      "y": 4.5,
+      "z": -170,
+      "links": [
+        63,
+        65
+      ]
+    },
+    {
+      "id": "yard-nav-E-ramp-4",
+      "x": 350,
+      "y": 6,
+      "z": -160,
+      "links": [
+        64,
+        66
+      ]
+    },
+    {
+      "id": "yard-nav-E-ramp-5",
+      "x": 350,
+      "y": 7.5,
+      "z": -150,
+      "links": [
+        65,
+        67
+      ]
+    },
+    {
+      "id": "yard-nav-E-ramp-6",
+      "x": 350,
+      "y": 9,
+      "z": -140,
+      "links": [
+        66,
+        68
+      ]
+    },
+    {
+      "id": "yard-nav-E-ramp-7",
+      "x": 350,
+      "y": 10.5,
+      "z": -130,
+      "links": [
+        67,
+        69
+      ]
+    },
+    {
+      "id": "yard-nav-E-ramp-8",
+      "x": 350,
+      "y": 12,
+      "z": -120,
+      "links": [
+        68,
+        70
+      ]
+    },
+    {
+      "id": "yard-nav-E-ramp-9",
+      "x": 350,
+      "y": 13.5,
+      "z": -110,
+      "links": [
+        69,
+        71
+      ]
+    },
+    {
+      "id": "yard-nav-E-ramp-10",
+      "x": 350,
+      "y": 15,
+      "z": -100,
+      "links": [
+        70,
+        72
+      ]
+    },
+    {
+      "id": "yard-nav-E-ramp-11",
+      "x": 350,
+      "y": 16.5,
+      "z": -90,
+      "links": [
+        71,
+        73
+      ]
+    },
+    {
+      "id": "yard-nav-E-ramp-12",
+      "x": 350,
+      "y": 18,
+      "z": -80,
+      "links": [
+        72,
+        74
+      ]
+    },
+    {
+      "id": "yard-nav-E-ramp-exit",
+      "x": 350,
+      "y": 18,
+      "z": -60,
+      "links": [
+        75,
+        73,
+        51
+      ]
+    },
+    {
+      "id": "yard-nav-E-upper-rear",
+      "x": 300,
+      "y": 18,
+      "z": -45,
+      "links": [
+        74,
+        6
+      ]
+    }
+  ],
+  "designNotes": {
+    "original": true,
+    "reference": "https://ggame.jp/news/detail.php?id=2184",
+    "source": "Original greybox inspired by the published factory / junkyard / lower-area combat roles; no copied imagery, geometry or IP assets.",
+    "north": "Dense open-door workshops with roofs, narrow alleys and a raised gantry for close combat and infiltration.",
+    "center": "Staggered climbable scrap stacks, overhead walkway and wider sight gaps; relay 1 and the nearer B/Y core approaches hold the main line.",
+    "south": "Open-air lower service basin at Y0, 18m below the yard. Central ledges are one-way drops. Two outer 120m stepped ramps provide longer returns; directed public nav models the drops.",
+    "objectives": "Three finite cores per team ABC/XYZ, six neutral relays. All routes use shared movement, fuel, ammunition and perception rules."
+  }
+}

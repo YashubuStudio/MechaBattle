@@ -1,0 +1,263 @@
+{
+  "task": "CITY-26",
+  "owner": "GPT",
+  "status": "implementation_and_independent_verification_complete_native_acceptance_pending",
+  "executedUtc": "2026-10-16T23:38:39.617Z",
+  "requirements": [
+    "FR-101",
+    "FR-102",
+    "FR-105",
+    "FR-108",
+    "FR-109",
+    "FR-110",
+    "FR-201",
+    "FR-203",
+    "FR-301",
+    "FR-601",
+    "FR-602",
+    "FR-603",
+    "FR-604",
+    "FR-802",
+    "FR-805",
+    "User-2026-10-17"
+  ],
+  "evidenceRoot": "MechaBattle/Build/CITY26_1792192723488/final",
+  "sourceManifest": "MechaBattle/Build/CITY26_1792192723488/final/source-sha256.json",
+  "domain": {
+    "scope": "pure-csharp-smoke-not-unity-test-runner",
+    "passed": 510,
+    "failed": 0,
+    "newCases": 12,
+    "pureSources": 101,
+    "status": {
+      "status": "finished",
+      "pid": 9924,
+      "exitCode": 0,
+      "signal": null,
+      "error": null,
+      "finishedUtc": "2026-10-16T23:36:10.677Z"
+    },
+    "log": "MechaBattle/Build/CITY26_1792192723488/final/domain-run.log",
+    "report": "MechaBattle/Build/CITY26_1792192723488/final/project/Build/Reports/domain-smoke.json"
+  },
+  "partial": {
+    "passed": 27,
+    "failed": 0,
+    "log": "MechaBattle/Build/CITY26_1792192723488/quick-tests-layer-bot.log",
+    "actualMapMotorPath": "B forward spawn → 5 → stairs → 4 → C/Z folded passage → 6 → street",
+    "actualPublicBotPath": "5 → capture 4 → attack Z; own state/public map/capture/base status only"
+  },
+  "staticCompile": {
+    "assemblies": 20,
+    "status": {
+      "status": "finished",
+      "pid": 32632,
+      "exitCode": 0,
+      "signal": null,
+      "error": null,
+      "finishedUtc": "2026-10-16T23:37:27.773Z"
+    },
+    "log": "MechaBattle/Build/CITY26_1792192723488/final/static-final.log",
+    "report": "MechaBattle/Build/CITY26_1792192723488/final/project/Build/Reports/static-api-compile.json",
+    "uiOnlyFinalChange": "Deployment legend width 120→320px; pure simulation unchanged"
+  },
+  "initialFailure": {
+    "evidenceRoot": "MechaBattle/Build/CITY26_1792192723488/accepted",
+    "passed": 509,
+    "failed": 1,
+    "newMapCoreHits": 0,
+    "reason": "Planar recovery/retreat and stale obstacle waypoints overrode layered route.",
+    "resolution": "Route public layered objectives after movement overrides, clear stale planar waypoint, actual BOT 5→4→Z regression, full rerun success."
+  },
+  "selectedMaps": [
+    "canyon-cross",
+    "urban-overpass",
+    "layered-city"
+  ],
+  "retiredSelectableMaps": [
+    "p0-three-lanes",
+    "terraced-works"
+  ],
+  "legacyFixtures": "Old JSON retained for foundation/regression and saved scene compatibility only; never reinserted as playable selection.",
+  "coreRules": {
+    "names": "blue north→south A/B/C; orange north→south X/Y/Z",
+    "health": 20000,
+    "directGaugeFactor": 0.08,
+    "previousDirectGaugeFactor": 0.5,
+    "destructionGaugeLoss": 8000,
+    "destructionAppliedOnce": true,
+    "noSpawnSupplyOrCounterfireAfterDestroyed": true,
+    "scoreClampedToActualHealth": true,
+    "collision": "Simulation cylinder movement/camera/projectiles matches visible radius/height; legacy baseline opt-in unchanged."
+  },
+  "layeredMap": {
+    "id": "layered-city",
+    "width": 840,
+    "depth": 560,
+    "groundY": 16,
+    "undergroundY": 0,
+    "obstacleVolumes": 192,
+    "navigationNodes": 82,
+    "mainBasesPerTeam": 3,
+    "relays": 6,
+    "undergroundObjectives": [
+      "C",
+      "Z",
+      "4"
+    ],
+    "groundObjectives": [
+      "A",
+      "B",
+      "X",
+      "Y",
+      "1",
+      "2",
+      "3",
+      "5",
+      "6"
+    ],
+    "rearForwardSpawns": [
+      "B",
+      "Y"
+    ],
+    "interiorLights": 9,
+    "provenance": "Original geometry from user-described topology; no copied IP map assets or layout data."
+  },
+  "battles": {
+    "constructed-battle-canyon-cross.json": {
+      "scope": "constructed-domain-bot-match-not-ui-player-or-fps-acceptance",
+      "mapId": "canyon-cross",
+      "peakAlive": 100,
+      "simulatedSeconds": 600,
+      "WinnerTeam": 1,
+      "ShotsFired": 41911,
+      "UnitsDestroyed": 83,
+      "UnitsSpawned": 183,
+      "BaseHits": 204,
+      "BaseCounterShotsFired": 43,
+      "CaptureChanges": 37,
+      "peakAirborne": 36,
+      "airborneUnitSeconds": 10963.18,
+      "maximumHeight": 13.123195,
+      "averageAlive": 99.5405,
+      "minBlueAlive": 47,
+      "minOrangeAlive": 47,
+      "bothTeamsAtLeast20Fraction": 1,
+      "completedLives": 83,
+      "meanLifeSeconds": 175.8291526964181,
+      "meanFirstDamageToDeathSeconds": 139.57517760314317,
+      "centralBattlefieldFraction": 0.9015110506097463,
+      "coreGaugeDamage": 39007.679843366146,
+      "unitGaugeDamage": 1096.4099750518799,
+      "basesDestroyed": 4,
+      "blueGauge": 9702.150096064433,
+      "orangeGauge": 10193.760085076094
+    },
+    "constructed-battle-urban-overpass.json": {
+      "scope": "constructed-domain-bot-match-not-ui-player-or-fps-acceptance",
+      "mapId": "urban-overpass",
+      "peakAlive": 100,
+      "simulatedSeconds": 600,
+      "WinnerTeam": 0,
+      "ShotsFired": 44696,
+      "UnitsDestroyed": 82,
+      "UnitsSpawned": 182,
+      "BaseHits": 29,
+      "BaseCounterShotsFired": 14,
+      "CaptureChanges": 51,
+      "peakAirborne": 21,
+      "airborneUnitSeconds": 5297.78,
+      "maximumHeight": 12.494393,
+      "averageAlive": 99.5427,
+      "minBlueAlive": 48,
+      "minOrangeAlive": 48,
+      "bothTeamsAtLeast20Fraction": 1,
+      "completedLives": 82,
+      "meanLifeSeconds": 205.4792636998634,
+      "meanFirstDamageToDeathSeconds": 177.368044816003,
+      "centralBattlefieldFraction": 0.8380900496846289,
+      "coreGaugeDamage": 1207.0399730205536,
+      "unitGaugeDamage": 1089.2699756622314,
+      "basesDestroyed": 0,
+      "blueGauge": 29286.000015959144,
+      "orangeGauge": 28417.690035367385
+    },
+    "constructed-battle-layered-city.json": {
+      "scope": "constructed-domain-bot-match-not-ui-player-or-fps-acceptance",
+      "mapId": "layered-city",
+      "peakAlive": 100,
+      "simulatedSeconds": 600,
+      "WinnerTeam": 1,
+      "ShotsFired": 30247,
+      "UnitsDestroyed": 297,
+      "UnitsSpawned": 393,
+      "BaseHits": 123,
+      "BaseCounterShotsFired": 17,
+      "CaptureChanges": 42,
+      "peakAirborne": 18,
+      "airborneUnitSeconds": 1086.5,
+      "maximumHeight": 21.12322,
+      "averageAlive": 97.90173333333334,
+      "minBlueAlive": 44,
+      "minOrangeAlive": 37,
+      "bothTeamsAtLeast20Fraction": 1,
+      "completedLives": 297,
+      "meanLifeSeconds": 97.86915606161209,
+      "meanFirstDamageToDeathSeconds": 58.98343302505185,
+      "centralBattlefieldFraction": 0.03529977861007845,
+      "coreGaugeDamage": 10815.999937057495,
+      "unitGaugeDamage": 3958.679916381836,
+      "basesDestroyed": 1,
+      "blueGauge": 18420.030080018565,
+      "orangeGauge": 26805.290071407333
+    }
+  },
+  "battleMetricCaveat": "Legacy centralBattlefieldFraction window does not classify the new north/underground fronts; not a new-map line-dominance acceptance metric.",
+  "finalChecks": {
+    "checkedUtc": "2026-10-16T23:40:28.489Z",
+    "sourceFiles": 174,
+    "sourceDrift": [],
+    "configCopiesEqual": true,
+    "catalogCopiesEqual": true,
+    "layeredMapCopiesEqual": true,
+    "newAssetMetaExists": {
+      "Runtime/Simulation/BotLayerRouting.cs": false,
+      "Tests/EditMode/MainBaseDurabilityTests.cs": false,
+      "Tests/EditMode/LayeredCityTests.cs": false,
+      "Resources/MechaBattleMaps/LayeredCity.json": false
+    },
+    "diffFormat": {
+      "exitCode": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    "art": {
+      "path": "MechaBattle/Build/CITY26_1792192723488/LayeredCity.png",
+      "generatedFromActualMap": true,
+      "viewed": true,
+      "unityScreenshot": false
+    },
+    "scriptHashes": {
+      "MechaBattle/scripts/content/generate-layered-city-map.mjs": "4786c2d9505aa5661c1b1781c8d6cd7ce86212796ac6983d217bf996a09d8508",
+      "MechaBattle/scripts/art/render-layered-city.py": "8f7b46c9ac9673cdeef3ab02296f7cd2f332753eee424b9faea4f77ba46b7ee2"
+    }
+  },
+  "notRun": [
+    "Unity native Test Runner including updated PlayableFlowTests",
+    "actual Unity map selection/rendering/lighting/collision/input acceptance",
+    "Windows player build/run",
+    "FPS/GC measurements"
+  ],
+  "notImplemented": [
+    "commander strategy integration",
+    "autonomous BOT nuclear carry/activation",
+    "autonomous BOT emergency return choices"
+  ],
+  "handoff": {
+    "document": "docs/reviews/GPT_CITY26_HANDOFF.md",
+    "claudeDirectDelivery": false,
+    "claudeReviewAcknowledgement": false,
+    "sourceLock": "released",
+    "documentationLock": "released in final work board record"
+  }
+}

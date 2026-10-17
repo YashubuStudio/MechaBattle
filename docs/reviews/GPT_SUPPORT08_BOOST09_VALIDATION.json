@@ -1,0 +1,83 @@
+{
+  "tasks": [
+    "FEEDBACK-08",
+    "SUPPORT-08",
+    "RADAR-08",
+    "RADAR-09",
+    "BOOST-09",
+    "MELEE-09"
+  ],
+  "owner": "GPT",
+  "executedUtc": "2026-10-16T03:10:14.9097258Z",
+  "domain": {
+    "passed": 225,
+    "failed": 0,
+    "isolation": "MechaBattle/Build/SUPPORT08_1792112296277",
+    "report": "MechaBattle/Build/SUPPORT08_1792112296277/Build/Reports/domain-smoke.json",
+    "sourceManifest": "MechaBattle/Build/SUPPORT08_1792112296277/source-manifest.json",
+    "domainSourcesModifiedAfterCompilation": [],
+    "productionConfigMatchesTest": true
+  },
+  "staticAssemblies": {
+    "passed": 17,
+    "failed": 0,
+    "log": "MechaBattle/Build/SUPPORT08_1792112296277/final-check-0.log"
+  },
+  "model": {
+    "modules": 18,
+    "presets": 7,
+    "closedSolidInstances": 148,
+    "triangles": 5840,
+    "passed": true,
+    "log": "MechaBattle/Build/SUPPORT08_1792112296277/final-check-1.log"
+  },
+  "diffCheck": {
+    "passed": true,
+    "excludes": "generated Unity scene YAML",
+    "log": "MechaBattle/Build/SUPPORT08_1792112296277/final-check-2.log"
+  },
+  "constructedBattle": {
+    "scope": "constructed-domain-bot-match-not-ui-player-or-fps-acceptance",
+    "peakAlive": 100,
+    "simulatedSeconds": 347.5,
+    "WinnerTeam": 0,
+    "ShotsFired": 19475,
+    "UnitsDestroyed": 34,
+    "UnitsSpawned": 134,
+    "BaseHits": 116,
+    "BaseCounterShotsFired": 38,
+    "CaptureChanges": 24,
+    "averageAlive": 99.70647482014388,
+    "minBlueAlive": 48,
+    "minOrangeAlive": 48,
+    "bothTeamsAtLeast20Fraction": 1,
+    "completedLives": 34,
+    "meanLifeSeconds": 116.46999739669263,
+    "meanFirstDamageToDeathSeconds": 98.96999778784811,
+    "centralBattlefieldFraction": 0.8203517980984826,
+    "coreGaugeDamage": 52440,
+    "unitGaugeDamage": 442.6499900817871,
+    "blueGauge": 7370.510004682466,
+    "orangeGauge": 0
+  },
+  "radarFailure": {
+    "evidence": "User report + actual Editor.log MissingComponentException: RadarRange1 lacks CanvasRenderer",
+    "fix": "Explicit CanvasRenderer on RadarRange creation and RequireComponent on ReticleRingGraphic",
+    "nativeRegression": "PlayableFlowTests: place, replace, expire, Canvas.ForceUpdateCanvases, LogAssert.NoUnexpectedReceived",
+    "nativeRegressionExecuted": false
+  },
+  "native": {
+    "unityTestRunner": false,
+    "windowsBuildAndRun": false,
+    "fpsAndGc": false,
+    "missingMetaAtAudit": [
+      "MechaBattle/Assets/Game/Tests/EditMode/BoostMeleeTests.cs",
+      "MechaBattle/Assets/Game/Runtime/Simulation/BattleBoost.cs"
+    ]
+  },
+  "cooperation": {
+    "claudeIntakeAcknowledged": true,
+    "latestFinalReviewReceived": false,
+    "channel": "docs/WORK_BOARD.md; no direct messaging connection"
+  }
+}

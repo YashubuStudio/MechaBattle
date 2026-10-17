@@ -1,0 +1,86 @@
+{
+  "task": "DEPLOY-16",
+  "owner": "GPT",
+  "executedUtc": "2026-10-16T09:17:09.447Z",
+  "scope": "source-and-independent-dotnet-validation-not-unity-runtime-acceptance",
+  "requirements": [
+    "user: map-selectable-deployment",
+    "FR-203",
+    "FR-205",
+    "FR-401",
+    "FR-402",
+    "FR-404",
+    "FR-801",
+    "FR-802"
+  ],
+  "isolation": "MechaBattle/Build/DEPLOY16_1792141899606",
+  "focused": {
+    "passed": 43,
+    "failed": 0,
+    "log": "MechaBattle/Build/DEPLOY16_1792141899606/quick-final.log"
+  },
+  "domain": {
+    "passed": 350,
+    "failed": 0,
+    "exitCode": 0,
+    "report": "MechaBattle/Build/DEPLOY16_1792141899606/project/Build/Reports/domain-smoke.json",
+    "log": "MechaBattle/Build/DEPLOY16_1792141899606/domain-final.log",
+    "pureSources": 73,
+    "newDeploymentCases": 15
+  },
+  "static": {
+    "assemblies": 18,
+    "exitCode": 0,
+    "report": "MechaBattle/Build/DEPLOY16_1792141899606/project/Build/Reports/static-api-compile.json",
+    "log": "MechaBattle/Build/DEPLOY16_1792141899606/static-final.log"
+  },
+  "constructedBattle": {
+    "scope": "constructed-domain-bot-match-not-ui-player-or-fps-acceptance",
+    "peakAlive": 100,
+    "simulatedSeconds": 323.9,
+    "WinnerTeam": 1,
+    "ShotsFired": 25454,
+    "UnitsDestroyed": 58,
+    "UnitsSpawned": 157,
+    "BaseHits": 84,
+    "BaseCounterShotsFired": 21,
+    "CaptureChanges": 11,
+    "peakAirborne": 55,
+    "airborneUnitSeconds": 8150.6797,
+    "maximumHeight": 13.123195,
+    "averageAlive": 99.46384686631677,
+    "minBlueAlive": 47,
+    "minOrangeAlive": 48,
+    "bothTeamsAtLeast20Fraction": 1,
+    "completedLives": 58,
+    "meanLifeSeconds": 110.96758372657773,
+    "meanFirstDamageToDeathSeconds": 94.83379098374782,
+    "centralBattlefieldFraction": 0.7504255984276006,
+    "coreGaugeDamage": 39520,
+    "unitGaugeDamage": 783.9899845123291,
+    "blueGauge": 0,
+    "orangeGauge": 20055.370009938255
+  },
+  "snapshot": {
+    "manifest": "MechaBattle/Build/DEPLOY16_1792141899606/source-sha256.json",
+    "files": 119,
+    "changedSinceSnapshot": []
+  },
+  "configurationCopiesIdentical": true,
+  "notes": [
+    "Initial focused failure was an overstrict new test expecting relay scatter within 0.02m. Corrected to the existing 3m relay radius without changing production scatter.",
+    "First full execution produced passed350/failed0 report but stdout maxBuffer aborted execFile. Final rerun redirects stdout to file and exited0."
+  ],
+  "notExecuted": [
+    "Unity Test Runner / native canvas rebuild and button input / multiple screen resolutions",
+    "Latest Play and spawn map visual inspection",
+    "Windows player build and launch",
+    "100-unit FPS/GC/CPU/GPU measurement"
+  ],
+  "coordination": {
+    "sourceReservations": "released",
+    "claudeReceivedPrioritiesAndConflictNotice": true,
+    "claudeDeploy16ReviewReceived": false
+  },
+  "runningProcesses": []
+}

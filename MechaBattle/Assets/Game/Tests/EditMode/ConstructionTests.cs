@@ -16,8 +16,8 @@ namespace MechaBattle.Tests
                     weaponHardpoints = 1, baseCost = 80, maxHealth = 100, maxShield = 50, moveSpeed = 12,
                     requiredSlots = new[] { PartSlot.LeftArm, PartSlot.RightArm, PartSlot.PrimaryWeapon } } },
                 parts = new[] {
-                    new PartDefinition { id = "left", slot = PartSlot.LeftArm, connectionStandard = "std", weight = 10, energy = 5, equipmentCost = 10 },
-                    new PartDefinition { id = "right", slot = PartSlot.RightArm, connectionStandard = "std", weight = 10, energy = 5, equipmentCost = 10 },
+                    new PartDefinition { id = "left", slot = PartSlot.LeftArm, connectionStandard = "std", weight = 10, energy = 5, equipmentCost = 10, armFamily = "test" },
+                    new PartDefinition { id = "right", slot = PartSlot.RightArm, connectionStandard = "std", weight = 10, energy = 5, equipmentCost = 10, armFamily = "test" },
                     new PartDefinition { id = "gun", slot = PartSlot.PrimaryWeapon, connectionStandard = "std", weight = 10, energy = 10, equipmentCost = 20,
                         weaponHardpoints = 1, weapon = new WeaponDefinition { damage = 20, intervalSeconds = 0.5f, range = 60, ammo = 30 } } },
                 costPolicy = new CostPolicy { healthPerPoint = 0.25f, shieldPerPoint = 0.125f, speedPerMeter = 2,
@@ -135,10 +135,113 @@ namespace MechaBattle.Tests
             if (kind == "rule-unknown") { c.combinationRules = new[] { new CombinationCostRule { id = "bad", partIds = new[] { "left", "unknown" } } }; Reject(c, Build(), "COMBINATION_PART_INVALID"); }
         }
         [Test]
+        public void Construction_UnityEmptyInlineWeaponOnArmMeansUnequipped()
+        {
+            var catalog = Catalog();
+            catalog.parts[0].weapon = new WeaponDefinition(); catalog.parts[1].weapon = new WeaponDefinition();
+            Assert.That(ConstructionEvaluator.Evaluate(catalog, Build()).Cost, Is.EqualTo(214));
+            catalog.parts[0].weapon.damage = 1;
+            Reject(catalog, Build(), "WEAPON_SLOT_INVALID");
+        }
+        [Test]
         public void Construction_NullInputReturnsErrorsWithoutPartialResult()
         {
             Reject(null, Build(), "CATALOG_SCHEMA");
             Reject(Catalog(), null, "BUILD_ID");
+        }
+
+        // User request 2026-10-16: frames may restrict which weapons they can mount.
+        private static ConstructionCatalog CatalogWithTwoWeapons()
+        {
+            var c = Catalog();
+            var gun2 = new PartDefinition { id = "gun2", slot = PartSlot.PrimaryWeapon, connectionStandard = "std", weight = 10, energy = 10, equipmentCost = 20,
+                weaponHardpoints = 1, weapon = new WeaponDefinition { damage = 30, intervalSeconds = 0.5f, range = 60, ammo = 30 } };
+            var parts = new PartDefinition[c.parts.Length + 1];
+            Array.Copy(c.parts, parts, c.parts.Length); parts[c.parts.Length] = gun2;
+            c.parts = parts;
+            return c;
+        }
+        [Test]
+        public void Construction_EmptyAllowedWeaponIdsMeansUnrestricted()
+        {
+            var catalog = CatalogWithTwoWeapons(); // frame.allowedWeaponIds defaults to empty.
+            var build = Build(); build.equipment[2].partId = "gun2";
+            Assert.DoesNotThrow(() => ConstructionEvaluator.Evaluate(catalog, build));
+        }
+        [Test]
+        public void Construction_RestrictedFrameRejectsDisallowedWeaponButAllowsListedOne()
+        {
+            var catalog = CatalogWithTwoWeapons();
+            catalog.frames[0].allowedWeaponIds = new[] { "gun" };
+            Assert.DoesNotThrow(() => ConstructionEvaluator.Evaluate(catalog, Build())); // "gun" is listed.
+            var build = Build(); build.equipment[2].partId = "gun2"; // not listed.
+            Reject(catalog, build, "WEAPON_NOT_ALLOWED_ON_FRAME");
+        }
+        [Test]
+        public void Construction_RejectsAllowedWeaponIdThatDoesNotReferenceAWeaponSlotPart()
+        {
+            var catalog = CatalogWithTwoWeapons();
+            catalog.frames[0].allowedWeaponIds = new[] { "left" }; // "left" is an arm, not a weapon-slot part.
+            Reject(catalog, Build(), "FRAME_ALLOWED_WEAPON_UNKNOWN");
+        }
+        [Test]
+        public void Construction_RejectsUnknownAllowedWeaponId()
+        {
+            var catalog = CatalogWithTwoWeapons();
+            catalog.frames[0].allowedWeaponIds = new[] { "no-such-weapon" };
+            Reject(catalog, Build(), "FRAME_ALLOWED_WEAPON_UNKNOWN");
+        }
+        [Test]
+        public void Construction_RejectsDuplicateAllowedWeaponId()
+        {
+            var catalog = CatalogWithTwoWeapons();
+            catalog.frames[0].allowedWeaponIds = new[] { "gun", "gun" };
+            Reject(catalog, Build(), "FRAME_ALLOWED_WEAPON_INVALID");
+        }
+
+        // User request 2026-10-16: left/right arms must be the same family, and charge melee
+        // is derived from whichever family is equipped.
+        private static ConstructionCatalog CatalogWithTwoArmFamilies()
+        {
+            var c = Catalog(); // "left"/"right" are both armFamily "test" with no chargeMelee.
+            var otherChargeMelee = new MechaBattle.Contracts.MeleeAttackDefinition { style = MechaBattle.Contracts.MeleeStyle.Charge,
+                damage = 10, downPoints = 10, range = 5, halfAngleDegrees = 90, windupSeconds = 0.1f, recoverySeconds = 0.1f, cooldownSeconds = 0.1f,
+                moveMultiplier = 0.5f, comboSteps = 1, maximumTargets = 1, minimumChargeSeconds = 0.1f, fullChargeSeconds = 0.5f, minimumChargeMultiplier = 0.5f };
+            var otherLeft = new PartDefinition { id = "other-left", slot = PartSlot.LeftArm, connectionStandard = "std", weight = 10, energy = 5, equipmentCost = 10, armFamily = "other", chargeMelee = otherChargeMelee };
+            var otherRight = new PartDefinition { id = "other-right", slot = PartSlot.RightArm, connectionStandard = "std", weight = 10, energy = 5, equipmentCost = 10, armFamily = "other" };
+            var parts = new PartDefinition[c.parts.Length + 2];
+            Array.Copy(c.parts, parts, c.parts.Length); parts[c.parts.Length] = otherLeft; parts[c.parts.Length + 1] = otherRight;
+            c.parts = parts;
+            return c;
+        }
+        [Test]
+        public void Construction_RejectsMismatchedArmFamilies()
+        {
+            var catalog = CatalogWithTwoArmFamilies();
+            var build = Build(); build.equipment[1].partId = "other-right"; // left stays "test", right becomes "other".
+            Reject(catalog, build, "ARM_FAMILY_MISMATCH");
+        }
+        [Test]
+        public void Construction_RejectsArmPartWithoutAFamily()
+        {
+            var catalog = CatalogWithTwoArmFamilies();
+            catalog.parts[0].armFamily = ""; // "left" (slot LeftArm) loses its family.
+            Reject(catalog, Build(), "ARM_FAMILY_REQUIRED");
+        }
+        [Test]
+        public void Construction_ChargeMeleeIsNullWhenTheArmFamilyDeclaresNone()
+        {
+            var result = ConstructionEvaluator.Evaluate(Catalog(), Build()); // "test" family has no chargeMelee.
+            Assert.That(result.CombatLoadout.ChargeMelee, Is.Null);
+        }
+        [Test]
+        public void Construction_ChargeMeleeResolvesFromTheMatchedArmFamily()
+        {
+            var catalog = CatalogWithTwoArmFamilies();
+            var build = Build(); build.equipment[0].partId = "other-left"; build.equipment[1].partId = "other-right";
+            var result = ConstructionEvaluator.Evaluate(catalog, build);
+            Assert.That(result.CombatLoadout.ChargeMelee, Is.Not.Null);
+            Assert.That(result.CombatLoadout.ChargeMelee.damage, Is.EqualTo(10));
         }
     }
 }

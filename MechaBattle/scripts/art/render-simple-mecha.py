@@ -28,8 +28,8 @@ def norm(v):
 def dot(a,b):return sum(x*y for x,y in zip(a,b))
 def cross(a,b):return (a[1]*b[2]-a[2]*b[1],a[2]*b[0]-a[0]*b[2],a[0]*b[1]-a[1]*b[0])
 
-def render(cx,cy,scale,eye,armor,shadow=True,reinforced=False):
-    source = json.loads((assets / 'MB_Worker01_reinforced.mesh.json').read_text(encoding='utf-8')) if reinforced else mesh
+def render(cx,cy,scale,eye,armor,shadow=True,reinforced=False,source_mesh=None,signal=(0.40,1.0,0.85)):
+    source = source_mesh if source_mesh is not None else json.loads((assets / 'MB_Worker01_reinforced.mesh.json').read_text(encoding='utf-8')) if reinforced else mesh
     vertices = [(v['x'], v['y'], v['z']) for v in source['vertices']]
     normals = [(v['x'], v['y'], v['z']) for v in source['normals']]
     view=norm(eye);right=norm(cross((0,1,0),view));up=cross(view,right)
@@ -42,7 +42,7 @@ def render(cx,cy,scale,eye,armor,shadow=True,reinforced=False):
         layer=layer.filter(ImageFilter.GaussianBlur(13*S))
         image.paste(Image.alpha_composite(image.convert('RGBA'),layer).convert('RGB'))
     polygons=[]
-    colors=[armor,(0.10,0.14,0.19),(0.40,1.0,0.85)]
+    colors=[armor,(0.10,0.14,0.19),signal]
     for material,group in enumerate(source['subMeshes']):
         idx=group['triangles']
         for i in range(0,len(idx),3):
@@ -81,17 +81,54 @@ def render(cx,cy,scale,eye,armor,shadow=True,reinforced=False):
 
 text(70,50,'MECHABATTLE  /  ORIGINAL PROTOTYPE',16,'#7dd9d1',True)
 text(67,83,'MB-01  MODULAR FRAME',43,'#ecf2f9',True)
-text(70,143,'One frame. Swappable arms and weapons. Two saved builds.',19)
+text(70,143,'One frame. Swappable arms and weapons. Six weapon builds.',19)
 draw.line((1000*S,195*S,1000*S,815*S),fill='#334255',width=S)
 text(70,210,'STANDARD ARMS + CARBINE',15,'#6ba6ff',True)
-render(490,520,220,(4,2.4,6),(0.16,0.37,0.85))
+render(490,520,220,(4,2.4,6),(.04,.26,1),signal=(.04,.26,1))
 text(1070,210,'REINFORCED ARMS + LONG RIFLE',15,'#ffb572',True)
-render(1275,380,102,(3,1.7,7),(0.95,0.40,0.10),reinforced=True)
+render(1275,380,102,(3,1.7,7),(1,.36,.015),reinforced=True,signal=(1,.36,.015))
 text(1070,525,'SHARED FRAME / REAR',15,'#c3cdd9',True)
-render(1275,690,102,(-4,2,-6),(0.59,0.65,0.70))
+render(1275,690,102,(-4,2,-6),(.59,.65,.70),signal=(.59,.65,.70))
 draw=ImageDraw.Draw(image)
 draw.line((70*S,835*S,1530*S,835*S),fill='#334255',width=S)
 text(70,852,'1,676 / 2,016 TRIANGLES   /   3 MATERIAL SLOTS   /   STATIC PROTOTYPE',15,'#a3b1c5')
 text(1090,852,'Y UP  /  +Z FRONT  /  FOOT PIVOT',14,'#a3b1c5')
 image.resize((W,H),Image.Resampling.LANCZOS).save(output/'MB_Worker01_preview.png')
 print(output/'MB_Worker01_preview.png')
+
+# A reproducible contact sheet of the actual authored assemblies (grid sized to count).
+assemblies=json.loads((output/'all-assemblies.mesh.json').read_text(encoding='utf-8'))
+cols=4
+H=150+math.ceil(len(assemblies)/cols)*360
+image = Image.new('RGB', (W*S,H*S), '#111a27')
+draw = ImageDraw.Draw(image)
+text(50,24,'MECHABATTLE / BUILD PROTOTYPES',28,'#ecf2f9',True)
+titles=['FA CARBINE','SA LONG RIFLE','SINGLE SHOT CANNON','CHARGE RIFLE','CONTINUOUS BEAM','BAZOOKA','HEAVY FRAME','FA ASSAULT RIFLE','LIGHT / MOBILE ARMS','SUPPORT FRAME']
+paint_colors={'White':(1,1,1),'Sand':(1,.85,.015),'Olive':(.025,.88,.075),'Graphite':(.045,.05,.06),'Red':(1,.025,.025),'Cobalt':(.025,.15,1)}
+presets=json.loads((workspace/'MechaBattle/config/prototype-defaults.json').read_text(encoding='utf-8'))['constructionPrototype']['catalog']['presets']
+for i,assembly in enumerate(assemblies):
+    col=i%cols; row=i//cols; cx=230+col*370; cy=290+row*360
+    text(60+col*370,95+row*360,titles[i],17,'#7dd9d1',True)
+    paint=presets[i].get('appearance',{}).get('paintId','Neutral')
+    render(cx,cy,98,(4,2.0,7),paint_colors.get(paint,(.04,.26,1)),source_mesh=assembly,signal=(.04,.26,1))
+    draw=ImageDraw.Draw(image)
+text(50,H-37,'Original modular geometry / 3 material slots / source preview, not a Unity screenshot',16)
+image.resize((W,H),Image.Resampling.LANCZOS).save(output/'MB_Weapons_preview.png')
+print(output/'MB_Weapons_preview.png')
+
+# Compare the same saved hull colors in both teams, including rear identification.
+W,H=2100,1060
+image=Image.new('RGB',(W*S,H*S),'#111a27')
+draw=ImageDraw.Draw(image)
+text(40,22,'MECHABATTLE / VIVID HULL PAINTS + FIXED TEAM PANELS',26,'#ecf2f9',True)
+choices=[('TEAM',None),('WHITE',paint_colors['White']),('YELLOW',paint_colors['Sand']),('GREEN',paint_colors['Olive']),('BLACK',paint_colors['Graphite']),('RED',paint_colors['Red']),('BLUE',paint_colors['Cobalt'])]
+for row,(team,team_color,eye) in enumerate([('BLUE TEAM / FRONT',(.04,.26,1),(4,2,7)),('ORANGE TEAM / REAR',(1,.36,.015),(-4,2,-7))]):
+    top=80+row*460
+    text(40,top,team,20,'#6eabff' if row==0 else '#ff9b45',True)
+    for i,(name,color) in enumerate(choices):
+        text(35+i*300,top+44,name,18,'#ecf2f9',True)
+        render(145+i*300,top+240,116,eye,color if color is not None else team_color,source_mesh=assemblies[-1],signal=team_color)
+        draw=ImageDraw.Draw(image)
+text(40,1010,'Shoulders / knees / head cap stay team-colored. Cosmetic only. Source geometry preview, not a Unity screenshot.',18)
+image.resize((W,H),Image.Resampling.LANCZOS).save(output/'MB_Paints_preview.png')
+print(output/'MB_Paints_preview.png')

@@ -1,0 +1,98 @@
+{
+  "tasks": [
+    "UI-11",
+    "PREVIEW-11"
+  ],
+  "owner": "GPT",
+  "executedUtc": "2026-10-16T05:10:52.0930302Z",
+  "domain": {
+    "passed": 260,
+    "failed": 0,
+    "newCases": 7,
+    "sourceFiles": 57,
+    "domainSourcesModifiedAfterCompilation": [],
+    "configurationCopyMatches": true,
+    "mapCopyMatches": true,
+    "isolation": "MechaBattle/Build/UI11_1792127212957",
+    "report": "MechaBattle/Build/UI11_1792127212957/Build/Reports/domain-smoke.json",
+    "log": "MechaBattle/Build/UI11_1792127212957/domain-run.log"
+  },
+  "staticApiCompile": {
+    "assemblies": 17,
+    "failed": 0,
+    "scope": "static-api-compile-not-unity-import-or-player-build",
+    "log": "MechaBattle/Build/UI11_1792127212957/final-check-0.log"
+  },
+  "diffCheck": {
+    "passed": true,
+    "excludes": "existing generated Unity scene YAML",
+    "log": "MechaBattle/Build/UI11_1792127212957/final-check-1.log"
+  },
+  "sourceManifest": {
+    "files": 115,
+    "path": "MechaBattle/Build/UI11_1792127212957/source-manifest.json"
+  },
+  "constructedBattle": {
+    "scope": "constructed-domain-bot-match-not-ui-player-or-fps-acceptance",
+    "peakAlive": 100,
+    "simulatedSeconds": 194.87999,
+    "WinnerTeam": 1,
+    "ShotsFired": 11726,
+    "UnitsDestroyed": 29,
+    "UnitsSpawned": 128,
+    "BaseHits": 112,
+    "BaseCounterShotsFired": 23,
+    "CaptureChanges": 9,
+    "averageAlive": 99.55531609195403,
+    "minBlueAlive": 46,
+    "minOrangeAlive": 48,
+    "bothTeamsAtLeast20Fraction": 1,
+    "completedLives": 29,
+    "meanLifeSeconds": 75.85861899408287,
+    "meanFirstDamageToDeathSeconds": 61.18896414956142,
+    "centralBattlefieldFraction": 0.8618978421163692,
+    "coreGaugeDamage": 50160,
+    "unitGaugeDamage": 375.0899934768677,
+    "blueGauge": 0,
+    "orangeGauge": 9666.350004328415
+  },
+  "nativeTestsAddedOrUpdated": [
+    "PlayableFlowTests: button-driven frontend round trip, opaque background, full camera rect, studio culling/texture/aspect/bounds, inactive battle Sun, initial selected deck, pixel variation when native graphics is available",
+    "PlayableEditorPresentationTests: temporary GameView gizmo scope restore for true/false, preserves SceneView and focus, allows explicit reenable"
+  ],
+  "native": {
+    "unityTestRunnerExecuted": false,
+    "latestUserPlayAcceptance": false,
+    "previewPixelsActuallyRead": false,
+    "gameViewGizmoRestoreActuallyExecuted": false,
+    "windowsBuildAndRun": false,
+    "fpsAndGc": false,
+    "missingMetaAtAudit": [
+      "MechaBattle/Assets/Game/Editor/PlayableTools/PlayableEditorPresentation.cs",
+      "MechaBattle/Assets/Game/Runtime/Playable/HangarPreview.cs",
+      "MechaBattle/Assets/Game/Tests/EditMode/Playable/PlayableEditorPresentationTests.cs"
+    ]
+  },
+  "diagnosis": {
+    "reportedView": "unknown; optional user question pending",
+    "sourceConfirmed": [
+      "transparent garage canvas with world-space direct preview",
+      "partial player camera rect shared with combat",
+      "BattlePrep not creating selected model",
+      "MainMenu not restoring camera presentation",
+      "selectedDeck not passed into initial human spawn"
+    ],
+    "gizmoOverlay": "possible contributor; local URP17.3 source draws PostImageEffects gizmos after overlay UI, not direct observation of user frame"
+  },
+  "cooperation": {
+    "previousLock10ReviewReceived": true,
+    "currentUi11ReviewReceived": false,
+    "channel": "docs/WORK_BOARD.md and reviews; no direct connection to Claude"
+  },
+  "protected": [
+    "UserText read-only",
+    "scene/prefab YAML not edited",
+    "existing Git index preserved",
+    "SceneView settings and editor focus not modified by GameView guard"
+  ]
+}

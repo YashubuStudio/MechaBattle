@@ -17,6 +17,38 @@ namespace MechaBattle.Tests
             for (int i = 0; i < 100; i++) result[i] = new[] { Loadout(), Loadout("reserve", cooldown: 12) };
             return result;
         }
+        [TestCase(0, 0)]
+        [TestCase(0, 1)]
+        [TestCase(50, 0)]
+        [TestCase(50, 1)]
+        public void Playable_SelectedInitialDeckSpawnsWithoutChangingBotDecksOrSpendingResources(int humanSlot, int selected)
+        {
+            var config = SimulationTests.Config(); var decks = Decks();
+            decks[humanSlot][1] = Loadout("selected-reserve", health: 275, ammo: 8, cost: 250, cooldown: 25);
+            var world = new BattleSimulation(SimulationTests.Map(), config, humanSlot, decks, selected);
+            var human = world.GetUnit(humanSlot);
+            Assert.That(human.DeckIndex, Is.EqualTo(selected));
+            Assert.That(human.Health, Is.EqualTo(decks[humanSlot][selected].MaxHealth));
+            Assert.That(human.Ammo, Is.EqualTo(decks[humanSlot][selected].MaxAmmo));
+            Assert.That(world.GetDeckReadyTick(humanSlot, selected), Is.Zero);
+            Assert.That(world.GetGauge(0), Is.EqualTo(config.initialGauge));
+            Assert.That(world.GetGauge(1), Is.EqualTo(config.initialGauge));
+            Assert.That(world.Counters.UnitsDestroyed, Is.Zero); Assert.That(world.Counters.UnitsSpawned, Is.EqualTo(100));
+            for (int i = 0; i < 100; i++) if (i != humanSlot) Assert.That(world.GetUnit(i).DeckIndex, Is.Zero);
+        }
+        [TestCase(-1)]
+        [TestCase(2)]
+        public void Playable_RejectsInvalidInitialDeck(int selected)
+        {
+            Assert.Throws<ArgumentOutOfRangeException>(() => new BattleSimulation(SimulationTests.Map(), SimulationTests.Config(), 0, Decks(), selected));
+        }
+        [Test]
+        public void Playable_BotOnlyMatchKeepsDefaultStartAndRejectsAHumanDeckOverride()
+        {
+            var world = new BattleSimulation(SimulationTests.Map(), SimulationTests.Config(), -1, Decks());
+            for (int i = 0; i < 100; i++) { Assert.That(world.GetUnit(i).Controller, Is.EqualTo(ControllerType.Bot)); Assert.That(world.GetUnit(i).DeckIndex, Is.Zero); }
+            Assert.Throws<ArgumentOutOfRangeException>(() => new BattleSimulation(SimulationTests.Map(), SimulationTests.Config(), -1, Decks(), 1));
+        }
         [Test]
         public void Playable_PerSlotPerformanceAndInputArraysCannotChangeAnActiveLoadout()
         {

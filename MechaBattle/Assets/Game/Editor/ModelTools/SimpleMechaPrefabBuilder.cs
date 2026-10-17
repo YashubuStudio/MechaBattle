@@ -87,7 +87,7 @@ namespace MechaBattle.EditorTools.Models
             var resolved = ConstructionEvaluator.Evaluate(catalog, build);
             ValidateBuildModules(kit, resolved);
             var ids = new List<string> { resolved.FrameId };
-            foreach (var part in resolved.Equipment) ids.Add(part.PartId);
+            foreach (var part in resolved.Equipment) if (part.Slot <= PartSlot.PrimaryWeapon) ids.Add(part.PartId);
             var vv = new List<Vector3>(); var nn = new List<Vector3>();
             var indices = new[] { new List<int>(), new List<int>(), new List<int>() };
             string output = OutputFolder + "/MB_Worker01_" + Safe(build.id) + "_" + paint + ".prefab";
@@ -119,7 +119,7 @@ namespace MechaBattle.EditorTools.Models
                 for (int i = 0; i < 3; i++) source.subMeshes[i] = new MeshGroup { material = MaterialNames[i], triangles = indices[i].ToArray() };
                 // Static prototype: keep assembly/socket hierarchy but bake one renderer and 3 material groups.
                 Mesh mesh = SaveMesh(source, "Build_" + GeometryKey(resolved));
-                AddRenderer(root, mesh, Materials(paint));
+                AddRenderer(root, mesh, Materials(paint, resolved.PaintId));
                 SavePrefab(root, output);
             });
             return output;
@@ -154,6 +154,7 @@ namespace MechaBattle.EditorTools.Models
             foreach (var choice in build.Equipment)
             {
                 var module = Find(kit, choice.PartId);
+                if (choice.Slot > PartSlot.PrimaryWeapon) continue;
                 string expected = choice.Slot == PartSlot.LeftArm ? "arm.left" : choice.Slot == PartSlot.RightArm ? "arm.right" : "weapon.primary";
                 if (module.parentSocket != expected || !sockets.Contains(expected))
                     throw new ArgumentException("Visual module socket mismatch: " + choice.PartId);
@@ -210,17 +211,23 @@ namespace MechaBattle.EditorTools.Models
         }
         private static void ValidatePalette(string paint)
         {
-            if (paint != "Neutral" && paint != "Blue" && paint != "Orange") throw new ArgumentException("Unknown palette: " + paint);
+            if (BuildAppearance.PaintIndex(paint)<0 && paint != "Blue" && paint != "Orange") throw new ArgumentException("Unknown palette: " + paint);
         }
-        private static Material[] Materials(string paint)
+        private static Material[] Materials(string paint, string hullPaint = null)
         {
             ValidatePalette(paint);
             var shader = Shader.Find("Universal Render Pipeline/Lit");
             if (shader == null) throw new InvalidOperationException("URP/Lit is required.");
-            Color armor = paint == "Blue" ? new Color(0.16f, 0.37f, 0.85f) : paint == "Orange" ? new Color(0.95f, 0.40f, 0.10f) : new Color(0.59f, 0.65f, 0.70f);
-            return new[] { SaveMaterial("Armor_" + paint, armor, 0.25f, false, shader),
+            int team=paint=="Blue"?0:paint=="Orange"?1:2;
+            BuildAppearance.TeamTint(team,out float tr,out float tg,out float tb);
+            Color mark=new Color(tr,tg,tb),armor=mark;
+            string hullId=paint;
+            int paintIndex=BuildAppearance.PaintIndex(hullPaint ?? paint);
+            if(paintIndex>0)
+            {BuildAppearance.Tint(paintIndex,out float r,out float g,out float b);armor=new Color(r,g,b);hullId=BuildAppearance.PaintId(paintIndex);}
+            return new[] { SaveMaterial("Armor_" + hullId, armor, 0.1f, false, shader),
                 SaveMaterial("Frame", new Color(0.085f, 0.115f, 0.15f), 0.45f, false, shader),
-                SaveMaterial("Signal", new Color(0.25f, 0.95f, 0.80f), 0, true, shader) };
+                SaveMaterial("TeamMarks_"+team, mark, 0, true, shader) };
         }
         private static Mesh SaveMesh(MeshSource source, string name)
         {
@@ -243,7 +250,7 @@ namespace MechaBattle.EditorTools.Models
             if (created) material = new Material(shader) { name = "MB_Worker01_" + name };
             material.shader = shader; material.SetColor("_BaseColor", color);
             material.SetFloat("_Metallic", metallic); material.SetFloat("_Smoothness", 0.38f); material.enableInstancing = true;
-            if (emission) { material.EnableKeyword("_EMISSION"); material.SetColor("_EmissionColor", color * 0.65f); }
+            if (emission) { material.EnableKeyword("_EMISSION"); material.SetColor("_EmissionColor", color * 0.2f); }
             else { material.DisableKeyword("_EMISSION"); material.SetColor("_EmissionColor", Color.black); }
             if (created) AssetDatabase.CreateAsset(material, assetPath); else EditorUtility.SetDirty(material);
             return material;

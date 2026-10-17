@@ -1,0 +1,91 @@
+{
+  "task": "SETTINGS-17 / Claude task46",
+  "owner": "GPT",
+  "executedUtc": "2026-10-16T11:49:33.069Z",
+  "requirements": [
+    "FR-801",
+    "FR-805",
+    "NFR-005"
+  ],
+  "focused": {
+    "passed": 19,
+    "failed": 0,
+    "log": "MechaBattle/Build/SETTINGS17_1792150671976/quick-final.log"
+  },
+  "domain": {
+    "passed": 396,
+    "failed": 0,
+    "exitCode": 0,
+    "pureSources": 79,
+    "report": "MechaBattle/Build/SETTINGS17_1792150671976/final/project/Build/Reports/domain-smoke.json",
+    "log": "MechaBattle/Build/SETTINGS17_1792150671976/final/domain-run.log",
+    "status": "MechaBattle/Build/SETTINGS17_1792150671976/final/domain-run.log.status.json"
+  },
+  "static": {
+    "assemblies": 20,
+    "exitCode": 0,
+    "report": "MechaBattle/Build/SETTINGS17_1792150671976/final/project/Build/Reports/static-api-compile.json",
+    "log": "MechaBattle/Build/SETTINGS17_1792150671976/final/static-compile.log",
+    "status": "MechaBattle/Build/SETTINGS17_1792150671976/final/static-compile.log.status.json"
+  },
+  "constructedBattle": {
+    "scope": "constructed-domain-bot-match-not-ui-player-or-fps-acceptance",
+    "peakAlive": 100,
+    "simulatedSeconds": 437.41998,
+    "WinnerTeam": 1,
+    "ShotsFired": 37018,
+    "UnitsDestroyed": 88,
+    "UnitsSpawned": 187,
+    "BaseHits": 119,
+    "BaseCounterShotsFired": 43,
+    "CaptureChanges": 25,
+    "peakAirborne": 55,
+    "airborneUnitSeconds": 11730.12,
+    "maximumHeight": 13.123195,
+    "averageAlive": 99.10209866947099,
+    "minBlueAlive": 47,
+    "minOrangeAlive": 46,
+    "bothTeamsAtLeast20Fraction": 1,
+    "completedLives": 88,
+    "meanLifeSeconds": 109.63636118579996,
+    "meanFirstDamageToDeathSeconds": 92.27317975571549,
+    "centralBattlefieldFraction": 0.789481010507526,
+    "coreGaugeDamage": 58900,
+    "unitGaugeDamage": 1184.4299755096436,
+    "blueGauge": 0,
+    "orangeGauge": 175.13001262582839
+  },
+  "snapshot": {
+    "root": "MechaBattle/Build/SETTINGS17_1792150671976/final",
+    "manifest": "MechaBattle/Build/SETTINGS17_1792150671976/final/source-sha256.json",
+    "files": 130,
+    "changedSinceSnapshot": [
+      "MechaBattle/Assets/Game/Runtime/Contracts/UnitLoadout.cs"
+    ],
+    "note": "UnitLoadout.cs changed after final run: Claude added input defensive copy in response to review; final results apply to the saved snapshot, not this subsequent edit."
+  },
+  "configurationCopiesIdentical": true,
+  "previousRun": {
+    "root": "MechaBattle/Build/SETTINGS17_1792150671976",
+    "passed": 395,
+    "failed": 1,
+    "reason": "task38 stationary dash overshoot reproduction before Claude fix",
+    "exitCodeCaptured": false,
+    "processesConfirmedStopped": true
+  },
+  "notExecuted": [
+    "Unity Test Runner / visible UI layout / actual slider input",
+    "Preferences persistence across a real restart",
+    "Windows build and launch",
+    "FPS/GC/CPU/GPU measurements"
+  ],
+  "reviews": {
+    "file": "docs/reviews/GPT_CLAUDE_REVIEW17.md",
+    "dashOvershoot": "independently reproduced then fixed; all396 passed",
+    "mutableChargeMelee": "input defensive copy observed after snapshot; getter protection remains unresolved",
+    "damageBearing": "unresolved; source-generation and camera rotation",
+    "hiddenScoreboard": "unresolved low-priority unnecessary allocation"
+  },
+  "runningProcesses": [],
+  "editReservations": "released"
+}

@@ -1,0 +1,3630 @@
+{
+  "id": "urban-overpass",
+  "prototypeOnly": true,
+  "halfWidth": 320,
+  "halfDepth": 210,
+  "mainBases": [
+    {
+      "id": "Blue-A",
+      "team": 0,
+      "x": -280,
+      "z": -145,
+      "spawnRadius": 12,
+      "attackRadius": 8,
+      "buildingRadius": 26,
+      "approachRoute": "service-alley"
+    },
+    {
+      "id": "Blue-B",
+      "team": 0,
+      "x": -280,
+      "z": 0,
+      "spawnRadius": 12,
+      "attackRadius": 8,
+      "buildingRadius": 26,
+      "approachRoute": "central-boulevard"
+    },
+    {
+      "id": "Blue-C",
+      "team": 0,
+      "x": -280,
+      "z": 145,
+      "spawnRadius": 12,
+      "attackRadius": 8,
+      "buildingRadius": 26,
+      "approachRoute": "rooftop-courtyard"
+    },
+    {
+      "id": "Orange-A",
+      "team": 1,
+      "x": 280,
+      "z": -145,
+      "spawnRadius": 12,
+      "attackRadius": 8,
+      "buildingRadius": 26,
+      "approachRoute": "service-alley"
+    },
+    {
+      "id": "Orange-B",
+      "team": 1,
+      "x": 280,
+      "z": 0,
+      "spawnRadius": 12,
+      "attackRadius": 8,
+      "buildingRadius": 26,
+      "approachRoute": "central-boulevard"
+    },
+    {
+      "id": "Orange-C",
+      "team": 1,
+      "x": 280,
+      "z": 145,
+      "spawnRadius": 12,
+      "attackRadius": 8,
+      "buildingRadius": 26,
+      "approachRoute": "rooftop-courtyard"
+    }
+  ],
+  "capturePoints": [
+    {
+      "id": "Central-Square",
+      "x": 0,
+      "z": 0,
+      "radius": 22
+    },
+    {
+      "id": "North-Courtyard",
+      "x": -15,
+      "z": 135,
+      "radius": 18
+    },
+    {
+      "id": "South-Service",
+      "x": 15,
+      "z": -135,
+      "radius": 18
+    }
+  ],
+  "obstacles": [
+    {
+      "id": "Atrium-West-North-floor-1",
+      "x": -74.5,
+      "y": 5.75,
+      "z": 65,
+      "width": 35,
+      "height": 0.5,
+      "depth": 40,
+      "platform": true
+    },
+    {
+      "id": "Atrium-West-North-landing-1",
+      "x": -52.5,
+      "y": 5.75,
+      "z": 80.5,
+      "width": 9,
+      "height": 0.5,
+      "depth": 9,
+      "platform": true
+    },
+    {
+      "id": "Atrium-West-North-floor-2",
+      "x": -74.5,
+      "y": 11.75,
+      "z": 65,
+      "width": 35,
+      "height": 0.5,
+      "depth": 40,
+      "platform": true
+    },
+    {
+      "id": "Atrium-West-North-landing-2",
+      "x": -52.5,
+      "y": 11.75,
+      "z": 49.5,
+      "width": 9,
+      "height": 0.5,
+      "depth": 9,
+      "platform": true
+    },
+    {
+      "id": "Atrium-West-North-side--1",
+      "x": -91.45,
+      "y": 6,
+      "z": 65,
+      "width": 1.1,
+      "height": 12,
+      "depth": 40,
+      "platform": false
+    },
+    {
+      "id": "Atrium-West-North-door--1--1",
+      "x": -83,
+      "y": 3,
+      "z": 45.55,
+      "width": 18,
+      "height": 6,
+      "depth": 1.1,
+      "platform": false
+    },
+    {
+      "id": "Atrium-West-North-door--1-1",
+      "x": -57,
+      "y": 3,
+      "z": 45.55,
+      "width": 18,
+      "height": 6,
+      "depth": 1.1,
+      "platform": false
+    },
+    {
+      "id": "Atrium-West-North-sill--1-1--1",
+      "x": -83,
+      "y": 6.5,
+      "z": 45.55,
+      "width": 18,
+      "height": 1,
+      "depth": 1.1,
+      "platform": false
+    },
+    {
+      "id": "Atrium-West-North-sill--1-1-1",
+      "x": -57,
+      "y": 6.5,
+      "z": 45.55,
+      "width": 18,
+      "height": 1,
+      "depth": 1.1,
+      "platform": false
+    },
+    {
+      "id": "Atrium-West-North-lintel--1-1",
+      "x": -70,
+      "y": 11.45,
+      "z": 45.55,
+      "width": 44,
+      "height": 1.1,
+      "depth": 1.1,
+      "platform": false
+    },
+    {
+      "id": "Atrium-West-North-windowpost--1-1--1",
+      "x": -91,
+      "y": 9,
+      "z": 45.55,
+      "width": 1.1,
+      "height": 4,
+      "depth": 1.1,
+      "platform": false
+    },
+    {
+      "id": "Atrium-West-North-windowpost--1-1-1",
+      "x": -49,
+      "y": 9,
+      "z": 45.55,
+      "width": 1.1,
+      "height": 4,
+      "depth": 1.1,
+      "platform": false
+    },
+    {
+      "id": "Atrium-West-North-door-1--1",
+      "x": -83,
+      "y": 3,
+      "z": 84.45,
+      "width": 18,
+      "height": 6,
+      "depth": 1.1,
+      "platform": false
+    },
+    {
+      "id": "Atrium-West-North-door-1-1",
+      "x": -57,
+      "y": 3,
+      "z": 84.45,
+      "width": 18,
+      "height": 6,
+      "depth": 1.1,
+      "platform": false
+    },
+    {
+      "id": "Atrium-West-North-sill-1-1--1",
+      "x": -83,
+      "y": 6.5,
+      "z": 84.45,
+      "width": 18,
+      "height": 1,
+      "depth": 1.1,
+      "platform": false
+    },
+    {
+      "id": "Atrium-West-North-sill-1-1-1",
+      "x": -57,
+      "y": 6.5,
+      "z": 84.45,
+      "width": 18,
+      "height": 1,
+      "depth": 1.1,
+      "platform": false
+    },
+    {
+      "id": "Atrium-West-North-lintel-1-1",
+      "x": -70,
+      "y": 11.45,
+      "z": 84.45,
+      "width": 44,
+      "height": 1.1,
+      "depth": 1.1,
+      "platform": false
+    },
+    {
+      "id": "Atrium-West-North-windowpost-1-1--1",
+      "x": -91,
+      "y": 9,
+      "z": 84.45,
+      "width": 1.1,
+      "height": 4,
+      "depth": 1.1,
+      "platform": false
+    },
+    {
+      "id": "Atrium-West-North-windowpost-1-1-1",
+      "x": -49,
+      "y": 9,
+      "z": 84.45,
+      "width": 1.1,
+      "height": 4,
+      "depth": 1.1,
+      "platform": false
+    },
+    {
+      "id": "Atrium-West-North-side-1",
+      "x": -48.55,
+      "y": 6,
+      "z": 65,
+      "width": 1.1,
+      "height": 12,
+      "depth": 40,
+      "platform": false
+    },
+    {
+      "id": "Atrium-West-North-stair-1",
+      "x": -52.5,
+      "y": 0.125,
+      "z": 53.5,
+      "width": 6,
+      "height": 0.25,
+      "depth": 1.02,
+      "platform": true
+    },
+    {
+      "id": "Atrium-West-North-stair-2",
+      "x": -52.5,
+      "y": 0.375,
+      "z": 54.5,
+      "width": 6,
+      "height": 0.25,
+      "depth": 1.02,
+      "platform": true
+    },
+    {
+      "id": "Atrium-West-North-stair-3",
+      "x": -52.5,
+      "y": 0.625,
+      "z": 55.5,
+      "width": 6,
+      "height": 0.25,
+      "depth": 1.02,
+      "platform": true
+    },
+    {
+      "id": "Atrium-West-North-stair-4",
+      "x": -52.5,
+      "y": 0.875,
+      "z": 56.5,
+      "width": 6,
+      "height": 0.25,
+      "depth": 1.02,
+      "platform": true
+    },
+    {
+      "id": "Atrium-West-North-stair-5",
+      "x": -52.5,
+      "y": 1.125,
+      "z": 57.5,
+      "width": 6,
+      "height": 0.25,
+      "depth": 1.02,
+      "platform": true
+    },
+    {
+      "id": "Atrium-West-North-stair-6",
+      "x": -52.5,
+      "y": 1.375,
+      "z": 58.5,
+      "width": 6,
+      "height": 0.25,
+      "depth": 1.02,
+      "platform": true
+    },
+    {
+      "id": "Atrium-West-North-stair-7",
+      "x": -52.5,
+      "y": 1.625,
+      "z": 59.5,
+      "width": 6,
+      "height": 0.25,
+      "depth": 1.02,
+      "platform": true
+    },
+    {
+      "id": "Atrium-West-North-stair-8",
+      "x": -52.5,
+      "y": 1.875,
+      "z": 60.5,
+      "width": 6,
+      "height": 0.25,
+      "depth": 1.02,
+      "platform": true
+    },
+    {
+      "id": "Atrium-West-North-stair-9",
+      "x": -52.5,
+      "y": 2.125,
+      "z": 61.5,
+      "width": 6,
+      "height": 0.25,
+      "depth": 1.02,
+      "platform": true
+    },
+    {
+      "id": "Atrium-West-North-stair-10",
+      "x": -52.5,
+      "y": 2.375,
+      "z": 62.5,
+      "width": 6,
+      "height": 0.25,
+      "depth": 1.02,
+      "platform": true
+    },
+    {
+      "id": "Atrium-West-North-stair-11",
+      "x": -52.5,
+      "y": 2.625,
+      "z": 63.5,
+      "width": 6,
+      "height": 0.25,
+      "depth": 1.02,
+      "platform": true
+    },
+    {
+      "id": "Atrium-West-North-stair-12",
+      "x": -52.5,
+      "y": 2.875,
+      "z": 64.5,
+      "width": 6,
+      "height": 0.25,
+      "depth": 1.02,
+      "platform": true
+    },
+    {
+      "id": "Atrium-West-North-stair-13",
+      "x": -52.5,
+      "y": 3.125,
+      "z": 65.5,
+      "width": 6,
+      "height": 0.25,
+      "depth": 1.02,
+      "platform": true
+    },
+    {
+      "id": "Atrium-West-North-stair-14",
+      "x": -52.5,
+      "y": 3.375,
+      "z": 66.5,
+      "width": 6,
+      "height": 0.25,
+      "depth": 1.02,
+      "platform": true
+    },
+    {
+      "id": "Atrium-West-North-stair-15",
+      "x": -52.5,
+      "y": 3.625,
+      "z": 67.5,
+      "width": 6,
+      "height": 0.25,
+      "depth": 1.02,
+      "platform": true
+    },
+    {
+      "id": "Atrium-West-North-stair-16",
+      "x": -52.5,
+      "y": 3.875,
+      "z": 68.5,
+      "width": 6,
+      "height": 0.25,
+      "depth": 1.02,
+      "platform": true
+    },
+    {
+      "id": "Atrium-West-North-stair-17",
+      "x": -52.5,
+      "y": 4.125,
+      "z": 69.5,
+      "width": 6,
+      "height": 0.25,
+      "depth": 1.02,
+      "platform": true
+    },
+    {
+      "id": "Atrium-West-North-stair-18",
+      "x": -52.5,
+      "y": 4.375,
+      "z": 70.5,
+      "width": 6,
+      "height": 0.25,
+      "depth": 1.02,
+      "platform": true
+    },
+    {
+      "id": "Atrium-West-North-stair-19",
+      "x": -52.5,
+      "y": 4.625,
+      "z": 71.5,
+      "width": 6,
+      "height": 0.25,
+      "depth": 1.02,
+      "platform": true
+    },
+    {
+      "id": "Atrium-West-North-stair-20",
+      "x": -52.5,
+      "y": 4.875,
+      "z": 72.5,
+      "width": 6,
+      "height": 0.25,
+      "depth": 1.02,
+      "platform": true
+    },
+    {
+      "id": "Atrium-West-North-stair-21",
+      "x": -52.5,
+      "y": 5.125,
+      "z": 73.5,
+      "width": 6,
+      "height": 0.25,
+      "depth": 1.02,
+      "platform": true
+    },
+    {
+      "id": "Atrium-West-North-stair-22",
+      "x": -52.5,
+      "y": 5.375,
+      "z": 74.5,
+      "width": 6,
+      "height": 0.25,
+      "depth": 1.02,
+      "platform": true
+    },
+    {
+      "id": "Atrium-West-North-stair-23",
+      "x": -52.5,
+      "y": 5.625,
+      "z": 75.5,
+      "width": 6,
+      "height": 0.25,
+      "depth": 1.02,
+      "platform": true
+    },
+    {
+      "id": "Atrium-West-North-stair-24",
+      "x": -52.5,
+      "y": 5.875,
+      "z": 76.5,
+      "width": 6,
+      "height": 0.25,
+      "depth": 1.02,
+      "platform": true
+    },
+    {
+      "id": "Atrium-West-North-balcony-1",
+      "x": -70,
+      "y": 5.75,
+      "z": 87.5,
+      "width": 12,
+      "height": 0.5,
+      "depth": 5,
+      "platform": true
+    },
+    {
+      "id": "Atrium-West-North-balcony-2",
+      "x": -70,
+      "y": 11.75,
+      "z": 42.5,
+      "width": 12,
+      "height": 0.5,
+      "depth": 5,
+      "platform": true
+    },
+    {
+      "id": "Atrium-East-North-floor-1",
+      "x": 65.5,
+      "y": 5.75,
+      "z": 65,
+      "width": 35,
+      "height": 0.5,
+      "depth": 40,
+      "platform": true
+    },
+    {
+      "id": "Atrium-East-North-landing-1",
+      "x": 87.5,
+      "y": 5.75,
+      "z": 80.5,
+      "width": 9,
+      "height": 0.5,
+      "depth": 9,
+      "platform": true
+    },
+    {
+      "id": "Atrium-East-North-floor-2",
+      "x": 65.5,
+      "y": 11.75,
+      "z": 65,
+      "width": 35,
+      "height": 0.5,
+      "depth": 40,
+      "platform": true
+    },
+    {
+      "id": "Atrium-East-North-landing-2",
+      "x": 87.5,
+      "y": 11.75,
+      "z": 49.5,
+      "width": 9,
+      "height": 0.5,
+      "depth": 9,
+      "platform": true
+    },
+    {
+      "id": "Atrium-East-North-floor-3",
+      "x": 65.5,
+      "y": 17.75,
+      "z": 65,
+      "width": 35,
+      "height": 0.5,
+      "depth": 40,
+      "platform": true
+    },
+    {
+      "id": "Atrium-East-North-landing-3",
+      "x": 87.5,
+      "y": 17.75,
+      "z": 80.5,
+      "width": 9,
+      "height": 0.5,
+      "depth": 9,
+      "platform": true
+    },
+    {
+      "id": "Atrium-East-North-side--1",
+      "x": 48.55,
+      "y": 9,
+      "z": 65,
+      "width": 1.1,
+      "height": 18,
+      "depth": 40,
+      "platform": false
+    },
+    {
+      "id": "Atrium-East-North-door--1--1",
+      "x": 57,
+      "y": 3,
+      "z": 45.55,
+      "width": 18,
+      "height": 6,
+      "depth": 1.1,
+      "platform": false
+    },
+    {
+      "id": "Atrium-East-North-door--1-1",
+      "x": 83,
+      "y": 3,
+      "z": 45.55,
+      "width": 18,
+      "height": 6,
+      "depth": 1.1,
+      "platform": false
+    },
+    {
+      "id": "Atrium-East-North-sill--1-1--1",
+      "x": 57,
+      "y": 6.5,
+      "z": 45.55,
+      "width": 18,
+      "height": 1,
+      "depth": 1.1,
+      "platform": false
+    },
+    {
+      "id": "Atrium-East-North-sill--1-1-1",
+      "x": 83,
+      "y": 6.5,
+      "z": 45.55,
+      "width": 18,
+      "height": 1,
+      "depth": 1.1,
+      "platform": false
+    },
+    {
+      "id": "Atrium-East-North-lintel--1-1",
+      "x": 70,
+      "y": 11.45,
+      "z": 45.55,
+      "width": 44,
+      "height": 1.1,
+      "depth": 1.1,
+      "platform": false
+    },
+    {
+      "id": "Atrium-East-North-windowpost--1-1--1",
+      "x": 49,
+      "y": 9,
+      "z": 45.55,
+      "width": 1.1,
+      "height": 4,
+      "depth": 1.1,
+      "platform": false
+    },
+    {
+      "id": "Atrium-East-North-windowpost--1-1-1",
+      "x": 91,
+      "y": 9,
+      "z": 45.55,
+      "width": 1.1,
+      "height": 4,
+      "depth": 1.1,
+      "platform": false
+    },
+    {
+      "id": "Atrium-East-North-sill--1-2--1",
+      "x": 57,
+      "y": 12.5,
+      "z": 45.55,
+      "width": 18,
+      "height": 1,
+      "depth": 1.1,
+      "platform": false
+    },
+    {
+      "id": "Atrium-East-North-sill--1-2-1",
+      "x": 83,
+      "y": 12.5,
+      "z": 45.55,
+      "width": 18,
+      "height": 1,
+      "depth": 1.1,
+      "platform": false
+    },
+    {
+      "id": "Atrium-East-North-lintel--1-2",
+      "x": 70,
+      "y": 17.45,
+      "z": 45.55,
+      "width": 44,
+      "height": 1.1,
+      "depth": 1.1,
+      "platform": false
+    },
+    {
+      "id": "Atrium-East-North-windowpost--1-2--1",
+      "x": 49,
+      "y": 15,
+      "z": 45.55,
+      "width": 1.1,
+      "height": 4,
+      "depth": 1.1,
+      "platform": false
+    },
+    {
+      "id": "Atrium-East-North-windowpost--1-2-0",
+      "x": 70,
+      "y": 15,
+      "z": 45.55,
+      "width": 1.1,
+      "height": 4,
+      "depth": 1.1,
+      "platform": false
+    },
+    {
+      "id": "Atrium-East-North-windowpost--1-2-1",
+      "x": 91,
+      "y": 15,
+      "z": 45.55,
+      "width": 1.1,
+      "height": 4,
+      "depth": 1.1,
+      "platform": false
+    },
+    {
+      "id": "Atrium-East-North-door-1--1",
+      "x": 57,
+      "y": 3,
+      "z": 84.45,
+      "width": 18,
+      "height": 6,
+      "depth": 1.1,
+      "platform": false
+    },
+    {
+      "id": "Atrium-East-North-door-1-1",
+      "x": 83,
+      "y": 3,
+      "z": 84.45,
+      "width": 18,
+      "height": 6,
+      "depth": 1.1,
+      "platform": false
+    },
+    {
+      "id": "Atrium-East-North-sill-1-1--1",
+      "x": 57,
+      "y": 6.5,
+      "z": 84.45,
+      "width": 18,
+      "height": 1,
+      "depth": 1.1,
+      "platform": false
+    },
+    {
+      "id": "Atrium-East-North-sill-1-1-1",
+      "x": 83,
+      "y": 6.5,
+      "z": 84.45,
+      "width": 18,
+      "height": 1,
+      "depth": 1.1,
+      "platform": false
+    },
+    {
+      "id": "Atrium-East-North-lintel-1-1",
+      "x": 70,
+      "y": 11.45,
+      "z": 84.45,
+      "width": 44,
+      "height": 1.1,
+      "depth": 1.1,
+      "platform": false
+    },
+    {
+      "id": "Atrium-East-North-windowpost-1-1--1",
+      "x": 49,
+      "y": 9,
+      "z": 84.45,
+      "width": 1.1,
+      "height": 4,
+      "depth": 1.1,
+      "platform": false
+    },
+    {
+      "id": "Atrium-East-North-windowpost-1-1-1",
+      "x": 91,
+      "y": 9,
+      "z": 84.45,
+      "width": 1.1,
+      "height": 4,
+      "depth": 1.1,
+      "platform": false
+    },
+    {
+      "id": "Atrium-East-North-sill-1-2--1",
+      "x": 57,
+      "y": 12.5,
+      "z": 84.45,
+      "width": 18,
+      "height": 1,
+      "depth": 1.1,
+      "platform": false
+    },
+    {
+      "id": "Atrium-East-North-sill-1-2-1",
+      "x": 83,
+      "y": 12.5,
+      "z": 84.45,
+      "width": 18,
+      "height": 1,
+      "depth": 1.1,
+      "platform": false
+    },
+    {
+      "id": "Atrium-East-North-lintel-1-2",
+      "x": 70,
+      "y": 17.45,
+      "z": 84.45,
+      "width": 44,
+      "height": 1.1,
+      "depth": 1.1,
+      "platform": false
+    },
+    {
+      "id": "Atrium-East-North-windowpost-1-2--1",
+      "x": 49,
+      "y": 15,
+      "z": 84.45,
+      "width": 1.1,
+      "height": 4,
+      "depth": 1.1,
+      "platform": false
+    },
+    {
+      "id": "Atrium-East-North-windowpost-1-2-0",
+      "x": 70,
+      "y": 15,
+      "z": 84.45,
+      "width": 1.1,
+      "height": 4,
+      "depth": 1.1,
+      "platform": false
+    },
+    {
+      "id": "Atrium-East-North-windowpost-1-2-1",
+      "x": 91,
+      "y": 15,
+      "z": 84.45,
+      "width": 1.1,
+      "height": 4,
+      "depth": 1.1,
+      "platform": false
+    },
+    {
+      "id": "Atrium-East-North-side-1",
+      "x": 91.45,
+      "y": 9,
+      "z": 65,
+      "width": 1.1,
+      "height": 18,
+      "depth": 40,
+      "platform": false
+    },
+    {
+      "id": "Atrium-East-North-stair-1",
+      "x": 87.5,
+      "y": 0.125,
+      "z": 53.5,
+      "width": 6,
+      "height": 0.25,
+      "depth": 1.02,
+      "platform": true
+    },
+    {
+      "id": "Atrium-East-North-stair-2",
+      "x": 87.5,
+      "y": 0.375,
+      "z": 54.5,
+      "width": 6,
+      "height": 0.25,
+      "depth": 1.02,
+      "platform": true
+    },
+    {
+      "id": "Atrium-East-North-stair-3",
+      "x": 87.5,
+      "y": 0.625,
+      "z": 55.5,
+      "width": 6,
+      "height": 0.25,
+      "depth": 1.02,
+      "platform": true
+    },
+    {
+      "id": "Atrium-East-North-stair-4",
+      "x": 87.5,
+      "y": 0.875,
+      "z": 56.5,
+      "width": 6,
+      "height": 0.25,
+      "depth": 1.02,
+      "platform": true
+    },
+    {
+      "id": "Atrium-East-North-stair-5",
+      "x": 87.5,
+      "y": 1.125,
+      "z": 57.5,
+      "width": 6,
+      "height": 0.25,
+      "depth": 1.02,
+      "platform": true
+    },
+    {
+      "id": "Atrium-East-North-stair-6",
+      "x": 87.5,
+      "y": 1.375,
+      "z": 58.5,
+      "width": 6,
+      "height": 0.25,
+      "depth": 1.02,
+      "platform": true
+    },
+    {
+      "id": "Atrium-East-North-stair-7",
+      "x": 87.5,
+      "y": 1.625,
+      "z": 59.5,
+      "width": 6,
+      "height": 0.25,
+      "depth": 1.02,
+      "platform": true
+    },
+    {
+      "id": "Atrium-East-North-stair-8",
+      "x": 87.5,
+      "y": 1.875,
+      "z": 60.5,
+      "width": 6,
+      "height": 0.25,
+      "depth": 1.02,
+      "platform": true
+    },
+    {
+      "id": "Atrium-East-North-stair-9",
+      "x": 87.5,
+      "y": 2.125,
+      "z": 61.5,
+      "width": 6,
+      "height": 0.25,
+      "depth": 1.02,
+      "platform": true
+    },
+    {
+      "id": "Atrium-East-North-stair-10",
+      "x": 87.5,
+      "y": 2.375,
+      "z": 62.5,
+      "width": 6,
+      "height": 0.25,
+      "depth": 1.02,
+      "platform": true
+    },
+    {
+      "id": "Atrium-East-North-stair-11",
+      "x": 87.5,
+      "y": 2.625,
+      "z": 63.5,
+      "width": 6,
+      "height": 0.25,
+      "depth": 1.02,
+      "platform": true
+    },
+    {
+      "id": "Atrium-East-North-stair-12",
+      "x": 87.5,
+      "y": 2.875,
+      "z": 64.5,
+      "width": 6,
+      "height": 0.25,
+      "depth": 1.02,
+      "platform": true
+    },
+    {
+      "id": "Atrium-East-North-stair-13",
+      "x": 87.5,
+      "y": 3.125,
+      "z": 65.5,
+      "width": 6,
+      "height": 0.25,
+      "depth": 1.02,
+      "platform": true
+    },
+    {
+      "id": "Atrium-East-North-stair-14",
+      "x": 87.5,
+      "y": 3.375,
+      "z": 66.5,
+      "width": 6,
+      "height": 0.25,
+      "depth": 1.02,
+      "platform": true
+    },
+    {
+      "id": "Atrium-East-North-stair-15",
+      "x": 87.5,
+      "y": 3.625,
+      "z": 67.5,
+      "width": 6,
+      "height": 0.25,
+      "depth": 1.02,
+      "platform": true
+    },
+    {
+      "id": "Atrium-East-North-stair-16",
+      "x": 87.5,
+      "y": 3.875,
+      "z": 68.5,
+      "width": 6,
+      "height": 0.25,
+      "depth": 1.02,
+      "platform": true
+    },
+    {
+      "id": "Atrium-East-North-stair-17",
+      "x": 87.5,
+      "y": 4.125,
+      "z": 69.5,
+      "width": 6,
+      "height": 0.25,
+      "depth": 1.02,
+      "platform": true
+    },
+    {
+      "id": "Atrium-East-North-stair-18",
+      "x": 87.5,
+      "y": 4.375,
+      "z": 70.5,
+      "width": 6,
+      "height": 0.25,
+      "depth": 1.02,
+      "platform": true
+    },
+    {
+      "id": "Atrium-East-North-stair-19",
+      "x": 87.5,
+      "y": 4.625,
+      "z": 71.5,
+      "width": 6,
+      "height": 0.25,
+      "depth": 1.02,
+      "platform": true
+    },
+    {
+      "id": "Atrium-East-North-stair-20",
+      "x": 87.5,
+      "y": 4.875,
+      "z": 72.5,
+      "width": 6,
+      "height": 0.25,
+      "depth": 1.02,
+      "platform": true
+    },
+    {
+      "id": "Atrium-East-North-stair-21",
+      "x": 87.5,
+      "y": 5.125,
+      "z": 73.5,
+      "width": 6,
+      "height": 0.25,
+      "depth": 1.02,
+      "platform": true
+    },
+    {
+      "id": "Atrium-East-North-stair-22",
+      "x": 87.5,
+      "y": 5.375,
+      "z": 74.5,
+      "width": 6,
+      "height": 0.25,
+      "depth": 1.02,
+      "platform": true
+    },
+    {
+      "id": "Atrium-East-North-stair-23",
+      "x": 87.5,
+      "y": 5.625,
+      "z": 75.5,
+      "width": 6,
+      "height": 0.25,
+      "depth": 1.02,
+      "platform": true
+    },
+    {
+      "id": "Atrium-East-North-stair-24",
+      "x": 87.5,
+      "y": 5.875,
+      "z": 76.5,
+      "width": 6,
+      "height": 0.25,
+      "depth": 1.02,
+      "platform": true
+    },
+    {
+      "id": "Atrium-East-North-balcony-1",
+      "x": 70,
+      "y": 5.75,
+      "z": 87.5,
+      "width": 12,
+      "height": 0.5,
+      "depth": 5,
+      "platform": true
+    },
+    {
+      "id": "Atrium-East-North-balcony-2",
+      "x": 70,
+      "y": 11.75,
+      "z": 42.5,
+      "width": 12,
+      "height": 0.5,
+      "depth": 5,
+      "platform": true
+    },
+    {
+      "id": "Atrium-East-North-balcony-3",
+      "x": 70,
+      "y": 17.75,
+      "z": 87.5,
+      "width": 12,
+      "height": 0.5,
+      "depth": 5,
+      "platform": true
+    },
+    {
+      "id": "Atrium-West-South-floor-1",
+      "x": -74.5,
+      "y": 5.75,
+      "z": -65,
+      "width": 35,
+      "height": 0.5,
+      "depth": 40,
+      "platform": true
+    },
+    {
+      "id": "Atrium-West-South-landing-1",
+      "x": -52.5,
+      "y": 5.75,
+      "z": -49.5,
+      "width": 9,
+      "height": 0.5,
+      "depth": 9,
+      "platform": true
+    },
+    {
+      "id": "Atrium-West-South-floor-2",
+      "x": -74.5,
+      "y": 11.75,
+      "z": -65,
+      "width": 35,
+      "height": 0.5,
+      "depth": 40,
+      "platform": true
+    },
+    {
+      "id": "Atrium-West-South-landing-2",
+      "x": -52.5,
+      "y": 11.75,
+      "z": -80.5,
+      "width": 9,
+      "height": 0.5,
+      "depth": 9,
+      "platform": true
+    },
+    {
+      "id": "Atrium-West-South-floor-3",
+      "x": -74.5,
+      "y": 17.75,
+      "z": -65,
+      "width": 35,
+      "height": 0.5,
+      "depth": 40,
+      "platform": true
+    },
+    {
+      "id": "Atrium-West-South-landing-3",
+      "x": -52.5,
+      "y": 17.75,
+      "z": -49.5,
+      "width": 9,
+      "height": 0.5,
+      "depth": 9,
+      "platform": true
+    },
+    {
+      "id": "Atrium-West-South-side--1",
+      "x": -91.45,
+      "y": 9,
+      "z": -65,
+      "width": 1.1,
+      "height": 18,
+      "depth": 40,
+      "platform": false
+    },
+    {
+      "id": "Atrium-West-South-door--1--1",
+      "x": -83,
+      "y": 3,
+      "z": -84.45,
+      "width": 18,
+      "height": 6,
+      "depth": 1.1,
+      "platform": false
+    },
+    {
+      "id": "Atrium-West-South-door--1-1",
+      "x": -57,
+      "y": 3,
+      "z": -84.45,
+      "width": 18,
+      "height": 6,
+      "depth": 1.1,
+      "platform": false
+    },
+    {
+      "id": "Atrium-West-South-sill--1-1--1",
+      "x": -83,
+      "y": 6.5,
+      "z": -84.45,
+      "width": 18,
+      "height": 1,
+      "depth": 1.1,
+      "platform": false
+    },
+    {
+      "id": "Atrium-West-South-sill--1-1-1",
+      "x": -57,
+      "y": 6.5,
+      "z": -84.45,
+      "width": 18,
+      "height": 1,
+      "depth": 1.1,
+      "platform": false
+    },
+    {
+      "id": "Atrium-West-South-lintel--1-1",
+      "x": -70,
+      "y": 11.45,
+      "z": -84.45,
+      "width": 44,
+      "height": 1.1,
+      "depth": 1.1,
+      "platform": false
+    },
+    {
+      "id": "Atrium-West-South-windowpost--1-1--1",
+      "x": -91,
+      "y": 9,
+      "z": -84.45,
+      "width": 1.1,
+      "height": 4,
+      "depth": 1.1,
+      "platform": false
+    },
+    {
+      "id": "Atrium-West-South-windowpost--1-1-1",
+      "x": -49,
+      "y": 9,
+      "z": -84.45,
+      "width": 1.1,
+      "height": 4,
+      "depth": 1.1,
+      "platform": false
+    },
+    {
+      "id": "Atrium-West-South-sill--1-2--1",
+      "x": -83,
+      "y": 12.5,
+      "z": -84.45,
+      "width": 18,
+      "height": 1,
+      "depth": 1.1,
+      "platform": false
+    },
+    {
+      "id": "Atrium-West-South-sill--1-2-1",
+      "x": -57,
+      "y": 12.5,
+      "z": -84.45,
+      "width": 18,
+      "height": 1,
+      "depth": 1.1,
+      "platform": false
+    },
+    {
+      "id": "Atrium-West-South-lintel--1-2",
+      "x": -70,
+      "y": 17.45,
+      "z": -84.45,
+      "width": 44,
+      "height": 1.1,
+      "depth": 1.1,
+      "platform": false
+    },
+    {
+      "id": "Atrium-West-South-windowpost--1-2--1",
+      "x": -91,
+      "y": 15,
+      "z": -84.45,
+      "width": 1.1,
+      "height": 4,
+      "depth": 1.1,
+      "platform": false
+    },
+    {
+      "id": "Atrium-West-South-windowpost--1-2-0",
+      "x": -70,
+      "y": 15,
+      "z": -84.45,
+      "width": 1.1,
+      "height": 4,
+      "depth": 1.1,
+      "platform": false
+    },
+    {
+      "id": "Atrium-West-South-windowpost--1-2-1",
+      "x": -49,
+      "y": 15,
+      "z": -84.45,
+      "width": 1.1,
+      "height": 4,
+      "depth": 1.1,
+      "platform": false
+    },
+    {
+      "id": "Atrium-West-South-door-1--1",
+      "x": -83,
+      "y": 3,
+      "z": -45.55,
+      "width": 18,
+      "height": 6,
+      "depth": 1.1,
+      "platform": false
+    },
+    {
+      "id": "Atrium-West-South-door-1-1",
+      "x": -57,
+      "y": 3,
+      "z": -45.55,
+      "width": 18,
+      "height": 6,
+      "depth": 1.1,
+      "platform": false
+    },
+    {
+      "id": "Atrium-West-South-sill-1-1--1",
+      "x": -83,
+      "y": 6.5,
+      "z": -45.55,
+      "width": 18,
+      "height": 1,
+      "depth": 1.1,
+      "platform": false
+    },
+    {
+      "id": "Atrium-West-South-sill-1-1-1",
+      "x": -57,
+      "y": 6.5,
+      "z": -45.55,
+      "width": 18,
+      "height": 1,
+      "depth": 1.1,
+      "platform": false
+    },
+    {
+      "id": "Atrium-West-South-lintel-1-1",
+      "x": -70,
+      "y": 11.45,
+      "z": -45.55,
+      "width": 44,
+      "height": 1.1,
+      "depth": 1.1,
+      "platform": false
+    },
+    {
+      "id": "Atrium-West-South-windowpost-1-1--1",
+      "x": -91,
+      "y": 9,
+      "z": -45.55,
+      "width": 1.1,
+      "height": 4,
+      "depth": 1.1,
+      "platform": false
+    },
+    {
+      "id": "Atrium-West-South-windowpost-1-1-1",
+      "x": -49,
+      "y": 9,
+      "z": -45.55,
+      "width": 1.1,
+      "height": 4,
+      "depth": 1.1,
+      "platform": false
+    },
+    {
+      "id": "Atrium-West-South-sill-1-2--1",
+      "x": -83,
+      "y": 12.5,
+      "z": -45.55,
+      "width": 18,
+      "height": 1,
+      "depth": 1.1,
+      "platform": false
+    },
+    {
+      "id": "Atrium-West-South-sill-1-2-1",
+      "x": -57,
+      "y": 12.5,
+      "z": -45.55,
+      "width": 18,
+      "height": 1,
+      "depth": 1.1,
+      "platform": false
+    },
+    {
+      "id": "Atrium-West-South-lintel-1-2",
+      "x": -70,
+      "y": 17.45,
+      "z": -45.55,
+      "width": 44,
+      "height": 1.1,
+      "depth": 1.1,
+      "platform": false
+    },
+    {
+      "id": "Atrium-West-South-windowpost-1-2--1",
+      "x": -91,
+      "y": 15,
+      "z": -45.55,
+      "width": 1.1,
+      "height": 4,
+      "depth": 1.1,
+      "platform": false
+    },
+    {
+      "id": "Atrium-West-South-windowpost-1-2-0",
+      "x": -70,
+      "y": 15,
+      "z": -45.55,
+      "width": 1.1,
+      "height": 4,
+      "depth": 1.1,
+      "platform": false
+    },
+    {
+      "id": "Atrium-West-South-windowpost-1-2-1",
+      "x": -49,
+      "y": 15,
+      "z": -45.55,
+      "width": 1.1,
+      "height": 4,
+      "depth": 1.1,
+      "platform": false
+    },
+    {
+      "id": "Atrium-West-South-side-1",
+      "x": -48.55,
+      "y": 9,
+      "z": -65,
+      "width": 1.1,
+      "height": 18,
+      "depth": 40,
+      "platform": false
+    },
+    {
+      "id": "Atrium-West-South-stair-1",
+      "x": -52.5,
+      "y": 0.125,
+      "z": -76.5,
+      "width": 6,
+      "height": 0.25,
+      "depth": 1.02,
+      "platform": true
+    },
+    {
+      "id": "Atrium-West-South-stair-2",
+      "x": -52.5,
+      "y": 0.375,
+      "z": -75.5,
+      "width": 6,
+      "height": 0.25,
+      "depth": 1.02,
+      "platform": true
+    },
+    {
+      "id": "Atrium-West-South-stair-3",
+      "x": -52.5,
+      "y": 0.625,
+      "z": -74.5,
+      "width": 6,
+      "height": 0.25,
+      "depth": 1.02,
+      "platform": true
+    },
+    {
+      "id": "Atrium-West-South-stair-4",
+      "x": -52.5,
+      "y": 0.875,
+      "z": -73.5,
+      "width": 6,
+      "height": 0.25,
+      "depth": 1.02,
+      "platform": true
+    },
+    {
+      "id": "Atrium-West-South-stair-5",
+      "x": -52.5,
+      "y": 1.125,
+      "z": -72.5,
+      "width": 6,
+      "height": 0.25,
+      "depth": 1.02,
+      "platform": true
+    },
+    {
+      "id": "Atrium-West-South-stair-6",
+      "x": -52.5,
+      "y": 1.375,
+      "z": -71.5,
+      "width": 6,
+      "height": 0.25,
+      "depth": 1.02,
+      "platform": true
+    },
+    {
+      "id": "Atrium-West-South-stair-7",
+      "x": -52.5,
+      "y": 1.625,
+      "z": -70.5,
+      "width": 6,
+      "height": 0.25,
+      "depth": 1.02,
+      "platform": true
+    },
+    {
+      "id": "Atrium-West-South-stair-8",
+      "x": -52.5,
+      "y": 1.875,
+      "z": -69.5,
+      "width": 6,
+      "height": 0.25,
+      "depth": 1.02,
+      "platform": true
+    },
+    {
+      "id": "Atrium-West-South-stair-9",
+      "x": -52.5,
+      "y": 2.125,
+      "z": -68.5,
+      "width": 6,
+      "height": 0.25,
+      "depth": 1.02,
+      "platform": true
+    },
+    {
+      "id": "Atrium-West-South-stair-10",
+      "x": -52.5,
+      "y": 2.375,
+      "z": -67.5,
+      "width": 6,
+      "height": 0.25,
+      "depth": 1.02,
+      "platform": true
+    },
+    {
+      "id": "Atrium-West-South-stair-11",
+      "x": -52.5,
+      "y": 2.625,
+      "z": -66.5,
+      "width": 6,
+      "height": 0.25,
+      "depth": 1.02,
+      "platform": true
+    },
+    {
+      "id": "Atrium-West-South-stair-12",
+      "x": -52.5,
+      "y": 2.875,
+      "z": -65.5,
+      "width": 6,
+      "height": 0.25,
+      "depth": 1.02,
+      "platform": true
+    },
+    {
+      "id": "Atrium-West-South-stair-13",
+      "x": -52.5,
+      "y": 3.125,
+      "z": -64.5,
+      "width": 6,
+      "height": 0.25,
+      "depth": 1.02,
+      "platform": true
+    },
+    {
+      "id": "Atrium-West-South-stair-14",
+      "x": -52.5,
+      "y": 3.375,
+      "z": -63.5,
+      "width": 6,
+      "height": 0.25,
+      "depth": 1.02,
+      "platform": true
+    },
+    {
+      "id": "Atrium-West-South-stair-15",
+      "x": -52.5,
+      "y": 3.625,
+      "z": -62.5,
+      "width": 6,
+      "height": 0.25,
+      "depth": 1.02,
+      "platform": true
+    },
+    {
+      "id": "Atrium-West-South-stair-16",
+      "x": -52.5,
+      "y": 3.875,
+      "z": -61.5,
+      "width": 6,
+      "height": 0.25,
+      "depth": 1.02,
+      "platform": true
+    },
+    {
+      "id": "Atrium-West-South-stair-17",
+      "x": -52.5,
+      "y": 4.125,
+      "z": -60.5,
+      "width": 6,
+      "height": 0.25,
+      "depth": 1.02,
+      "platform": true
+    },
+    {
+      "id": "Atrium-West-South-stair-18",
+      "x": -52.5,
+      "y": 4.375,
+      "z": -59.5,
+      "width": 6,
+      "height": 0.25,
+      "depth": 1.02,
+      "platform": true
+    },
+    {
+      "id": "Atrium-West-South-stair-19",
+      "x": -52.5,
+      "y": 4.625,
+      "z": -58.5,
+      "width": 6,
+      "height": 0.25,
+      "depth": 1.02,
+      "platform": true
+    },
+    {
+      "id": "Atrium-West-South-stair-20",
+      "x": -52.5,
+      "y": 4.875,
+      "z": -57.5,
+      "width": 6,
+      "height": 0.25,
+      "depth": 1.02,
+      "platform": true
+    },
+    {
+      "id": "Atrium-West-South-stair-21",
+      "x": -52.5,
+      "y": 5.125,
+      "z": -56.5,
+      "width": 6,
+      "height": 0.25,
+      "depth": 1.02,
+      "platform": true
+    },
+    {
+      "id": "Atrium-West-South-stair-22",
+      "x": -52.5,
+      "y": 5.375,
+      "z": -55.5,
+      "width": 6,
+      "height": 0.25,
+      "depth": 1.02,
+      "platform": true
+    },
+    {
+      "id": "Atrium-West-South-stair-23",
+      "x": -52.5,
+      "y": 5.625,
+      "z": -54.5,
+      "width": 6,
+      "height": 0.25,
+      "depth": 1.02,
+      "platform": true
+    },
+    {
+      "id": "Atrium-West-South-stair-24",
+      "x": -52.5,
+      "y": 5.875,
+      "z": -53.5,
+      "width": 6,
+      "height": 0.25,
+      "depth": 1.02,
+      "platform": true
+    },
+    {
+      "id": "Atrium-West-South-balcony-1",
+      "x": -70,
+      "y": 5.75,
+      "z": -42.5,
+      "width": 12,
+      "height": 0.5,
+      "depth": 5,
+      "platform": true
+    },
+    {
+      "id": "Atrium-West-South-balcony-2",
+      "x": -70,
+      "y": 11.75,
+      "z": -87.5,
+      "width": 12,
+      "height": 0.5,
+      "depth": 5,
+      "platform": true
+    },
+    {
+      "id": "Atrium-West-South-balcony-3",
+      "x": -70,
+      "y": 17.75,
+      "z": -42.5,
+      "width": 12,
+      "height": 0.5,
+      "depth": 5,
+      "platform": true
+    },
+    {
+      "id": "Atrium-East-South-floor-1",
+      "x": 65.5,
+      "y": 5.75,
+      "z": -65,
+      "width": 35,
+      "height": 0.5,
+      "depth": 40,
+      "platform": true
+    },
+    {
+      "id": "Atrium-East-South-landing-1",
+      "x": 87.5,
+      "y": 5.75,
+      "z": -49.5,
+      "width": 9,
+      "height": 0.5,
+      "depth": 9,
+      "platform": true
+    },
+    {
+      "id": "Atrium-East-South-floor-2",
+      "x": 65.5,
+      "y": 11.75,
+      "z": -65,
+      "width": 35,
+      "height": 0.5,
+      "depth": 40,
+      "platform": true
+    },
+    {
+      "id": "Atrium-East-South-landing-2",
+      "x": 87.5,
+      "y": 11.75,
+      "z": -80.5,
+      "width": 9,
+      "height": 0.5,
+      "depth": 9,
+      "platform": true
+    },
+    {
+      "id": "Atrium-East-South-side--1",
+      "x": 48.55,
+      "y": 6,
+      "z": -65,
+      "width": 1.1,
+      "height": 12,
+      "depth": 40,
+      "platform": false
+    },
+    {
+      "id": "Atrium-East-South-door--1--1",
+      "x": 57,
+      "y": 3,
+      "z": -84.45,
+      "width": 18,
+      "height": 6,
+      "depth": 1.1,
+      "platform": false
+    },
+    {
+      "id": "Atrium-East-South-door--1-1",
+      "x": 83,
+      "y": 3,
+      "z": -84.45,
+      "width": 18,
+      "height": 6,
+      "depth": 1.1,
+      "platform": false
+    },
+    {
+      "id": "Atrium-East-South-sill--1-1--1",
+      "x": 57,
+      "y": 6.5,
+      "z": -84.45,
+      "width": 18,
+      "height": 1,
+      "depth": 1.1,
+      "platform": false
+    },
+    {
+      "id": "Atrium-East-South-sill--1-1-1",
+      "x": 83,
+      "y": 6.5,
+      "z": -84.45,
+      "width": 18,
+      "height": 1,
+      "depth": 1.1,
+      "platform": false
+    },
+    {
+      "id": "Atrium-East-South-lintel--1-1",
+      "x": 70,
+      "y": 11.45,
+      "z": -84.45,
+      "width": 44,
+      "height": 1.1,
+      "depth": 1.1,
+      "platform": false
+    },
+    {
+      "id": "Atrium-East-South-windowpost--1-1--1",
+      "x": 49,
+      "y": 9,
+      "z": -84.45,
+      "width": 1.1,
+      "height": 4,
+      "depth": 1.1,
+      "platform": false
+    },
+    {
+      "id": "Atrium-East-South-windowpost--1-1-1",
+      "x": 91,
+      "y": 9,
+      "z": -84.45,
+      "width": 1.1,
+      "height": 4,
+      "depth": 1.1,
+      "platform": false
+    },
+    {
+      "id": "Atrium-East-South-door-1--1",
+      "x": 57,
+      "y": 3,
+      "z": -45.55,
+      "width": 18,
+      "height": 6,
+      "depth": 1.1,
+      "platform": false
+    },
+    {
+      "id": "Atrium-East-South-door-1-1",
+      "x": 83,
+      "y": 3,
+      "z": -45.55,
+      "width": 18,
+      "height": 6,
+      "depth": 1.1,
+      "platform": false
+    },
+    {
+      "id": "Atrium-East-South-sill-1-1--1",
+      "x": 57,
+      "y": 6.5,
+      "z": -45.55,
+      "width": 18,
+      "height": 1,
+      "depth": 1.1,
+      "platform": false
+    },
+    {
+      "id": "Atrium-East-South-sill-1-1-1",
+      "x": 83,
+      "y": 6.5,
+      "z": -45.55,
+      "width": 18,
+      "height": 1,
+      "depth": 1.1,
+      "platform": false
+    },
+    {
+      "id": "Atrium-East-South-lintel-1-1",
+      "x": 70,
+      "y": 11.45,
+      "z": -45.55,
+      "width": 44,
+      "height": 1.1,
+      "depth": 1.1,
+      "platform": false
+    },
+    {
+      "id": "Atrium-East-South-windowpost-1-1--1",
+      "x": 49,
+      "y": 9,
+      "z": -45.55,
+      "width": 1.1,
+      "height": 4,
+      "depth": 1.1,
+      "platform": false
+    },
+    {
+      "id": "Atrium-East-South-windowpost-1-1-1",
+      "x": 91,
+      "y": 9,
+      "z": -45.55,
+      "width": 1.1,
+      "height": 4,
+      "depth": 1.1,
+      "platform": false
+    },
+    {
+      "id": "Atrium-East-South-side-1",
+      "x": 91.45,
+      "y": 6,
+      "z": -65,
+      "width": 1.1,
+      "height": 12,
+      "depth": 40,
+      "platform": false
+    },
+    {
+      "id": "Atrium-East-South-stair-1",
+      "x": 87.5,
+      "y": 0.125,
+      "z": -76.5,
+      "width": 6,
+      "height": 0.25,
+      "depth": 1.02,
+      "platform": true
+    },
+    {
+      "id": "Atrium-East-South-stair-2",
+      "x": 87.5,
+      "y": 0.375,
+      "z": -75.5,
+      "width": 6,
+      "height": 0.25,
+      "depth": 1.02,
+      "platform": true
+    },
+    {
+      "id": "Atrium-East-South-stair-3",
+      "x": 87.5,
+      "y": 0.625,
+      "z": -74.5,
+      "width": 6,
+      "height": 0.25,
+      "depth": 1.02,
+      "platform": true
+    },
+    {
+      "id": "Atrium-East-South-stair-4",
+      "x": 87.5,
+      "y": 0.875,
+      "z": -73.5,
+      "width": 6,
+      "height": 0.25,
+      "depth": 1.02,
+      "platform": true
+    },
+    {
+      "id": "Atrium-East-South-stair-5",
+      "x": 87.5,
+      "y": 1.125,
+      "z": -72.5,
+      "width": 6,
+      "height": 0.25,
+      "depth": 1.02,
+      "platform": true
+    },
+    {
+      "id": "Atrium-East-South-stair-6",
+      "x": 87.5,
+      "y": 1.375,
+      "z": -71.5,
+      "width": 6,
+      "height": 0.25,
+      "depth": 1.02,
+      "platform": true
+    },
+    {
+      "id": "Atrium-East-South-stair-7",
+      "x": 87.5,
+      "y": 1.625,
+      "z": -70.5,
+      "width": 6,
+      "height": 0.25,
+      "depth": 1.02,
+      "platform": true
+    },
+    {
+      "id": "Atrium-East-South-stair-8",
+      "x": 87.5,
+      "y": 1.875,
+      "z": -69.5,
+      "width": 6,
+      "height": 0.25,
+      "depth": 1.02,
+      "platform": true
+    },
+    {
+      "id": "Atrium-East-South-stair-9",
+      "x": 87.5,
+      "y": 2.125,
+      "z": -68.5,
+      "width": 6,
+      "height": 0.25,
+      "depth": 1.02,
+      "platform": true
+    },
+    {
+      "id": "Atrium-East-South-stair-10",
+      "x": 87.5,
+      "y": 2.375,
+      "z": -67.5,
+      "width": 6,
+      "height": 0.25,
+      "depth": 1.02,
+      "platform": true
+    },
+    {
+      "id": "Atrium-East-South-stair-11",
+      "x": 87.5,
+      "y": 2.625,
+      "z": -66.5,
+      "width": 6,
+      "height": 0.25,
+      "depth": 1.02,
+      "platform": true
+    },
+    {
+      "id": "Atrium-East-South-stair-12",
+      "x": 87.5,
+      "y": 2.875,
+      "z": -65.5,
+      "width": 6,
+      "height": 0.25,
+      "depth": 1.02,
+      "platform": true
+    },
+    {
+      "id": "Atrium-East-South-stair-13",
+      "x": 87.5,
+      "y": 3.125,
+      "z": -64.5,
+      "width": 6,
+      "height": 0.25,
+      "depth": 1.02,
+      "platform": true
+    },
+    {
+      "id": "Atrium-East-South-stair-14",
+      "x": 87.5,
+      "y": 3.375,
+      "z": -63.5,
+      "width": 6,
+      "height": 0.25,
+      "depth": 1.02,
+      "platform": true
+    },
+    {
+      "id": "Atrium-East-South-stair-15",
+      "x": 87.5,
+      "y": 3.625,
+      "z": -62.5,
+      "width": 6,
+      "height": 0.25,
+      "depth": 1.02,
+      "platform": true
+    },
+    {
+      "id": "Atrium-East-South-stair-16",
+      "x": 87.5,
+      "y": 3.875,
+      "z": -61.5,
+      "width": 6,
+      "height": 0.25,
+      "depth": 1.02,
+      "platform": true
+    },
+    {
+      "id": "Atrium-East-South-stair-17",
+      "x": 87.5,
+      "y": 4.125,
+      "z": -60.5,
+      "width": 6,
+      "height": 0.25,
+      "depth": 1.02,
+      "platform": true
+    },
+    {
+      "id": "Atrium-East-South-stair-18",
+      "x": 87.5,
+      "y": 4.375,
+      "z": -59.5,
+      "width": 6,
+      "height": 0.25,
+      "depth": 1.02,
+      "platform": true
+    },
+    {
+      "id": "Atrium-East-South-stair-19",
+      "x": 87.5,
+      "y": 4.625,
+      "z": -58.5,
+      "width": 6,
+      "height": 0.25,
+      "depth": 1.02,
+      "platform": true
+    },
+    {
+      "id": "Atrium-East-South-stair-20",
+      "x": 87.5,
+      "y": 4.875,
+      "z": -57.5,
+      "width": 6,
+      "height": 0.25,
+      "depth": 1.02,
+      "platform": true
+    },
+    {
+      "id": "Atrium-East-South-stair-21",
+      "x": 87.5,
+      "y": 5.125,
+      "z": -56.5,
+      "width": 6,
+      "height": 0.25,
+      "depth": 1.02,
+      "platform": true
+    },
+    {
+      "id": "Atrium-East-South-stair-22",
+      "x": 87.5,
+      "y": 5.375,
+      "z": -55.5,
+      "width": 6,
+      "height": 0.25,
+      "depth": 1.02,
+      "platform": true
+    },
+    {
+      "id": "Atrium-East-South-stair-23",
+      "x": 87.5,
+      "y": 5.625,
+      "z": -54.5,
+      "width": 6,
+      "height": 0.25,
+      "depth": 1.02,
+      "platform": true
+    },
+    {
+      "id": "Atrium-East-South-stair-24",
+      "x": 87.5,
+      "y": 5.875,
+      "z": -53.5,
+      "width": 6,
+      "height": 0.25,
+      "depth": 1.02,
+      "platform": true
+    },
+    {
+      "id": "Atrium-East-South-balcony-1",
+      "x": 70,
+      "y": 5.75,
+      "z": -42.5,
+      "width": 12,
+      "height": 0.5,
+      "depth": 5,
+      "platform": true
+    },
+    {
+      "id": "Atrium-East-South-balcony-2",
+      "x": 70,
+      "y": 11.75,
+      "z": -87.5,
+      "width": 12,
+      "height": 0.5,
+      "depth": 5,
+      "platform": true
+    },
+    {
+      "id": "Tower-West-floor-1",
+      "x": -174.5,
+      "y": 5.75,
+      "z": 72,
+      "width": 29,
+      "height": 0.5,
+      "depth": 42,
+      "platform": true
+    },
+    {
+      "id": "Tower-West-landing-1",
+      "x": -155.5,
+      "y": 5.75,
+      "z": 88.5,
+      "width": 9,
+      "height": 0.5,
+      "depth": 9,
+      "platform": true
+    },
+    {
+      "id": "Tower-West-floor-2",
+      "x": -174.5,
+      "y": 11.75,
+      "z": 72,
+      "width": 29,
+      "height": 0.5,
+      "depth": 42,
+      "platform": true
+    },
+    {
+      "id": "Tower-West-landing-2",
+      "x": -155.5,
+      "y": 11.75,
+      "z": 55.5,
+      "width": 9,
+      "height": 0.5,
+      "depth": 9,
+      "platform": true
+    },
+    {
+      "id": "Tower-West-floor-3",
+      "x": -174.5,
+      "y": 17.75,
+      "z": 72,
+      "width": 29,
+      "height": 0.5,
+      "depth": 42,
+      "platform": true
+    },
+    {
+      "id": "Tower-West-landing-3",
+      "x": -155.5,
+      "y": 17.75,
+      "z": 88.5,
+      "width": 9,
+      "height": 0.5,
+      "depth": 9,
+      "platform": true
+    },
+    {
+      "id": "Tower-West-floor-4",
+      "x": -174.5,
+      "y": 23.75,
+      "z": 72,
+      "width": 29,
+      "height": 0.5,
+      "depth": 42,
+      "platform": true
+    },
+    {
+      "id": "Tower-West-landing-4",
+      "x": -155.5,
+      "y": 23.75,
+      "z": 55.5,
+      "width": 9,
+      "height": 0.5,
+      "depth": 9,
+      "platform": true
+    },
+    {
+      "id": "Tower-West-side--1",
+      "x": -188.45,
+      "y": 12,
+      "z": 72,
+      "width": 1.1,
+      "height": 24,
+      "depth": 42,
+      "platform": false
+    },
+    {
+      "id": "Tower-West-door--1--1",
+      "x": -181.5,
+      "y": 3,
+      "z": 51.55,
+      "width": 15,
+      "height": 6,
+      "depth": 1.1,
+      "platform": false
+    },
+    {
+      "id": "Tower-West-door--1-1",
+      "x": -158.5,
+      "y": 3,
+      "z": 51.55,
+      "width": 15,
+      "height": 6,
+      "depth": 1.1,
+      "platform": false
+    },
+    {
+      "id": "Tower-West-sill--1-1--1",
+      "x": -181.5,
+      "y": 6.5,
+      "z": 51.55,
+      "width": 15,
+      "height": 1,
+      "depth": 1.1,
+      "platform": false
+    },
+    {
+      "id": "Tower-West-sill--1-1-1",
+      "x": -158.5,
+      "y": 6.5,
+      "z": 51.55,
+      "width": 15,
+      "height": 1,
+      "depth": 1.1,
+      "platform": false
+    },
+    {
+      "id": "Tower-West-lintel--1-1",
+      "x": -170,
+      "y": 11.45,
+      "z": 51.55,
+      "width": 38,
+      "height": 1.1,
+      "depth": 1.1,
+      "platform": false
+    },
+    {
+      "id": "Tower-West-windowpost--1-1--1",
+      "x": -188,
+      "y": 9,
+      "z": 51.55,
+      "width": 1.1,
+      "height": 4,
+      "depth": 1.1,
+      "platform": false
+    },
+    {
+      "id": "Tower-West-windowpost--1-1-1",
+      "x": -152,
+      "y": 9,
+      "z": 51.55,
+      "width": 1.1,
+      "height": 4,
+      "depth": 1.1,
+      "platform": false
+    },
+    {
+      "id": "Tower-West-sill--1-2--1",
+      "x": -181.5,
+      "y": 12.5,
+      "z": 51.55,
+      "width": 15,
+      "height": 1,
+      "depth": 1.1,
+      "platform": false
+    },
+    {
+      "id": "Tower-West-sill--1-2-1",
+      "x": -158.5,
+      "y": 12.5,
+      "z": 51.55,
+      "width": 15,
+      "height": 1,
+      "depth": 1.1,
+      "platform": false
+    },
+    {
+      "id": "Tower-West-lintel--1-2",
+      "x": -170,
+      "y": 17.45,
+      "z": 51.55,
+      "width": 38,
+      "height": 1.1,
+      "depth": 1.1,
+      "platform": false
+    },
+    {
+      "id": "Tower-West-windowpost--1-2--1",
+      "x": -188,
+      "y": 15,
+      "z": 51.55,
+      "width": 1.1,
+      "height": 4,
+      "depth": 1.1,
+      "platform": false
+    },
+    {
+      "id": "Tower-West-windowpost--1-2-0",
+      "x": -170,
+      "y": 15,
+      "z": 51.55,
+      "width": 1.1,
+      "height": 4,
+      "depth": 1.1,
+      "platform": false
+    },
+    {
+      "id": "Tower-West-windowpost--1-2-1",
+      "x": -152,
+      "y": 15,
+      "z": 51.55,
+      "width": 1.1,
+      "height": 4,
+      "depth": 1.1,
+      "platform": false
+    },
+    {
+      "id": "Tower-West-sill--1-3--1",
+      "x": -181.5,
+      "y": 18.5,
+      "z": 51.55,
+      "width": 15,
+      "height": 1,
+      "depth": 1.1,
+      "platform": false
+    },
+    {
+      "id": "Tower-West-sill--1-3-1",
+      "x": -158.5,
+      "y": 18.5,
+      "z": 51.55,
+      "width": 15,
+      "height": 1,
+      "depth": 1.1,
+      "platform": false
+    },
+    {
+      "id": "Tower-West-lintel--1-3",
+      "x": -170,
+      "y": 23.45,
+      "z": 51.55,
+      "width": 38,
+      "height": 1.1,
+      "depth": 1.1,
+      "platform": false
+    },
+    {
+      "id": "Tower-West-windowpost--1-3--1",
+      "x": -188,
+      "y": 21,
+      "z": 51.55,
+      "width": 1.1,
+      "height": 4,
+      "depth": 1.1,
+      "platform": false
+    },
+    {
+      "id": "Tower-West-windowpost--1-3-0",
+      "x": -170,
+      "y": 21,
+      "z": 51.55,
+      "width": 1.1,
+      "height": 4,
+      "depth": 1.1,
+      "platform": false
+    },
+    {
+      "id": "Tower-West-windowpost--1-3-1",
+      "x": -152,
+      "y": 21,
+      "z": 51.55,
+      "width": 1.1,
+      "height": 4,
+      "depth": 1.1,
+      "platform": false
+    },
+    {
+      "id": "Tower-West-door-1--1",
+      "x": -181.5,
+      "y": 3,
+      "z": 92.45,
+      "width": 15,
+      "height": 6,
+      "depth": 1.1,
+      "platform": false
+    },
+    {
+      "id": "Tower-West-door-1-1",
+      "x": -158.5,
+      "y": 3,
+      "z": 92.45,
+      "width": 15,
+      "height": 6,
+      "depth": 1.1,
+      "platform": false
+    },
+    {
+      "id": "Tower-West-sill-1-1--1",
+      "x": -181.5,
+      "y": 6.5,
+      "z": 92.45,
+      "width": 15,
+      "height": 1,
+      "depth": 1.1,
+      "platform": false
+    },
+    {
+      "id": "Tower-West-sill-1-1-1",
+      "x": -158.5,
+      "y": 6.5,
+      "z": 92.45,
+      "width": 15,
+      "height": 1,
+      "depth": 1.1,
+      "platform": false
+    },
+    {
+      "id": "Tower-West-lintel-1-1",
+      "x": -170,
+      "y": 11.45,
+      "z": 92.45,
+      "width": 38,
+      "height": 1.1,
+      "depth": 1.1,
+      "platform": false
+    },
+    {
+      "id": "Tower-West-windowpost-1-1--1",
+      "x": -188,
+      "y": 9,
+      "z": 92.45,
+      "width": 1.1,
+      "height": 4,
+      "depth": 1.1,
+      "platform": false
+    },
+    {
+      "id": "Tower-West-windowpost-1-1-1",
+      "x": -152,
+      "y": 9,
+      "z": 92.45,
+      "width": 1.1,
+      "height": 4,
+      "depth": 1.1,
+      "platform": false
+    },
+    {
+      "id": "Tower-West-sill-1-2--1",
+      "x": -181.5,
+      "y": 12.5,
+      "z": 92.45,
+      "width": 15,
+      "height": 1,
+      "depth": 1.1,
+      "platform": false
+    },
+    {
+      "id": "Tower-West-sill-1-2-1",
+      "x": -158.5,
+      "y": 12.5,
+      "z": 92.45,
+      "width": 15,
+      "height": 1,
+      "depth": 1.1,
+      "platform": false
+    },
+    {
+      "id": "Tower-West-lintel-1-2",
+      "x": -170,
+      "y": 17.45,
+      "z": 92.45,
+      "width": 38,
+      "height": 1.1,
+      "depth": 1.1,
+      "platform": false
+    },
+    {
+      "id": "Tower-West-windowpost-1-2--1",
+      "x": -188,
+      "y": 15,
+      "z": 92.45,
+      "width": 1.1,
+      "height": 4,
+      "depth": 1.1,
+      "platform": false
+    },
+    {
+      "id": "Tower-West-windowpost-1-2-0",
+      "x": -170,
+      "y": 15,
+      "z": 92.45,
+      "width": 1.1,
+      "height": 4,
+      "depth": 1.1,
+      "platform": false
+    },
+    {
+      "id": "Tower-West-windowpost-1-2-1",
+      "x": -152,
+      "y": 15,
+      "z": 92.45,
+      "width": 1.1,
+      "height": 4,
+      "depth": 1.1,
+      "platform": false
+    },
+    {
+      "id": "Tower-West-sill-1-3--1",
+      "x": -181.5,
+      "y": 18.5,
+      "z": 92.45,
+      "width": 15,
+      "height": 1,
+      "depth": 1.1,
+      "platform": false
+    },
+    {
+      "id": "Tower-West-sill-1-3-1",
+      "x": -158.5,
+      "y": 18.5,
+      "z": 92.45,
+      "width": 15,
+      "height": 1,
+      "depth": 1.1,
+      "platform": false
+    },
+    {
+      "id": "Tower-West-lintel-1-3",
+      "x": -170,
+      "y": 23.45,
+      "z": 92.45,
+      "width": 38,
+      "height": 1.1,
+      "depth": 1.1,
+      "platform": false
+    },
+    {
+      "id": "Tower-West-windowpost-1-3--1",
+      "x": -188,
+      "y": 21,
+      "z": 92.45,
+      "width": 1.1,
+      "height": 4,
+      "depth": 1.1,
+      "platform": false
+    },
+    {
+      "id": "Tower-West-windowpost-1-3-0",
+      "x": -170,
+      "y": 21,
+      "z": 92.45,
+      "width": 1.1,
+      "height": 4,
+      "depth": 1.1,
+      "platform": false
+    },
+    {
+      "id": "Tower-West-windowpost-1-3-1",
+      "x": -152,
+      "y": 21,
+      "z": 92.45,
+      "width": 1.1,
+      "height": 4,
+      "depth": 1.1,
+      "platform": false
+    },
+    {
+      "id": "Tower-West-side-1",
+      "x": -151.55,
+      "y": 12,
+      "z": 72,
+      "width": 1.1,
+      "height": 24,
+      "depth": 42,
+      "platform": false
+    },
+    {
+      "id": "Tower-West-balcony-1",
+      "x": -170,
+      "y": 5.75,
+      "z": 95.5,
+      "width": 12,
+      "height": 0.5,
+      "depth": 5,
+      "platform": true
+    },
+    {
+      "id": "Tower-West-balcony-2",
+      "x": -170,
+      "y": 11.75,
+      "z": 48.5,
+      "width": 12,
+      "height": 0.5,
+      "depth": 5,
+      "platform": true
+    },
+    {
+      "id": "Tower-West-balcony-3",
+      "x": -170,
+      "y": 17.75,
+      "z": 95.5,
+      "width": 12,
+      "height": 0.5,
+      "depth": 5,
+      "platform": true
+    },
+    {
+      "id": "Tower-West-balcony-4",
+      "x": -170,
+      "y": 23.75,
+      "z": 48.5,
+      "width": 12,
+      "height": 0.5,
+      "depth": 5,
+      "platform": true
+    },
+    {
+      "id": "Tower-East-floor-1",
+      "x": 165.5,
+      "y": 5.75,
+      "z": -72,
+      "width": 29,
+      "height": 0.5,
+      "depth": 42,
+      "platform": true
+    },
+    {
+      "id": "Tower-East-landing-1",
+      "x": 184.5,
+      "y": 5.75,
+      "z": -55.5,
+      "width": 9,
+      "height": 0.5,
+      "depth": 9,
+      "platform": true
+    },
+    {
+      "id": "Tower-East-floor-2",
+      "x": 165.5,
+      "y": 11.75,
+      "z": -72,
+      "width": 29,
+      "height": 0.5,
+      "depth": 42,
+      "platform": true
+    },
+    {
+      "id": "Tower-East-landing-2",
+      "x": 184.5,
+      "y": 11.75,
+      "z": -88.5,
+      "width": 9,
+      "height": 0.5,
+      "depth": 9,
+      "platform": true
+    },
+    {
+      "id": "Tower-East-floor-3",
+      "x": 165.5,
+      "y": 17.75,
+      "z": -72,
+      "width": 29,
+      "height": 0.5,
+      "depth": 42,
+      "platform": true
+    },
+    {
+      "id": "Tower-East-landing-3",
+      "x": 184.5,
+      "y": 17.75,
+      "z": -55.5,
+      "width": 9,
+      "height": 0.5,
+      "depth": 9,
+      "platform": true
+    },
+    {
+      "id": "Tower-East-floor-4",
+      "x": 165.5,
+      "y": 23.75,
+      "z": -72,
+      "width": 29,
+      "height": 0.5,
+      "depth": 42,
+      "platform": true
+    },
+    {
+      "id": "Tower-East-landing-4",
+      "x": 184.5,
+      "y": 23.75,
+      "z": -88.5,
+      "width": 9,
+      "height": 0.5,
+      "depth": 9,
+      "platform": true
+    },
+    {
+      "id": "Tower-East-side--1",
+      "x": 151.55,
+      "y": 12,
+      "z": -72,
+      "width": 1.1,
+      "height": 24,
+      "depth": 42,
+      "platform": false
+    },
+    {
+      "id": "Tower-East-door--1--1",
+      "x": 158.5,
+      "y": 3,
+      "z": -92.45,
+      "width": 15,
+      "height": 6,
+      "depth": 1.1,
+      "platform": false
+    },
+    {
+      "id": "Tower-East-door--1-1",
+      "x": 181.5,
+      "y": 3,
+      "z": -92.45,
+      "width": 15,
+      "height": 6,
+      "depth": 1.1,
+      "platform": false
+    },
+    {
+      "id": "Tower-East-sill--1-1--1",
+      "x": 158.5,
+      "y": 6.5,
+      "z": -92.45,
+      "width": 15,
+      "height": 1,
+      "depth": 1.1,
+      "platform": false
+    },
+    {
+      "id": "Tower-East-sill--1-1-1",
+      "x": 181.5,
+      "y": 6.5,
+      "z": -92.45,
+      "width": 15,
+      "height": 1,
+      "depth": 1.1,
+      "platform": false
+    },
+    {
+      "id": "Tower-East-lintel--1-1",
+      "x": 170,
+      "y": 11.45,
+      "z": -92.45,
+      "width": 38,
+      "height": 1.1,
+      "depth": 1.1,
+      "platform": false
+    },
+    {
+      "id": "Tower-East-windowpost--1-1--1",
+      "x": 152,
+      "y": 9,
+      "z": -92.45,
+      "width": 1.1,
+      "height": 4,
+      "depth": 1.1,
+      "platform": false
+    },
+    {
+      "id": "Tower-East-windowpost--1-1-1",
+      "x": 188,
+      "y": 9,
+      "z": -92.45,
+      "width": 1.1,
+      "height": 4,
+      "depth": 1.1,
+      "platform": false
+    },
+    {
+      "id": "Tower-East-sill--1-2--1",
+      "x": 158.5,
+      "y": 12.5,
+      "z": -92.45,
+      "width": 15,
+      "height": 1,
+      "depth": 1.1,
+      "platform": false
+    },
+    {
+      "id": "Tower-East-sill--1-2-1",
+      "x": 181.5,
+      "y": 12.5,
+      "z": -92.45,
+      "width": 15,
+      "height": 1,
+      "depth": 1.1,
+      "platform": false
+    },
+    {
+      "id": "Tower-East-lintel--1-2",
+      "x": 170,
+      "y": 17.45,
+      "z": -92.45,
+      "width": 38,
+      "height": 1.1,
+      "depth": 1.1,
+      "platform": false
+    },
+    {
+      "id": "Tower-East-windowpost--1-2--1",
+      "x": 152,
+      "y": 15,
+      "z": -92.45,
+      "width": 1.1,
+      "height": 4,
+      "depth": 1.1,
+      "platform": false
+    },
+    {
+      "id": "Tower-East-windowpost--1-2-0",
+      "x": 170,
+      "y": 15,
+      "z": -92.45,
+      "width": 1.1,
+      "height": 4,
+      "depth": 1.1,
+      "platform": false
+    },
+    {
+      "id": "Tower-East-windowpost--1-2-1",
+      "x": 188,
+      "y": 15,
+      "z": -92.45,
+      "width": 1.1,
+      "height": 4,
+      "depth": 1.1,
+      "platform": false
+    },
+    {
+      "id": "Tower-East-sill--1-3--1",
+      "x": 158.5,
+      "y": 18.5,
+      "z": -92.45,
+      "width": 15,
+      "height": 1,
+      "depth": 1.1,
+      "platform": false
+    },
+    {
+      "id": "Tower-East-sill--1-3-1",
+      "x": 181.5,
+      "y": 18.5,
+      "z": -92.45,
+      "width": 15,
+      "height": 1,
+      "depth": 1.1,
+      "platform": false
+    },
+    {
+      "id": "Tower-East-lintel--1-3",
+      "x": 170,
+      "y": 23.45,
+      "z": -92.45,
+      "width": 38,
+      "height": 1.1,
+      "depth": 1.1,
+      "platform": false
+    },
+    {
+      "id": "Tower-East-windowpost--1-3--1",
+      "x": 152,
+      "y": 21,
+      "z": -92.45,
+      "width": 1.1,
+      "height": 4,
+      "depth": 1.1,
+      "platform": false
+    },
+    {
+      "id": "Tower-East-windowpost--1-3-0",
+      "x": 170,
+      "y": 21,
+      "z": -92.45,
+      "width": 1.1,
+      "height": 4,
+      "depth": 1.1,
+      "platform": false
+    },
+    {
+      "id": "Tower-East-windowpost--1-3-1",
+      "x": 188,
+      "y": 21,
+      "z": -92.45,
+      "width": 1.1,
+      "height": 4,
+      "depth": 1.1,
+      "platform": false
+    },
+    {
+      "id": "Tower-East-door-1--1",
+      "x": 158.5,
+      "y": 3,
+      "z": -51.55,
+      "width": 15,
+      "height": 6,
+      "depth": 1.1,
+      "platform": false
+    },
+    {
+      "id": "Tower-East-door-1-1",
+      "x": 181.5,
+      "y": 3,
+      "z": -51.55,
+      "width": 15,
+      "height": 6,
+      "depth": 1.1,
+      "platform": false
+    },
+    {
+      "id": "Tower-East-sill-1-1--1",
+      "x": 158.5,
+      "y": 6.5,
+      "z": -51.55,
+      "width": 15,
+      "height": 1,
+      "depth": 1.1,
+      "platform": false
+    },
+    {
+      "id": "Tower-East-sill-1-1-1",
+      "x": 181.5,
+      "y": 6.5,
+      "z": -51.55,
+      "width": 15,
+      "height": 1,
+      "depth": 1.1,
+      "platform": false
+    },
+    {
+      "id": "Tower-East-lintel-1-1",
+      "x": 170,
+      "y": 11.45,
+      "z": -51.55,
+      "width": 38,
+      "height": 1.1,
+      "depth": 1.1,
+      "platform": false
+    },
+    {
+      "id": "Tower-East-windowpost-1-1--1",
+      "x": 152,
+      "y": 9,
+      "z": -51.55,
+      "width": 1.1,
+      "height": 4,
+      "depth": 1.1,
+      "platform": false
+    },
+    {
+      "id": "Tower-East-windowpost-1-1-1",
+      "x": 188,
+      "y": 9,
+      "z": -51.55,
+      "width": 1.1,
+      "height": 4,
+      "depth": 1.1,
+      "platform": false
+    },
+    {
+      "id": "Tower-East-sill-1-2--1",
+      "x": 158.5,
+      "y": 12.5,
+      "z": -51.55,
+      "width": 15,
+      "height": 1,
+      "depth": 1.1,
+      "platform": false
+    },
+    {
+      "id": "Tower-East-sill-1-2-1",
+      "x": 181.5,
+      "y": 12.5,
+      "z": -51.55,
+      "width": 15,
+      "height": 1,
+      "depth": 1.1,
+      "platform": false
+    },
+    {
+      "id": "Tower-East-lintel-1-2",
+      "x": 170,
+      "y": 17.45,
+      "z": -51.55,
+      "width": 38,
+      "height": 1.1,
+      "depth": 1.1,
+      "platform": false
+    },
+    {
+      "id": "Tower-East-windowpost-1-2--1",
+      "x": 152,
+      "y": 15,
+      "z": -51.55,
+      "width": 1.1,
+      "height": 4,
+      "depth": 1.1,
+      "platform": false
+    },
+    {
+      "id": "Tower-East-windowpost-1-2-0",
+      "x": 170,
+      "y": 15,
+      "z": -51.55,
+      "width": 1.1,
+      "height": 4,
+      "depth": 1.1,
+      "platform": false
+    },
+    {
+      "id": "Tower-East-windowpost-1-2-1",
+      "x": 188,
+      "y": 15,
+      "z": -51.55,
+      "width": 1.1,
+      "height": 4,
+      "depth": 1.1,
+      "platform": false
+    },
+    {
+      "id": "Tower-East-sill-1-3--1",
+      "x": 158.5,
+      "y": 18.5,
+      "z": -51.55,
+      "width": 15,
+      "height": 1,
+      "depth": 1.1,
+      "platform": false
+    },
+    {
+      "id": "Tower-East-sill-1-3-1",
+      "x": 181.5,
+      "y": 18.5,
+      "z": -51.55,
+      "width": 15,
+      "height": 1,
+      "depth": 1.1,
+      "platform": false
+    },
+    {
+      "id": "Tower-East-lintel-1-3",
+      "x": 170,
+      "y": 23.45,
+      "z": -51.55,
+      "width": 38,
+      "height": 1.1,
+      "depth": 1.1,
+      "platform": false
+    },
+    {
+      "id": "Tower-East-windowpost-1-3--1",
+      "x": 152,
+      "y": 21,
+      "z": -51.55,
+      "width": 1.1,
+      "height": 4,
+      "depth": 1.1,
+      "platform": false
+    },
+    {
+      "id": "Tower-East-windowpost-1-3-0",
+      "x": 170,
+      "y": 21,
+      "z": -51.55,
+      "width": 1.1,
+      "height": 4,
+      "depth": 1.1,
+      "platform": false
+    },
+    {
+      "id": "Tower-East-windowpost-1-3-1",
+      "x": 188,
+      "y": 21,
+      "z": -51.55,
+      "width": 1.1,
+      "height": 4,
+      "depth": 1.1,
+      "platform": false
+    },
+    {
+      "id": "Tower-East-side-1",
+      "x": 188.45,
+      "y": 12,
+      "z": -72,
+      "width": 1.1,
+      "height": 24,
+      "depth": 42,
+      "platform": false
+    },
+    {
+      "id": "Tower-East-balcony-1",
+      "x": 170,
+      "y": 5.75,
+      "z": -48.5,
+      "width": 12,
+      "height": 0.5,
+      "depth": 5,
+      "platform": true
+    },
+    {
+      "id": "Tower-East-balcony-2",
+      "x": 170,
+      "y": 11.75,
+      "z": -95.5,
+      "width": 12,
+      "height": 0.5,
+      "depth": 5,
+      "platform": true
+    },
+    {
+      "id": "Tower-East-balcony-3",
+      "x": 170,
+      "y": 17.75,
+      "z": -48.5,
+      "width": 12,
+      "height": 0.5,
+      "depth": 5,
+      "platform": true
+    },
+    {
+      "id": "Tower-East-balcony-4",
+      "x": 170,
+      "y": 23.75,
+      "z": -95.5,
+      "width": 12,
+      "height": 0.5,
+      "depth": 5,
+      "platform": true
+    },
+    {
+      "id": "Hangar--1-roof",
+      "x": -145,
+      "y": 5.75,
+      "z": 137,
+      "width": 56,
+      "height": 0.5,
+      "depth": 30,
+      "platform": true
+    },
+    {
+      "id": "Hangar--1-side--1",
+      "x": -172.5,
+      "y": 3,
+      "z": 137,
+      "width": 1,
+      "height": 6,
+      "depth": 30,
+      "platform": false
+    },
+    {
+      "id": "Hangar--1-front--1--1",
+      "x": -161.5,
+      "y": 3,
+      "z": 122.5,
+      "width": 23,
+      "height": 6,
+      "depth": 1,
+      "platform": false
+    },
+    {
+      "id": "Hangar--1-front--1-1",
+      "x": -128.5,
+      "y": 3,
+      "z": 122.5,
+      "width": 23,
+      "height": 6,
+      "depth": 1,
+      "platform": false
+    },
+    {
+      "id": "Hangar--1-side-1",
+      "x": -117.5,
+      "y": 3,
+      "z": 137,
+      "width": 1,
+      "height": 6,
+      "depth": 30,
+      "platform": false
+    },
+    {
+      "id": "Hangar--1-front-1--1",
+      "x": -161.5,
+      "y": 3,
+      "z": 151.5,
+      "width": 23,
+      "height": 6,
+      "depth": 1,
+      "platform": false
+    },
+    {
+      "id": "Hangar--1-front-1-1",
+      "x": -128.5,
+      "y": 3,
+      "z": 151.5,
+      "width": 23,
+      "height": 6,
+      "depth": 1,
+      "platform": false
+    },
+    {
+      "id": "Hangar--1-loading-ledge-1",
+      "x": -158,
+      "y": 1.3,
+      "z": 157,
+      "width": 7,
+      "height": 0.4,
+      "depth": 7,
+      "platform": true
+    },
+    {
+      "id": "Hangar--1-loading-ledge-2",
+      "x": -151,
+      "y": 2.8,
+      "z": 157,
+      "width": 7,
+      "height": 0.4,
+      "depth": 7,
+      "platform": true
+    },
+    {
+      "id": "Hangar--1-loading-ledge-3",
+      "x": -144,
+      "y": 4.3,
+      "z": 157,
+      "width": 7,
+      "height": 0.4,
+      "depth": 7,
+      "platform": true
+    },
+    {
+      "id": "Hangar-1-roof",
+      "x": 145,
+      "y": 5.75,
+      "z": -137,
+      "width": 56,
+      "height": 0.5,
+      "depth": 30,
+      "platform": true
+    },
+    {
+      "id": "Hangar-1-side--1",
+      "x": 117.5,
+      "y": 3,
+      "z": -137,
+      "width": 1,
+      "height": 6,
+      "depth": 30,
+      "platform": false
+    },
+    {
+      "id": "Hangar-1-front--1--1",
+      "x": 128.5,
+      "y": 3,
+      "z": -151.5,
+      "width": 23,
+      "height": 6,
+      "depth": 1,
+      "platform": false
+    },
+    {
+      "id": "Hangar-1-front--1-1",
+      "x": 161.5,
+      "y": 3,
+      "z": -151.5,
+      "width": 23,
+      "height": 6,
+      "depth": 1,
+      "platform": false
+    },
+    {
+      "id": "Hangar-1-side-1",
+      "x": 172.5,
+      "y": 3,
+      "z": -137,
+      "width": 1,
+      "height": 6,
+      "depth": 30,
+      "platform": false
+    },
+    {
+      "id": "Hangar-1-front-1--1",
+      "x": 128.5,
+      "y": 3,
+      "z": -122.5,
+      "width": 23,
+      "height": 6,
+      "depth": 1,
+      "platform": false
+    },
+    {
+      "id": "Hangar-1-front-1-1",
+      "x": 161.5,
+      "y": 3,
+      "z": -122.5,
+      "width": 23,
+      "height": 6,
+      "depth": 1,
+      "platform": false
+    },
+    {
+      "id": "Hangar-1-loading-ledge-1",
+      "x": 132,
+      "y": 1.3,
+      "z": -117,
+      "width": 7,
+      "height": 0.4,
+      "depth": 7,
+      "platform": true
+    },
+    {
+      "id": "Hangar-1-loading-ledge-2",
+      "x": 139,
+      "y": 2.8,
+      "z": -117,
+      "width": 7,
+      "height": 0.4,
+      "depth": 7,
+      "platform": true
+    },
+    {
+      "id": "Hangar-1-loading-ledge-3",
+      "x": 146,
+      "y": 4.3,
+      "z": -117,
+      "width": 7,
+      "height": 0.4,
+      "depth": 7,
+      "platform": true
+    },
+    {
+      "id": "Skybridge--70",
+      "x": -70,
+      "y": 5.75,
+      "z": 0,
+      "width": 7,
+      "height": 0.5,
+      "depth": 94,
+      "platform": true
+    },
+    {
+      "id": "Bridge-pier--70--20--1",
+      "x": -72.8,
+      "y": 2.75,
+      "z": -20,
+      "width": 1.1,
+      "height": 5.5,
+      "depth": 1.1,
+      "platform": false
+    },
+    {
+      "id": "Bridge-pier--70--20-1",
+      "x": -67.2,
+      "y": 2.75,
+      "z": -20,
+      "width": 1.1,
+      "height": 5.5,
+      "depth": 1.1,
+      "platform": false
+    },
+    {
+      "id": "Bridge-pier--70-20--1",
+      "x": -72.8,
+      "y": 2.75,
+      "z": 20,
+      "width": 1.1,
+      "height": 5.5,
+      "depth": 1.1,
+      "platform": false
+    },
+    {
+      "id": "Bridge-pier--70-20-1",
+      "x": -67.2,
+      "y": 2.75,
+      "z": 20,
+      "width": 1.1,
+      "height": 5.5,
+      "depth": 1.1,
+      "platform": false
+    },
+    {
+      "id": "Skybridge-70",
+      "x": 70,
+      "y": 5.75,
+      "z": 0,
+      "width": 7,
+      "height": 0.5,
+      "depth": 94,
+      "platform": true
+    },
+    {
+      "id": "Bridge-pier-70--20--1",
+      "x": 67.2,
+      "y": 2.75,
+      "z": -20,
+      "width": 1.1,
+      "height": 5.5,
+      "depth": 1.1,
+      "platform": false
+    },
+    {
+      "id": "Bridge-pier-70--20-1",
+      "x": 72.8,
+      "y": 2.75,
+      "z": -20,
+      "width": 1.1,
+      "height": 5.5,
+      "depth": 1.1,
+      "platform": false
+    },
+    {
+      "id": "Bridge-pier-70-20--1",
+      "x": 67.2,
+      "y": 2.75,
+      "z": 20,
+      "width": 1.1,
+      "height": 5.5,
+      "depth": 1.1,
+      "platform": false
+    },
+    {
+      "id": "Bridge-pier-70-20-1",
+      "x": 72.8,
+      "y": 2.75,
+      "z": 20,
+      "width": 1.1,
+      "height": 5.5,
+      "depth": 1.1,
+      "platform": false
+    },
+    {
+      "id": "Boulevard-cover--1",
+      "x": -24,
+      "y": 1.1,
+      "z": -19,
+      "width": 13,
+      "height": 2.2,
+      "depth": 4,
+      "platform": false
+    },
+    {
+      "id": "Courtyard-block--1",
+      "x": -115,
+      "y": 2,
+      "z": -130,
+      "width": 18,
+      "height": 4,
+      "depth": 8,
+      "platform": false
+    },
+    {
+      "id": "Alley-screen--1",
+      "x": -225,
+      "y": 3,
+      "z": 75,
+      "width": 5,
+      "height": 6,
+      "depth": 28,
+      "platform": false
+    },
+    {
+      "id": "Boulevard-cover-1",
+      "x": 24,
+      "y": 1.1,
+      "z": 19,
+      "width": 13,
+      "height": 2.2,
+      "depth": 4,
+      "platform": false
+    },
+    {
+      "id": "Courtyard-block-1",
+      "x": 115,
+      "y": 2,
+      "z": 130,
+      "width": 18,
+      "height": 4,
+      "depth": 8,
+      "platform": false
+    },
+    {
+      "id": "Alley-screen-1",
+      "x": 225,
+      "y": 3,
+      "z": -75,
+      "width": 5,
+      "height": 6,
+      "depth": 28,
+      "platform": false
+    }
+  ]
+}

@@ -1,0 +1,981 @@
+{
+  "id": "canyon-cross",
+  "prototypeOnly": true,
+  "halfWidth": 320,
+  "halfDepth": 180,
+  "mainBases": [
+    {
+      "id": "Blue-A",
+      "team": 0,
+      "x": -275,
+      "z": -115,
+      "spawnRadius": 12,
+      "attackRadius": 8,
+      "buildingRadius": 20,
+      "approachRoute": "north"
+    },
+    {
+      "id": "Blue-B",
+      "team": 0,
+      "x": -275,
+      "z": 0,
+      "spawnRadius": 12,
+      "attackRadius": 8,
+      "buildingRadius": 20,
+      "approachRoute": "center"
+    },
+    {
+      "id": "Blue-C",
+      "team": 0,
+      "x": -275,
+      "z": 115,
+      "spawnRadius": 12,
+      "attackRadius": 8,
+      "buildingRadius": 20,
+      "approachRoute": "south"
+    },
+    {
+      "id": "Orange-A",
+      "team": 1,
+      "x": 275,
+      "z": -115,
+      "spawnRadius": 12,
+      "attackRadius": 8,
+      "buildingRadius": 20,
+      "approachRoute": "north"
+    },
+    {
+      "id": "Orange-B",
+      "team": 1,
+      "x": 275,
+      "z": 0,
+      "spawnRadius": 12,
+      "attackRadius": 8,
+      "buildingRadius": 20,
+      "approachRoute": "center"
+    },
+    {
+      "id": "Orange-C",
+      "team": 1,
+      "x": 275,
+      "z": 115,
+      "spawnRadius": 12,
+      "attackRadius": 8,
+      "buildingRadius": 20,
+      "approachRoute": "south"
+    }
+  ],
+  "capturePoints": [
+    {
+      "id": "Relay-North",
+      "x": 0,
+      "z": -100,
+      "radius": 18
+    },
+    {
+      "id": "Relay-Center",
+      "x": 0,
+      "z": 0,
+      "radius": 18
+    },
+    {
+      "id": "Relay-South",
+      "x": 0,
+      "z": 100,
+      "radius": 18
+    }
+  ],
+  "obstacles": [
+    {
+      "id": "central-plaza",
+      "x": 0,
+      "y": 1.2,
+      "z": 0,
+      "width": 104,
+      "height": 2.4,
+      "depth": 80,
+      "platform": true
+    },
+    {
+      "id": "main-ramp--1-0",
+      "x": -53.95,
+      "y": 1.08,
+      "z": 0,
+      "width": 4.16,
+      "height": 2.16,
+      "depth": 40,
+      "platform": true
+    },
+    {
+      "id": "main-ramp--1-1",
+      "x": -57.85,
+      "y": 0.96,
+      "z": 0,
+      "width": 4.16,
+      "height": 1.92,
+      "depth": 40,
+      "platform": true
+    },
+    {
+      "id": "main-ramp--1-2",
+      "x": -61.75,
+      "y": 0.84,
+      "z": 0,
+      "width": 4.16,
+      "height": 1.68,
+      "depth": 40,
+      "platform": true
+    },
+    {
+      "id": "main-ramp--1-3",
+      "x": -65.65,
+      "y": 0.72,
+      "z": 0,
+      "width": 4.16,
+      "height": 1.44,
+      "depth": 40,
+      "platform": true
+    },
+    {
+      "id": "main-ramp--1-4",
+      "x": -69.55,
+      "y": 0.6,
+      "z": 0,
+      "width": 4.16,
+      "height": 1.2,
+      "depth": 40,
+      "platform": true
+    },
+    {
+      "id": "main-ramp--1-5",
+      "x": -73.45,
+      "y": 0.48,
+      "z": 0,
+      "width": 4.16,
+      "height": 0.96,
+      "depth": 40,
+      "platform": true
+    },
+    {
+      "id": "main-ramp--1-6",
+      "x": -77.35,
+      "y": 0.36,
+      "z": 0,
+      "width": 4.16,
+      "height": 0.72,
+      "depth": 40,
+      "platform": true
+    },
+    {
+      "id": "main-ramp--1-7",
+      "x": -81.25,
+      "y": 0.24,
+      "z": 0,
+      "width": 4.16,
+      "height": 0.48,
+      "depth": 40,
+      "platform": true
+    },
+    {
+      "id": "main-ramp--1-8",
+      "x": -85.15,
+      "y": 0.12,
+      "z": 0,
+      "width": 4.16,
+      "height": 0.24,
+      "depth": 40,
+      "platform": true
+    },
+    {
+      "id": "main-ramp-1-0",
+      "x": 53.95,
+      "y": 1.08,
+      "z": 0,
+      "width": 4.16,
+      "height": 2.16,
+      "depth": 40,
+      "platform": true
+    },
+    {
+      "id": "main-ramp-1-1",
+      "x": 57.85,
+      "y": 0.96,
+      "z": 0,
+      "width": 4.16,
+      "height": 1.92,
+      "depth": 40,
+      "platform": true
+    },
+    {
+      "id": "main-ramp-1-2",
+      "x": 61.75,
+      "y": 0.84,
+      "z": 0,
+      "width": 4.16,
+      "height": 1.68,
+      "depth": 40,
+      "platform": true
+    },
+    {
+      "id": "main-ramp-1-3",
+      "x": 65.65,
+      "y": 0.72,
+      "z": 0,
+      "width": 4.16,
+      "height": 1.44,
+      "depth": 40,
+      "platform": true
+    },
+    {
+      "id": "main-ramp-1-4",
+      "x": 69.55,
+      "y": 0.6,
+      "z": 0,
+      "width": 4.16,
+      "height": 1.2,
+      "depth": 40,
+      "platform": true
+    },
+    {
+      "id": "main-ramp-1-5",
+      "x": 73.45,
+      "y": 0.48,
+      "z": 0,
+      "width": 4.16,
+      "height": 0.96,
+      "depth": 40,
+      "platform": true
+    },
+    {
+      "id": "main-ramp-1-6",
+      "x": 77.35,
+      "y": 0.36,
+      "z": 0,
+      "width": 4.16,
+      "height": 0.72,
+      "depth": 40,
+      "platform": true
+    },
+    {
+      "id": "main-ramp-1-7",
+      "x": 81.25,
+      "y": 0.24,
+      "z": 0,
+      "width": 4.16,
+      "height": 0.48,
+      "depth": 40,
+      "platform": true
+    },
+    {
+      "id": "main-ramp-1-8",
+      "x": 85.15,
+      "y": 0.12,
+      "z": 0,
+      "width": 4.16,
+      "height": 0.24,
+      "depth": 40,
+      "platform": true
+    },
+    {
+      "id": "north-jump-step--34",
+      "x": 0,
+      "y": 2.04,
+      "z": -42.5,
+      "width": 20.8,
+      "height": 4.08,
+      "depth": 6.25,
+      "platform": true
+    },
+    {
+      "id": "north-jump-step--39",
+      "x": 0,
+      "y": 2.64,
+      "z": -48.75,
+      "width": 20.8,
+      "height": 5.28,
+      "depth": 6.25,
+      "platform": true
+    },
+    {
+      "id": "central-cover--20--12",
+      "x": -26,
+      "y": 2.75,
+      "z": -15,
+      "width": 13,
+      "height": 1.5,
+      "depth": 5,
+      "platform": false
+    },
+    {
+      "id": "central-cover--20-12",
+      "x": -26,
+      "y": 2.75,
+      "z": 15,
+      "width": 13,
+      "height": 1.5,
+      "depth": 5,
+      "platform": false
+    },
+    {
+      "id": "central-cover-20--12",
+      "x": 26,
+      "y": 2.75,
+      "z": -15,
+      "width": 13,
+      "height": 1.5,
+      "depth": 5,
+      "platform": false
+    },
+    {
+      "id": "central-cover-20-12",
+      "x": 26,
+      "y": 2.75,
+      "z": 15,
+      "width": 13,
+      "height": 1.5,
+      "depth": 5,
+      "platform": false
+    },
+    {
+      "id": "approach-cover--85",
+      "x": -110.5,
+      "y": 2.75,
+      "z": 0,
+      "width": 5.2,
+      "height": 5.5,
+      "depth": 35,
+      "platform": false
+    },
+    {
+      "id": "approach-cover-85",
+      "x": 110.5,
+      "y": 2.75,
+      "z": 0,
+      "width": 5.2,
+      "height": 5.5,
+      "depth": 35,
+      "platform": false
+    },
+    {
+      "id": "approach-tower--110--30",
+      "x": -143,
+      "y": 4,
+      "z": -37.5,
+      "width": 23.4,
+      "height": 8,
+      "depth": 7.5,
+      "platform": false
+    },
+    {
+      "id": "approach-tower--110-30",
+      "x": -143,
+      "y": 4,
+      "z": 37.5,
+      "width": 23.4,
+      "height": 8,
+      "depth": 7.5,
+      "platform": false
+    },
+    {
+      "id": "approach-tower-110--30",
+      "x": 143,
+      "y": 4,
+      "z": -37.5,
+      "width": 23.4,
+      "height": 8,
+      "depth": 7.5,
+      "platform": false
+    },
+    {
+      "id": "approach-tower-110-30",
+      "x": 143,
+      "y": 4,
+      "z": 37.5,
+      "width": 23.4,
+      "height": 8,
+      "depth": 7.5,
+      "platform": false
+    },
+    {
+      "id": "side-corridor-wall--72--96",
+      "x": -93.6,
+      "y": 4,
+      "z": -120,
+      "width": 119.6,
+      "height": 8,
+      "depth": 3.75,
+      "platform": false
+    },
+    {
+      "id": "side-corridor-wall--72--64",
+      "x": -93.6,
+      "y": 4,
+      "z": -80,
+      "width": 119.6,
+      "height": 8,
+      "depth": 3.75,
+      "platform": false
+    },
+    {
+      "id": "side-corridor-wall--72-64",
+      "x": -93.6,
+      "y": 4,
+      "z": 80,
+      "width": 119.6,
+      "height": 8,
+      "depth": 3.75,
+      "platform": false
+    },
+    {
+      "id": "side-corridor-wall--72-96",
+      "x": -93.6,
+      "y": 4,
+      "z": 120,
+      "width": 119.6,
+      "height": 8,
+      "depth": 3.75,
+      "platform": false
+    },
+    {
+      "id": "side-corridor-wall-72--96",
+      "x": 93.6,
+      "y": 4,
+      "z": -120,
+      "width": 119.6,
+      "height": 8,
+      "depth": 3.75,
+      "platform": false
+    },
+    {
+      "id": "side-corridor-wall-72--64",
+      "x": 93.6,
+      "y": 4,
+      "z": -80,
+      "width": 119.6,
+      "height": 8,
+      "depth": 3.75,
+      "platform": false
+    },
+    {
+      "id": "side-corridor-wall-72-64",
+      "x": 93.6,
+      "y": 4,
+      "z": 80,
+      "width": 119.6,
+      "height": 8,
+      "depth": 3.75,
+      "platform": false
+    },
+    {
+      "id": "side-corridor-wall-72-96",
+      "x": 93.6,
+      "y": 4,
+      "z": 120,
+      "width": 119.6,
+      "height": 8,
+      "depth": 3.75,
+      "platform": false
+    },
+    {
+      "id": "side-floor--80",
+      "x": 0,
+      "y": 0.72,
+      "z": -100,
+      "width": 145.6,
+      "height": 1.44,
+      "depth": 22.5,
+      "platform": true
+    },
+    {
+      "id": "side-step--80--1-0",
+      "x": -75.4,
+      "y": 0.6,
+      "z": -100,
+      "width": 5.46,
+      "height": 1.2,
+      "depth": 22.5,
+      "platform": true
+    },
+    {
+      "id": "side-step--80--1-1",
+      "x": -80.6,
+      "y": 0.42,
+      "z": -100,
+      "width": 5.46,
+      "height": 0.84,
+      "depth": 22.5,
+      "platform": true
+    },
+    {
+      "id": "side-step--80--1-2",
+      "x": -85.8,
+      "y": 0.24,
+      "z": -100,
+      "width": 5.46,
+      "height": 0.48,
+      "depth": 22.5,
+      "platform": true
+    },
+    {
+      "id": "side-step--80-1-0",
+      "x": 75.4,
+      "y": 0.6,
+      "z": -100,
+      "width": 5.46,
+      "height": 1.2,
+      "depth": 22.5,
+      "platform": true
+    },
+    {
+      "id": "side-step--80-1-1",
+      "x": 80.6,
+      "y": 0.42,
+      "z": -100,
+      "width": 5.46,
+      "height": 0.84,
+      "depth": 22.5,
+      "platform": true
+    },
+    {
+      "id": "side-step--80-1-2",
+      "x": 85.8,
+      "y": 0.24,
+      "z": -100,
+      "width": 5.46,
+      "height": 0.48,
+      "depth": 22.5,
+      "platform": true
+    },
+    {
+      "id": "flank-cover--40--80",
+      "x": -52,
+      "y": 2.3,
+      "z": -100,
+      "width": 7.8,
+      "height": 2.2,
+      "depth": 8.75,
+      "platform": false
+    },
+    {
+      "id": "flank-cover-40--80",
+      "x": 52,
+      "y": 2.3,
+      "z": -100,
+      "width": 7.8,
+      "height": 2.2,
+      "depth": 8.75,
+      "platform": false
+    },
+    {
+      "id": "side-floor-80",
+      "x": 0,
+      "y": 0.72,
+      "z": 100,
+      "width": 145.6,
+      "height": 1.44,
+      "depth": 22.5,
+      "platform": true
+    },
+    {
+      "id": "side-step-80--1-0",
+      "x": -75.4,
+      "y": 0.6,
+      "z": 100,
+      "width": 5.46,
+      "height": 1.2,
+      "depth": 22.5,
+      "platform": true
+    },
+    {
+      "id": "side-step-80--1-1",
+      "x": -80.6,
+      "y": 0.42,
+      "z": 100,
+      "width": 5.46,
+      "height": 0.84,
+      "depth": 22.5,
+      "platform": true
+    },
+    {
+      "id": "side-step-80--1-2",
+      "x": -85.8,
+      "y": 0.24,
+      "z": 100,
+      "width": 5.46,
+      "height": 0.48,
+      "depth": 22.5,
+      "platform": true
+    },
+    {
+      "id": "side-step-80-1-0",
+      "x": 75.4,
+      "y": 0.6,
+      "z": 100,
+      "width": 5.46,
+      "height": 1.2,
+      "depth": 22.5,
+      "platform": true
+    },
+    {
+      "id": "side-step-80-1-1",
+      "x": 80.6,
+      "y": 0.42,
+      "z": 100,
+      "width": 5.46,
+      "height": 0.84,
+      "depth": 22.5,
+      "platform": true
+    },
+    {
+      "id": "side-step-80-1-2",
+      "x": 85.8,
+      "y": 0.24,
+      "z": 100,
+      "width": 5.46,
+      "height": 0.48,
+      "depth": 22.5,
+      "platform": true
+    },
+    {
+      "id": "flank-cover--40-80",
+      "x": -52,
+      "y": 2.3,
+      "z": 100,
+      "width": 7.8,
+      "height": 2.2,
+      "depth": 8.75,
+      "platform": false
+    },
+    {
+      "id": "flank-cover-40-80",
+      "x": 52,
+      "y": 2.3,
+      "z": 100,
+      "width": 7.8,
+      "height": 2.2,
+      "depth": 8.75,
+      "platform": false
+    },
+    {
+      "id": "boundary-north",
+      "x": 0,
+      "y": 4,
+      "z": -173.75,
+      "width": 624,
+      "height": 8,
+      "depth": 2.5,
+      "platform": false
+    },
+    {
+      "id": "boundary-south",
+      "x": 0,
+      "y": 4,
+      "z": 173.75,
+      "width": 624,
+      "height": 8,
+      "depth": 2.5,
+      "platform": false
+    },
+    {
+      "id": "boundary-west",
+      "x": -310.7,
+      "y": 4,
+      "z": 0,
+      "width": 2.6,
+      "height": 8,
+      "depth": 345,
+      "platform": false
+    },
+    {
+      "id": "boundary-east",
+      "x": 310.7,
+      "y": 4,
+      "z": 0,
+      "width": 2.6,
+      "height": 8,
+      "depth": 345,
+      "platform": false
+    },
+    {
+      "id": "outer-screen--1",
+      "x": 0,
+      "y": 4,
+      "z": -120,
+      "width": 70.2,
+      "height": 8,
+      "depth": 3.75,
+      "platform": false
+    },
+    {
+      "id": "outer-flank-cover--1",
+      "x": 0,
+      "y": 2.25,
+      "z": -140,
+      "width": 7.8,
+      "height": 4.5,
+      "depth": 25,
+      "platform": false
+    },
+    {
+      "id": "outer-screen-1",
+      "x": 0,
+      "y": 4,
+      "z": 120,
+      "width": 70.2,
+      "height": 8,
+      "depth": 3.75,
+      "platform": false
+    },
+    {
+      "id": "outer-flank-cover-1",
+      "x": 0,
+      "y": 2.25,
+      "z": 140,
+      "width": 7.8,
+      "height": 4.5,
+      "depth": 25,
+      "platform": false
+    },
+    {
+      "id": "base-approach-screen--1--1",
+      "x": -215.8,
+      "y": 3,
+      "z": -50,
+      "width": 98.8,
+      "height": 6,
+      "depth": 3.75,
+      "platform": false
+    },
+    {
+      "id": "flank-gate--1--1--1",
+      "x": -195,
+      "y": 3,
+      "z": -114.375,
+      "width": 5.2,
+      "height": 6,
+      "depth": 21.25,
+      "platform": false
+    },
+    {
+      "id": "flank-gate--1--1-1",
+      "x": -195,
+      "y": 3,
+      "z": -85.625,
+      "width": 5.2,
+      "height": 6,
+      "depth": 21.25,
+      "platform": false
+    },
+    {
+      "id": "base-approach-screen--1-1",
+      "x": -215.8,
+      "y": 3,
+      "z": 50,
+      "width": 98.8,
+      "height": 6,
+      "depth": 3.75,
+      "platform": false
+    },
+    {
+      "id": "flank-gate--1-1--1",
+      "x": -195,
+      "y": 3,
+      "z": 85.625,
+      "width": 5.2,
+      "height": 6,
+      "depth": 21.25,
+      "platform": false
+    },
+    {
+      "id": "flank-gate--1-1-1",
+      "x": -195,
+      "y": 3,
+      "z": 114.375,
+      "width": 5.2,
+      "height": 6,
+      "depth": 21.25,
+      "platform": false
+    },
+    {
+      "id": "base-approach-screen-1--1",
+      "x": 215.8,
+      "y": 3,
+      "z": -50,
+      "width": 98.8,
+      "height": 6,
+      "depth": 3.75,
+      "platform": false
+    },
+    {
+      "id": "flank-gate-1--1--1",
+      "x": 195,
+      "y": 3,
+      "z": -114.375,
+      "width": 5.2,
+      "height": 6,
+      "depth": 21.25,
+      "platform": false
+    },
+    {
+      "id": "flank-gate-1--1-1",
+      "x": 195,
+      "y": 3,
+      "z": -85.625,
+      "width": 5.2,
+      "height": 6,
+      "depth": 21.25,
+      "platform": false
+    },
+    {
+      "id": "base-approach-screen-1-1",
+      "x": 215.8,
+      "y": 3,
+      "z": 50,
+      "width": 98.8,
+      "height": 6,
+      "depth": 3.75,
+      "platform": false
+    },
+    {
+      "id": "flank-gate-1-1--1",
+      "x": 195,
+      "y": 3,
+      "z": 85.625,
+      "width": 5.2,
+      "height": 6,
+      "depth": 21.25,
+      "platform": false
+    },
+    {
+      "id": "flank-gate-1-1-1",
+      "x": 195,
+      "y": 3,
+      "z": 114.375,
+      "width": 5.2,
+      "height": 6,
+      "depth": 21.25,
+      "platform": false
+    },
+    {
+      "id": "mesa--1--48",
+      "x": -52,
+      "y": 3.6,
+      "z": -48,
+      "width": 42,
+      "height": 7.2,
+      "depth": 18,
+      "platform": true
+    },
+    {
+      "id": "mesa--1-48",
+      "x": -52,
+      "y": 3.6,
+      "z": 48,
+      "width": 42,
+      "height": 7.2,
+      "depth": 18,
+      "platform": true
+    },
+    {
+      "id": "outer-mesa--1--110",
+      "x": -132,
+      "y": 4.6,
+      "z": -110,
+      "width": 40,
+      "height": 9.2,
+      "depth": 18,
+      "platform": true
+    },
+    {
+      "id": "outer-mesa--1-110",
+      "x": -132,
+      "y": 4.6,
+      "z": 110,
+      "width": 40,
+      "height": 9.2,
+      "depth": 18,
+      "platform": true
+    },
+    {
+      "id": "rock--1--23",
+      "x": -102,
+      "y": 2.5,
+      "z": -23,
+      "width": 12,
+      "height": 5,
+      "depth": 16,
+      "platform": false
+    },
+    {
+      "id": "rock--1-23",
+      "x": -102,
+      "y": 2.5,
+      "z": 23,
+      "width": 12,
+      "height": 5,
+      "depth": 16,
+      "platform": false
+    },
+    {
+      "id": "mesa-1--48",
+      "x": 52,
+      "y": 3.6,
+      "z": -48,
+      "width": 42,
+      "height": 7.2,
+      "depth": 18,
+      "platform": true
+    },
+    {
+      "id": "mesa-1-48",
+      "x": 52,
+      "y": 3.6,
+      "z": 48,
+      "width": 42,
+      "height": 7.2,
+      "depth": 18,
+      "platform": true
+    },
+    {
+      "id": "outer-mesa-1--110",
+      "x": 132,
+      "y": 4.6,
+      "z": -110,
+      "width": 40,
+      "height": 9.2,
+      "depth": 18,
+      "platform": true
+    },
+    {
+      "id": "outer-mesa-1-110",
+      "x": 132,
+      "y": 4.6,
+      "z": 110,
+      "width": 40,
+      "height": 9.2,
+      "depth": 18,
+      "platform": true
+    },
+    {
+      "id": "rock-1--23",
+      "x": 102,
+      "y": 2.5,
+      "z": -23,
+      "width": 12,
+      "height": 5,
+      "depth": 16,
+      "platform": false
+    },
+    {
+      "id": "rock-1-23",
+      "x": 102,
+      "y": 2.5,
+      "z": 23,
+      "width": 12,
+      "height": 5,
+      "depth": 16,
+      "platform": false
+    }
+  ],
+  "description": " Central raised battlefield with side flanking corridors (LINE-05)."
+}

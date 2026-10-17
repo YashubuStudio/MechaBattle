@@ -47,7 +47,8 @@ internal static class HeadlessBattleSmoke
                 double dx = goal.X - self.X, dz = goal.Z - self.Z;
                 double distance = Math.Sqrt(dx * dx + dz * dz);
                 bool fire = desiredTeam != self.Team && distance < config.fireRange * 0.8;
-                bool holdingAtBaseRange = fire;
+                double stoppingRange = goal.BuildingRadius > 0 ? Math.Min(config.fireRange * 0.8, goal.BuildingRadius * 0.7) : config.fireRange * 0.8;
+                bool holdingAtBaseRange = desiredTeam != self.Team && distance < stoppingRange;
                 // First 30s exercise local combat, then a scripted base-rush phase.
                 // This is a test scenario, not the production BOT implementation.
                 double aimX = dx, aimZ = dz;

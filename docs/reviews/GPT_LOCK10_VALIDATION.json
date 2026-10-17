@@ -1,0 +1,102 @@
+{
+  "tasks": [
+    "LOCK-10",
+    "SUPPORT-10"
+  ],
+  "owner": "GPT",
+  "executedUtc": "2026-10-16T04:15:31.2506512Z",
+  "domain": {
+    "passed": 253,
+    "failed": 0,
+    "newTargetedCases": 28,
+    "sourceFiles": 57,
+    "isolation": "MechaBattle/Build/LOCK10_1792124053677",
+    "report": "MechaBattle/Build/LOCK10_1792124053677/Build/Reports/domain-smoke.json",
+    "log": "MechaBattle/Build/LOCK10_1792124053677/domain-run.log",
+    "sourceManifest": "MechaBattle/Build/LOCK10_1792124053677/source-manifest.json",
+    "sourceManifestFiles": 112,
+    "domainSourcesModifiedAfterCompilation": [],
+    "productionConfigMatchesTest": true,
+    "playableConfigMatchesProduction": true,
+    "productionMapMatchesTest": true
+  },
+  "staticAssemblies": {
+    "passed": 17,
+    "failed": 0,
+    "scope": "Unity API static compilation, not Editor import or Test Runner",
+    "log": "MechaBattle/Build/LOCK10_1792124053677/final-check-0.log"
+  },
+  "model": {
+    "modules": 18,
+    "presets": 7,
+    "closedSolidInstances": 148,
+    "triangles": 5840,
+    "passed": true,
+    "scope": "source geometry / GLB, not Unity rendering",
+    "log": "MechaBattle/Build/LOCK10_1792124053677/final-check-1.log"
+  },
+  "diffCheck": {
+    "passed": true,
+    "excludes": "existing generated Unity scene YAML",
+    "log": "MechaBattle/Build/LOCK10_1792124053677/final-check-2.log"
+  },
+  "constructedBattle": {
+    "scope": "constructed-domain-bot-match-not-ui-player-or-fps-acceptance",
+    "peakAlive": 100,
+    "simulatedSeconds": 194.87999,
+    "WinnerTeam": 1,
+    "ShotsFired": 11726,
+    "UnitsDestroyed": 29,
+    "UnitsSpawned": 128,
+    "BaseHits": 112,
+    "BaseCounterShotsFired": 23,
+    "CaptureChanges": 9,
+    "averageAlive": 99.55531609195403,
+    "minBlueAlive": 46,
+    "minOrangeAlive": 48,
+    "bothTeamsAtLeast20Fraction": 1,
+    "completedLives": 29,
+    "meanLifeSeconds": 75.85861899408287,
+    "meanFirstDamageToDeathSeconds": 61.18896414956142,
+    "centralBattlefieldFraction": 0.8618978421163692,
+    "coreGaugeDamage": 50160,
+    "unitGaugeDamage": 375.0899934768677,
+    "blueGauge": 0,
+    "orangeGauge": 9666.350004328415
+  },
+  "metricsCaveats": [
+    "meanFirstDamageToDeathSeconds includes retreat and recovery, not continuous TTK",
+    "centralBattlefieldFraction measures sampled central positions conditional on |X|<110, not engagement location",
+    "coreGaugeDamage accumulates raw contributions before gauge clamp; no FPS/GC measured"
+  ],
+  "construction": {
+    "presets": 7,
+    "standardFrameSingleWeaponCombinations": 48,
+    "standardFrameTripleWeaponCombinations": 6912,
+    "allHeavyFrameCombinationsTested": false
+  },
+  "balance": {
+    "repairPodDurationSeconds": 180,
+    "radarDurationSeconds": 900,
+    "radarOldDurationSeconds": 45,
+    "repairPodHealth": 1800,
+    "radarHealth": 900,
+    "mineHealth": 450,
+    "semiAutoDamage": 138,
+    "fullChargeDamage": 880,
+    "continuousBeamDownPoints": 13,
+    "fullAutoDamageUnchanged": 36
+  },
+  "native": {
+    "unityTestRunner": false,
+    "latestPlayModeAcceptance": false,
+    "windowsBuildAndRun": false,
+    "fpsAndGc": false,
+    "missingMetaAtAudit": []
+  },
+  "cooperation": {
+    "previousSupport08Boost09ClaudeApprovalReceived": true,
+    "latestLock10ReviewReceived": false,
+    "channel": "docs/WORK_BOARD.md and docs/reviews/; no direct Claude messaging connection"
+  }
+}

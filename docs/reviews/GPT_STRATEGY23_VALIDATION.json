@@ -1,0 +1,332 @@
+{
+  "task": "STRATEGY-23",
+  "owner": "GPT",
+  "status": "implementation_and_independent_verification_complete_native_acceptance_pending",
+  "executedUtc": "2026-10-16T15:41:02.008Z",
+  "requirements": [
+    "FR-001",
+    "FR-108",
+    "FR-109",
+    "FR-110",
+    "FR-601",
+    "FR-602",
+    "FR-603",
+    "FR-604",
+    "FR-705",
+    "FR-707",
+    "FR-802",
+    "FR-805",
+    "User-2026-10-17"
+  ],
+  "sourceRoot": "D:/game/MechaBattle/MechaBattle",
+  "evidenceRoot": "MechaBattle/Build/STRATEGY23_1792164282251/accepted",
+  "sourceFiles": 164,
+  "sourceManifest": "MechaBattle/Build/STRATEGY23_1792164282251/accepted/source-sha256.json",
+  "domain": {
+    "passed": 471,
+    "failed": 0,
+    "pureSources": 93,
+    "newCases": 33,
+    "log": "MechaBattle/Build/STRATEGY23_1792164282251/accepted/domain-run.log",
+    "report": "MechaBattle/Build/STRATEGY23_1792164282251/accepted/project/Build/Reports/domain-smoke.json",
+    "status": {
+      "status": "finished",
+      "pid": 16520,
+      "exitCode": 0,
+      "signal": null,
+      "error": null,
+      "finishedUtc": "2026-10-16T15:37:43.482Z"
+    }
+  },
+  "quick": {
+    "passed": 44,
+    "failed": 0,
+    "log": "MechaBattle/Build/STRATEGY23_1792164282251/accepted/quick-tests-local.log",
+    "note": "Quick.dll copied beside target DomainSmoke.dll to avoid CLR resolving the older neighboring same-name assembly; earlier cross-directory call is not evidence for the added three cases."
+  },
+  "staticCompile": {
+    "assemblies": 20,
+    "status": {
+      "status": "finished",
+      "pid": 34912,
+      "exitCode": 0,
+      "signal": null,
+      "error": null,
+      "finishedUtc": "2026-10-16T15:36:13.721Z"
+    },
+    "report": "MechaBattle/Build/STRATEGY23_1792164282251/accepted/project/Build/Reports/static-api-compile.json",
+    "log": "MechaBattle/Build/STRATEGY23_1792164282251/accepted/static-compile.log"
+  },
+  "urbanMap": {
+    "id": "urban-overpass",
+    "width": 640,
+    "depth": 420,
+    "obstacleVolumes": 354,
+    "multiStoreyBuildings": 6,
+    "hangars": 2,
+    "skybridges": 2,
+    "storeyHeights": [
+      6,
+      12,
+      18,
+      24
+    ],
+    "controllerSlots": 100,
+    "mainBasesPerTeam": 3,
+    "continuousPath": {
+      "passed": true,
+      "radius": 0.65,
+      "path": [
+        "ground",
+        "staircase",
+        "landing",
+        "storey",
+        "skybridge",
+        "opposite building"
+      ],
+      "log": "MechaBattle/Build/STRATEGY23_1792164282251/final/city-paths.log"
+    }
+  },
+  "battles": {
+    "constructed-battle.json": {
+      "scope": "constructed-domain-bot-match-not-ui-player-or-fps-acceptance",
+      "mapId": "p0-three-lanes",
+      "peakAlive": 100,
+      "simulatedSeconds": 150.7,
+      "WinnerTeam": 1,
+      "ShotsFired": 16415,
+      "UnitsDestroyed": 60,
+      "UnitsSpawned": 159,
+      "BaseHits": 282,
+      "BaseCounterShotsFired": 46,
+      "CaptureChanges": 11,
+      "peakAirborne": 57,
+      "airborneUnitSeconds": 3969.52,
+      "maximumHeight": 13.123195,
+      "averageAlive": 98.63530192435302,
+      "minBlueAlive": 47,
+      "minOrangeAlive": 46,
+      "bothTeamsAtLeast20Fraction": 1,
+      "completedLives": 60,
+      "meanLifeSeconds": 51.18133218934138,
+      "meanFirstDamageToDeathSeconds": 32.24133261268337,
+      "centralBattlefieldFraction": 0.8420951245793677,
+      "coreGaugeDamage": 56624,
+      "unitGaugeDamage": 787.7099800109863,
+      "blueGauge": 0,
+      "orangeGauge": 2749.090010257438
+    },
+    "constructed-battle-terraced-works.json": {
+      "scope": "constructed-domain-bot-match-not-ui-player-or-fps-acceptance",
+      "mapId": "terraced-works",
+      "peakAlive": 100,
+      "simulatedSeconds": 159.73999,
+      "WinnerTeam": 1,
+      "ShotsFired": 14758,
+      "UnitsDestroyed": 38,
+      "UnitsSpawned": 138,
+      "BaseHits": 268,
+      "BaseCounterShotsFired": 44,
+      "CaptureChanges": 10,
+      "peakAirborne": 50,
+      "airborneUnitSeconds": 4186.8,
+      "maximumHeight": 11.873196,
+      "averageAlive": 99.19368974583699,
+      "minBlueAlive": 47,
+      "minOrangeAlive": 48,
+      "bothTeamsAtLeast20Fraction": 1,
+      "completedLives": 38,
+      "meanLifeSeconds": 64.08841962014374,
+      "meanFirstDamageToDeathSeconds": 42.896314830666306,
+      "centralBattlefieldFraction": 0.8889713636810578,
+      "coreGaugeDamage": 51630,
+      "unitGaugeDamage": 503.909987449646,
+      "blueGauge": 0,
+      "orangeGauge": 8241.960004739463
+    },
+    "constructed-battle-canyon-cross.json": {
+      "scope": "constructed-domain-bot-match-not-ui-player-or-fps-acceptance",
+      "mapId": "canyon-cross",
+      "peakAlive": 100,
+      "simulatedSeconds": 315.62,
+      "WinnerTeam": 0,
+      "ShotsFired": 29358,
+      "UnitsDestroyed": 84,
+      "UnitsSpawned": 183,
+      "BaseHits": 179,
+      "BaseCounterShotsFired": 48,
+      "CaptureChanges": 9,
+      "peakAirborne": 51,
+      "airborneUnitSeconds": 6620.56,
+      "maximumHeight": 13.123195,
+      "averageAlive": 98.89620429630568,
+      "minBlueAlive": 47,
+      "minOrangeAlive": 47,
+      "bothTeamsAtLeast20Fraction": 1,
+      "completedLives": 84,
+      "meanLifeSeconds": 75.11761736860942,
+      "meanFirstDamageToDeathSeconds": 54.754284490432056,
+      "centralBattlefieldFraction": 0.8269694819020582,
+      "coreGaugeDamage": 49374,
+      "unitGaugeDamage": 1117.5899753570557,
+      "blueGauge": 9867.58001529798,
+      "orangeGauge": 0
+    },
+    "constructed-battle-urban-overpass.json": {
+      "scope": "constructed-domain-bot-match-not-ui-player-or-fps-acceptance",
+      "mapId": "urban-overpass",
+      "peakAlive": 100,
+      "simulatedSeconds": 600,
+      "WinnerTeam": 0,
+      "ShotsFired": 61613,
+      "UnitsDestroyed": 116,
+      "UnitsSpawned": 215,
+      "BaseHits": 35,
+      "BaseCounterShotsFired": 26,
+      "CaptureChanges": 39,
+      "peakAirborne": 23,
+      "airborneUnitSeconds": 7241.5996,
+      "maximumHeight": 12.536796,
+      "averageAlive": 99.39426666666667,
+      "minBlueAlive": 47,
+      "minOrangeAlive": 48,
+      "bothTeamsAtLeast20Fraction": 1,
+      "completedLives": 116,
+      "meanLifeSeconds": 168.87016863925064,
+      "meanFirstDamageToDeathSeconds": 146.33913466009986,
+      "centralBattlefieldFraction": 0.8072132223647471,
+      "coreGaugeDamage": 12176,
+      "unitGaugeDamage": 1540.409969329834,
+      "blueGauge": 25782.300017829984,
+      "orangeGauge": 20501.290016600862
+    }
+  },
+  "botPerception": {
+    "enabledInPlayable": true,
+    "range": 180,
+    "horizontalFov": 110,
+    "verticalFov": 90,
+    "scanSeconds": 0.22,
+    "reactionSeconds": [
+      0.5,
+      0.85
+    ],
+    "turnDegreesPerSecond": 110,
+    "mapContacts": "bounded unjammed team reports may cue a bearing; firing needs visual FOV/LOS/acquisition; stale between-scan positions",
+    "physicalAimLimit": "applies once per tick to BOT yaw/pitch across command, aim point and red lock; human aim unchanged"
+  },
+  "strategy": {
+    "rules": {
+      "enabled": true,
+      "initialPoints": 150,
+      "maximumPoints": 1000,
+      "pointsPerLoss": 25,
+      "nuclear": {
+        "cost": 600,
+        "cooldownSeconds": 90,
+        "delaySeconds": 12,
+        "durationSeconds": 2,
+        "radius": 34,
+        "unitDamage": 6500,
+        "coreDamage": 4500
+      },
+      "jammer": {
+        "cost": 150,
+        "cooldownSeconds": 35,
+        "delaySeconds": 3,
+        "durationSeconds": 45,
+        "radius": 100,
+        "unitDamage": 0,
+        "coreDamage": 0
+      },
+      "wideRadar": {
+        "cost": 100,
+        "cooldownSeconds": 30,
+        "delaySeconds": 2,
+        "durationSeconds": 25,
+        "radius": 140,
+        "unitDamage": 0,
+        "coreDamage": 0
+      }
+    },
+    "behavior": "team points from each friendly unit death once; same-type active limit and cooldown; nuclear friendly unit/base/structure damage; no capture flag override; area radar and contact jamming; M map selection/preview/confirm",
+    "nuclearMode": "map-designated telegraphed blast; unit carrying/pickup/interception not implemented"
+  },
+  "art": {
+    "sourceDataOnly": true,
+    "overview": "MechaBattle/Build/STRATEGY23_1792164282251/accepted/MapOverview.png",
+    "urban": "MechaBattle/Build/STRATEGY23_1792164282251/accepted/UrbanOverpass.png",
+    "renderLog": "MechaBattle/Build/STRATEGY23_1792164282251/accepted/art-render.json",
+    "visualInspection": true
+  },
+  "native": {
+    "executed": false,
+    "addedCoverage": "PlayableFlowTests urban selection and TacticalMap selection/point/point-spend/CanvasRenderer/map-keeps-running/close-on-pause",
+    "unityEditorInteraction": false,
+    "windowsBuild": false,
+    "fpsGcMeasurements": false,
+    "newAssetMeta": {
+      "editorGenerated": true,
+      "observed": [
+        {
+          "path": "MechaBattle/Assets/Game/Runtime/Contracts/StrategyTypes.cs",
+          "exists": true
+        },
+        {
+          "path": "MechaBattle/Assets/Game/Runtime/Simulation/BotPerception.cs",
+          "exists": true
+        },
+        {
+          "path": "MechaBattle/Assets/Game/Runtime/Simulation/BattleStrategy.cs",
+          "exists": true
+        },
+        {
+          "path": "MechaBattle/Assets/Game/Runtime/Playable/PlayableStrategy.cs",
+          "exists": true
+        },
+        {
+          "path": "MechaBattle/Assets/Game/Runtime/Playable/TacticalMapView.cs",
+          "exists": true
+        },
+        {
+          "path": "MechaBattle/Assets/Game/Runtime/Playable/StrategyWorldView.cs",
+          "exists": true
+        },
+        {
+          "path": "MechaBattle/Assets/Game/Tests/EditMode/BotPerceptionTests.cs",
+          "exists": true
+        },
+        {
+          "path": "MechaBattle/Assets/Game/Tests/EditMode/StrategyTests.cs",
+          "exists": true
+        },
+        {
+          "path": "MechaBattle/Assets/Game/Tests/EditMode/UrbanMapTests.cs",
+          "exists": true
+        },
+        {
+          "path": "MechaBattle/Assets/Game/Resources/MechaBattleMaps/UrbanOverpass.json",
+          "exists": true
+        }
+      ],
+      "guidsHandWritten": false
+    }
+  },
+  "collaboration": {
+    "board": "docs/WORK_BOARD.md",
+    "directDelivery": false,
+    "claudeAcknowledgement": false,
+    "lock": "released"
+  },
+  "limitations": [
+    "Native UI/input/Windows/performance acceptance not executed",
+    "Nuclear is map-designated prototype; carrying, pickup and destructible nuclear device not implemented",
+    "Commander/squad autonomous strategic support decisions not connected",
+    "Costs/ranges/timing are provisional, not historically verified official tuning"
+  ],
+  "sourceCurrentDifferenceCount": 0,
+  "gitDiffCheck": {
+    "exitCode": 0,
+    "excluded": "pre-existing .unity scene whitespace; no scene YAML edited"
+  }
+}

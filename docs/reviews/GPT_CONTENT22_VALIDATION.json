@@ -1,0 +1,281 @@
+{
+  "task": "CONTENT-22",
+  "owner": "GPT",
+  "executedUtc": "2026-10-16T14:40:15.037Z",
+  "status": "implemented-independent-validation-passed-native-acceptance-pending",
+  "requirements": [
+    "FR-001",
+    "FR-108",
+    "FR-109",
+    "FR-110",
+    "FR-401",
+    "FR-501",
+    "FR-801",
+    "FR-805",
+    "UserText modular construction concept",
+    "user map/frame/appearance expansion"
+  ],
+  "content": {
+    "selectableMaps": [
+      {
+        "id": "p0-three-lanes",
+        "title": "中央工業戦線",
+        "theme": "industrial",
+        "source": "standard-map.json",
+        "width": 480,
+        "depth": 280,
+        "basesPerTeam": 3,
+        "relayCount": 3
+      },
+      {
+        "id": "terraced-works",
+        "title": "段丘工業区",
+        "theme": "works",
+        "source": "terraced-works-map.json",
+        "width": 560,
+        "depth": 320,
+        "basesPerTeam": 3,
+        "relayCount": 3
+      },
+      {
+        "id": "canyon-cross",
+        "title": "荒地渓谷",
+        "theme": "canyon",
+        "source": "canyon-cross-map.json",
+        "width": 640,
+        "depth": 360,
+        "basesPerTeam": 3,
+        "relayCount": 3
+      }
+    ],
+    "frames": [
+      {
+        "id": "frame.standard.v1",
+        "health": 2000,
+        "shield": 900,
+        "speed": 12,
+        "downPointCapacity": 600
+      },
+      {
+        "id": "frame.heavy.v1",
+        "health": 2650,
+        "shield": 1100,
+        "speed": 9.5,
+        "downPointCapacity": 750
+      },
+      {
+        "id": "frame.light.v1",
+        "health": 2000,
+        "shield": 600,
+        "speed": 14,
+        "downPointCapacity": 550
+      },
+      {
+        "id": "frame.support.v1",
+        "health": 2300,
+        "shield": 950,
+        "speed": 10.5,
+        "downPointCapacity": 650
+      }
+    ],
+    "armFamilies": [
+      "standard",
+      "reinforced",
+      "mobile"
+    ],
+    "paintOptions": [
+      "Neutral",
+      "White",
+      "Sand",
+      "Olive",
+      "Graphite"
+    ],
+    "presets": 10,
+    "modules": 23,
+    "legacyModulesUnchanged": 19,
+    "balanceStatus": "provisional; reasons recorded in content22Notes"
+  },
+  "validation": {
+    "artifactDirectory": "MechaBattle/Build/CONTENT22_1792160951668",
+    "domain": {
+      "passed": 438,
+      "failed": 0,
+      "sourceCount": 87,
+      "exitCode": 0,
+      "newPureCases": 13,
+      "newIntegrationCase": 1,
+      "allFrameTripleBuilds": 13314,
+      "frameConversionsFromStandardTriples": 26364,
+      "paintSaveLoadChecks": 50,
+      "report": "MechaBattle/Build/CONTENT22_1792160951668/project/Build/Reports/domain-smoke.json"
+    },
+    "static": {
+      "assemblies": 20,
+      "exitCode": 0,
+      "report": "MechaBattle/Build/CONTENT22_1792160951668/project/Build/Reports/static-api-compile.json"
+    },
+    "model": {
+      "exitCode": 0,
+      "modules": 23,
+      "presets": 10,
+      "closedSolidInstances": 230,
+      "validatedTriangles": 9288,
+      "report": "MechaBattle/Build/CONTENT22_1792160951668/project/Build/Reports/simple-mecha.json"
+    },
+    "botMatches": [
+      {
+        "scope": "constructed-domain-bot-match-not-ui-player-or-fps-acceptance",
+        "mapId": "p0-three-lanes",
+        "peakAlive": 100,
+        "simulatedSeconds": 423.34,
+        "WinnerTeam": 1,
+        "ShotsFired": 43137,
+        "UnitsDestroyed": 65,
+        "UnitsSpawned": 164,
+        "BaseHits": 276,
+        "BaseCounterShotsFired": 54,
+        "CaptureChanges": 24,
+        "peakAirborne": 54,
+        "airborneUnitSeconds": 11425.819,
+        "maximumHeight": 13.123195,
+        "averageAlive": 99.54235366372183,
+        "minBlueAlive": 48,
+        "minOrangeAlive": 47,
+        "bothTeamsAtLeast20Fraction": 1,
+        "completedLives": 65,
+        "meanLifeSeconds": 151.78091968435507,
+        "meanFirstDamageToDeathSeconds": 134.8990739078476,
+        "centralBattlefieldFraction": 0.8158411760765021,
+        "coreGaugeDamage": 49274,
+        "unitGaugeDamage": 857.2799787521362,
+        "blueGauge": 0,
+        "orangeGauge": 10114.4400094226
+      },
+      {
+        "scope": "constructed-domain-bot-match-not-ui-player-or-fps-acceptance",
+        "mapId": "terraced-works",
+        "peakAlive": 100,
+        "simulatedSeconds": 600,
+        "WinnerTeam": 0,
+        "ShotsFired": 59675,
+        "UnitsDestroyed": 66,
+        "UnitsSpawned": 165,
+        "BaseHits": 130,
+        "BaseCounterShotsFired": 36,
+        "CaptureChanges": 21,
+        "peakAirborne": 56,
+        "airborneUnitSeconds": 17852.9,
+        "maximumHeight": 13.123195,
+        "averageAlive": 99.67436666666667,
+        "minBlueAlive": 47,
+        "minOrangeAlive": 48,
+        "bothTeamsAtLeast20Fraction": 1,
+        "completedLives": 66,
+        "meanLifeSeconds": 198.0975713297499,
+        "meanFirstDamageToDeathSeconds": 183.398177718913,
+        "centralBattlefieldFraction": 0.8121794647732162,
+        "coreGaugeDamage": 37634,
+        "unitGaugeDamage": 876.8099794387817,
+        "blueGauge": 12315.250012757257,
+        "orangeGauge": 9173.940006840974
+      },
+      {
+        "scope": "constructed-domain-bot-match-not-ui-player-or-fps-acceptance",
+        "mapId": "canyon-cross",
+        "peakAlive": 100,
+        "simulatedSeconds": 600,
+        "WinnerTeam": 1,
+        "ShotsFired": 51891,
+        "UnitsDestroyed": 50,
+        "UnitsSpawned": 149,
+        "BaseHits": 32,
+        "BaseCounterShotsFired": 6,
+        "CaptureChanges": 23,
+        "peakAirborne": 53,
+        "airborneUnitSeconds": 13760.279,
+        "maximumHeight": 13.123195,
+        "averageAlive": 99.753,
+        "minBlueAlive": 48,
+        "minOrangeAlive": 48,
+        "bothTeamsAtLeast20Fraction": 1,
+        "completedLives": 50,
+        "meanLifeSeconds": 194.417595654428,
+        "meanFirstDamageToDeathSeconds": 174.78239609330893,
+        "centralBattlefieldFraction": 0.7791125067017816,
+        "coreGaugeDamage": 12050,
+        "unitGaugeDamage": 664.4699840545654,
+        "blueGauge": 22104.110006613657,
+        "orangeGauge": 25181.420008238405
+      }
+    ],
+    "previews": {
+      "modelRenderExit": 0,
+      "mapRenderExit": 0,
+      "visuallyInspected": [
+        "ArtSource/MB_Worker01/MB_Weapons_preview.png",
+        "ArtSource/MB_Worker01/MB_Paints_preview.png",
+        "MechaBattle/Build/CONTENT22_1792160951668/MapOverview.png"
+      ],
+      "scope": "offline source data and geometry; not Unity screenshots"
+    },
+    "snapshot": {
+      "fileCount": 165,
+      "changedFiles": [],
+      "hashes": "MechaBattle/Build/CONTENT22_1792160951668/source-sha256.json"
+    },
+    "configCopiesIdentical": true,
+    "diffCheck": "passed, existing generated .unity files excluded",
+    "metas": [
+      {
+        "file": "MechaBattle/Assets/Game/Runtime/Contracts/MapCatalog.cs",
+        "metaExists": true
+      },
+      {
+        "file": "MechaBattle/Assets/Game/Runtime/Battlefield/MapCatalogPolicy.cs",
+        "metaExists": true
+      },
+      {
+        "file": "MechaBattle/Assets/Game/Runtime/Construction/BuildAppearance.cs",
+        "metaExists": true
+      },
+      {
+        "file": "MechaBattle/Assets/Game/Runtime/Playable/PlayableContentSelection.cs",
+        "metaExists": true
+      },
+      {
+        "file": "MechaBattle/Assets/Game/Tests/EditMode/ContentCatalogTests.cs",
+        "metaExists": true
+      },
+      {
+        "file": "MechaBattle/Assets/Game/Resources/MechaBattleMaps/CanyonCross.json",
+        "metaExists": true
+      },
+      {
+        "file": "MechaBattle/Assets/Game/Resources/MechaBattleMaps/MapCatalog.json",
+        "metaExists": true
+      },
+      {
+        "file": "MechaBattle/Assets/Game/Resources/MechaBattleMaps/StandardMap.json",
+        "metaExists": true
+      },
+      {
+        "file": "MechaBattle/Assets/Game/Resources/MechaBattleMaps/TerracedWorks.json",
+        "metaExists": true
+      }
+    ],
+    "editorLog": {
+      "modified": "2026-10-16T14:37:40.835Z",
+      "errors": []
+    },
+    "nativeTestRunner": "not executed",
+    "nativeDisplayAndInput": "not verified",
+    "windowsPlayer": "not built or run",
+    "fpsGc": "not measured"
+  },
+  "collaboration": {
+    "sourceReservations": "released",
+    "directClaudeMessage": "not sent; work board and handoff only",
+    "reviewAcceptance": "not confirmed"
+  },
+  "runningProcesses": "all GPT started compiler/test/render/sync commands exited"
+}

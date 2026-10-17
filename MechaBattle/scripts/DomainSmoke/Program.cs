@@ -47,6 +47,12 @@ try { var battle = ActualBotDefaultsSmoke.Run(project); passed++; cases.Add(batt
 catch (Exception ex) { failed++; cases.Add(new { name = "ActualClaudeBot_ActualConfig_100Slots", status = "failed", error = ex.ToString() }); }
 try { var construction = ConstructionDefaultsSmoke.Run(project); passed++; cases.Add(construction); }
 catch (Exception ex) { failed++; cases.Add(new { name = "Construction_ActualCatalogAndSavedBuildRoundTrip", status = "failed", error = ex.ToString() }); }
+try { var constructedBattle = ConstructedBattleSmoke.Run(project); passed++; cases.Add(constructedBattle); }
+catch (Exception ex) { failed++; cases.Add(new { name = "ConstructedDeck_Actual100BotMatchCompletesWithoutResourceOrCooldownBypass", status = "failed", error = ex.ToString() }); }
+try { var mapVariation = MapVariationSmoke.Run(project); passed++; cases.Add(mapVariation); }
+catch (Exception ex) { failed++; cases.Add(new { name = "ForwardCenterMap_AsymmetricTopologyAndFullBotMatch", status = "failed", error = ex.ToString() }); }
+try { var expanded = ContentExpansionSmoke.Run(project); passed++; cases.Add(expanded); }
+catch (Exception ex) { failed++; cases.Add(new { name = "ExpandedContent_AllFramesPaintsMapsAnd100BotMatches", status = "failed", error = ex.ToString() }); }
 var output = Path.Combine(project, "Build/Reports/domain-smoke.json");
 Directory.CreateDirectory(Path.GetDirectoryName(output));
 var report = JsonSerializer.Serialize(new { scope = "pure-csharp-smoke-not-unity-test-runner", executedUtc = DateTime.UtcNow, passed, failed, cases }, new JsonSerializerOptions { WriteIndented = true });

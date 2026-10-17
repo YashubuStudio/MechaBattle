@@ -1,0 +1,8 @@
+{
+  "name": "Game.AI.Squads",
+  "rootNamespace": "MechaBattle.AI.Squads",
+  "references": [
+    "Game.Contracts"
+  ],
+  "noEngineReferences": true
+}

@@ -61,15 +61,24 @@ namespace MechaBattle.Contracts
         public readonly long Tick;
         public readonly uint Sequence;
         public readonly float MoveX, MoveY, AimYaw, AimPitch;
-        public readonly bool Boost, FirePrimary, FireSecondary, Melee, UseAbility;
+        public readonly MeleeStyle MeleeStyle;
+        public readonly bool HasAimPoint, Jump, CancelHeldAttack, EmergencyReturn, Crouch;
+        public readonly int LockedTargetSlot, LockedTargetUnitId, WeaponSwitchDelta;
+        public readonly int LockedDeployableIndex, LockedDeployableId;
+        public readonly float AimTargetX, AimTargetY, AimTargetZ;
+        public readonly bool Boost, FirePrimary, FireSecondary, Melee, UseAbility, Reload;
         public UnitCommand(int unitId, long tick, uint sequence, float moveX, float moveY,
             float aimYaw, float aimPitch, bool boost, bool firePrimary,
-            bool fireSecondary, bool melee, bool useAbility)
+            bool fireSecondary, bool melee, bool useAbility, bool reload = false, MeleeStyle meleeStyle = MeleeStyle.Normal, bool hasAimPoint = false, float aimTargetX = 0, float aimTargetY = 0, float aimTargetZ = 0, int lockedTargetSlot = -1, int lockedTargetUnitId = 0, bool jump = false, int weaponSwitchDelta = 0, bool cancelHeldAttack = false, int lockedDeployableIndex = -1, int lockedDeployableId = 0, bool emergencyReturn = false, bool crouch = false)
         {
-            UnitId = unitId; Tick = tick; Sequence = sequence;
+            EmergencyReturn=emergencyReturn; Crouch=crouch;
+            LockedDeployableIndex=lockedDeployableIndex;LockedDeployableId=lockedDeployableId;
+            UnitId = unitId; Tick = tick; Sequence = sequence; CancelHeldAttack = cancelHeldAttack;
             MoveX = moveX; MoveY = moveY; AimYaw = aimYaw; AimPitch = aimPitch;
             Boost = boost; FirePrimary = firePrimary; FireSecondary = fireSecondary;
-            Melee = melee; UseAbility = useAbility;
+            WeaponSwitchDelta = weaponSwitchDelta; LockedTargetSlot = lockedTargetSlot; LockedTargetUnitId = lockedTargetUnitId; Jump = jump;
+            HasAimPoint = hasAimPoint; AimTargetX = aimTargetX; AimTargetY = aimTargetY; AimTargetZ = aimTargetZ;
+            MeleeStyle = meleeStyle; Melee = melee; UseAbility = useAbility; Reload = reload;
         }
     }
 
