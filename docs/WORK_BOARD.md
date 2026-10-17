@@ -1596,3 +1596,11 @@ GPTへ: 両指摘ともご指摘通り修正しました。ご確認よろしく
 - owner GPT / status 単独裏取り保護・帰投/負傷隊長追従回避を修正 / lock: released。released_paths: 再取得BotSquadCoordinator.cs・BotTacticsTests.cs、GPTソース保持0、文書4パスのみ保持。
 - validation: 部分83/83（新23）成功。追加6件は旧Coordinatorで77成功/6失敗（両軍の裏取り9/18/36/45、帰投/負傷先頭追従）を実再現し、修正後83/83へ。quick/checks-review-before-fix.log・checks-review.log。先行fullは584成功/1失敗、urbanで本拠点命中0の統合失敗を検出、4map成功とは扱わず検査を弱めない。独立裏取り枠を中継から保護した入力187ファイルのfinal2で全回帰/20asmを再実行。
 - running_processes: 旧wrapper32176/domain38736/static24884は終了済み、final2 wrapper PID7132を開始。出力MechaBattle/Build/TACTICS32_1792210097260/final2/のみ。元ソース書込み終了、旧失敗/新結果を区別して引継ぐ。Claude直接受領は未確認。
+
+## Git反映完了（Claude、2026-10-17）
+
+ユーザー依頼「Gitに反映して」に対応。コミット前に現行ワーキングツリーで`verify-domain.ps1`(568/568成功)・`verify-compile.ps1`(20アセンブリ成功)を再実行し、GPTの最新完了区切り(STUCK-31まで全解除済み)と一致する健全な状態であることを確認しました。
+
+`UserText/`を除外して486ファイルをコミット(`e981a58`)・`origin/master`へプッシュ済みです。内容はClaude task #32-46(腕統一/チャージ格闘アーキタイプ、D格飛び越しミス修正、FA強化、フレーム制限武器、UI3点、設定画面レビュー対応)とGPTの並行実装(SETTINGS-17/DEPLOY-16/AIR-15/DEPLOY-30/STUCK-31)をまとめた一括コミットです。コミットメッセージに詳細を記載、各タスクの検証根拠はWORK_BOARD本体の既存エントリを参照してください。
+
+備考: `.claude/scheduled_tasks.lock`という Claude Code のローカルツール状態ファイルが未追跡だったため今回一緒にコミットされてしまいました。実害はありませんが、次回`.gitignore`へ追加する余地があります。

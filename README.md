@@ -1,6 +1,6 @@
 # MechaBattle
 
-Windows x64 / Unity 6.3 LTS (6000.3.26f1) / URP のオリジナル50対50ロボット戦闘ゲーム。
+Windows x64 / Unity 6.3 LTS (6000.3.26f1) / URP の50対50ロボット戦闘ゲーム。
 Unityプロジェクトは [MechaBattle/](MechaBattle/)、仕様の正本は [MechaBattle_MasterPlan/README.md](MechaBattle_MasterPlan/README.md)。
 
 GPTとClaudeの共同作業は [作業表](docs/WORK_BOARD.md) と [開発手順](docs/DEVELOPMENT.md) を参照。
